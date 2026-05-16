@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui" >
+
+    <f:view> 
+        <h:head>
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink immediate="true" onclick="Ayuda('ANotaCredDebCxCUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Notas de Crédito/Débito de CxC</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError" id="mensajeGlobal"/>    
+                <hr size="2" width="90%"></hr>
+                <table width="90%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="6" border="0">
+
+                                <h:outputLabel value="Inmueble " for="idInmueble"/>   
+                                <h:selectOneMenu value="#{NotaCredDebCxCUI_Backing.idInmueble}" id="idInmueble" tabindex="3" immediate="true" 
+                                                 valueChangeListener="#{NotaCredDebCxCUI_Backing.inicializarPanel}"
+                                                 onchange="this.form.submit()" >
+                                    <f:selectItems value="#{NotaCredDebCxCUI_Backing.inmueblesPorPropiedad}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Fecha nota (dd-mm-aaaa) " for="fecNotaCredDebCxC"/>  
+
+                                <h:inputText required="false" id="fecNotaCredDebCxC" size="10" immediate="true"
+                                             binding="#{NotaCredDebCxCUI_Backing.fecNotaCredDebCxC}" tabindex="4"
+                                             onfocus="showCalendarControl(this);"/>
+
+                                <h:outputLabel value="Tipo " for="tipoNotaCredDebCxC"/>  
+                                <h:selectOneMenu id="tipoNotaCredDebCxC" binding="#{NotaCredDebCxCUI_Backing.tipoNotaCredDebCxC}" tabindex="5" immediate="true">
+                                    <f:selectItem  itemLabel="Crédito" itemValue="Credito" />
+                                    <f:selectItem  itemLabel="Débito" itemValue="Debito" />
+                                </h:selectOneMenu>
+
+
+                                <h:outputLabel value="Conceptos" for="idConcepto" />                             
+                                <h:selectOneMenu binding="#{NotaCredDebCxCUI_Backing.idConcepto}" id="idConcepto" tabindex="6" immediate="true">
+                                    <f:selectItems value="#{NotaCredDebCxCUI_Backing.conceptosPorCondominio}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Monto " for="mtoNotaCredDebCxC"/>                
+                                <h:inputText required="false" id="mtoNotaCredDebCxC" size="10" maxlength="10" immediate="true"
+                                             binding="#{NotaCredDebCxCUI_Backing.mtoNotaCredDebCxC}" tabindex="7" />
+                            </h:panelGrid>
+                        </td>  
+                    </tr>  
+                </table>
+                <hr size="2" width="90%"></hr>
+                <br></br>
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{NotaCredDebCxCUI_Backing.registrarNotaCredDebCxC}" 
+                                         disabled ="#{BeanUsuario.agregar}" tabindex="8" />  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{NotaCredDebCxCUI_Backing.modificarNotaCredDebCxC}"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Notas de crédito/débito registradas.</i><font size="2"><i> Seleccione la nota a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaNotasCredDebCxC" rows="5" rowKey="#{co.id}"      
+                             value="#{NotaCredDebCxCUI_Backing.notasCredDebCxCPorInmueble}" paginatorPosition="bottom"
+                             var="co" paginator="true"   
+                             selection="#{NotaCredDebCxCUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nota Credito/Debito"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.numNotaCredDeb}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecNotaCredDeb}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Concepto"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombConcepto}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Monto"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.mtoNotaCredDebString}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Saldo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.saldoNotaCredDebString}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha Mov"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecMovNCD}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Tipo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.tipoNotaCredDeb}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Estado"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.edoNotaCredDeb}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{NotaCredDebCxCUI_Backing.editarNotasCredDebCxCAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{NotaCredDebCxCUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

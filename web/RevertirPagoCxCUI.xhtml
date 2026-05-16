@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="CalendarControl.js" language="javascript"></script>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink immediate="true"  onclick="Ayuda('ARevertirPagoCxCUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Revertir pagos de cuentas por cobrar</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+                <hr size="2" width="90%"></hr>
+                <table width="90%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="6" border="0">
+
+                                <h:outputLabel value="Inmueble " for="idInmueble"/>   
+                                <h:selectOneMenu value="#{RevertirPagoCxCUI_Backing.idInmueble}" id="idInmueble" tabindex="3" 
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{RevertirPagoCxCUI_Backing.inmueblesPorPropiedad}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Descripción " for="desPagoCxC"/>                
+                                <h:inputText required="false" id="desPagoCxC" size="24" maxlength="60"
+                                             value="#{RevertirPagoCxCUI_Backing.desPagoCxC}" tabindex="5" 
+                                             readonly ="true"/>
+
+                                <h:outputLabel value="Nro. Doc/Ref" for="numDocPagoCxC"/>                
+                                <h:inputText required="false" id="numDocPagoCxC" size="24" maxlength="20"
+                                             value="#{RevertirPagoCxCUI_Backing.numDocPagoCxC}" tabindex="6" 
+                                             readonly ="true"/>
+
+                                <h:outputLabel value="Monto " for="mtoPagoCxC"/>                
+                                <h:inputText required="false" id="mtoPagoCxC" size="24" maxlength="10"
+                                             value="#{RevertirPagoCxCUI_Backing.mtoPagoCxC}" tabindex="7" 
+                                             readonly ="true"/>
+
+                                <h:outputLabel value="Forma de pago " for="formaPagoCxC"/>  
+                                <h:inputText id="formaPagoCxC" value="#{RevertirPagoCxCUI_Backing.formaPagoCxC}"
+                                             readonly ="true" tabindex="8" size="24" >
+                                </h:inputText>
+
+                                <h:outputLabel value="Fecha del doc. (dd-mm-aaaa) " for="fecDocPagoCxC"/>                                                                                               
+                                <h:inputText required="false" id="fecDocPagoCxC" size="24" 
+                                             value="#{RevertirPagoCxCUI_Backing.fecDocPagoCxC}" tabindex="10"
+                                             readonly ="true"/>
+
+                                <h:outputLabel value="Banco " for="bancoPagoCxC"/>  
+                                <h:inputText id="bancoPagoCxC" value="#{RevertirPagoCxCUI_Backing.bancoPagoCxC}"
+                                             readonly ="true" tabindex="11" size="24">
+                                </h:inputText>
+
+                            </h:panelGrid>
+                        </td>  
+                    </tr>  
+                </table>
+                <hr size="2" width="90%"></hr>
+                <br></br>
+                <div align="center">
+                    <p>
+                        <h:commandButton value="Revertir pago" action="eliminar" disabled="#{BeanUsuario.revertir}"/>  
+                    </p>
+                </div>
+
+                <hr width="100%"></hr>
+                <h4><i>Pagos de cuentas por cobrar registradas.</i><font size="2"><i> Seleccione el pago a procesar</i></font></h4>
+
+                <p:dataTable id="TablaPagosCxC" rows="5" rowKey="#{co.id}"   
+                             value="#{RevertirPagoCxCUI_Backing.pagosCxCPorInmueble}" paginatorPosition="bottom"
+                             var="co" paginator="true"   
+                             selection="#{RevertirPagoCxCUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha emisión"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecMovPagoCxC}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Descripción"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.desPagoCxC}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nro. Documento"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.numDocPagoCxC}"/>
+                    </p:column>
+                    <p:column  style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Monto"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.mtoPagoCxC}" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Forma de pago"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.formaPagoCxC}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha doc"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecDocPagoCxC}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Banco"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.bancoPagoCxC}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{RevertirPagoCxCUI_Backing.editarPagoCxCAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{RevertirPagoCxCUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

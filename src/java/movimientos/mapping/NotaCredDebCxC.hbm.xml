@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : NotaCredDebCxC.hbm.xml
+    Created on : March 8, 2012, 10:58 AM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.NotaCredDebCxC" table="NOTA_CRED_DEB_CXC"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_NOTA_CRED_DEB_CXC">
+            <generator class="increment" />
+        </id>
+        
+        <property name="numNotaCredDebCxC">
+            <column name="NUM_NOTA_CRED_DEB_CXC" length="3"/>
+        </property>
+        <property name="fecNotaCredDebCxC">
+            <column name="FEC_NOTA_CRED_DEB_CXC" length="10"/>
+        </property>
+        <property name="mtoNotaCredDebCxC">
+            <column name="MTO_NOTA_CRED_DEB_CXC" />
+        </property>
+        <property name="tipoNotaCredDebCxC">
+            <column name="TIPO_NOTA_CRED_DEB_CXC" length="7" />
+        </property>
+        <property name="tipoOperNotaCredDebCxC">
+            <column name="TIPO_OPER_NOTA_CRED_DEB_CXC" length="6" default = "'MANUAL'"/>
+        </property>
+        <property name="saldoNotaCredDebCxC">
+            <column name="SALDO_NOTA_CRED_DEB_CXC" />
+        </property>
+        <property name="edoNotaCredDebCxC">
+            <column name="EDO_NOTA_CRED_DEB_CXC" length="4"/>
+        </property>
+        <property name="descNotaCredDebCxC">
+            <column name="DESC_NOTA_CRED_DEB_CXC" length="50"/>
+        </property>
+        <property name="idConcepto">
+            <column name="ID_CONCEPTO" />
+        </property>
+        <property name="fecMovNCD">
+            <column name="FEC_MOV_NCD"/>
+        </property>
+        <property name="perNotaCredDebCxC">
+            <column name="PER_NOTA_CRED_DEB_CXC"/>
+        </property>
+        <property name="idPagoCxC">
+            <column name="ID_PAGO_CXC" />
+        </property>
+        
+        <many-to-one name="inmueble"  class="datosbasicos.modelos.Inmueble"
+                         column="ID_INMUEBLE" not-null = "true" />
+                 
+    </class>
+</hibernate-mapping>

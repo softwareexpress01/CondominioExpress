@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" name="movimientos.modelos.MovBancario" table="MOVBANCARIOS">
+        <id column="ID_MOVBANCARIO" name="id" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property name="idBcoMovBancario">
+            <column name="ID_BCO_MOVBANCARIO"/>
+        </property>
+        <property name="idCtaMovBancario">
+            <column name="ID_CTA_MOVBANCARIO"/>
+        </property>
+        <property name="tipoOperMovBancario">
+            <column length="20" name="TIPO_OPER_MOVBANCARIO"/>
+        </property>
+        <property name="fecMovBancario" length="10">
+            <column length="10" name="FEC_MOVBANCARIO"/>
+        </property>
+        <property name="refMovBancario" >
+            <column name="REF_MOVBANCARIO" length="20"/>
+        </property>
+        <property name="mtoMovBancario" >
+            <column name="MTO_MOVBANCARIO" />
+        </property>
+        <property name="descMovBancario" >
+            <column length="100" name="DESC_MOVBANCARIO"/>
+        </property>
+        <property name="idPago" >
+            <column  name="ID_PAGO"/>
+        </property>
+    
+        <many-to-one class="datosbasicos.modelos.Cuenta" column="ID_CUENTA" name="cuenta" not-null="true"/>
+    
+   
+  
+    </class>
+</hibernate-mapping>

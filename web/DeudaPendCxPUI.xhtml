@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="../css/CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("descDeudaPendCxP");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('ADeudaPendCxPUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Registrar Deuda pendiente de CxP</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <hr size="2" width="85%"></hr>
+                <table width="85%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Proveedor " for="idProvDeudaPendCxP" />
+                                <h:selectOneMenu value="#{DeudaPendCxPUI_Backing.idProvDeudaPendCxP}" id="idProvDeudaPendCxP" tabindex="1" 
+                                                 valueChangeListener="#{DeudaPendCxPUI_Backing.inicializarPanel}"
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{DeudaPendCxPUI_Backing.proveedoresPorCondominio}"/>
+                                </h:selectOneMenu>
+
+                            </h:panelGrid>
+                        </td>    
+
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+                                <h:outputLabel value="Nro. Documento " for="refDeudaPendCxP"/>                
+                                <h:inputText required="false" id="refDeudaPendCxP" size="24" maxlength ="10"
+                                             binding="#{DeudaPendCxPUI_Backing.refDeudaPendCxP}" tabindex="2"/>
+
+                                <h:outputLabel value="Fecha (dd-mm-aaaa)" for="fecDeudaPendCxP" /> 
+                                <h:inputText required="false" id="fecDeudaPendCxP" size="24"  maxlength ="10"
+                                             binding="#{DeudaPendCxPUI_Backing.fecDeudaPendCxP}" tabindex="4"
+                                             onfocus="showCalendarControl(this);"/> 
+                            </h:panelGrid>
+                        </td>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+                                <h:outputLabel value="Descripción " for="descDeudaPendCxP" />                             
+                                <h:inputTextarea required="false" id="descDeudaPendCxP" cols="26" rows="1" 
+                                                 binding="#{DeudaPendCxPUI_Backing.descDeudaPendCxP}" tabindex="3"
+                                                 onkeypress="return limita(100);" />
+
+                                <h:outputLabel value="Monto " for="mtoDeudaPendCxP"/>                
+                                <h:inputText id="mtoDeudaPendCxP" size="25" required="false" maxlength ="12"
+                                             binding="#{DeudaPendCxPUI_Backing.mtoDeudaPendCxP}" tabindex="5"/>
+                            </h:panelGrid>
+                        </td>
+                    </tr>  
+                </table>
+                <hr size="2" width="85%"></hr>
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{DeudaPendCxPUI_Backing.registrarDeudaPendCxP}" tabindex="6" 
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{DeudaPendCxPUI_Backing.modificarDeudaPendCxP}" tabindex="7"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="8"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Deudas Pendientes registradas.</i><font size="2"><i> Seleccione la deuda a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaDeudasPendientesCxP" rows="5" rowKey="#{co.id}"   
+                             value="#{DeudaPendCxPUI_Backing.deudasPendientesPorProveedor}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage=" " 
+                             selection="#{DeudaPendCxPUI_Backing.filaSeleccionada}" selectionMode="single" >  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha Mov."/>
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.fecMovDeudaPendCxP}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Proveedor"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.nombProvDeudaPendCxP}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Nro. Documento"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.refDeudaPendCxP}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                             
+                                <h:outputText value="Descripción"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.descDeudaPendCxP}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Fecha Doc."/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.fecDeudaPendCxP}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Monto "/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.mtoDeudaPendCxPString}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Saldo "/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.saldoDeudaPendCxPString}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Estado "/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.estatusDeudaPendCxP}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{DeudaPendCxPUI_Backing.editarDeudaPendCxPAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{DeudaPendCxPUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

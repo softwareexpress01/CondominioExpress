@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Categoria.hbm.xml
+    Created on : February 5, 2012, 7:59 AM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="datosbasicos.modelos.Categoria" table="CATEGORIAS"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_CATEGORIA">
+            <generator class="increment" />
+        </id>
+        
+        <property name="nombCategoria">
+            <column name="NOMB_CATEGORIA" length="30"/>
+        </property>
+        <property name="descCategoria">
+            <column name="DESC_CATEGORIA" length="60"/>
+        </property>
+        <property name="edoCategoria">
+            <column name="EDO_CATEGORIA" length="3"/>
+        </property>
+        
+        <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+           column="ID_CONDOMINIO" not-null = "true" />
+           
+        <bag name="conceptos" cascade="save-update,delete" 
+            lazy="true" inverse = "true">
+            <key column="ID_CATEGORIA"/>
+            <one-to-many class="datosbasicos.modelos.Concepto" />
+        </bag>
+        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <f:view>
+        <h:head>
+            <title>Software Express</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+            </f:facet>
+        </h:head>
+        <h:body>
+            <h:form>
+                <table  width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1>
+                        </div>
+                    </tr>
+                </table>
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="right">
+                            <h:commandLink action="registrarse" immediate="true"> 
+                                <h:outputText value="Registrarse"/>
+                            </h:commandLink>
+                            <f:verbatim>&nbsp; | &nbsp;</f:verbatim>
+                            <h:commandLink action="login" immediate="true">
+                                <h:outputText value="Entrar"/>
+                            </h:commandLink>
+                            <f:verbatim>&nbsp; | &nbsp;</f:verbatim>
+                            <a href="http://www.softwareexpress.com.ve"> <font color="#0066cc">Salir</font></a>
+                        </td>
+                    </tr>
+                </table>
+
+                <br></br>
+
+                <div align="center"><font size="5" color="#424242">¡Bienvenido(a) a Condominio Express!</font></div>
+                <br></br>
+                <div align="center"><font size="4" color="#424242">Plataforma de Tecnología y Servicios para la Administración de Condominios On Line</font></div>
+                <br></br>
+                <div align="center">
+                    <h:graphicImage url="/bienvenida.png" height="220" width="350" />
+                </div>
+                <br></br>
+                <table width="60%" align="center">
+                    <br></br>
+                    <tr>
+                        <td>
+                            <font size="3" color="#424242">1. Le invitamos a seleccionar el link <font color="#336699">Registrarse</font>, que le permitirá inscribirse como usuario Administrador del sistema. Para ello, 
+                                se le solicitarán su codigo y contraseña de suscripción.</font>
+                        </td>
+                    </tr>
+                </table>
+
+                <table width="60%" align="center">
+                    <br></br>
+                    <tr>
+                        <td>
+                            <font size="3" color="#424242">2. En caso de que ya se haya registrado como Administrador, por favor, seleccione el link <font color= "#336699">Entrar</font>, mediante el cual se le dará 
+                                acceso a Condominio <font color= "red">Express</font></font>
+                        </td>
+                    </tr>
+                </table>
+                <br></br>
+                <div align="center"><font size="4" color="#424242">Condominio <font color= "red">Express</font>..., porque ahora el éxito está en la nube</font></div>
+            </h:form>
+        </h:body>
+    </f:view>
+</html>

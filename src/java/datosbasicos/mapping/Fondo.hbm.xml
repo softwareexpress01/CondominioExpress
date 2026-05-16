@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="datosbasicos.modelos.Fondo" table="FONDOS">
+    <id column="ID_FONDO" name="id" type="integer">
+      <generator class="increment"/>
+    </id>
+    <property name="fecFondo">
+      <column name="FEC_FONDO" length="10"/>
+    </property>
+    <property name="descFondo" >
+      <column name="DESC_FONDO" length="60"/>
+    </property>
+    <property name="tipoFondo">
+      <column length="25" name="TIPO_FONDO"/>
+    </property>
+    <property name="porcentFondo">
+      <column name="PORCENT_FONDO" />
+    </property>
+    <property name="idBcoFondo">
+      <column name="ID_BCO_FONDO"/>
+    </property>
+    <property name="idCtaFondo">
+      <column name="ID_CTA_FONDO"/>
+    </property>
+    <property name="mtoIniFondo">
+      <column length="12" name="MTO_INI_FONDO"/>
+    </property>
+    <property name="saldoFondo">
+      <column length="12" name="SALDO_FONDO"/>
+    </property>
+    <property name="obsFondo">
+      <column length="60" name="OBS_FONDO"/>
+    </property>
+    <property name="edoFondo">
+      <column length="3" name="EDO_FONDO"/>
+    </property>
+    
+    <many-to-one class="datosbasicos.modelos.Condominio" column="ID_CONDOMINIO" name="condominio" not-null="true"/>
+    
+    <bag cascade="save-update,delete" fetch="subselect" inverse="true" name="tranFondos" order-by="FEC_TRANFONDO desc">
+      <key column="ID_FONDO"/>
+      <one-to-many class="movimientos.modelos.TranFondo"/>
+    </bag>
+    
+    <many-to-one class="datosbasicos.modelos.Cuenta" column="ID_CUENTA" name="cuenta" not-null="true"/>
+    
+  </class>
+</hibernate-mapping>

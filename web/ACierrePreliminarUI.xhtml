@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" >
+    <f:view> 
+        <h:head>
+            <title>Ayuda de Software Express Condominio</title> 
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <div style="overflow:auto; height:380px;">
+                <h:form id="form"  >
+
+                    <table width="70%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <font face="Arial" size="3" color="#009933"><h:outputText value="Indice"></h:outputText></font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="AConfiguracionInic.xhtml">Primeros pasos:Configuración inicial</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Funcionalidad">Funcionalidad</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Cálculo y asignación de alícuotas">Cálculo y asignación de alícuotas</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Cálculo y asignación de cuotas especiales">Cálculo y asignación de cuotas especiales</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Generación de pagos automáticos">Generación de pagos automáticos</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Actualización de la base de datos">Actualización de la base de datos</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Informes del mes">Informes del mes</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Diseño de página">Diseño de página</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+
+                        <tr>
+                            <td with="10">
+                                <a name="Funcionalidad">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Funcionalidad"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Esta página permite llevar a cabo el proceso de <i><b>
+                                            Cierre Preliminar </b></i>. Este proceso es una <b>simulación</b> del proceso de cierre definitivo, cuyo objetivo es permitir
+                                    al Usuario que verifique los datos que suministró al sistema durante el período a cerrar, y el tratamiento 
+                                    que se les da a los mismos para el cálculo de las cuentas por cobrar. La ejecución de este proceso de simulación,                                 
+                                    implica la ejecución de tareas administrativas para un período determinado. Las tareas
+                                    contempladas para la simulación, consisten en la consolidación de las transacciones y movimientos registrados durante un mes. 
+                                    El proceso preliminar  reune las transacciones y movimientos del período actual para la determinación de las alicuotas a aplicar a los inmuebles, detecta
+                                    la presencia de cuotas especiales a aplicar, de acuerdo con su estado, saldo y otros parámetros, determina la aplicación de notas de 
+                                    crédito a las deudas de cuentas por cobrar de los inmuebles, aplica los pagos adelantados a las alícuotas en 
+                                    caso de que existan y, finalmente, <i>genera un conjunto de reportes orientados a constatar que los resultados que se obtendrían, en el proceso de 
+                                        cierre mensual definitivo, son los adecuados</i>.
+                                    A continuación, una descripción mas detallada de estas actividades .
+                                </font></td>
+                        </tr> 
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="green" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td with="10">
+                                <a name="Cálculo y asignación de alícuotas">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Cálculo y asignación de alícuotas"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="green" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td><font face="Arial" size="2">La forma como se haya configurado la aplicación, determina el proceso mendiante el cual se realiza el cálculo 
+                                    de las alícuotas. Una alícuota, es una cuenta por cobrar que se genera mensualmente para cada inmueble. De acuerdo con el tipo de administración especificada por el Usuario,
+                                    la cual se configura ingresando el parámetro "tipo de facturación" en la página correspondiente, la alícuota tendrá un monto fijo
+                                    (tipo de facturación por  "monto fijo") o se calculará en base a los gastos del mes. En el primer caso, el monto de la alícuota no require ser 
+                                    calculado ya que su monto se define en el momento de configurar los parámetros del sistema. En el segundo caso, que implica el ingreso del tipo 
+                                    de facturación por "gastos" en la página de registro y actualización de parámetros, el sistema calcula la sumatoria de los gastos del mes y realiza 
+                                    una asignación, a cada inmueble,  basado en el porcentaje de alícuota que le fué asignado al inmueble cuando se registró. Las alícuotas son automaticamente
+                                    generadas durante el cierre mensual y pasan a formar parte de las cuentas por cobrar de los inmuebles. El proceso que nos ocupa solo simula la generación de las mismas.
+
+                                </font></td>
+                        </tr> 
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="green" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td with="10">
+                                <a name="Cálculo y asignación de cuotas especiales">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Cálculo y asignación de cuotas especiales"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="green" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td><font face="Arial" size="2">Esta actividad consiste en determinar el monto de una cuenta por cobrar que se asignará a cada inmueble 
+                                    debido a una cuota especial vigente. El sistema toma en consideración para el cálculo, el saldo de la cuota especial, el número 
+                                    de meses que aplica, su estado y la forma de cálculo definida al registrar la cuota especial, que puede ser de acuerdo a la alícuota o al
+                                    total de inmuebles del condominio. Se asignará entonces, a cada inmueble, una cxc por un monto igual al calculado según los parámetros establecidos.
+                                    Esta asignación es simulada en este proceso preliminar.
+
+                                </font></td>
+                        </tr> 
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="green" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td with="10">
+                                <a name="Generación de pagos automáticos">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Generación de pagos automáticos"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="green" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td><font face="Arial" size="2">La generación automática de pagos se realiza cuando el inmueble tiene un saldo a su favor al final del período.
+                                    Esta situación se presenta cuando al inmueble le fue asignada una nota de crédito, la cual se aplica, abonándole el monto total o parcial de la nota
+                                    a alguna o algunas cuentas por cobrar pendientes. También se realizan pagos automáticos cuando un inmueble ha realizado un pago 
+                                    adelantado, el cual se usará, estrictamente, para cancelar alguna alícuota que tenga pendiente en la fecha del cierre. Como ya se mencionó en secciones
+                                    anteriores, la generación de pagos en este proceso son simuladas y no afectan los datos reales. 
+
+                                </font></td>
+                        </tr> 
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="green" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td with="10">
+                                <a name="Actualización de la base de datos">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Actualización de la base de datos"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="green" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td><font face="Arial" size="2">A diferencia del proceso de cierre mensual, este proceso <i>no</i> realiza las tareas especificadas
+                                    en esta página, actualizando la base de datos. Es decir, para todos los casos se simula el registro de alicuotas, cuotas especiales, la actualización
+                                    del estado y saldo de las cuentas por cobrar  mediante pagos automáticos , se generan movimientos bancarios simulados pero de tal
+                                    forma que sean consistentes con las operaciones realizadas. No se realizan transacciones reales contra la base de datos. 
+                                </font></td>
+                        </tr> 
+                    </table>
+                    <table>
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="red" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td><font face="Arial" size="2" color="red"><b>Nota importante :</b><i> Este proceso debe realizarse tantas veces como se desee hasta
+                                        tanto se esté seguro de que refleja los resultados esperados. Los resultados pueden chequearse en los informes que se generan
+                                        dinamicamente y muestran valiosa información como los gastos del mes, alicuotas, cuotas especiales, ajustes y pagos automáticos
+                                        del período a cerrar</i>
+                                </font>
+                            </td>
+                        </tr>  
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="red" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td with="10">
+                                <a name="Informes del mes">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Informes del mes"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="green" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td><font face="Arial" size="2">Como paso final del proceso de cierre preliminar mensual, se emiten un conjunto de 
+                                    informes donde se muestran los gastos del mes considerados, las alícuotas y cuotas especiales generadas
+                                    para el período y los pagos automáticos realizados. Para emitir los reportes del cierre preliminar, no se require
+                                    ninguna acción adicional.Estos reportes de generan automáticamente al hacer click sobre el botón <i>Ejecutar cierre preliminar</i>
+                                </font></td>
+                        </tr> 
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Diseño de página">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Diseño de página y funcionamiento"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Se ha mantenido un diseño de formato estándar para cada una de las páginas del sistema. A continuación, se muestra un ejemplo de uno 
+                                    de los tipos de pantalla que aparecen con mayor frecuencia en la aplicación, junto con una breve descripción de sus elementos mas importantes.
+                                </font></td>
+                        </tr>    
+                    </table>
+
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <img src="../images/modeloPagina1.png" alt="modeloPagina1" height="90%" width="90%" ></img>
+                        </tr>   
+                    </table>
+                    <table width="85%" border="0" align="left">
+
+                        <tr  height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/uno.png"  alt="uno" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Usuario actualmente activo</font>
+                            </td>
+                        </tr>
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/dos.png"  alt="dos" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Condominio actual</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/tres.png"  alt="tres" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Propiedad actual</font>
+                            </td>
+                        </tr>   
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/cuatro.png" alt="cuatro" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2" >
+                                <font face="Arial" size="1" align ="left" >Lleva a la página que permite seleccionar otro condominio y/o propiedad</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/cinco.png" alt="cinco" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Lleva a la página anterior</font>
+                            </td>
+                        </tr> 
+                        <tr  height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/seis.png"  alt="seis" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Abre la página de ayuda</font>
+                            </td>
+                        </tr>
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/siete.png" alt="siete" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Panel 1: permite ingresar los datos a registrar</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/ocho.png"  alt="ocho" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Botones de acción, permiten agregar, modificar y eliminar la información contenida en el panel 1</font>
+                            </td>
+                        </tr>   
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/nueve.png"  alt="nueve" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2" >
+                                <font face="Arial" size="1" align ="left" >Panel 2: Muestra la información registrada mediante el panel 1</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/diez.png"  alt="diez" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Permite seleccionar de este mismo panel información a modificar o eliminar. Al hacer click sobre el, 
+                                    se transmite el registro seleccionado al panel 1 y  se habilitan los botones de modificar y eliminar</font>
+                            </td>
+                        </tr> 
+                    </table>
+
+                </h:form>
+            </div>
+        </body>
+    </f:view> 
+</html> 

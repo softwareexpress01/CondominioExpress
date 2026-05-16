@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : GastoComunOrd.xml
+    Created on : March 1, 2012, 12:12 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+ version="1.0" encoding="UTF-8"?>
+
+-->
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.GastoComunOrd" table="GASTO_COMUN_ORD"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_GASTO_COMUN_ORD">
+            <generator class="increment" />
+        </id>
+        
+        <property name="fecGastoComunOrd">
+            <column name="FEC_GASTO_COMUN_ORD" length="10"/>
+        </property>
+        <property name="numDocGastoComunOrd">
+            <column name="NUM_DOC_GASTO_COMUN_ORD" length="20"/>
+        </property>
+        <property name="mtoGastoComunOrd">
+            <column name="MTO_GASTO_COMUN_ORD" />
+        </property>
+        <property name="saldoGastoComunOrd">
+            <column name="saldo_GASTO_COMUN_ORD"/>
+        </property>
+        <property name="obsGastoComunOrd">
+            <column name="OBS_GASTO_COMUN_ORD" length="60"/>
+        </property>
+        <property name="edoGastoComunOrd">
+            <column name="EDO_GASTO_COMUN_ORD" length="4"/>
+        </property>
+        <property name="fecMovGCOrd">
+            <column name="FEC_MOV_GCORD"/>
+        </property>
+        <property name="idConcepto">
+            <column name="ID_CONCEPTO" />
+        </property>
+        <property name="idProveedor">
+            <column name="ID_PROVEEDOR" />
+        </property>
+        <property name="perGastoComunOrd" >
+            <column name="PER_GASTO_COMUN_ORD" length="10"/>
+        </property>
+        
+        <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+                         column="ID_CONDOMINIO" not-null = "true" />
+    </class>
+</hibernate-mapping>

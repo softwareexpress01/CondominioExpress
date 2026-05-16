@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="saas.modelos.Suscripcion" table="SUSCRIPCION"
+        dynamic-insert="true"
+        dynamic-update="true">
+        <id name="id" type="integer" column="ID_SUSCRIPCION">
+            <generator class="increment"  />
+        </id>
+                   
+        <property name="nombSuscriptor" >
+            <column name="NOMB_SUSCRIPTOR" length="30"/>
+        </property>  
+        <property name="apelSuscriptor" >
+            <column name="APEL_SUSCRIPTOR" length="30"/>
+        </property>
+        <property name="numCedSuscriptor" >
+            <column name="NUM_CED_SUSCRIPTOR" length="10"/>
+        </property>
+        <property name="emailSuscriptor" >
+            <column name="EMAIL_SUSCRIPTOR" length="60"/>
+        </property>
+        <property name="telSuscriptor" >
+            <column name="TEL_SUSCRIPTOR" length="13"/>
+        </property>
+        <property name="celSuscriptor" >
+            <column name="CEL_SUSCRIPTOR" length="13"/>
+        </property>
+        <property name="fechaMovSol" >
+            <column name="FEC_MOV_SOL" length="10"/>
+        </property>
+        <property name="edoSolSuscripcion" >
+            <column name="EDO_SOL_SUSCRIPCION" />
+        </property>
+        <property name="obsSolSuscripcion" >
+            <column name="OBS_SOL_SUSCRIPCION" />
+        </property>
+        <property name="bcoSolSuscripcion" >
+            <column name="BCO_SOL_SUSCRIPCION" />
+        </property>
+        <property name="numCtaSolSuscripcion" >
+            <column name="NUM_CTA_SOL_SUSCRIPCION" />
+        </property>
+        <property name="refSolSuscripcion" >
+            <column name="REF_SOL_SUSCRIPCION" />
+        </property>
+        <property name="mtoSolSuscripcion" >
+            <column name="MTO_SOL_SUSCRIPCION" />
+        </property>
+        <property name="fecPagoSolSuscripcion" >
+            <column name="FEC_PAGO_SOL_SUSCRIPCION" />
+        </property>
+        <property name="numSuscripcion" >
+            <column name="NUM_SUSCRIPCION" />
+        </property>
+        <property name="contSuscripcion" >
+            <column name="CONT_SUSCRIPCION" length="30"/>
+        </property>
+        <property name="edoSuscripcion" >
+            <column name="EDO_SUSCRIPCION" length="4"/>
+        </property>
+        <property name="diaCorteSuscripcion" >
+            <column name="DIA_CORTE_SUSCRIPCION" length="4"/>
+        </property>
+        <property name="saldoSuscripcion" >
+            <column name="SALDO_SUSCRIPCION" length="4"/>
+        </property>
+        <property name="fecSuscripcion" >
+            <column name="FEC_SUSCRIPCION" length="10"/>
+        </property>
+        
+        <bag name="usuarios" cascade="save-update" 
+            lazy="false" inverse = "true">
+            <key column="ID_SUSCRIPCION"/>
+            <one-to-many class="datosbasicos.modelos.Usuario" />
+        </bag>
+        
+        <many-to-one name="plan"  class="saas.modelos.Plan"
+           column="ID_PLAN" not-null = "true" />
+        
+        <bag name="pagosMen" cascade="save-update" 
+            lazy="false" inverse = "true">
+            <key column="ID_SUSCRIPCION"/>
+            <one-to-many class="saas.modelos.PagoMensual" />
+        </bag>
+      
+        <many-to-one name="compañia"  class="saas.modelos.Compañia"
+           column="ID_COMPAÑIA" not-null = "true" />
+                
+    </class>
+</hibernate-mapping>

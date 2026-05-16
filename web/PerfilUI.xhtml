@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink immediate="true" onclick="Ayuda('APerfilUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Crear y Actualizar Perfiles de usuario</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+                <hr size="2" width="65%"></hr>
+                <br></br>
+                <table width="65%" border="0" align="center">
+                    <tr>
+                        <td>  
+                            <td>
+                                <h:outputLabel value="Código de usuario " for="codUsuario"/> 
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="codUsuario" size="24" maxlength="25"
+                                             value="#{PerfilUI_Backing.codUsuario}" tabindex="3" />
+                            </td>
+                        </td>  
+                        <td>  
+                            <td> 
+                                <h:outputLabel value="Nivel de autorización" for="nivelAuto"/>   
+                            </td> 
+                            <td> 
+                                <h:inputText required="false" id="nivelAuto" size="24" maxlength="8"
+                                             value="#{PerfilUI_Backing.nivelAuto}" tabindex="4" 
+                                             readonly ="true"/>
+                            </td> 
+                        </td>   
+                    </tr>  
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Nombres " for="nombUsuario"/>    
+                            </td> 
+                            <td>
+                                <h:inputText required="false" id="nombUsuario" size="24" maxlength="30"
+                                             value="#{PerfilUI_Backing.nombUsuario}" tabindex="5" />
+                            </td> 
+                        </td>    
+                        <td>
+                            <td>
+                                <h:outputLabel value="Apellidos " for="apelUsuario"/>   
+                            </td> 
+                            <td> 
+                                <h:inputText required="false" id="apelUsuario" size="24" maxlength="30"
+                                             value="#{PerfilUI_Backing.apelUsuario}" tabindex="6" />
+                            </td> 
+                        </td> 
+                    </tr>   
+                    <tr> 
+                        <td>
+                            <td>
+                                <h:outputLabel value="Cédula " for="cedUsuario"/> 
+                            </td> 
+                            <td>
+                                <h:inputText required="false" id="cedUsuario" size="24" maxlength="10"
+                                             value="#{PerfilUI_Backing.cedUsuario}" tabindex="7" />
+                            </td>
+                        </td> 
+                        <td>
+                            <td>
+                                <h:outputLabel value="Sexo" for="sexoUsuario"/>   
+                            </td>
+                            <td>
+                                <h:selectOneMenu binding="#{PerfilUI_Backing.sexoUsuario}" 
+                                                 id="sexoUsuario" tabindex="8"  >
+                                    <f:selectItem itemLabel="Masculino" itemValue="masculino"/>
+                                    <f:selectItem itemLabel="Femenino" itemValue="femenino"/>
+                                </h:selectOneMenu>
+                            </td> 
+                        </td>
+                    </tr> 
+                    <tr>   
+                        <td>
+                            <td>
+                                <h:outputLabel value="Teléfono" for="codTelUsuario" />    
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="codTelUsuario" maxlength ="4" size ="4"
+                                             value="#{PerfilUI_Backing.codTelUsuario}" tabindex="9"/>
+                                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                                <h:inputText required="false" id="numTelUsuario" maxlength ="9" size ="9"
+                                             value="#{PerfilUI_Backing.numTelUsuario}" tabindex="10"/>                                                       
+                            </td>
+                        </td>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Celular" for="codCelUsuario" />    
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="codCelUsuario" maxlength ="4" size ="4"
+                                             value="#{PerfilUI_Backing.codCelUsuario}" tabindex="11"/>
+                                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                                <h:inputText required="false" id="numCelUsuario" maxlength ="9" size ="9"
+                                             value="#{PerfilUI_Backing.numCelUsuario}" tabindex="12"/>                                                       
+                            </td>
+                        </td>   
+                    </tr>
+                    <tr>  
+                        <td>
+                            <td>
+                                <h:outputLabel value="Correo electrónico" for="emailUsuario" />     
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="emailUsuario" size="24" maxlength="30"
+                                             value="#{PerfilUI_Backing.emailUsuario}" tabindex="13"/>
+                            </td>
+                        </td>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Contraseña " for="contUsuario"/>  
+                            </td>
+                            <td>
+                                <h:inputSecret required="false" id="contUsuario" size="25" maxlength="25" 
+                                               value="#{PerfilUI_Backing.contUsuario}" tabindex="14" />
+                            </td>
+                        </td>
+                    </tr>
+                    <tr>  
+                        <td>
+                            <td>
+                                <h:outputLabel value="Repita contraseña" for="repContUsuario" />   
+                            </td>
+                            <td>
+                                <h:inputSecret required="false" id="repContUsuario" size="24" maxlength="25"
+                                               value="#{PerfilUI_Backing.repContUsuario}" tabindex="15"/>
+                            </td>
+                        </td>
+                    </tr>
+                </table>
+                 <br></br>
+                <hr size="2" width="70%"></hr>
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{PerfilUI_Backing.registrarUsuario}" 
+                                         disabled ="#{BeanUsuario.agregar}" tabindex="16"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{PerfilUI_Backing.modificarUsuario}"
+                                         disabled ="#{BeanUsuario.modificar}" tabindex="17"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar"
+                                         disabled ="#{BeanUsuario.eliminar}" tabindex="18"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Usuarios registrados.</i><font size="2"><i> Seleccione el usuario a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaUsuarios" rows="5" rowKey="#{co.id}"   
+                             value="#{PerfilUI_Backing.usuariosPorAdministrador}" paginatorPosition="bottom"
+                             var="co" paginator="true"    
+                             selection="#{PerfilUI_Backing.filaSeleccionada}">      
+
+                    <p:column style="width:10%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nombre"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombUsuario}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column style="width:10%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Apellido"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.apelUsuario}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Cédula"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.cedUsuario}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Sexo" style="font-size: small"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.sexoUsuario}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Código"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.codUsuario}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Contraseña"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.contUsuario}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nivel"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.perUsuario}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Teléfono"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.telUsuario}" style="font-size: small"/>
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Celular"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.celUsuario}" style="font-size: small"/>
+                    </p:column> 
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Correo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.emailUsuario}" style="font-size: small"/>
+                    </p:column> 
+
+                    <p:column>
+                        <h:commandLink action="#{PerfilUI_Backing.editarUsuarioAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{PerfilUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

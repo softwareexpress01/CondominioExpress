@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="datosbasicos.modelos.Chequera" table="CHEQUERAS"
+        dynamic-insert="true"
+        dynamic-update="true">
+        <id name="id" type="integer" column="ID_CHEQUERA">
+            <generator class="increment" />
+        </id>
+
+        <property name="numChequera">
+            <column name="NUM_CHEQUERA" length="3"/>
+        </property>
+        
+        <property name="edoChequera">
+            <column name="EDO_CHEQUERA" length="10"/>
+        </property>
+        
+        <property name="cantCheques">
+            <column name="CANT_CHEQUES" length="3"/>
+        </property> 
+        
+        <property name="primerCheque">
+            <column name="PRIMER_CHEQUE" length="3"/>
+        </property>
+
+        <property name="ultimoCheque">
+            <column name="ULTIMO_CHEQUE" length="3"/>
+        </property>
+        <property name="edoElimChequera">
+            <column name="EDO_ELIM_CHEQUERA" length="3"/>
+        </property>
+         
+        <many-to-one name="cuenta"  class="datosbasicos.modelos.Cuenta"
+           column="ID_CUENTA" not-null = "true" />
+
+    </class>
+</hibernate-mapping>
+

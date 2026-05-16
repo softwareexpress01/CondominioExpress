@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Software Express condominio</title>
+        <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+        <f:facet name="first"> 
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+        </f:facet>
+        <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <table  width="100%" border="0">
+                <tr>
+                    <div align="center"><h1>
+                            <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                        </h1></div>
+                </tr>
+            </table>
+            <table width="100%" class="BarBkgnd">
+                <tr>
+                    <td align="left">
+                        <td>
+                            <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                </i></font></td>
+                    </td>
+                    <td></td><td></td><td></td>
+                    <td align="center" width="10%" >
+                        <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                    </td>
+                    <td align="right" width="25%"><i>
+                            <h:commandLink action="selcond" immediate="true">
+                                <h:outputText value="Ir a Seleccionar Condominio"/>
+                            </h:commandLink>
+                            <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                            <h:commandLink action="menu" immediate="true">
+                                <h:outputText value="Salir"/>
+                            </h:commandLink>
+                            <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                            <h:commandLink immediate="true">
+                                <h:outputText value="Ayuda"/>
+                            </h:commandLink></i>
+                    </td>
+                </tr>
+            </table>
+
+            <hr size="2" width="12%" align="left"></hr>
+            <table  width="800" border="0" >
+                <tr>
+                    <td>
+                        <table  width="155" border="0" class="BarBkgnd" cellpadding="4"> 
+                            <!--<h4><i>Menu Principal</i></h4> -->
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="datosbasicos">
+                                        <font color="#0066cc" size="2"><h:outputText value=" Datos Basicos"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                                <td ></td>
+
+                            </tr>
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="movimientos">
+                                        <font color="#0066cc" size="2"><h:outputText value="  Movimientos del mes"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="informes">
+                                        <font color="#0066cc" size="2" ><h:outputText value="  Informes"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="Gestion">
+                                        <font color="#0066cc" size="2" ><h:outputText value="  Gestion"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="configuracion">
+                                        <font color="#0066cc" size="2"><h:outputText value="  Configuracion"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="administracion" >
+                                        <font color="#339933" size="2"><b><h:outputText value="  Administracion"></h:outputText></b></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr><tr></tr>
+                        </table>
+                    </td> 
+                    <td></td>
+                    <td valign="top">
+
+                        <table  width="600" border="0">
+                            <tr>
+                                <td with="10">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Procesar para este mes"></h:outputText></font>
+                                </td> 
+                            </tr>
+                            <tr></tr>
+                        </table>
+
+                        <table  width="1200" border="0">
+                            <tr>
+                                <td> 
+                                    <h:commandLink action="cierrepreliminar">
+                                        <font face="Arial" size="2"> <h:outputText value="Cierre Preliminar"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="cierreMensual">
+                                        <font face="Arial" size="2"> <h:outputText value="Cierre Mensual "></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                        </table>                
+                    </td>
+                </tr>                                  
+            </table>
+        </h:form>
+    </h:body>
+</html>

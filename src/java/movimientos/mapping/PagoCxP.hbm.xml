@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : PagoCXP.hbm.xml
+    Created on : jun 26, 2012, 4:30 PM
+    Author     : Frank R.H.
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.PagoCxP" table="PAGO_CXP"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_PAGO_CXP">
+            <generator class="increment" />
+        </id>
+        
+        <property name="desPagoCxP">
+            <column name="DESC_PAGO_CXP" length="60"/>
+        </property>
+        <property name="numDocPagoCxP">
+            <column name="NUM_DOC_PAGO_CXP" length="12"/>
+        </property>
+        <property name="mtoPagoCxP">
+            <column name="MTO_PAGO_CXP" />
+        </property>
+        <property name="formaPagoCxP">
+            <column name="FORMA_PAGO_CXP" length="15"/>
+        </property>
+        <property name="fecDocPagoCxP">
+            <column name="FEC_DOC_PAGO_CXP" length="10"/>
+        </property>
+        <property name="bancoPagoCxP">
+            <column name="ID_BCO_PAGO_CXP" />
+        </property>
+        <property name="idCuentaPagoCxP">
+            <column name="ID_CUENTA_PAGO_CXP" />
+        </property>
+        <property name="fecMovPagoCxP">
+            <column name="FEC_MOV_PAGO_CXP"/>
+        </property>
+        <property name="periodoActual" >
+            <column name="PER_ACTUAL_PAGO_CXP" length="10"/>
+        </property>
+        
+        <many-to-one name="proveedor"  class="datosbasicos.modelos.Proveedor"
+                         column="ID_PROVEEDOR" not-null = "true" />
+                         
+        <bag name="pagoFacCxP" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_PAGO_CXP"/>
+            <one-to-many class="movimientos.modelos.PagoFacCxP" />
+        </bag>
+    </class>
+</hibernate-mapping>

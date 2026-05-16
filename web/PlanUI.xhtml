@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="../css/CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                  function limita(maximoCaracteres) {
+                  var elemento = document.getElementById("obsPlan");
+                  if(elemento.value.length >= maximoCaracteres ) {
+                     return false;
+                  }
+                  else {
+                    return true;
+                  }
+                  }
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="Software Express"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+
+                        <td align="right" width="25%"><i>
+
+                                <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                                <h:commandLink action="#{PlanUI_Backing.salir}" immediate="true">
+                                    <h:outputText value="Salir"/>
+                                </h:commandLink>
+                                <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                            </i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Crear y Actualizar Planes</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+
+                <table width="85%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Nombre " for="nombPlan" /> 
+                                <h:inputText required="false" id="nombPlan"  maxlength ="30" size="19"
+                                             value="#{PlanUI_Backing.nombPlan}" tabindex="1"/> 
+
+                                <h:outputLabel value="Observaciones " for="obsPlan" />                             
+                                <t:inputTextarea required="false" id="obsPlan" cols="20" rows="1" 
+                                                 value="#{PlanUI_Backing.obsPlan}" tabindex="4"
+                                                 onkeypress="return limita(100);" forceId="true"/>
+
+                                <h:outputLabel value="Máx.Condominios" for="nroMaxCondPlan"/>                
+                                <h:inputText id="nroMaxCondPlan" size="4" required="false" maxlength ="6"
+                                             value="#{PlanUI_Backing.nroMaxCondPlan}" tabindex="6"/>
+
+                            </h:panelGrid>
+                        </td>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Descripción " for="descPlan" /> 
+                                <h:inputText required="false" id="descPlan"  maxlength ="60" size="24"
+                                             value="#{PlanUI_Backing.descPlan}" tabindex="2"/>
+
+                                <h:outputLabel value="Fecha Crea. (dd-mm-aaaa)" for="fecCreacionPlan" /> 
+                                <h:inputText required="false" id="fecCreacionPlan" size="24"  
+                                             value="#{PlanUI_Backing.fecCreacionPlan}" tabindex="5" maxlength ="10"
+                                             onfocus="showCalendarControl(this);"/> 
+                                <h:outputLabel value="Monto Suscripción" for="mtoSusPlan"/> 
+                                <h:inputText id="mtoSusPlan" size="24" required="false" 
+                                             value="#{PlanUI_Backing.mtoSusPlan}" tabindex="3"/>
+
+                            </h:panelGrid>
+                        </td>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Monto " for="mtoPlan"/> 
+                                <h:inputText id="mtoPlan" size="24" required="false" 
+                                             value="#{PlanUI_Backing.mtoPlan}" tabindex="3"/>
+
+                                <h:outputLabel value="Fecha Mod. (dd-mm-aaaa)" for="fecModificacionPlan" /> 
+                                <h:inputText required="false" id="fecModificacionPlan" size="24"  disabled="true"
+                                             value="#{PlanUI_Backing.fecModificacionPlan}"  maxlength ="10"/> 
+                            </h:panelGrid>
+                        </td>
+                    </tr>  
+
+                </table>
+
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{PlanUI_Backing.registrarPlan}" tabindex="10" 
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{PlanUI_Backing.modificarPlan}" tabindex="11"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="12"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Planes de Suscripción registrados.</i><font size="2"><i> Seleccione el Plan a modificar/eliminar</i></font></h4>
+
+
+                <p:dataTable id="TablaPlaness" rows="5" rowKey="#{co.id}"   
+                             value="#{PlanUI_Backing.planes}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage=" " 
+                             selection="#{PlanUI_Backing.filaSeleccionada}" selectionMode="single" >  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nombre"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombPlan}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Descripción"/>
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.descPlan}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Monto Inicial "/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.mtoPlanString}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                             
+                                <h:outputText value="Observaciones"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.obsPlan}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Fec.Creación"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.fecCreacionPlan}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Fec.Modificación"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.fecModificacionPlan}"/>
+                    </p:column>
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                  
+                                <h:outputText value="Nro.Max. Cond"/>                               
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.nroMaxCondPlan}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Monto Suscripción"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.mtoSusPlanString}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{PlanUI_Backing.editarPlanAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{PlanUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

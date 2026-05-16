@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="datosbasicos.modelos.Propiedad" table="PROPIEDADES"
+        dynamic-insert="true"
+        dynamic-update="true">
+        <id name="id" type="integer" column="ID_PROPIEDAD">
+            <generator class="increment" />
+        </id>
+        <property name="nombPropiedad">
+            <column name="NOMB_PROPIEDAD" length="30"/>
+        </property>
+        <property name="numInmuebles">
+            <column name="NUM_INMUEBLES" />
+        </property>
+        
+        <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+           column="ID_CONDOMINIO" not-null = "true" />
+           
+        <bag name="inmuebles" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_PROPIEDAD"/>
+            <one-to-many class="datosbasicos.modelos.Inmueble" />
+        </bag>  
+                
+    </class>
+</hibernate-mapping>

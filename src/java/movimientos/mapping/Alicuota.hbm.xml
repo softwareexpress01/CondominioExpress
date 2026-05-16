@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Alicuota.xml
+    Created on : June 1, 2012, 4:45 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.Alicuota" table="ALICUOTA"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_ALICUOTA">
+            <generator class="increment" />
+        </id>
+        
+        <property name="fecEmiAlicuota">
+            <column name="FEC_EMI_ALICUOTA" length="10"/>
+        </property>
+        <property name="desAlicuota">
+            <column name="DES_ALICUOTA" length="60"/>
+        </property>
+        <property name="mtoAlicuota">
+            <column name="MTO_ALICUOTA" />
+        </property>
+        <property name="saldoAlicuota" >
+            <column name="SALDO_ALICUOTA" />
+        </property>
+        <property name="edoAlicuota">
+            <column name="EDO_ALICUOTA" length="4"/>
+        </property>
+        <property name="periodoActual" >
+            <column name="PERIODO_ACTUAL" length="10"/>
+        </property>
+                
+        <many-to-one name="inmueble"  class="datosbasicos.modelos.Inmueble"
+                         column="ID_INMUEBLE" not-null = "true" />
+                 
+    </class>
+</hibernate-mapping>

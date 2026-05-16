@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="400" />
+                            </h1></div>
+                    </tr>          
+                </table>  
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombSuscriptor}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="Nro. suscripcion:"/><h:outputLabel value="#{BeanUsuario.numSuscripcion}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+
+                                <h:commandLink action="#{RegPagoMenUI_Backing.salir}" immediate="true">
+                                    <h:outputText value="Salir"/>
+                                </h:commandLink>
+                                <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                                <h:commandLink immediate="true" onclick="Ayuda('ARegPagosMenUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+                
+                <br />
+
+                <div><h4><i>Registrar pagos mensuales de servicios</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <table width="100%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Banco" for="idBanco"/>   
+                            </td>  
+                            <td>
+                                <h:selectOneMenu binding="#{RegPagoMenUI_Backing.idBanco}" 
+                                                 id="idBanco" tabindex="1" >
+                                    <f:selectItem itemLabel="Seleccione" itemValue="0"/>
+                                    <f:selectItem itemLabel="Provincial" itemValue="1"/>
+                                </h:selectOneMenu>
+                            </td>
+                        </td>  
+                        <td>
+                            <td>
+                                <h:outputLabel value="Cuenta" for="idCuenta"/>   
+                            </td>  
+                            <td>
+                                <h:selectOneMenu binding="#{RegPagoMenUI_Backing.idCuenta}" 
+                                                 id="idCuenta" tabindex="2" >
+                                    <f:selectItem itemLabel="Seleccione" itemValue="0"/>
+                                    <f:selectItem itemLabel="0108-0059-55-0100338795" itemValue="1"/>
+                                </h:selectOneMenu>
+                            </td>
+                        </td>  
+                        <td>
+                            <td>
+                                <h:outputLabel value="Fecha (dd-mm-aaaa)" for="fecPagoMensual"/>   
+                            </td>  
+                            <td>
+                                <h:inputText required="false" id="fecPagoMensual" size="12" 
+                                             value="#{RegPagoMenUI_Backing.fecPagoMensual}" tabindex="3" 
+                                             onfocus="showCalendarControl(this);"/> 
+                            </td>
+                        </td>  
+                    </tr>
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Nro. ref." for="refPagoMensual"/>  
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="refPagoMensual" size="24" maxlength="10"
+                                             value="#{RegPagoMenUI_Backing.refPagoMensual}" tabindex="4" />
+                            </td>
+                        </td>  
+                        <td>
+                            <td>
+                                <h:outputLabel value="Monto" for="mtoPagoMensual" />     
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="mtoPagoMensual" maxlength ="12" size ="24"
+                                             value="#{RegPagoMenUI_Backing.mtoPagoMensual}" tabindex="5"/>
+                            </td>
+                        </td>
+
+                    </tr>
+                </table>
+                <br></br>
+                <div align="center"><p>
+                        <h:commandButton value="Procesar pagos" action="#{RegPagoMenUI_Backing.registrarPagoSuscripcion}" 
+                                         disabled ="#{BeanUsuario.agregar}" tabindex="13"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar pago" action="#{RegPagoMenUI_Backing.modificarPagoSuscripcion}" 
+                                         disabled ="#{BeanUsuario.modificar}" tabindex="14"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Emitir recibos de pago" action="#{RegPagoMenUI_Backing.emitirReciboPago}" 
+                                         disabled ="#{BeanUsuario.agregar}" tabindex="14"/>   
+                    </p></div>
+                <br></br>
+                <hr width="100%"></hr>
+                <h4><i>Pagos registrados.</i><font size="2"><i> Seleccione el pago a procesar</i></font></h4>
+
+                <p:dataTable id="RegPagosSuscripcion" rows="5" rowKey="#{co.id}"            
+                             value="#{RegPagoMenUI_Backing.pagosMensualesPorSuscripcion}" paginatorPosition="bottom"
+                             var="co" paginator="true"    
+                             selection="#{RegPagoMenUI_Backing.filaSeleccionada}" >         
+
+                    <p:column style="width: 15%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecPagoMensual}" style=" font-size: small"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Referencia"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.refPagoMensual}" style=" font-size: small"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Banco"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.bcoPagoMensual}" style=" font-size: small"/>
+                    </p:column>
+
+                    <p:column style="width: 30%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Cuenta"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.ctaPagoMensual}" style=" font-size: small"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Monto"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.mtoPagoMensual}" style=" font-size: small"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha mov"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecMovPagoMensual}" style=" font-size: small"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Estado"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.edoPagoMensual}" style=" font-size: small"/>
+                    </p:column>
+                    <p:column>
+                        <h:commandLink action="#{RegPagoMenUI_Backing.editarPagoMensualAction}">
+                            <h:outputText value="Seleccionar" style=" font-size: small"/>
+                            <f:setPropertyActionListener value="#{co}" target="#{RegPagoMenUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("dirInmueble");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink immediate="true" onclick="Ayuda('AInmuebleUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Crear y Actualizar Inmuebles</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <table width="65%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Código del inmueble " for="codInmueble"/>   
+                            </td>  
+                            <td>
+                                <h:inputText required="false" id="codInmueble" size="24" maxlength="30"
+                                             value="#{InmuebleUI_Backing.codInmueble}" tabindex="3" />
+                            </td>
+                        </td>  
+                        <td>
+                            <td>
+                                <h:outputLabel value="Propietario" for="nombPropInmuebles" />  
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="nombPropInmuebles" maxlength="30"
+                                             value="#{InmuebleUI_Backing.nombPropInmueble}" tabindex="4"/>
+                            </td>
+                        </td>  
+                    </tr>
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="CI/RIF " for="cedRifPropInmueble"/>  
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="cedRifPropInmueble" size="24" maxlength="10" 
+                                             value="#{InmuebleUI_Backing.cedRifPropInmueble}" tabindex="5" />
+                            </td>
+                        </td>  
+                        <td>
+                            <td>
+                                <h:outputLabel value="Dirección (*)" for="dirInmueble" />     
+                            </td>
+                            <td>
+                                <t:inputTextarea required="false" id="dirInmueble" cols="21" rows="1" maxlength="30" size ="24"
+                                                 value="#{InmuebleUI_Backing.dirInmueble}" tabindex="6"
+                                                 onkeypress="return limita(50);" forceId="true"/>
+                            </td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Teléfono (*) " for="telInmueble"/> 
+                            </td>
+                            <td>   
+                                <h:inputText required="false" id="codTelInmueble" maxlength ="4" size ="4"
+                                             value="#{InmuebleUI_Backing.codTelInmueble}" tabindex="7"/>
+                                <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                <h:inputText required="false" id="numTelInmueble" maxlength ="8" size ="14"
+                                             value="#{InmuebleUI_Backing.numTelInmueble}" tabindex="8"/>
+                            </td>
+                        </td>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Correo electrónico (*)" for="emailPropInmueble" /> 
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="emailPropInmueble" maxlength="60"
+                                             value="#{InmuebleUI_Backing.emailPropInmueble}" tabindex="9"/>
+                            </td>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Tipo" for="tipoInmueble"/>    
+                            </td>
+                            <td>
+                                <h:selectOneMenu binding="#{InmuebleUI_Backing.tipoInmueble}" 
+                                                 id="tipoInmueble" tabindex="10" >
+                                    <f:selectItem itemLabel="Apartamento" itemValue="Apartamento"/>
+                                    <f:selectItem itemLabel="Casa" itemValue="Casa"/>
+                                    <f:selectItem itemLabel="Local" itemValue="Local"/>
+                                    <f:selectItem itemLabel="Terreno" itemValue="Terreno"/>
+                                </h:selectOneMenu>
+                            </td>  
+                        </td>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Área (mts 2)" for="areaInmueble" />
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="areaInmueble" maxlength="10"
+                                             value="#{InmuebleUI_Backing.areaInmueble}" tabindex="11"/>
+
+                            </td>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Alícuota(%) " for="alicInmueble"/> 
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="alicInmueble" size="24" maxlength="10"
+                                             value="#{InmuebleUI_Backing.alicInmueble}" tabindex="11" />
+                            </td>
+                        </td>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Nota particular recibo" for="notaRecInmueble" />   
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="notaRecInmueble"  maxlength="30"
+                                             value="#{InmuebleUI_Backing.notaRecInmueble}" tabindex="12"/>
+                            </td>
+                        </td>
+                    </tr>
+                </table>
+                <br></br>
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{InmuebleUI_Backing.registrarInmueble}" 
+                                         disabled ="#{BeanUsuario.agregar}" tabindex="13"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{InmuebleUI_Backing.modificarInmueble}" 
+                                         disabled ="#{BeanUsuario.modificar}" tabindex="14"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar"
+                                         disabled ="#{BeanUsuario.eliminar}" tabindex="15"/> 
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton id="progreso" value="Progreso carga" type="button" tabindex="16"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:outputLabel value="(*) Dato opcional" /> 
+                    </p></div>
+
+                <p:overlayPanel id="carPanel" for="progreso" hideEffect="blind" dynamic="true">   
+
+                    <p:dataTable id="table" var="co" value="#{InmuebleUI_Backing.calcularProgresoRegistro}" 
+                                 rows="2" paginator="false">  
+                        <p:column headerText="Nro Inm propiedad" style="text-align:center">                  
+                            <h:outputText value="#{co.numInmProp}" />  
+                        </p:column>  
+
+                        <p:column headerText="(%) Inmuebles registrados" style="text-align:center">  
+                            <h:outputText value="#{co.porcInmRegistrados}" />  
+                        </p:column>  
+
+                        <p:column headerText="(%) Alicuota registrado" style="text-align:center">  
+                            <h:outputText value="#{co.porcAlicRegistrado}" />  
+                        </p:column>  
+
+                    </p:dataTable>  
+
+                </p:overlayPanel>  
+
+                <hr width="100%"></hr>
+                <h4><i>Inmuebles registrados.</i><font size="2"><i> Seleccione el inmueble a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaInmuebles" rows="5" rowKey="#{co.id}"            
+                             value="#{InmuebleUI_Backing.inmueblesPorPropiedad}" paginatorPosition="bottom"
+                             var="co" paginator="true"    
+                             selection="#{InmuebleUI_Backing.filaSeleccionada}" selectionMode="single">         
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nombre"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.codInmueble}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column style="width:30%" >
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Propietario"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombPropInmueble}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="CI/RIF"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.cedRifPropInmueble}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column style="width:15%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Dirección" style="font-size: small"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.dirInmueble}"/>
+                    </p:column>
+
+                    <p:column style="width:12%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Teléfono" style="font-size: small"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.telInmueble}" style="font-size: small"/>
+                    </p:column>
+
+                    <p:column style="width:15%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Correo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.emailPropInmueble}" style="font-size: small"/>
+                    </p:column> 
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Area"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.areaInmueble}" style="font-size: small" />
+                    </p:column> 
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Alícuota" style="font-size: small"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.alicInmueble}" style="font-size: small"/>
+                    </p:column> 
+
+                    <p:column style="width:10%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nota recibo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.notaRecInmueble}" style="font-size: small"/> 
+                    </p:column> 
+
+                    <p:column>
+                        <h:commandLink action="#{InmuebleUI_Backing.editarInmuebleAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{InmuebleUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<field name="numSuscripcion" class="java.lang.String"/>
+	<field name="numCedSuscriptor" class="java.lang.String"/>
+	<field name="nombSuscriptor" class="java.lang.String"/>
+	<field name="apelSuscriptor" class="java.lang.String"/>
+	<field name="telSuscriptor" class="java.lang.String"/>
+	<field name="celSuscriptor" class="java.lang.String"/>
+	<field name="edoSuscripcion" class="java.lang.String"/>
+	<field name="fecSuscripcionString" class="java.lang.String"/>
+	<field name="refSolSuscripcion" class="java.lang.String"/>
+	<field name="mtoSolSuscripcionString" class="java.lang.String"/>
+	<variable name="solPend" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{numCedSuscriptor}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="80" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="471" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="15" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="515" y="15" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="257" y="48" width="51" height="20" forecolor="#0033FF"/>
+				<textElement/>
+				<text><![CDATA[Pendientes ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="35" width="117" height="15" forecolor="#0033FF"/>
+				<textElement/>
+				<text><![CDATA[Solicitudes de Suscripción]]></text>
+			</staticText>
+			<image>
+				<reportElement x="1" y="2" width="99" height="74"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="38" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="6" width="551" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="65" y="13" width="40" height="20"/>
+				<textElement/>
+				<text><![CDATA[Ced/RIF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="125" y="13" width="107" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nombre ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="251" y="13" width="64" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Tel. Local]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="322" y="13" width="76" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Fecha.Solicitud]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="516" y="13" width="33" height="20"/>
+				<textElement/>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="34" width="553" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="17" y="13" width="24" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nro.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="406" y="13" width="50" height="20"/>
+				<textElement/>
+				<text><![CDATA[Referencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="465" y="13" width="42" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="49" y="0" width="76" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{numCedSuscriptor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="126" y="0" width="125" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombSuscriptor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="252" y="0" width="73" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{telSuscriptor}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="515" y="0" width="34" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{edoSuscripcion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="330" y="0" width="65" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fecSuscripcionString}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="2" y="4" width="9" height="10"/>
+			</rectangle>
+			<textField isBlankWhenNull="true">
+				<reportElement x="17" y="0" width="23" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{numSuscripcion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="404" y="0" width="50" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{refSolSuscripcion}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="468" y="0" width="36" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{mtoSolSuscripcionString}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50">
+			<staticText>
+				<reportElement x="2" y="0" width="142" height="20" forecolor="#FF0000"/>
+				<textElement/>
+				<text><![CDATA[Total suscripciones pendientes:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="145" y="0" width="57" height="20" forecolor="#FF0000"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{solPend}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

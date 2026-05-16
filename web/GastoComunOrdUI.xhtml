@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>              
+            <script src="CalendarControl.js" language="javascript"></script> 
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("obsGastoComunOrd");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form id="form">  
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink immediate="true"  onclick="Ayuda('AGastoComunOrdUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Gastos comunes ordinarios</i></h4></div>
+
+                <h:messages globalOnly="false" infoClass="RegError"/>  
+                <h:message for="listaProv" errorClass="ValidateError"/>
+                <h:message for="listaCon" errorClass="ValidateError"/>
+                <hr size="2" width="80%"></hr>
+                <table width="82%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="6" border="0">
+
+                                <h:outputLabel value="Proveedor " for="idProveedor"/>   
+                                <h:selectOneMenu binding="#{GastoComunOrdUI_Backing.idProveedor}" id="idProveedor" tabindex="3" >
+                                    <f:selectItems value="#{GastoComunOrdUI_Backing.proveedoresPorCondominio}" id="listaProv"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Doc. Nro. " for="numDocGastoComunOrd"/>                
+                                <h:inputText required="false" id="numDocGastoComunOrd" size="24" maxlength="20"
+                                             value="#{GastoComunOrdUI_Backing.numDocGastoComunOrd}" tabindex="4" />
+
+                                <h:outputLabel value="Fecha doc (dd-mm-aaaa) " for="fecGastoComunOrd"/>  
+
+                                <h:inputText required="false" id="fecGastoComunExt" size="10" 
+                                             value="#{GastoComunOrdUI_Backing.fecGastoComunOrd}" tabindex="5" 
+                                             onfocus="showCalendarControl(this);"/>
+
+                                <h:outputLabel value="Conceptos" for="idConcepto" />                             
+                                <h:selectOneMenu binding="#{GastoComunOrdUI_Backing.idConcepto}" id="idConcepto" tabindex="6" >
+                                    <f:selectItems value="#{GastoComunOrdUI_Backing.conceptosPorCondominio}" id="listaCon"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Periodo (mm-aaaa)" for="idPeriodo" />                             
+                                <h:inputText required="false" id="perGastoComunOrd" size="24" maxlength="7" 
+                                             binding="#{GastoComunOrdUI_Backing.perGastoComunOrd}" tabindex="7" />
+
+                                <h:outputLabel value="Monto " for="mtoGastoComunOrd"/>                
+                                <h:inputText required="false" id="mtoGastoComunOrd" size="10" maxlength="12"
+                                             value="#{GastoComunOrdUI_Backing.mtoGastoComunOrd}" tabindex="8" />
+
+
+
+                            </h:panelGrid>
+                        </td>  
+                    </tr>  
+                </table>
+                <hr size="2" width="80%"></hr>
+                <table width="40%"  border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Observaciones " for="obsGastoComunOrd"/>                
+                            <t:inputTextarea required="false" id="obsGastoComunOrd" cols="40" rows="1" 
+                                             value="#{GastoComunOrdUI_Backing.obsGastoComunOrd}" tabindex="9" 
+                                             onkeypress="return limita(50);" forceId="true"/>
+                            <p:tooltip for="obsGastoComunOrd" value="Opcional" showEffect="highlight" hideEffect="fade" />  
+                        </td>
+                    </tr>
+                </table>
+                <hr size="2" width="80%"></hr>
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{GastoComunOrdUI_Backing.registrarGastoComunOrd}" tabindex="10" 
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{GastoComunOrdUI_Backing.modificarGastoComunOrd}"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Gastos comunes ordinarios registrados.</i><font size="2"><i> Seleccione el gasto a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaGastosComunesOrd" rows="5" rowKey="#{co.id}" 
+                             value="#{GastoComunOrdUI_Backing.gastosComunesOrdPorCondominio}" paginatorPosition="bottom"
+                             var="co" paginator="true"   
+                             selection="#{GastoComunOrdUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+                    <p:column width="70">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecGastoComun}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nro. Doc"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.numDocGastoComun}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Proveedor"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombProveedor}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Concepto"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombConcepto}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Periodo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.perGastoComun}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Monto"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.mtoGastoComunString}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Saldo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.saldoGastoComunString}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha Mov"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecMovGC}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Estado"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.edoGastoComun}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="width:15%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Observaciones"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.obsGastoComun}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{GastoComunOrdUI_Backing.editarGastoComunOrdAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{GastoComunOrdUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+                </p:dataTable>
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"> 
+    <f:view> 
+        <h:head>
+            <title>Ayuda de Software Express Condominio</title> 
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <div style="overflow:auto; height:380px;">
+                <h:form id="form"  >
+
+                    <table width="70%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <font face="Arial" size="3" color="#009933"><h:outputText value="Indice"></h:outputText></font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="AConfiguracionInic.xhtml">Primeros pasos:Configuración inicial</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Funcionalidad">Funcionalidad</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td with="10">
+                                <a href="#Descripción de datos de entrada">Descripción de datos de entrada</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+
+                        <tr>
+                            <td with="10">
+                                <a name="Funcionalidad">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Funcionalidad"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Esta página permite, como parte del proceso de configuración del sistema, registrar y actualizar el <i><b>
+                                            Logo</b></i> del condominio. Este <i>logo</i>, es una imagen que identifica a cada condominio. El usuario administrador 
+                                            puede seleccionar de sus archivos locales, cualquier imagen  que quiera usar como logo. Existen, sin embargo, limitaciones en cuanto al tamaño del 
+                                            archivo y el de su nombre, como se vera mas adelante, en la descripcion de los elementos de la página.
+                                    Para configurar el logo del sistema o para actualizarlo,  se debe hacer click sobre el boton <i><b>Seleccionar un archivo</b></i>, el sistema, seguidamente, abrira una ventana estándar de selección de archivos.
+                                    Seleccione el archivo a utilizar. Esta acción, hara que el sistema vuelva a la página anterior, pero mostrando esta vez el nombre del archivo seleccionado. Para terminar con el registro/actualización
+                                    del logo, debe hacerse click sobre el botón <i><b>Registrar</b></i>.
+                                                                        
+                                </font></td>
+                        </tr>    
+                    </table>
+
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="80%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Descripción de datos de entrada">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Descripción de datos de entrada"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">En esta sección, solo se cubren las limitaciones en cuanto al tamaño del archivo a descargar, 
+                                    así como también, en cuanto al tamaño del nombre de archivo. Deberan seleccionarse imagenes que no excedan los parametros establecidos.
+                                </font></td>
+                        </tr>  
+
+                    </table>
+
+                    <table width="85%" border="1" align="left">
+                        <tr bgcolor="#e6e6fa" >
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Dato entrada"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Descripción"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Tipo y restricciones"></h:outputText></b></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Tamaño del archivo"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el tamaño máximo en bytes que puede tener el logo.
+                                                                          "></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta imagenes con un tamaño de 100k bytes"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Nombre del archivo"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el tamaño máximo en caracteres que puede tener el nombre del archivo
+                                                                          . "></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta nombres de archivos con un maximo de 25 caracteres."></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+
+                    </table>
+
+                </h:form>
+            </div>
+        </body>
+    </f:view> 
+</html> 

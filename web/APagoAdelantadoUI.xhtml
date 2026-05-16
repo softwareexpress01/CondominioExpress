@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"> 
+    <f:view> 
+        <h:head>
+            <title>Ayuda de Software Express Condominio</title> 
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <div style="overflow:auto; height:380px;">
+                <h:form id="form"  >
+
+                    <table width="70%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <font face="Arial" size="3" color="#009933"><h:outputText value="Indice"></h:outputText></font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="AConfiguracionInic.xhtml">Primeros pasos:Configuracion inicial</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Funcionalidad">Funcionalidad</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Diseño de pagina">Diseño de página</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Descripcion de datos de entrada">Descripción de datos de entrada</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+
+                        <tr>
+                            <td with="10">
+                                <a name="Funcionalidad">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Funcionalidad"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Esta página permite registrar y actualizar información sobre Transacciones de <i><b>Pago Adelantado </b></i>para Inmuebles. Es imprescindible la creación del <i>Inmueble</i>, el <i>Banco</i> y la <i>Cuenta</i> relacionados con la operación, antes de comenzar a trabajar con esta opción del sistema.
+                                    Con el uso de esta Transacción, se almacenan los datos que luego serán procesados por el cierre mensual aplicandolos sobre la alícuotas pendientes del Inmueble seleccionado, hasta agotar el monto especificado. El sistema genera automáticamente el Movimiento Bancario que corresponda, por cada una de estas operaciones. 
+                                    El registro y actualizacion de los datos de las Transacciones de Pagos adelantados, se realiza a través de las siguientes acciones: 
+                                    <i><b> Agregar</b></i>, para el ingreso de la información correspondiente, tal como el Inmueble asociado, monto, descripción, referencia, banco, cuenta, etc. <i><b>Modificar</b></i>, la cual permite la actualización de los datos ya registrados y, 
+                                    <i><b>Eliminar</b></i>, que borra toda la información registrada para la Transacción, seleccionada por el Usuario, del panel inferior de la página.
+                                    Como puede notarse en la sección del diseño de página y funcionamiento, los botones de acción se activan dependiendo del requerimiento. El botón Agregar, estará activo al entrar a la página y los botones de Modificar y Eliminar, solo
+                                    cuando se ha seleccionado una Transacción, desde el panel inferior. 
+                                </font></td>
+                        </tr>    
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Diseño de pagina">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Diseño de pagina y funcionamiento"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Se ha mantenido un diseño de formato estándar para cada una de las páginas del sistema. A continuación, se muestra un ejemplo de uno 
+                                    de los tipos de pantalla que aparecen con mayor frecuencia en la aplicación, junto con una breve descripción de sus elementos mas importantes.
+                                </font></td>
+                        </tr>    
+                    </table>
+
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <img src="../images/modeloPagina1.png" alt="modeloPagina1" height="90%" width="90%" ></img>
+                        </tr>   
+                    </table>
+                    <table width="85%" border="0" align="left">
+
+                        <tr  height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/uno.png" alt="uno" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Usuario actualmente activo</font>
+                            </td>
+                        </tr>
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/dos.png" alt="dos" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Condominio actual</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/tres.png" alt="tres" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Propiedad actual</font>
+                            </td>
+                        </tr>   
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/cuatro.png" alt="cuatro" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2" >
+                                <font face="Arial" size="1" align ="left" >Lleva a la página que permite seleccionar otro condominio y/o propiedad</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/cinco.png" alt="cinco" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Lleva a la página anterior</font>
+                            </td>
+                        </tr> 
+                        <tr  height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/seis.png" alt="seis" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Abre la página de ayuda</font>
+                            </td>
+                        </tr>
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/siete.png" alt="siete" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Panel 1: permite ingresar los datos a registrar</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/ocho.png" alt="ocho" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Botones de acción, permitir agregar, modificar y eliminar la información contenida en el panel 1</font>
+                            </td>
+                        </tr>   
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/nueve.png" alt="nueve" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2" >
+                                <font face="Arial" size="1" align ="left" >Panel 2: Muestra la información registrada mediante el panel 1</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/diez.png" alt="diez" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Permite seleccionar de este mismo panel información a modificar o eliminar. Al hacer click sobre el, 
+                                    se transmite el registro seleccionado al panel 1 y  se habilitan los botones de modificar y eliminar</font>
+                            </td>
+                        </tr> 
+                    </table>
+
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="80%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Descripcion de datos de entrada">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Descripcion de datos de entrada"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">En esta sección, se muestra una descripción de los datos de entrada de esta página, 
+                                    asi como también, los tipos y rangos de valores válidos en los casos en que aplique.
+                                </font></td>
+                        </tr>  
+
+                    </table>
+
+                    <table width="85%" border="1" align="left">
+                        <tr bgcolor="#e6e6fa" >
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Dato entrada"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Descripcion"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Tipo y restricciones"></h:outputText></b></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Inmueble"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Seleccionar el Inmueble asociado a la Transacción que se desea registrar, de la lista mostrada. 
+                                                                          De no aparecer ningún nombre en la lista, deber ir a la opción Datos Básicos/inmueble para crearlo"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="No aplica. Es una lista de Selección"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Propiedtario"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Nombre del propietario(a) del Inmueble. Solo informativo"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="No permite entrada de datos"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Monto"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Monto total de la operación."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value= "Valor numérico entero o real. Ejemplo: 2000 o 2500.50 "></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Descripción"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Cualquier información o comentario útil que el usuario desee asociar a la Transacción"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value= "Valores alfa numéricos y algunos caracteres especiales "></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Fecha (dd-mm-aaaa)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Fecha del documento que soporta la Transacción"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value= "Fecha. Se muestra el calendario para seleccionar la fecha respectiva. También puede colocarse manualmente"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Nro. Doc/Ref"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Número del documento que soporta la transacción"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value= "Valor numérico entero. Ejemplo: 2341 "></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                         <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Banco"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Seleccionar el Banco asociado a la Transacción que se desea registrar, de la lista mostrada. 
+                                                                          De no aparecer ningún nombre en la lista, deber ir a la opción Datos Básicos/Banco para crearlo"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="No aplica. Es una lista de Selección"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                         <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Cuenta"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Seleccionar la Cuenta Bancaria asociada a la Transacción que se desea registrar, de la lista mostrada. 
+                                                                          De no aparecer ningún nombre en la lista, deber ir a la opción Datos Básicos/Cuenta para crearla"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="No aplica. Es una lista de Selección"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Forma de pago"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Lista para seleccionar la forma de pago con la que se efectuó la transacción"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value= "No aplica.Es una lista de selección "></h:outputText></font>
+                            </td> 
+                        </tr>
+                    </table>
+
+                </h:form>
+            </div>
+        </body>
+    </f:view> 
+</html> 

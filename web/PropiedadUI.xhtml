@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink immediate="true" onclick="Ayuda('APropiedadUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Crear y Actualizar Propiedades</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <table width="65%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Nombre de la propiedad " for="nombPropiedad"/>                
+                                <h:inputText required="false" id="nombPropiedad" size="24" maxlength ="30"
+                                             value="#{PropiedadUI_Backing.nombPropiedad}" tabindex="3" />
+                            </h:panelGrid>
+                        </td>  
+
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Cantidad de inmuebles" for="numInmuebles" />              
+                                <h:inputText required="false" id="numInmuebles" maxlength ="3"
+                                             value="#{PropiedadUI_Backing.numInmuebles}" tabindex="4"/>
+                            </h:panelGrid>
+                        </td>     
+                    </tr>  
+                </table>
+
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{PropiedadUI_Backing.registrarPropiedad}" 
+                                         disabled ="#{BeanUsuario.agregar}" tabindex="5"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{PropiedadUI_Backing.modificarPropiedad}"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Propiedades registradas.</i><font size="2"><i> Seleccione la propiedad a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaPropiedades" rows="5" rowKey="#{co.id}"     selectionMode="single" 
+                             value="#{PropiedadUI_Backing.propiedadesPorCondominio}" paginatorPosition="bottom"
+                             var="co" paginator="true"           
+                             selection="#{PropiedadUI_Backing.filaSeleccionada}" >                                   
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nombre"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombPropiedad}"/>
+                    </p:column>
+
+                    <p:column style=" text-align: center">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Cantidad"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.numInmuebles}" />
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{PropiedadUI_Backing.editarPropiedadAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{PropiedadUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

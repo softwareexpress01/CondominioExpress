@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.DerbyDialect</property>
+    <!-- _____________________________________ Para ambiente de produccion con jndi y datasource _____________________________-->
+    <!--   <property name="hibernate.connection.datasource">jdbc/Express</property>
+        <property name="hibernate.connection.username">APP</property>
+        <property name="hibernate.connection.password">admin</property>  -->
+    <!-- ______________________________________________________________________________________________________________________-->
+    <!-- _____________________________________ Para ambiente de desarrollo o produccion con c3p0_______________________________-->
+    <property name="hibernate.connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+    <property name="hibernate.connection.driver_class">org.apache.derby.jdbc.ClientDriver</property>
+    <property name="hibernate.connection.url">jdbc:derby://localhost:1527/CondominioProddb</property>
+    <property name="hibernate.connection.username">jesus</property>
+    <!--  <property name="hibernate.connection.password">admin</property>-->
+    <!--  Use the C3P0 connection pool provider -->
+    <property name="hibernate.c3p0.min_size">1</property>
+    <property name="hibernate.c3p0.max_size">25</property>
+    <property name="hibernate.c3p0.timeout">600</property>
+    <property name="hibernate.c3p0.max_statements">80</property>
+    <property name="hibernate.c3p0.idle_test_period">3000</property>
+    <!-- ______________________________________________________________________________________________________________________-->
+    <!-- Show and print nice SQL on stdout -->
+    <property name="show_sql">false</property>
+    <property name="format_sql">true</property>
+    <!--<property name="hbm2ddl.auto">update</property>-->
+    <property name="hbm2ddl.auto">none</property>
+    <!-- List of XML mapping files -->
+    <mapping resource="acceso/mapping/QueriesOrig3.hbm.xml"/>
+    <mapping resource="acceso/mapping/CodigoAcceso.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Usuario.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Condominio.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Propiedad.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Categoria.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Concepto.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Proveedor.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Inmueble.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Fondo.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Banco.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Cuenta.hbm.xml"/>
+    <mapping resource="datosbasicos/mapping/Chequera.hbm.xml"/>
+    <mapping resource="configuracion/mapping/Parametro.hbm.xml"/>
+    <mapping resource="configuracion/mapping/Logo.hbm.xml"/>
+    <mapping resource="movimientos/mapping/GastoComunOrd.hbm.xml"/>
+    <mapping resource="movimientos/mapping/GastoComunExt.hbm.xml"/>
+    <mapping resource="movimientos/mapping/NotaCredDebCxC.hbm.xml"/>
+    <mapping resource="movimientos/mapping/DeudaPendCxC.hbm.xml"/>
+    <mapping resource="movimientos/mapping/GastoNoComun.hbm.xml"/>
+    <mapping resource="movimientos/mapping/GastoPropiedad.hbm.xml"/>
+    <mapping resource="movimientos/mapping/FacGastoNoComun.hbm.xml"/>
+    <mapping resource="movimientos/mapping/PagoCxC.hbm.xml"/>
+    <mapping resource="movimientos/mapping/PagoFacCxC.hbm.xml"/>
+    <mapping resource="movimientos/mapping/Alicuota.hbm.xml"/>
+    <mapping resource="movimientos/mapping/CuotaEsp.hbm.xml"/>
+    <mapping resource="movimientos/mapping/FacCuotaEsp.hbm.xml"/>
+    <mapping resource="movimientos/mapping/PagoAdelantado.hbm.xml"/>
+    <mapping resource="movimientos/mapping/MovBancario.hbm.xml"/>
+    <mapping resource="movimientos/mapping/TranFondo.hbm.xml"/>
+    <mapping resource="movimientos/mapping/DeudaPendCxP.hbm.xml"/>
+    <mapping resource="movimientos/mapping/NotaCredDebCxP.hbm.xml"/>
+    <mapping resource="movimientos/mapping/PagoCxP.hbm.xml"/>
+    <mapping resource="movimientos/mapping/PagoFacCxP.hbm.xml"/>
+    <mapping resource="movimientos/mapping/AjustesCond.hbm.xml"/>
+    <mapping resource="movimientos/mapping/PagoFondoRes.hbm.xml"/>
+    <mapping resource="movimientos/mapping/PagoFacFonRes.hbm.xml"/>
+    <mapping resource="configuracion/mapping/Tasa.hbm.xml"/>
+    <mapping resource="saas/mapping/Plan.hbm.xml"/>
+    <mapping resource="saas/mapping/PagoMensual.hbm.xml"/>
+    <mapping resource="saas/mapping/Suscripcion.hbm.xml"/>
+    <mapping resource="saas/mapping/Compañia.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>

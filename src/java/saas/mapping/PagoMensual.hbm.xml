@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="saas.modelos.PagoMensual" table="PAGO_MENSUAL"
+           dynamic-insert="true"
+           dynamic-update="true">
+        <id name="id" type="integer" column="ID_PAGO_MENSUAL">   
+            <generator class="increment" />
+        </id>
+
+        <property name="bcoPagoMensual">
+            <column name="BCO_PAGO_MENSUAL" length="30"/>
+        </property>
+        <property name="ctaPagoMensual">
+            <column name="CTA_PAGO_MENSUAL" length="30"/>
+        </property>
+        <property name="fecPagoMensual">
+            <column name="FEC_PAGO_MENSUAL" length="10"/>
+        </property>
+        <property name="refPagoMensual">
+            <column name="REF_PAGO_MENSUAL" length="10"/>
+        </property>
+        <property name="mtoPagoMensual">
+            <column name="MTO_PAGO_MENSUAL" length="12"/>
+        </property>
+        <property name="fecMovPagoMensual">
+            <column name="FEC_MOV_PAGO_MENSUAL" length="10"/>
+        </property>
+        <property name="edoPagoMensual">
+            <column name="EDO_PAGO_MENSUAL" length="10"/>
+        </property>
+        <property name="edoAntSuscripcion">
+            <column name="EDO_ANT_SUSCRIPCION" length="3"/>
+        </property>
+        <property name="obsPagoMensual">
+            <column name="OBS_PAGO_MENSUAL" length="10"/>
+        </property>
+         
+        <many-to-one name="suscripcion"  class="saas.modelos.Suscripcion"
+                     column="ID_SUSCRIPCION" not-null = "true" />
+        
+    </class>
+</hibernate-mapping>
+

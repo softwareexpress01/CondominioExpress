@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : GastoNoComun.hbm.xml
+    Created on : March 12, 2012, 12:42 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.GastoNoComun" table="GASTO_NO_COMUN"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_GASTO_NO_COMUN">
+            <generator class="increment" />
+        </id>
+        
+        <property name="numDocGastoNoComun">
+            <column name="NUM_DOC_GASTO_NO_COMUN" length="20"/>
+        </property>
+        <property name="fecGastoNoComun">
+            <column name="FEC_GASTO_NO_COMUN" length="10"/>
+        </property>
+        <property name="mtoGastoNoComun">
+            <column name="MTO_GASTO_NO_COMUN"/>
+        </property>
+        <property name="saldoGastoNoComun">
+            <column name="SALDO_GASTO_NO_COMUN" />
+        </property>
+        <property name="saldoFacGnc">
+            <column name="SALDO_FAC_GNC" />
+        </property>
+        <property name="edoGastoNoComun">
+            <column name="EDO_GASTO_NO_COMUN" length="6"/>
+        </property>
+        <property name="edoGralFac">
+            <column name="EDO_GRAL_FAC" length="4"/>
+        </property>
+        <property name="idConcepto">
+            <column name="ID_CONCEPTO" />
+        </property>
+        <property name="idProveedor">
+            <column name="ID_PROVEEDOR" />
+        </property>
+        <property name="fecMovGNC">
+            <column name="FEC_MOV_GNC"/>
+        </property>
+        <property name="obsGastoNoComun">
+            <column name="OBS_GASTO_NO_COMUN" length="150"/>
+        </property>
+        <property name="perGastoNoComun" >
+            <column name="PER_GASTO_NO_COMUN" length="10"/>
+        </property>
+        
+        <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+                  column="ID_CONDOMINIO" not-null = "true" />
+                  
+        <bag name="facturasGNC" cascade="save-update,delete, delete-orphan" 
+          fetch="subselect" inverse = "true">
+            <key column="ID_GASTO_NO_COMUN"/>
+            <one-to-many class="movimientos.modelos.FacGastoNoComun" />
+        </bag>      
+                 
+    </class>
+</hibernate-mapping>

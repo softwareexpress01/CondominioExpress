@@ -1,0 +1,2409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : faces-config.xml
+    Created on : October 23, 2012, 9:50 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+    
+<faces-config version="2.0"
+              xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+                  
+ <!--______________________________ VERSION __________________________________ -->  
+ 
+<!-- Version 1.8.7.4 al 22-04-2020
+
+Cambios realizados por   F. Rojas H: 
+
+1. Se ajustaron las diferentes versiones de los adc para que tomara los saldos y no los montos para
+   el calculo del monto a pagar en el mes, especificamente el de los gnc
+
+    - AvisoDeCobroCtrl.java
+    - ConExpAvisoDeCobroCtrl.java
+    - EmailAvisoDeCobroCtrl.java
+                               
+    -->
+
+    <!--_______________________________MENUES__________________________________ -->
+
+    <!--_______________________________Entrada___________________________________ -->
+    <managed-bean>
+        <managed-bean-name>MainUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.MainCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/main.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>bienvenida</from-outcome>
+            <to-view-id>/BienvenidaUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>registrarpago</from-outcome>
+            <to-view-id>/RegPagosMenUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>suscripcion</from-outcome>
+            <to-view-id>/SolSuscripcionUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>consultaExpress</from-outcome>
+            <to-view-id>/ConExpAccesoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/BienvenidaUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>registrarse</from-outcome> 
+            <to-view-id>/RegistroUI.xhtml</to-view-id>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/LoginUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>MiscelaneosUI_Backing</managed-bean-name>
+        <managed-bean-class>menuPrincipal.backing.MenuPrincipalCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/MiscelaneosUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>distribucion</from-outcome>
+            <to-view-id>/DistGastoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    
+    
+    
+    <!--_______________________________Consulta Express___________________________________ --> 
+    <navigation-rule>
+        <from-view-id>/index.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>login</from-outcome> 
+            <to-view-id>/ConExpAccesoUI.xhtml</to-view-id>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>Salir</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>ConExpAccesoUI_Backing</managed-bean-name>
+        <managed-bean-class>acceso.backing.ConExpAccesoCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/ConExpAccesoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>menuConsultaExpress</from-outcome>
+            <to-view-id>/ConExpMenuUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>ConExpMenuUI_Backing</managed-bean-name>
+        <managed-bean-class>menuPrincipal.backing.ConExpMenuCtrl</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/ConExpMenuUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>avisos</from-outcome>
+            <to-view-id>/ConExpAvisoDeCobroUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edocuenta</from-outcome>
+            <to-view-id>/ConExpEdoCuentaInmUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>notificacionPago</from-outcome>
+            <to-view-id>/ConExpNotificacionUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>distribucion</from-outcome>
+            <to-view-id>/ConExpDistGastoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/ConExpAccesoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>ConExpEdoCuentaInmUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.ConExpEdoCuentaInmCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/ConExpEdoCuentaInmUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/ConExpMenuUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>ConExpAvisoDeCobroUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.ConExpAvisoDeCobroCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/ConExpAvisoDeCobroUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/ConExpMenuUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/ConExpNotificacionUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/ConExpMenuUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>ConExpNotificacionUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ConExpNotificacionCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/ConExpNotificacionUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/ConExpMenuUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>ConExpDistGastoUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.ConExpDistGastoCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/ConExpDistGastoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/ConExpMenuUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>ConExpBalGenUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.ConExpBalGenCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ConExpIndGestionPagosCxPUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.ConExpIndGestionPagosCxPCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ConExpIndGestionCobranzaUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.ConExpIndGestionCobranzaCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ConExpGenCodAccesoUI_Backing</managed-bean-name>
+        <managed-bean-class>acceso.backing.ConExpGenCodigoAccesoCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ActualizarTablaUI_Backing</managed-bean-name>
+        <managed-bean-class>acceso.backing.ActualizarTablaCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ActualizarCuentasPorCobrarUI_Backing</managed-bean-name>
+        <managed-bean-class>acceso.backing.ActualizarCuentasPorCobrarCtrl</managed-bean-class>
+    
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>RevisarCuentasPorCobrarUI_Backing</managed-bean-name>
+        <managed-bean-class>acceso.backing.RevisarCuentasPorCobrarCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <!--_______________________________fin Consulta Express___________________________________ -->
+    
+    <!--_______________________________Pagos Mensualidades_____________________-->
+    <managed-bean>
+        <managed-bean-name>RegPagoMenUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.RegPagosMenCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/RegPagosMenUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome> 
+            <to-view-id>/PagoMensualidadUI.xhtml</to-view-id>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>emitirReciboPago</from-outcome>
+            <to-view-id>/ReciboPagoMenUI.xhtml</to-view-id>
+        </navigation-case> 
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>ConfirmarPagosMenUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.ConfirmarPagosMenCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/ConfirmarPagosMenUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome> 
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>revertirPagosMensuales</from-outcome> 
+            <to-view-id>/RevertirPagosMenUI.xhtml</to-view-id>
+        </navigation-case> 
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>RevertirPagosMenUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.RevertirPagosMenCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/RevertirPagosMenUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome> 
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case> 
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>PagoMensualidadUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.PagoMensualidadCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean> 
+    <navigation-rule>
+        <from-view-id>/PagoMensualidadUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>registrarpagomensual</from-outcome>
+            <to-view-id>/RegPagosMenUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--_______________________________Suscripciones_____________________-->
+    
+    <!--____Plan_____-->
+    
+    <managed-bean>
+        <managed-bean-name>PlanUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.PlanCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+     
+    <managed-bean>
+        <managed-bean-name>ElimPlanUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.ElimPlanCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/PlanUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimPlanUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimPlanUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/PlanUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/PlanUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/PlanUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+   
+    <!--___Solicitud de suscripción____ -->
+    
+    <managed-bean>
+        <managed-bean-name>SolSuscripcionUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.SolSuscripcionCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/SolSuscripcionUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/main.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <!--___Confirmar Solicitud de suscripción___-->
+    
+    <managed-bean>
+        <managed-bean-name>ConfSolUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.ConfSolCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ElimConfSusUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.ElimConfSusCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/ConfSolUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>revertirconfirmacion</from-outcome>
+            <to-view-id>/RevertirConfSusUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+      
+    <navigation-rule>
+        <from-view-id>/ElimConfSusUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/RevertirConfSusUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/ConfSolUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/RevertirConfSusUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+      
+    <!--___Revertir Solicitud de suscripción____ -->
+    
+    <managed-bean>
+        <managed-bean-name>RevertirConfSusUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.RevertirConfSusCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/RevertirConfSusUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>revertir</from-outcome>
+            <to-view-id>/ElimConfSusUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <managed-bean>
+        <managed-bean-name>TerminosYCondicionesUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.TerminosYCondicionesCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/TerminosYCondicionesUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>continuar</from-outcome>
+            <to-view-id>/SolSuscripcionUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <!--_______________________________Informes_____________________-->
+    
+    <!--______Pagos pendientes____-->
+    <managed-bean>
+        <managed-bean-name>OperacionesUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.OperacionesCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <!--______Cobro de mensualidades____-->
+    <!--___Solicitudes de suscripción Pendientes___-->
+    
+     
+    
+    <managed-bean>
+        <managed-bean-name>CobSuscripcionUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.CobSuscripcionesCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>SolSusPendUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.SolSusPendCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <!--___Recibo de pago mensual ___-->
+    
+    <managed-bean>
+        <managed-bean-name>ReciboPagoMenUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.ReciboPagoMenCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/ReciboPagoMenUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/RegPagosMenUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <!--___Consulta suscripciones ___-->
+    
+    <managed-bean>
+        <managed-bean-name>ConSusUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.ConSusCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/ConSusUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <!--_______________________________Principal__________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>MenuPrincipalUI_Backing</managed-bean-name>
+        <managed-bean-class>menuPrincipal.backing.MenuPrincipalCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>InformesUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.InformesCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>InformesCxPUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.InformesCxPCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ConfiguracionUI_Backing</managed-bean-name>
+        <managed-bean-class>configuracion.backing.ConfiguracionCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>IndGestionCobranzaUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.IndGestionCobranzaCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>CodSuscripcionUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.CodSuscripcionCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/CodSuscripcionUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>suscripcion</from-outcome>
+            <to-view-id>/ModificarSuscripcionUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>ModificarSuscripcionUI_Backing</managed-bean-name>
+        <managed-bean-class>saas.backing.ModificarSuscripcionCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/ModificarSuscripcionUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>menup</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>CobranzaUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.CobranzaCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/CobranzaUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/MenuPrincipalUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>bienvenida</from-outcome>
+            <to-view-id>/BienvenidaUI.xhtml</to-view-id>
+        </navigation-case>
+   
+    
+       
+        <!--_______________________________Operaciones______________________________ -->
+        <navigation-case>
+            <from-outcome>pagosSuscripciones</from-outcome>
+            <to-view-id>/ConfirmarPagosSusUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>pagosMensuales</from-outcome>
+            <to-view-id>/ConfirmarPagosMenUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>revertirPagosSuscripciones</from-outcome>
+            <to-view-id>/RevertirPagosSusUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>revertirPagosMensuales</from-outcome>
+            <to-view-id>/RevertirPagosMenUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>confirmarSolSus</from-outcome>
+            <to-view-id>/ConfSolUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>revertirConf</from-outcome>
+            <to-view-id>/RevertirConfSusUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>registrarPlanes</from-outcome>
+            <to-view-id>/PlanUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosconsultarsuscripcion</from-outcome>
+            <to-view-id>/ConSusUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>consultaExpress</from-outcome>
+            <to-view-id>/ConExpAccesoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>buscarSuscripcion</from-outcome>
+            <to-view-id>/CodSuscripcionUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>terminosycondiciones</from-outcome>
+            <to-view-id>/TerminosYCondicionesUI.xhtml</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+
+    <!--________________________CASOS DE USO – ACCESO_____________________________ -->
+
+    <!--_______________________________Registro____________________________________ -->
+    <managed-bean>
+        <managed-bean-name>Registro_Backing</managed-bean-name>
+        <managed-bean-class>acceso.backing.RegistroCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/RegistroUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>bienvenida</from-outcome> 
+            <to-view-id>/BienvenidaUI.xhtml</to-view-id>
+        </navigation-case> 
+        <navigation-case>
+            <from-outcome>login</from-outcome>
+            <to-view-id>/LoginUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <managed-bean>
+        <managed-bean-name>ContactenosUI_Backing</managed-bean-name>
+        <managed-bean-class>acceso.backing.ContactenosCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <!--_______________________________Login______________________________________ -->
+    <managed-bean>
+        <managed-bean-name>Login_Backing</managed-bean-name>
+        <managed-bean-class>acceso.backing.LoginCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/LoginUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>bienvenida</from-outcome>
+            <to-view-id>/BienvenidaUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--________________________Seleccionar condominio______________________________ -->
+    <managed-bean>
+        <managed-bean-name>SelCondUI_Backing</managed-bean-name>
+        <managed-bean-class>acceso.backing.SelCondCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/SelCondUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/CondominioUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>menu</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>bienvenida</from-outcome>
+            <to-view-id>/BienvenidaUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--________________________CASOS DE USO – DATOS BASICOS______________________ -->
+
+    <!--_______________________________Condominios_______________________________ -->
+    <managed-bean>
+        <managed-bean-name>ElimCondominioUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ElimCondominioCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>CondominioUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.CondominioCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/CondominioUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimCondominioUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimCondominioUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/CondominioUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/CondominioUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--_______________________________Propiedades_______________________________ -->
+    <managed-bean>
+        <managed-bean-name>ElimPropiedadUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ElimPropiedadCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>PropiedadUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.PropiedadCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/PropiedadUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimPropiedadUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimPropiedadUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/PropiedadUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/PropiedadUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--_______________________________Categorias_________________________________ -->
+    <managed-bean>
+        <managed-bean-name>ElimCategoriaUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ElimCategoriaCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>CategoriaUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.CategoriaCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/CategoriaUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimCategoriaUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimCategoriaUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/CategoriaUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/CategoriaUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+
+    <!--_______________________________Conceptos_________________________________ -->
+    <managed-bean>
+        <managed-bean-name>ElimConceptoUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ElimConceptoCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ConceptoUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ConceptoCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/ConceptoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimConceptoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimConceptoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/ConceptoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/ConceptoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+
+    <!--_______________________________Inmuebles_________________________________ -->
+    <managed-bean>
+        <managed-bean-name>ElimInmuebleUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ElimInmuebleCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>InmuebleUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.InmuebleCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/InmuebleUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimInmuebleUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>modificado</from-outcome>
+            <to-view-id>/InmuebleUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule> 
+        <from-view-id>/ElimInmuebleUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/InmuebleUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/InmuebleUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--_______________________________ Proveedor _________________________________ -->
+    <managed-bean>
+        <managed-bean-name>ProveedorUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ProveedorCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimProveedorUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ElimProveedorCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/ProveedorUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimProveedorUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimProveedorUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/ProveedorUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/ProveedorUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/ProveedorUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--_______________________________ Bancos _________________________________ -->
+    <managed-bean>
+        <managed-bean-name>BancoUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.BancoCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimBancoUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ElimBancoCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/BancoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimBancoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/ElimBancoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/BancoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/BancoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/BancoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--_______________________________Cuenta_________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>CuentaUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.CuentaCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimCuentaUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ElimCuentaCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/CuentaUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimCuentaUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/ElimCuentaUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/CuentaUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/CuentaUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/CuentaUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--_______________________________Chequera_________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>ChequeraUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ChequeraCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+     
+    <managed-bean>
+        <managed-bean-name>ElimChequeraUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ElimChequeraCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/ChequeraUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimChequeraUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimChequeraUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/ChequeraUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/ChequeraUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/ChequeraUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--_______________________________Fondo_________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>FondoUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.FondoCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+     
+    <managed-bean>
+        <managed-bean-name>ElimFondoUI_Backing</managed-bean-name>
+        <managed-bean-class>datosbasicos.backing.ElimFondoCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/FondoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datosbasicos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimFondoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimFondoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/FondoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/FondoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/FondoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+   
+    <!--________________________CASOS DE USO – MOVIMIENTOS/TRANSACCIONES______________________ -->
+
+    <!--___________________________Gastos comunes ordinarios_______________________ -->
+    <managed-bean>        
+        <managed-bean-name>ElimGastoComunOrdUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimGastoComunOrdCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>GastoComunOrdUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.GastoComunOrdCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/GastoComunOrdUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimGastoComunOrdUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule> 
+        <from-view-id>/ElimGastoComunOrdUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/GastoComunOrdUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/GastoComunOrdUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+
+    <!--________________________Gastos comunes extraordinarios_______________________ -->
+    <managed-bean>        
+        <managed-bean-name>ElimGastoComunExtUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimGastoComunExtCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>GastoComunExtUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.GastoComunExtCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/GastoComunExtUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimGastoComunExtUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/ElimGastoComunExtUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/GastoComunExtUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/GastoComunExtUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+
+    <!--_______________________________Gastos No comunes _________________________ -->
+    <managed-bean>
+        <managed-bean-name>ElimGastoNoComunUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimGastoNoComunCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>GastoNoComunUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.GastoNoComunCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/GastoNoComunUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimGastoNoComunUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/ElimGastoNoComunUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/GastoNoComunUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/GastoNoComunUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--_______________________________TranFondo_________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>TranFondoUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.TranFondoCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimTranFondoUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimTranFondoCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/TranFondoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimTranFondoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimTranFondoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/TranFondoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/TranFondoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/TranFondoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--_______________________________Cuota_________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>CuotaEspUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.CuotaEspCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimCuotaEspUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimCuotaEspCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/CuotaEspUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimCuotaEspUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimCuotaEspUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/CuotaEspUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/CuotaEspUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/CuotaEspUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <!--_______________________________Mov Bancario_________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>MovBancarioUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.MovBancarioCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimMovBancarioUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimMovBancarioCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/MovBancarioUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimMovBancarioUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimMovBancarioUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/MovBancarioUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/MovBancarioUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/MovBancarioUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--_______________________________Ajustes al Condominio _________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>ElimAjustesCondUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimAjustesCondCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>AjustesCondUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.AjustesCondCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+ 
+    <navigation-rule>
+        <from-view-id>/AjustesCondUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimAjustesCondUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/ElimAjustesCondUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/AjustesCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/AjustesCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/AjustesCondUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--________________________CASOS DE USO – MOVIMIENTOS/CUENTAS POR COBRAR______________________ -->
+
+    <!--_______________________________Pagos por Inmueble__________________________ -->
+    <managed-bean>
+        <managed-bean-name>PagoCxCUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.PagoCxCCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>ElimPagoCxCUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimPagoCxCCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/PagoCxCUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>revertirCxC</from-outcome>
+            <to-view-id>/RevertirPagoCxCUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>recibopago</from-outcome>
+            <to-view-id>/ReciboPagoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+             
+    <navigation-rule>
+        <from-view-id>/ElimPagoCxCUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/RevertirPagoCxCUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/RevertirPagoCxCUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--_______________________________Revertir pagos cxc___________________________ -->
+    <managed-bean>
+        <managed-bean-name>RevertirPagoCxCUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.RevertirPagoCxCCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/RevertirPagoCxCUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimPagoCxCUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--____________________________Notas de debito/crédito CxC______________________ -->
+    <managed-bean>
+        <managed-bean-name>ElimNotaCredDebCxCUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimNotaCredDebCxCCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>NotaCredDebCxCUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.NotaCredDebCxCCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/NotaCredDebCxCUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimNotaCredDebCxCUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/ElimNotaCredDebCxCUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/NotaCredDebCxCUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/NotaCredDebCxCUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--_______________________________Pago Adelantado_________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>PagoAdelantadoUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.PagoAdelantadoCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimPagoAdelantadoUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimPagoAdelantadoCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/PagoAdelantadoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimPagoAdelantadoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>recibopago</from-outcome>
+            <to-view-id>/ReciboPagoAdelUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimPagoAdelantadoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/PagoAdelantadoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/PagoAdelantadoUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/PagoAdelantadoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+
+    <!--____________________________Deuda pendiente  CxC___________________________ -->
+    <managed-bean>
+        <managed-bean-name>ElimDeudaPendCxCUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimDeudaPendCxCCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>DeudaPendCxCUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.DeudaPendCxCCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/DeudaPendCxCUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimDeudaPendCxCUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <navigation-rule>
+        <from-view-id>/ElimDeudaPendCxCUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/DeudaPendCxCUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/DeudaPendCxCUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--________________________CASOS DE USO – MOVIMIENTOS/CUENTAS POR PAGAR______________________ -->
+    <!--_______________________________Deuda Pendiente de CxP_________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>DeudaPendCxPUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.DeudaPendCxPCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimDeudaPendCxPUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimDeudaPendCxPCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/DeudaPendCxPUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimDeudaPendCxPUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/ElimDeudaPendCxPUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/DeudaPendCxPUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/DeudaPendCxPUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/DeudaPendCxPUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <!--_______________________________Nota credito debito CxP_________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>NotaCredDebCxPUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.NotaCredDebCxPCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimNotaCredDebCxPUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimNotaCredDebCxPCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/NotaCredDebCxPUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimNotaCredDebCxPUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <navigation-rule>
+        <from-view-id>/ElimNotaCredDebCxPUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/NotaCredDebCxPUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>datoscondominio</from-outcome>
+            <to-view-id>/NotaCredDebCxPUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/NotaCredDebCxPUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--_______________________________Pago CxP_________________________________ -->
+    
+    <managed-bean>
+        <managed-bean-name>PagoCxPUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.PagoCxPCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimPagoCxPUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimPagoCxPCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    
+    <navigation-rule>
+        <from-view-id>/PagoCxPUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimPagoCxPUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>revertirCxP</from-outcome>
+            <to-view-id>/RevertirPagoCxPUI.xhtml</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/ElimPagoCxPUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/RevertirPagoCxPUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/RevertirPagoCxPUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--_______________________________Revertir Pago CxP_________________________________ -->
+    <managed-bean>
+        <managed-bean-name>RevertirPagoCxPUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.RevertirPagoCxPCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+     
+    <navigation-rule>
+        <from-view-id>/RevertirPagoCxPUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimPagoCxPUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!--_______________________________Pagos/Fondo de Reserva_________________________________ -->
+    <managed-bean>
+        <managed-bean-name>PagoFonResUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.PagoFonResCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+        
+    <navigation-rule>
+        <from-view-id>/PagoFonResUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>movimientos</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>revertirpagofonres</from-outcome>
+            <to-view-id>/RevertirPagoFonResUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--_______________________________Revertir Pago/Fondo de Reserva_________________________________ -->
+    <managed-bean>
+        <managed-bean-name>RevertirPagoFonResUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.RevertirPagoFonResCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>ElimPagoFonResUI_Backing</managed-bean-name>
+        <managed-bean-class>movimientos.backing.ElimPagoFonResCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/RevertirPagoFonResUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>revertir</from-outcome>
+            <to-view-id>/ElimPagoFonResUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/ElimPagoFonResUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/RevertirPagoFonResUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/RevertirPagoFonResUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    
+    <!--________________________INFORMES/GESTION__________________________ -->
+
+    <!--____________________________Distribución del gasto___________________________ -->
+    <managed-bean>
+        <managed-bean-name>DistGastoUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.DistGastoCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/DistGastoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+    <!--____________________________Transacciones del mes___________________________ --> 
+    <managed-bean>
+        <managed-bean-name>MovDelMesUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.MovDelMesCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/MovDelMesUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--____________________________ Balance general___________________________ -->
+    <managed-bean>
+        <managed-bean-name>BalGenUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.BalGenCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    
+    <!--____________________________ Indicadores de gestión Pagos CxP___________________________ -->
+    <managed-bean>
+        <managed-bean-name>IndGestionPagosCxPUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.IndGestionPagosCxPCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <!--________________________INFORMES/PROVEEDORES__________________________ -->
+    <managed-bean>
+        <managed-bean-name>EdoCuentaProvUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.EdoCuentaProvCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/EdoCuentaProvUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>email</from-outcome>
+            <to-view-id>/EmailEdoCtaProvUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <managed-bean>
+        <managed-bean-name>EmailEdoCtaProvUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.EmailEdoCtaProvCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>PagosProvUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.PagosProvCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/PagosProvUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <!--________________________INFORMES/CUENTAS BANCARIAS__________________________ -->
+    <managed-bean>
+        <managed-bean-name>MovBanRepUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.MovBanRepCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/MovBanRepUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>  
+    <!--________________________________General __________________________________ -->
+    <!--________________________________Condominios______________________________ -->
+    <!--________________________________Cartelera__________________________________ -->
+    <!--________________________________Recibos__________________________________ -->
+    <managed-bean>
+        <managed-bean-name>ReciboPagoUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.ReciboPagoCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/ReciboPagoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>email</from-outcome>
+            <to-view-id>/EmailReciboPagoCxCInmUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>ReciboPagoAdelUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.ReciboPagoAdelCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/ReciboPagoAdelUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>email</from-outcome>
+            <to-view-id>/EmailReciboPagoAdelInmUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>EmailReciboPagoCxCInmUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.EmailReciboPagoCxCCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/EmailReciboPagoCxCInmUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/ReciboPagoUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>EmailReciboPagoAdelInmUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.EmailReciboPagoAdelCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/EmailReciboPagoAdelInmUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/ReciboPagoAdelUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--______________________________Estados de cuenta____________________________-->
+    <managed-bean>
+        <managed-bean-name>EdoCuentaInmUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.EdoCuentaInmCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>EmailEdoCtaCxCInmUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.EmailEdoCtaCxCInmCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/EdoCuentaInmUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>email</from-outcome>
+            <to-view-id>/EmailEdoCtaCxCInmUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <from-view-id>/EmailEdoCtaCxCInmUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/EdoCuentaInmUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+   
+    <navigation-rule>
+        <from-view-id>/EmailEdoCtaProvUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/EdoCuentaProvUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--______________________________Aviso de cobro____________________________-->
+   
+    <managed-bean>
+        <managed-bean-name>AvisoDeCobroUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.AvisoDeCobroCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+         
+        <from-view-id>/AvisoDeCobroUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>informes</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>email</from-outcome>
+            <to-view-id>/EmailAvisoDeCobroUI.xhtml</to-view-id>
+        </navigation-case>
+        
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>EmailAvisoDeCobroUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.EmailAvisoDeCobroCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <navigation-rule>
+        <from-view-id>/EmailAvisoDeCobroUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/AvisoDeCobroUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--________________________INFORMES CORRESPONDENCIA _____________________ -->
+    <managed-bean>
+        <managed-bean-name>CorrespondenciaUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.CorrespondenciaCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <navigation-rule>
+        <from-view-id>/CorrespondenciaUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>email</from-outcome>
+            <to-view-id>/EmailCorrespondenciaUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <managed-bean>
+        <managed-bean-name>EmailCorrespondenciaUI_Backing</managed-bean-name>
+        <managed-bean-class>informes.backing.EmailCorrespondenciaCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    
+    <!--________________________CASOS DE USO – CONFIGURACION_____________________ -->
+
+    <!--____________________________________Logo__________________________________-->
+    <managed-bean>
+        <managed-bean-name>LogoUI_Backing</managed-bean-name>
+        <managed-bean-class>configuracion.backing.LogoCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/LogoUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>configuracion</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <!--____________________________________Parametros____________________________-->
+    <managed-bean>
+        <managed-bean-name>ParametroUI_Backing</managed-bean-name>
+        <managed-bean-class>configuracion.backing.ParametroCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/ParametroUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>configuracion</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <!--__________________________________Perfiles Usuario____________________________-->
+    <managed-bean>        
+        <managed-bean-name>ElimPerfilUI_Backing</managed-bean-name>
+        <managed-bean-class>configuracion.backing.ElimPerfilCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>PerfilUI_Backing</managed-bean-name>
+        <managed-bean-class>configuracion.backing.PerfilCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/PerfilUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>configuracion</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimPerfilUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/ElimPerfilUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/PerfilUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/PerfilUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+    <!--____________________________________Tasas__________________________________-->
+    <managed-bean>
+        <managed-bean-name>TasaUI_Backing</managed-bean-name>
+        <managed-bean-class>configuracion.backing.TasaCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>        
+        <managed-bean-name>ElimTasaUI_Backing</managed-bean-name>
+        <managed-bean-class>configuracion.backing.ElimTasaCtrl</managed-bean-class>
+        <managed-bean-scope>view</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/TasaUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>configuracion</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>eliminar</from-outcome>
+            <to-view-id>/ElimTasaUI.xhtml</to-view-id>
+        </navigation-case>
+       
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/ElimTasaUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>regresar</from-outcome>
+            <to-view-id>/TasaUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>salir</from-outcome>
+            <to-view-id>/TasaUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule> 
+
+
+    <!--________________________CASOS DE USO – ADMINISTRACION_____________________ -->
+
+    <!--__________________________________Cierre preliminar__________________________-->
+    <managed-bean>
+        <managed-bean-name>CierrePreliminarUI_Backing</managed-bean-name>
+        <managed-bean-class>administracion.backing.CierrePreliminarCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/CierrePreliminarUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>administracion</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <!--__________________________________Cierre mensual____________________________-->
+    <managed-bean>
+        <managed-bean-name>CierreMensualUI_Backing</managed-bean-name>
+        <managed-bean-class>administracion.backing.CierreMensualCtrl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+
+    <navigation-rule>
+        <from-view-id>/CierreMensualUI.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>selcond</from-outcome>
+            <to-view-id>/SelCondUI.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>administracion</from-outcome>
+            <to-view-id>/MenuPrincipalUI.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <!--__________________________________Utiles___________________________________-->
+    <managed-bean>
+        <managed-bean-name>Validator</managed-bean-name>
+        <managed-bean-class>util.Validator</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <!--__________________________________Rutas de ambiente de produccion ______________________
+    <managed-bean>
+        <managed-bean-name>BeanUsuario</managed-bean-name>
+        <managed-bean-class>util.BeanUsuario</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>ruta</property-name>
+            <value>C:/glassfish-4.1.1/glassfish4/glassfish/domains/domain1/applications/CondominioExpress/logos/</value> 
+        </managed-property>
+        <managed-property>
+            <property-name>rutaTemporal</property-name>
+            <value>C:/glassfish-4.1.1/glassfish4/glassfish/domains/domain1/applications/CondominioExpress/temporal/</value> 
+        </managed-property>
+        <managed-property>
+            <property-name>puerto</property-name>
+            <value>https://condominioexpressve.com:8181/CondominioExpress/faces/InvitacionBlogUI.xhtml</value> 
+        </managed-property>
+        <managed-property>
+            <property-name>hostCond</property-name>
+            <value>https://condominioexpressve.com:8181/CondominioExpress/faces/</value> 
+        </managed-property>
+    </managed-bean>-->  
+    <!--__________________________________Rutas de ambiente de produccion NEW______________________ --> 
+    <managed-bean>
+        <managed-bean-name>BeanUsuario</managed-bean-name>
+        <managed-bean-class>util.BeanUsuario</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>ruta</property-name>
+            <value>C:/glassfish-4.1.1/glassfish4/glassfish/domains/domain1/applications/CondominioExpress/logos/</value> 
+        </managed-property>
+        <managed-property>
+            <property-name>rutaTemporal</property-name>
+            <value>C:/glassfish-4.1.1/glassfish4/glassfish/domains/domain1/applications/CondominioExpress/temporal/</value> 
+        </managed-property>
+        <managed-property>
+            <property-name>puerto</property-name>
+            <value>https://condominioexpressve.com:8181/CondominioExpress/faces/InvitacionBlogUI.xhtml</value> 
+        </managed-property>
+        <managed-property>
+            <property-name>hostCond</property-name>
+            <value>https://condominioexpressve.com:8181/CondominioExpress/faces/</value> 
+        </managed-property>
+    </managed-bean>
+    
+    <!--__________________________________Rutas de ambiente de desarrollo__________________________________
+    <managed-bean>
+        <managed-bean-name>BeanUsuario</managed-bean-name>
+        <managed-bean-class>util.BeanUsuario</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+        <managed-property>
+            <property-name>ruta</property-name>
+            <value>E:\FrankRojasH\Sistemas\Sistema26112024\Desarrollo\CondominioExpress\web\logos\</value>  
+        </managed-property>
+        <managed-property>
+            <property-name>rutaTemporal</property-name>
+            <value>E:\FrankRojasH\Sistemas\Sistema26112024\Desarrollo\CondominioExpress\web\temporal\</value> 
+        </managed-property>
+        <managed-property>
+            <property-name>puerto</property-name>
+            <value>http://localhost:8080/CondominioExpress/faces/InvitacionBlogUI.xhtml</value> 
+        </managed-property>
+        <managed-property>
+            <property-name>hostCond</property-name>
+            <value>http://localhost:8080/CondominioExpress/faces/</value> 
+        </managed-property>
+    </managed-bean>--> 
+    
+</faces-config>
+
+

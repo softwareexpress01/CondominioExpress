@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : PagoFONRES.hbm.xml
+    Created on : jun 26, 2012, 4:30 PM
+    Author     : Frank R.H.
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.PagoFonRes" table="PAGO_FONRES"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_PAGO_FONRES">
+            <generator class="increment" />
+        </id>
+        
+        <property name="desPagoFonRes">
+            <column name="DESC_PAGO_FONRES" length="60"/>
+        </property>
+        <property name="numDocPagoFonRes">
+            <column name="NUM_DOC_PAGO_FONRES" length="12"/>
+        </property>
+        <property name="mtoPagoFonRes">
+            <column name="MTO_PAGO_FONRES" />
+        </property>
+        <property name="formaPagoFonRes">
+            <column name="FORMA_PAGO_FONRES" length="15"/>
+        </property>
+        <property name="fecDocPagoFonRes">
+            <column name="FEC_DOC_PAGO_FONRES" length="10"/>
+        </property>
+        <property name="bancoPagoFonRes">
+            <column name="ID_BCO_PAGO_FONRES" />
+        </property>
+        <property name="idCuentaPagoFonRes">
+            <column name="ID_CUENTA_PAGO_FONRES" />
+        </property>
+        <property name="fecMovPagoFonRes">
+            <column name="FEC_MOV_PAGO_FONRES"/>
+        </property>
+        <property name="periodoActual" >
+            <column name="PER_ACTUAL_PAGO_FONRES" length="10"/>
+        </property>
+        
+        <bag name="pagoFacFonRes" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_PAGO_FONRES"/>
+            <one-to-many class="movimientos.modelos.PagoFacFonRes" />
+        </bag>
+        
+        <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+                         column="ID_CONDOMINIO" not-null = "true" />
+
+    </class>
+</hibernate-mapping>

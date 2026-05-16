@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"> 
+    <f:view> 
+        <h:head>
+            <title>Ayuda de Software Express Condominio</title> 
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <div style="overflow:auto; height:380px;">
+                <h:form id="form"  >
+
+                    <table width="70%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <font face="Arial" size="3" color="#009933"><h:outputText value="Indice"></h:outputText></font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="AConfiguracionInic.xhtml">Primeros pasos:Configuración inicial</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Funcionalidad">Funcionalidad</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Diseño de página">Diseño de página</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Descripción de datos de entrada">Descripción de datos de entrada</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+
+                        <tr>
+                            <td with="10">
+                                <a name="Funcionalidad">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Funcionalidad"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Esta página permite registrar y actualizar información de <i><b> Gastos comunes extraordinarios </b></i>.Los <i>gastos comunes extraordinarios</i> son aquellos gastos eventuales en que incurre el condominio en beneficio de su comunidad,  
+                                    estos se diferencian de los gastos comunes ordinarios en que se trata de gastos adicionales a ser cubiertos por un fondo del condominio, bien sea, el fondo de Reserva o un fondo Especial previamente creados. Por ejemplo, podría utilizarse el fondo de reserva para la 
+                                    pintura del edificio, o para la instalación de un cerco eléctrico. Por lo general son gastos relacionados con obras comunes nuevas, por lo cual se tratan de forma diferente a los gastos comunes ordinarios, que se cubren con el pago mensual de los propietarios.   
+                                    El registro y actualización de los datos de un gasto común extraordinario, se realiza a través de las siguientes acciones: 
+                                    <i><b> Agregar</b></i>, para el ingreso de la información relacionada al gasto, tal como el proveedor, nro factura/documento, fecha, concepto, fondo a ser afectado, etc. <i><b>Modificar</b></i>, la cual permite la actualización de los datos ya registrados del gasto, y 
+                                    <i><b>Eliminar</b></i>, que procede con la eliminación de toda la información registrada del gasto común extraordinario seleccionado.
+                                    Como puede notarse en la sección del diseño de página y funcionamiento, los botones de acción se activan dependiendo del requerimiento. El boton Agregar, esta activo la primera vez que se entra a la página y los botones de Modificar y Eliminar, solo
+                                    se activan cuando se ha seleccionado un registro de gasto común extraordinario del panel inferior.
+                                </font></td>
+                        </tr>    
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Diseño de página">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Diseño de página y funcionamiento"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Se ha mantenido un diseño de formato estándar para cada una de las páginas del sistema. A continuación, se muestra un ejemplo de uno 
+                                    de los tipos de pantalla que aparecen con mayor frecuencia en la aplicación, junto con una breve descripción de sus elementos mas importantes.
+                                </font></td>
+                        </tr>    
+                    </table>
+
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <img src="../images/modeloPagina1.png" alt="modeloPagina1" height="90%" width="90%" ></img>
+                        </tr>   
+                    </table>
+                    <table width="85%" border="0" align="left">
+
+                        <tr  height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/uno.png" alt="uno" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Usuario actualmente activo</font>
+                            </td>
+                        </tr>
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/dos.png" alt="dos" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Condominio actual</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/tres.png" alt="tres" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Propiedad actual</font>
+                            </td>
+                        </tr>   
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/cuatro.png" alt="cuatro" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2" >
+                                <font face="Arial" size="1" align ="left" >Lleva a la página que permite seleccionar otro condominio y/o propiedad</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/cinco.png" alt="cinco" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Lleva a la página anterior</font>
+                            </td>
+                        </tr> 
+                        <tr  height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/seis.png" alt="seis" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Abre la página de ayuda</font>
+                            </td>
+                        </tr>
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/siete.png" alt="siete" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Panel 1: permite ingresar los datos a registrar</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/ocho.png" alt="ocho" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Botones de acción, permiten agregar, modificar y eliminar la información contenida en el panel 1</font>
+                            </td>
+                        </tr>   
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/nueve.png" alt="nueve" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2" >
+                                <font face="Arial" size="1" align ="left" >Panel 2: Muestra la información registrada mediante el panel 1</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/diez.png" alt="diez" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Permite seleccionar de este mismo panel información a modificar o eliminar. Al hacer click sobre el, 
+                                    se transmite el registro seleccionado al panel 1 y  se habilitan los botones de modificar y eliminar</font>
+                            </td>
+                        </tr> 
+                    </table>
+
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="80%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Descripción de datos de entrada">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Descripcion de datos de entrada"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">En esta sección, se muestra una descripción de los datos de entrada de esta página, 
+                                    así como también, los tipos de datos y rangos válidos en los casos en que aplique.
+                                </font></td>
+                        </tr>  
+
+                    </table>
+
+                    <table width="85%" border="1" align="left">
+                        <tr bgcolor="#e6e6fa" >
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Dato entrada"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Descripción"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Tipo y restricciones"></h:outputText></b></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Proveedor"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el proveedor del servicio o producto por cuya contratación o consumo se generó el gasto. "></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Muestra solo los proveedores registrados para un condominio dado. Ver opción del menú
+                                                                          Datos basicos/proveedores"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Conceptos"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el concepto asociado al gasto común extraordinario"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Muestra solo los conceptos registrados para un condominio dado. Ver opción del menú
+                                                                          Datos basicos/conceptos"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Fondos"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el fondo con que se cubrirá el gasto común extraordinario"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Muestra solo los fondos registrados para un condominio dado. Ver opcion del menú
+                                                                          Datos basicos/fondos"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Documento Nro"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el número del documento o factura del proveedor"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta caracteres alfanuméricos y algunos caracteres especiales"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Fecha doc (dd-mm-aa)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es la fecha de la factura del proveedor, puede seleccionarse o 
+                                                                          introducirse segun el formato dado"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solamente el formato especificado: dd-mm-aaaa"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Período (mm-aaaa)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el período al cual se desea asignar el gasto"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solo períodos ingresados segun el formato especificado (mm-aaaa). 
+                                                                          Ejemplo: 07-2012. Debe ser mayor al ultimo periodo cerrado"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Monto"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el monto de la factura del proveedor"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Pueden ingresarse solo valores enteros o decimales. Deberá usar el punto decimal"></h:outputText></font>
+                            </td> 
+                        </tr>
+
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Observaciones"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Cualquier observación que quiera registrarse respecto a la factura. Es opcional"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta caracteres alfanumérico y algunos caracteres especiales"></h:outputText></font>
+                            </td> 
+                        </tr>
+
+                    </table>
+
+                </h:form>
+            </div>
+        </body>
+    </f:view> 
+</html> 

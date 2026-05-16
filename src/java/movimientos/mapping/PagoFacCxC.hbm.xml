@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : PagoFacCxC.xml
+    Created on : May 9, 2012, 4:51 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.PagoFacCxC" table="PAGO_FAC_CXC"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_PAGO_FAC_CXC">
+            <generator class="increment" />
+        </id>
+               
+        <property name="mtoPagadoCxC">
+            <column name="MTO_PAGO_CXC" />
+        </property>
+        <property name="idFacCxC">
+            <column name="ID_FAC_CXC" />
+        </property>
+        <property name="discFacCxC">
+            <column name="DISC_FAC_CXC" length="3"/>
+        </property>
+                
+        <many-to-one name="pagoCxC"  class="movimientos.modelos.PagoCxC"
+                         column="ID_PAGO_CXC" not-null = "true" />
+                        
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" > 
+    <h:head> 
+        <title>Software Express condominio</title> 
+        <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+        <link href="../css/primeFaces.css" rel="stylesheet" media="screen"></link>
+
+        <style type="text/css">
+            .ui-tieredmenu{ 
+                font-family: Arial, Helvetica, Geneva, sans-serif!important; ; 
+                font-size: 80% !important; width: 15% !important; 
+            }
+        </style> 
+
+        <f:facet name="first"> 
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        </f:facet>
+    </h:head>
+
+    <h:body>  
+        <h:form>
+           
+           <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="400" />
+                            </h1></div>
+                    </tr>          
+                </table>   
+            
+            <br />
+            <table width="100%" class="BarBkgnd">
+                <tr>
+                    <td align="left">
+                        <td>
+                            <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/></i></font>
+                        </td>
+                    </td>
+                    <td></td><td></td><td></td>
+                    <td align="center" width="10%" >
+                        <td><font color="#0066cc"><i>Condominio:<f:verbatim>&nbsp;</f:verbatim><h:outputLabel  value="#{BeanUsuario.condominioActual}"/></i></font></td>
+                    </td>
+                    <td align="right" width="25%">
+                        <i><h:commandLink action="#{ConExpMenuUI_Backing.salir}" immediate="true"> <h:outputText value="Salir"/></h:commandLink></i>
+                    </td>
+                </tr>
+            </table>
+
+            <h:messages globalOnly="true" infoClass="RegError"/>
+
+            <br></br> 
+
+            <div align="center">
+                <h:outputText value="Consulta Express" style="  font-weight:500; font-family: arial;font-size: x-large; color:green; font-style: italic"></h:outputText>
+
+            </div>
+            <div align="center"  bgcolor="#cccccc" >
+                <table width="25%" align="center" border="0">
+                    <tr><p:graphicImage id="tab103Img" value="/images/accesoConsulta.jpg" height="70" width="70" />
+                        <td align="center" with ="24">
+                            <p:panelMenu style="width:300px; font-weight:normal; font-family: arial;font-size: small; color: red; font-style: italic"  >
+                                <p:submenu label="Informes CxP Inmueble" icon="ui-icon-extlink"> 
+                                    <p:menuitem value="Avisos de Cobro" action="#{ConExpMenuUI_Backing.generarAvisosDeCobro}" icon="ui-icon-disk" ajax="false"/>
+                                    <p:menuitem value="Estados de cuenta" action="#{ConExpMenuUI_Backing.edoCtaInmueble}"  icon="ui-icon-arrowrefresh-1-w" ajax="false"/>
+                                    <p:menuitem value="Notificación de pago" action="#{ConExpMenuUI_Backing.notificacionPago}"  icon="ui-icon-arrowrefresh-1-w" ajax="false"/>
+                                </p:submenu> 
+                                <p:submenu label="Gestion del Condominio" icon="ui-icon-pencil"> 
+                                    <p:menuitem value="Balance general" actionListener="#{ConExpBalGenUI_Backing.generarReporteBalGen}" ajax="false" icon="ui-icon-disk" /> 
+                                    <p:menuitem value="Distribucion del gasto" action="#{ConExpMenuUI_Backing.distribucionDelGasto}" ajax="false" icon="ui-icon-arrowrefresh-1-w" />
+                                    <p:menuitem value="Indicador de cobranza" actionListener="#{ConExpIndGestionCobranzaUI_Backing.generarReporteGestionCobranza}" ajax="false" icon="ui-icon-extlink"/>  
+                                    <p:menuitem value="Indicador de pagos" actionListener="#{ConExpIndGestionPagosCxPUI_Backing.generarReporteGestionPagosCxP}" ajax="false" icon="ui-icon-arrowrefresh-1-w" /> 
+                                </p:submenu> 
+                            </p:panelMenu>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </h:form>
+    </h:body>
+</html>

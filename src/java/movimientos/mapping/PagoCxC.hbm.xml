@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : PagoCxC.hbm.xml
+    Created on : May 9, 2012, 4:30 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.PagoCxC" table="PAGO_CXC"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_PAGO_CXC">
+            <generator class="increment" />
+        </id>
+        
+        <property name="desPagoCxC">
+            <column name="DESC_PAGO_CXC" length="60"/>
+        </property>
+        <property name="numDocPagoCxC">
+            <column name="NUM_DOC_PAGO_CXC" length="20"/>
+        </property>
+        <property name="mtoPagoCxC">
+            <column name="MTO_PAGO_CXC" />
+        </property>
+        <property name="formaPagoCxC">
+            <column name="FORMA_PAGO_CXC" length="15"/>
+        </property>
+        <property name="fecDocPagoCxC">
+            <column name="FEC_DOC_PAGO_CXC" length="10"/>
+        </property>
+        <property name="bancoPagoCxC">
+            <column name="BCO_PAGO_CXC" length="10"/>
+        </property>
+       <property name="cuentaPagoCxC">
+            <column name="CUENTA_PAGO_CXC" length="10"/>
+        </property> 
+        <property name="fecMovPagoCxC">
+            <column name="FEC_MOV_PAGO_CXC"/>
+        </property>
+        <property name="periodoActual" >
+            <column name="PERIODO_ACTUAL" length="10"/>
+        </property>
+        <property name="idFormaPagoCxC" >
+            <column name="ID_FORMA_PAGO_CXC" />
+        </property>
+        
+        <many-to-one name="inmueble"  class="datosbasicos.modelos.Inmueble"
+                         column="ID_INMUEBLE" not-null = "true" />
+                         
+        <bag name="pagoFacCxC" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_PAGO_CXC"/>
+            <one-to-many class="movimientos.modelos.PagoFacCxC" />
+        </bag>
+    </class>
+</hibernate-mapping>

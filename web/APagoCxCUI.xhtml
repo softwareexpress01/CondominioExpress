@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"> 
+    <f:view> 
+        <h:head>
+            <title>Ayuda de Software Express Condominio</title> 
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <div style="overflow:auto; height:380px;">
+                <h:form id="form"  >
+
+                    <table width="70%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <font face="Arial" size="3" color="#009933"><h:outputText value="Indice"></h:outputText></font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="AConfiguracionInic.xhtml">Primeros pasos:Configuración inicial</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Funcionalidad">Funcionalidad</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Pagos en efectivo o cheque">Pagos en efectivo o cheque</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Diseño de pagina">Diseño de página</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Descripción de datos de entrada">Descripción de datos de entrada</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+
+                        <tr>
+                            <td with="10">
+                                <a name="Funcionalidad">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Funcionalidad"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Esta pagina permite registrar <i><b>
+                                            Pagos de CxC </b></i>. Un <i>pago de cxc</i> es una transacción que permite cancelar parcial o totalmente una o mas cuentas por cobrar de 
+                                    un inmueble. La cuentas por cobrar pueden ser alicuotas, deudas pendientes, notas de débito, cuotas especiales y gastos no comunes. Mediante 
+                                    esta pagina se pueden procesar todas y cada una de ellas. La transacción de pago genera automaticamente el movimiento bancario hacia la cuenta
+                                    y banco especificados. En el caso de que el monto del pago exceda el monto total de las cuentas seleccionadas, el sistema generara una nota
+                                    de crédito al inmueble, la cual será utilizada en el proceso de cierre para la realización de pagos automaticos de cxc.
+
+                                    El registro del pago se realiza a traves de las siguientes acciones: 
+                                    <i><b> Procesar pago</b></i>, la cual permite el registro de la transacción de pago, para lo cual se debe seleccionar el inmueble de la lista desplegable, 
+                                    ingresar los datos y seleccionar las cxc, en el panel inferior, que se desean cancelar . Esta página tambien permite la navegación hacia otras dos páginas
+                                    a través de la cuales se puede <i><b>Revertir pagos</b></i>, o <i><b>Emitir recibos</b></i>.
+
+                                </font></td>
+                        </tr>    
+                    </table>
+                       <br></br>
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Pagos en efectivo o cheque">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Pagos en efectivo o cheque"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>  <font face="Arial" size="2"> Con la creación de un condominio, el sistema genera un banco llamado <i>Caja Chica</i>, con una localidad, <i>Local</i> y un número de teléfono ficticio. También genera 
+                                    una cuenta asociada al banco anterior con el nombre de <i>Caja Chica</i> y el número <i>1234-1234-12-1234567890</i>, también ficticios. Esta cuenta es la que se deberá 
+                                    usar para los pagos en efectivo y cheque. Es decir, los pagos en efectivo y cheque se cargan a la cuenta de caja chica. La caja chica es la cuenta bancaria 
+                                    destino de los fondos mencionados.
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td>  <font face="Arial" size="2"> El sistema trata a la caja chica como cualquier otra cuenta bancaria, <i><b>generando los apropiados movimientos bancarios 
+                                            hacia la misma. </b></i>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td>  <font face="Arial" size="2"> Eventualmente,  el acumulado, parcial o totalmente, se depositará en el banco del mundo real.  Estos movimientos reales también deben realizarse en el sistema 
+                                    a través de la página de movimientos bancarios. Un movimiento de crédito hacia la cuenta donde se depositó el dinero, sea efectivo o cheque, y otro de 
+                                    debito hacia la caja chica. 
+                                </font>
+                            </td>
+                        </tr>    
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Diseño de página">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Diseño de página y funcionamiento"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Se ha mantenido un diseño de formato estándar para cada una de las paginas del sistema. A continuación, se muestra un ejemplo de uno 
+                                    de los tipos de pantalla que aparecen con mayor frecuencia en la aplicación, junto con una breve descripción de sus elementos mas importantes.
+                                </font></td>
+                        </tr>    
+                    </table>
+
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <img src="../images/modeloPagina1.png" alt="modeloPagina1" height="90%" width="90%" ></img>
+                        </tr>   
+                    </table>
+                    <table width="85%" border="0" align="left">
+
+                        <tr  height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/uno.png"  alt="uno" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Usuario actualmente activo</font>
+                            </td>
+                        </tr>
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/dos.png"  alt="dos" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Condominio actual</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/tres.png"  alt="tres" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Propiedad actual</font>
+                            </td>
+                        </tr>   
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/cuatro.png" alt="cuatro" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2" >
+                                <font face="Arial" size="1" align ="left" >Lleva a la página que permite seleccionar otro condominio y/o propiedad</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/cinco.png" alt="cinco" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Lleva a la página anterior</font>
+                            </td>
+                        </tr> 
+                        <tr  height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/seis.png"  alt="seis" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Abre la página de ayuda</font>
+                            </td>
+                        </tr>
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/siete.png" alt="siete" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Panel 1: permite ingresar los datos a registrar</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/ocho.png"  alt="ocho" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Botones de acción, permiten agregar, modificar y eliminar la información contenida en el panel 1</font>
+                            </td>
+                        </tr>   
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/nueve.png"  alt="nueve" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2" >
+                                <font face="Arial" size="1" align ="left" >Panel 2: Muestra la información registrada mediante el panel 1</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/diez.png"  alt="diez" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Permite seleccionar de este mismo panel información a modificar o eliminar. Al hacer click sobre el, 
+                                    se transmite el registro seleccionado al panel 1 y  se habilitan los botones de modificar y eliminar</font>
+                            </td>
+                        </tr> 
+                    </table>
+
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="80%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Descripción de datos de entrada">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Descripción de datos de entrada"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">En esta sección, se muestra una descripción de los datos de entrada de esta página, 
+                                    así como también, los tipos de datos y rangos válidos en los casos en que aplique.
+                                </font></td>
+                        </tr>  
+
+                    </table>
+
+                    <table width="85%" border="1" align="left">
+                        <tr bgcolor="#e6e6fa" >
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Dato entrada"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Descripción"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Tipo y restricciones"></h:outputText></b></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Inmueble "    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el inmueble al que se le asociará el pago a procesar, 
+                                                                          seleccione uno de la lista desplegable"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Los inmuebles deberán haber sido cargados en la configuración del sistema.
+                                                                          Ver Datos básicos./inmuebles en el menú"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Descripción"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Se puede incluir un texto descriptivo del pago a registrar"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta caracteres alfanuméricos y algunos caracteres especiales"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Nro Doc/Ref"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el número del documento del pago, puede ser el número del deposito, número de cheque,
+                                                                          un número de ref de una transferencia, etc"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solo números enteros"></h:outputText></font>
+                            </td> 
+                        </tr>
+
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Monto"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el monto del pago a registrar"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Pueden ingresarse solo valores enteros o decimales. Deberá usar el punto decimal"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Forma de pago"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Seleccione la forma de pago de la lista desplegable"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Ninguna"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Fecha doc (dd-mm-aa)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es la fecha del documento de pago, puede seleccionarse o 
+                                                                          introducirse según el formato dado"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solamente el formato especificado: dd-mm-aaaa"></h:outputText></font>
+                            </td> 
+                        </tr> 
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Bancos"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el banco asociado al condominio donde se realizó el pago, 
+                                                                          la transferencia, depósito o donde se depositará el cheque.
+                                                                          Los pagos en efectivo o cheque se realizan a través  del bco de Caja Chica"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Seleccione uno de los bancos en la lista desplegable. Esta lista debió
+                                                                          ser creada desde la opción del menú de Datos básico/Bancos"></h:outputText></font>
+                            </td> 
+                        </tr> 
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Cuentas"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es la cuenta asociada al banco seleccionado donde se realizó el pago, 
+                                                                          la transferencia, depósito o donde se depositará el cheque.
+                                                                          Los pagos en efectivo o cheque se realizan a través  de la cuenta de Caja Chica"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Seleccione uno de la cuentas en la lista desplegable. Esta lista debió
+                                                                          ser creada desde la opción del menú de Datos básicos/Cuentas"></h:outputText></font>
+                            </td> 
+                        </tr> 
+                    </table>
+
+                </h:form>
+            </div>
+        </body>
+    </f:view> 
+</html> 

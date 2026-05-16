@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : NotaCredDebCxP.hbm.xml
+    Created on : March 8, 2012, 10:58 AM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.NotaCredDebCxP" table="NOTA_CRED_DEB_CXP"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_NOTA_CRED_DEB_CXP">
+            <generator class="increment" />
+        </id>
+        
+        <property name="numNotaCredDebCxP" >
+            <column name="NUM_NOTA_CRED_DEB_CXP" length="4"/>
+        </property>
+        <property name="fecNotaCredDebCxP">
+            <column name="FEC_NOTA_CRED_DEB_CXP" length="10"/>
+        </property>
+        <property name="mtoNotaCredDebCxP">
+            <column name="MTO_NOTA_CRED_DEB_CXP" />
+        </property>
+        <property name="tipoNotaCredDebCxP">
+            <column name="TIPO_NOTA_CRED_DEB_CXP" length="7"/>
+        </property>
+        <property name="saldoNotaCredDebCxP">
+            <column name="SALDO_NOTA_CRED_DEB_CXP" />
+        </property>
+        <property name="edoNotaCredDebCxP">
+            <column name="EDO_NOTA_CRED_DEB_CXP" length="4"/>
+        </property>
+        <property name="idConcepto">
+            <column name="ID_CONCEPTO" />
+        </property>
+        <property name="fecMovNCD">
+            <column name="FEC_MOV_NCD" length="10"/>
+        </property>
+        <property name="idPago">
+            <column name="ID_PAGO" />
+        </property>
+        
+        
+        <many-to-one name="proveedor"  class="datosbasicos.modelos.Proveedor"
+                         column="ID_PROVEEDOR" not-null = "true" />
+                 
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,447 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+       
+    <query name="buscarUsuario" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto usuario que tenga codigo de usuario igual al 
+            codigo ingresado por el usuario"><![CDATA[from Usuario u where u.codUsuario =:codigo]]>
+    </query>
+    <query name="buscarInmueblePorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto inmueble identificado por su id">
+           <![CDATA[from Inmueble i where i.id =:codigo]]>
+    </query>
+    <query name="buscarLogoPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto logo identificado por su id">
+           <![CDATA[from Logo l where l.id =:codigo]]>
+    </query>
+    <query name="buscarCondominiosUsuario" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de condominios para el usuario dado">
+           <![CDATA[from Usuario u join u.condominios where u.codUsuario = :codigo]]>
+    </query>
+    <query name="buscarUsuarioConCondominios" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve el usuario dado con sus condominios asociados en su coleccion con sus propiedades">
+           <![CDATA[from Usuario u left join fetch u.condominios c left join fetch c.propiedades p where u.codUsuario = :codigo]]>
+    </query>
+    <query name="buscarInmPorIdPropFetchFac" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve los inmuebles con sus facturas por gasto no comun asociados (en su coleccion) para la propiedad dada">
+           <![CDATA[from Inmueble i left join fetch i.facturasGNC where i.idProp = :codigo]]>
+    </query>
+    <query name="buscarPagosCxCPorIdInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve los pagos con sus facturas asociadas  (en su coleccion) para un inmueble dado (id)">
+           <![CDATA[from Inmueble i left join i.pagoCxC p where i.id = :codigo and p.periodoActual >= :periodo
+                                                          and p.formaPagoCxC <> 'PAD' and p.formaPagoCxC <> 'NCR']]>
+    </query>
+    <query name="buscarPagoCxCPorIdFetchFac" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un pago de cxc con sus facturas asociadas (en su coleccion) ">
+           <![CDATA[from PagoCxC p left join fetch p.pagoFacCxC where p.id = :codigo]]>
+    </query>
+    <query name="buscarPropiedadesPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto condominio con sus propiedades asociadas">
+           <![CDATA[from Condominio u left join u.propiedades p where u.id = :codigo]]>
+    </query>
+    <query name="buscarCondominioFetchPropiedades" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un condominio con sus propiedades">
+           <![CDATA[from Condominio c left join fetch c.propiedades where c.id = :codigo]]>
+    </query> 
+    <query name="buscarUsuariosPorIdUsuario" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de usuarios asociados al administrador">
+           <![CDATA[from Usuario u left join u.operadores o where u.id = :codigo]]>
+    </query>
+    <query name="buscarConceptosPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve lista de conceptos para el condominio dado (id)">
+           <![CDATA[from Condominio u join u.conceptos p where u.id = :codigo and p.edoConcepto <> 'INA']]>
+    </query>
+    <query name="buscarProveedoresPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve lista de proveedores para el condominio dado (id)">
+           <![CDATA[from Condominio u join u.proveedores p where u.id = :codigo]]>
+    </query>
+    <query name="buscarFacGastoNoComunPorIdInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve lista de facturas por gastos no comunes para el inmueble dado (id)">
+           <![CDATA[from Inmueble i join i.facturasGNC f where i.id = :codigo and f.edoFacGastoNoComun <> 'INAC']]>
+    </query>
+    <query name="buscarFacDeudaPendPorIdInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve lista de facturas por gastos no comunes para el inmueble dado (id)">
+           <![CDATA[from Inmueble i join i.deudasPendientesCxC d where i.id = :codigo]]>
+    </query>
+    <query name="buscarInmueblesPorIdProp" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve lista de inmuebles para la propiedad dada (id)">
+           <![CDATA[from Propiedad p join p.inmuebles i where p.id = :codigo]]>
+    </query> 
+    <query name="buscarCategoriasPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto condominio con sus propiedades asociadas">
+           <![CDATA[from Condominio u join u.categorias c where u.id = :codigo and c.edoCategoria <> 'INA']]>
+    </query>
+    <query name="buscarCategoriaFetchConceptos" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto condominio con sus propiedades asociadas">
+           <![CDATA[from Categoria c left join fetch c.conceptos where c.id = :codigo]]>
+    </query>
+    <query name="buscarFondosPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto condominio con sus fondos asociados">
+           <![CDATA[from Condominio u join u.fondos c where u.id = :codigo]]>
+    </query>
+    <query name="buscarFondoReservaPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto Fondo para el condominio dadao y de tipo reserva">
+           <![CDATA[select f from Fondo f join f.condominio c where c.id = :codigo and f.tipoFondo = 'Reserva' ]]>
+    </query>
+    <query name="buscarFondoPrestacionesPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto Fondo para el condominio dado y de tipo prestaciones">
+           <![CDATA[select f from Fondo f join f.condominio c where c.id = :codigo and f.tipoFondo = 'Prestaciones' ]]>
+    </query>
+    <query name="buscarTranFondoResPeriodoActual" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve  objetos TranFondo de reserva del periodo actual y fondo dado">
+           <![CDATA[from Fondo f  join f.tranFondos t where f.id = :codigo and t.perTranFondo = :periodo ]]>
+    </query>
+    <query name="buscarTranFondoPresPeriodoActual" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve  objetos TranFondo de prestaciones del periodo actual y fondo dado">
+           <![CDATA[from Fondo f  join f.tranFondos t where f.id = :codigo and t.perTranFondo = :periodo ]]>
+    </query>
+    <query name="buscarTranFondoPorIdFondoRango" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de transacciones de fondo de reserva para un condominio y rango dado">
+           <![CDATA[select t from TranFondo t join  t.fondo f where f.id = :codigo and t.perTranFondo >= :desde and t.perTranFondo <=:hasta]]>
+    </query>
+    <query name="buscarFondoFetchCuenta" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto fondo con su cuenta asociada">
+           <![CDATA[from Fondo f join fetch f.cuenta c where f.id = :codigo]]>
+    </query>
+    <query name="buscarTranFondoFetchFondo" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto tranfondo con su fondo asociado">
+           <![CDATA[from TranFondo t join fetch t.fondo f where t.idPagoCxC = :codigo]]>
+    </query>
+    <query name="buscarGastosComunesOrdPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto condominio con sus gastos comunes ordinarios asociados">
+           <![CDATA[from Condominio u left join u.gastosComunesOrd c where u.id = :codigo and c.perGastoComunOrd >=:periodo]]>
+    </query>
+    <query name="buscarGastosComunesOrdPeriodoActual" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve los gastos comunes ordinarios de un condominio para un periodo dado">
+           <![CDATA[from Condominio u  join u.gastosComunesOrd c where u.id = :codigo and c.perGastoComunOrd = :periodo]]>
+    </query>
+    <query name="buscarGastosComunesExtPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto condominio con sus gastos comunes extraordinarios asociados">
+           <![CDATA[from Condominio u left join u.gastosComunesExt c where u.id = :codigo and c.perGastoComunExt >=:periodo]]>
+    </query>
+    <query name="buscarNotasCredDebCxCPorIdInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve de un  objeto inmueble  sus  notas credito/debito asociadas">
+           <![CDATA[from Inmueble u left join u.notasCredDebCxC c where u.id = :codigo and c.idConcepto <> 0]]>
+    </query>
+    <query name="buscarNotasDebitoCxCPorIdInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve de un  objeto inmueble  sus  notas debito asociadas">
+           <![CDATA[from Inmueble u left join u.notasCredDebCxC c where u.id = :codigo 
+                                                                  and c.tipoNotaCredDebCxC = 'Debito' 
+                                                                  and c.edoNotaCredDebCxC <> 'CANC']]>
+    </query>
+    <query name="buscarNotaCredDebCxCPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una nota de credito asociada a un pago dado (idPago)">
+           <![CDATA[from NotaCredDebCxC n  where n.id = :codigo]]>
+    </query>
+    <query name="buscarNotaCreditoPorIdPago" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una nota de credito asociada a un pago dado (idPago)">
+           <![CDATA[from NotaCredDebCxC n  where n.idPagoCxC = :codigo]]>
+    </query>
+    <query name="buscarDeudasPendCxCPorIdInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve de un  objeto inmueble con  sus  deudas pendientes asociadas">
+           <![CDATA[from Inmueble u left join u.deudasPendientesCxC c where u.id = :codigo]]>
+    </query>
+    <query name="buscarAlicuotasPorIdInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve  las alicuotas de un inmueble dado">
+           <![CDATA[from Inmueble i left join i.alicuotas a where i.id = :codigo]]>
+    </query>
+    <query name="buscarFacCuotaEspPorIdInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve  las facturas por cuotas especiales (cxc) de un inmueble dado">
+           <![CDATA[from Inmueble i left join i.facturasCuotaEsp a where i.id = :codigo]]>
+    </query>
+    <query name="buscarDeudaPendPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto deuda pendiente identificado por su id">
+           <![CDATA[from DeudaPendCxC d where d.id = :codigo]]>
+    </query>
+    <query name="buscarAlicuotaPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto alicuota identificado por su id">
+           <![CDATA[from Alicuota a where a.id = :codigo]]>
+    </query>
+    <query name="buscarFacCuotaEspPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto FacCuotaEsp identificado por su id">
+           <![CDATA[from FacCuotaEsp f where f.id = :codigo]]>
+    </query>
+    <query name="buscarCuotasEspecialesPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve las cuotas especiales activas de un condominio dado">
+           <![CDATA[from Condominio u join u.cuotasEsp c where u.id = :codigo
+                         and c.edoCuotaEsp <> 'CANC' and c.fecIniCuotaEsp <= u.periodoActual]]>
+    </query>
+    <query name="buscarInmueblesConPagoAdel" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de pagos adelantados con sus inmuebles asociados, para una propiedad dada">
+           <![CDATA[from PagoAdelantado p join fetch p.inmueble i where i.propiedad.id = :codigo and p.edoPagoAdel <> 'CANC']]>
+    </query>
+    <query name="buscarInmueblesConNotasCred" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de notas de credito con sus inmuebles asociados, para una propiedad dada">
+           <![CDATA[from NotaCredDebCxC n join fetch n.inmueble i where (i.propiedad.id = :codigo 
+                                                                         and n.edoNotaCredDebCxC <> 'CANC'
+                                                                         and n.tipoNotaCredDebCxC = 'Credito')]]>
+    </query>
+    <query name="buscarInmueblesConNotasDeb" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de notas de debito con sus inmuebles asociados, para un inmueble dado">
+           <![CDATA[select n from NotaCredDebCxC n join n.inmueble i where (i.id = :codigo 
+                                                                         and n.edoNotaCredDebCxC <> 'CANC'
+                                                                         and n.tipoNotaCredDebCxC = 'Debito')]]>
+    </query>
+    <query name="buscarAlicuotasPeriodoActual" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de alicuotas con sus inmuebles asociados, para una propiedad dada">
+           <![CDATA[from Alicuota a join fetch a.inmueble i where (i.propiedad.id = :codigo and a.periodoActual =:periodo)]]>
+    </query>
+    <query name="buscarFacCuotaEspPeriodoActual" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de facturas de cuotas especiales con sus inmuebles asociados, para una propiedad dada">
+           <![CDATA[from FacCuotaEsp f join fetch f.inmueble i where (i.propiedad.id = :codigo and f.periodoActual =:periodo)]]>
+    </query>
+    <query name="buscarPagosAutomaticosPeriodoActual" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de pagos de cxc con sus inmuebles asociados, para una propiedad dada">
+           <![CDATA[from PagoCxC p join fetch p.inmueble i where (i.propiedad.id = :codigo and p.periodoActual =:periodo)]]>
+    </query>
+    <query name="buscarAlicuotasInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de alicuotas del inmueble dado (id)">
+           <![CDATA[select a from Alicuota a join a.inmueble i where i.id = :codigo and a.edoAlicuota <> 'CANC']]>
+    </query>
+    <query name="buscarDeudasPendInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de deudas pendientes del inmueble dado (id)">
+           <![CDATA[select d from DeudaPendCxC d join d.inmueble i where i.id = :codigo and d.edoDeudaPendCxC <> 'CANC']]>
+    </query>
+    <query name="buscarFacGastosNoComunesInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de facturaras de gasto no comun del inmueble dado (id)">
+           <![CDATA[select f from FacGastoNoComun f join f.inmueble i where i.id = :codigo and f.edoFacGastoNoComun <> 'CANC']]>
+    </query>
+    <query name="buscarFacCuotaEspInm" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de facturas de cuotas especiales del inmueble dado (id)">
+           <![CDATA[select f from FacCuotaEsp f join f.inmueble i where i.id = :codigo and f.edoFacCuotaEsp <> 'CANC']]>
+    </query>
+    <query name="buscarPagoFacCxCPorIdPago" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de PagoFacCxC para un pagoCxC dado(id)">
+           <![CDATA[select p from PagoFacCxC p join p.pagoCxC c where c.id = :codigo]]>
+    </query>
+    <query name="buscarGastosNoComunesPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve de un  objeto condominio con  sus  gastos no comunes asociados">
+           <![CDATA[from Condominio u left join u.gastosNoComunes c where u.id = :codigo and c.perGastoNoComun >=:periodo]]>
+    </query>
+    <query name="buscarGastosPropiedadPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve de un  objeto condominio con  sus  gastos por propiedad asociados">
+           <![CDATA[from Condominio u left join u.gastosPropiedad c where u.id = :codigo]]>
+    </query>
+    <query name="buscarCategoriaPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto categoria identificado por su id">
+           <![CDATA[from Categoria u where u.id = :codigo]]>
+    </query>
+    <query name="buscarCondominioPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto condominio identificado por su id">
+           <![CDATA[from Condominio u where u.id = :codigo]]>
+    </query>
+    <query name="buscarProveedorPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto proveedor identificado por su id">
+           <![CDATA[from Proveedor u where u.id = :codigo]]>
+    </query>
+    <query name="buscarConceptoPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto concepto identificado por su id">
+           <![CDATA[from Concepto u where u.id = :codigo]]>
+    </query>
+    <query name="buscarConceptoPorIdFetchCat" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto concepto identificado por su id con su categoria asociada">
+           <![CDATA[from Concepto u join fetch u.categoria where u.id = :codigo]]>
+    </query>
+    <query name="buscarFondoPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto fondo identificado por su id">
+           <![CDATA[from Fondo u where u.id = :codigo]]>
+    </query>
+    <query name="buscarGastoNoComunPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto gasto no comun identificado por su id">
+           <![CDATA[from GastoNoComun u where u.id = :codigo]]>
+    </query>
+    <query name="buscarFacGastoNoComunPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto factura gasto no comun identificado por su id">
+           <![CDATA[from FacGastoNoComun u where u.id = :codigo]]>
+    </query>
+    <query name="buscarPagoCxCPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto PagoCxC identificado por su id">
+           <![CDATA[from PagoCxC p where p.id = :codigo]]>
+    </query>
+    <query name="buscarUsuarioExiste" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto usuario, la salida del metodo sera true o false dependiendo de si lo encuentra o no">
+           <![CDATA[from Usuario u where u.codUsuario = :codigo]]>
+    </query>
+    <query name="buscarAdminExiste" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un par de objetos - suscripcion-usuario que cumplan la condicion dada">
+           <![CDATA[from Suscripcion s join s.usuarios u where s.numSuscripcion =:sus and u.perUsuario =:Admin]]>
+    </query>
+    <query name="buscarAdminPorIdUsuario" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un usuario administrador, asociado al usuario dado">
+           <![CDATA[select u from Usuario u join u.usuarioAdmin a  where a.id = :codigo]]>
+    </query>
+    <query name="buscarSuscripcion" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un  objeto - suscripcion- que tenga el codigo de suscripcion ingresado por el usuario">
+           <![CDATA[from Suscripcion u where u.numSuscripcion = :codigo]]>
+    </query>
+    <query name="buscarSuscripcionPorIdUsuario" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un  objeto Suscripcion asociado al usuario dado(id)">
+           <![CDATA[select s from Suscripcion s join s.usuarios u  where u.id = :codigo]]>
+    </query>
+    <query name="buscarPagoCxCPorNumDoc" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve true o false , dependientod de si existe un pago de cxc con el numero de doc/ref dado">
+           <![CDATA[from PagoCxC p where p.numDocPagoCxC = :codigo]]>
+    </query>
+    <query name="buscarGCOPorNumDoc" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve true o false , dependientod de si existe un gco con el numero de documento dado">
+           <![CDATA[from GastoComunOrd g where g.numDocGastoComunOrd= :codigo]]>
+    </query>
+    <query name="buscarGCEPorNumDoc" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve true o false , dependientod de si existe un gce con el numero de documento dado">
+           <![CDATA[from GastoComunExt g where g.numDocGastoComunExt= :codigo]]>
+    </query>
+    <query name="buscarGNCPorNumDoc" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve true o false , dependientod de si existe un gnc con el numero de documento dado">
+           <![CDATA[from GastoNoComun g where g.numDocGastoNoComun= :codigo]]>
+    </query>
+    <query name="buscarGNCPorIdFetchFac" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto GastoNoComun con sus facturas asociadas (opcion fetch)">
+           <![CDATA[from GastoNoComun g left join fetch g.facturasGNC where g.id = :codigo]]>
+    </query>
+    <query name="buscarFacGastoNoComunPorIdInmRango" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de GastoNoComun para un inmueble y rango dados">
+           <![CDATA[select g from FacGastoNoComun g join fetch g.inmueble i where i.id = :codigo and g.fecFacGNC >= :desde and g.fecFacGNC <=:hasta]]>
+    </query>
+    <query name="buscarFacDeudaPendPorIdInmRango" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de Deudas pendientes para un inmueble y rango dados">
+           <![CDATA[select d from DeudaPendCxC d join fetch d.inmueble i where i.id = :codigo and d.fecMovDP >= :desde and d.fecMovDP <=:hasta]]>
+    </query>
+    <query name="buscarAlicuotasPorIdInmRango" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de Deudas pendientes para un inmueble y rango dados">
+           <![CDATA[select a from Alicuota a join fetch a.inmueble i where i.id = :codigo and a.fecEmiAlicuota >= :desde and a.fecEmiAlicuota <=:hasta]]>
+    </query>
+    <query name="buscarFacCuotaEspPorIdInmRango" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de facturas por cuota especial para un inmueble y rango dados">
+           <![CDATA[select f from FacCuotaEsp f join fetch f.inmueble i where i.id = :codigo and f.fecEmiFacCuotaEsp >= :desde and f.fecEmiFacCuotaEsp <=:hasta]]>
+    </query>
+    <query name="buscarNotasDebitoCxCPorIdInmRango" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de notas de debito para un inmueble y rango dados">
+           <![CDATA[select n from NotaCredDebCxC n join fetch n.inmueble i where i.id = :codigo and n.fecMovNCD >= :desde and n.fecMovNCD <=:hasta]]>
+    </query>
+    <query name="buscarFacPagoCxCPorIdInmRango" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de PagoFacCxC con sus pagos asociados, para un inmueble y rango dado">
+           <![CDATA[from PagoFacCxC p join fetch p.pagoCxC c where c.inmueble.id = :codigo and c.fecMovPagoCxC >= :desde and c.fecMovPagoCxC <=:hasta]]>
+    </query>
+    <query name="buscarGastoComunOrdPorIdCondRango" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de GastoComunOrd para un condominio y rango dado">
+           <![CDATA[select g from GastoComunOrd g join  g.condominio c where c.id = :codigo and g.perGastoComunOrd >= :desde and g.perGastoComunOrd <=:hasta]]>
+    </query>
+    <query name="buscarGastoComunExtPorIdCondRango" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de GastoComunExt para un condominio y rango dado">
+           <![CDATA[select g from GastoComunExt g join  g.condominio c where c.id = :codigo and g.perGastoComunExt >= :desde and g.perGastoComunExt <=:hasta]]>
+    </query>
+    <query name="buscarGastoNoComunPorIdCondRango" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve una lista de GastoNoComun para un condominio y rango dado">
+           <![CDATA[select g from GastoNoComun g join   g.condominio c where c.id = :codigo and g.perGastoNoComun >= :desde and g.perGastoNoComun <=:hasta]]>
+    </query>
+    <query name="buscarBancosPorIdCond" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto condominio con sus bancos asociadas">
+           <![CDATA[from Condominio u join u.bancos c where u.id = :codigo]]>
+    </query>
+    <query name="buscarCuentasPorIdBanco" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto banco con sus cuentas asociadas">
+           <![CDATA[from Banco u join u.cuentas c where u.id = :codigo]]>
+    </query>
+    <query name="buscarCuentaPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto cuenta identificado por su id">
+           <![CDATA[from Cuenta u where u.id = :codigo]]>
+    </query>
+    <query name="buscarMovBancarioPorIdPago" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un MovBancario asociado a un pago dado (idPago)">
+           <![CDATA[from MovBancario n  where n.idPago = :codigo]]>
+    </query>
+    <query name="buscarBancoPorId" cache-mode="ignore"
+            fetch-size="50" read-only="true" timeout="60"
+            comment="Devuelve un objeto banco identificado por su id">
+           <![CDATA[from Banco b where b.id = :codigo]]>
+    </query>
+   
+</hibernate-mapping>

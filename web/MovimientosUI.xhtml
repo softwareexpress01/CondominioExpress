@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Software Express condominio</title>
+        <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+        <f:facet name="first"> 
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        </f:facet>
+        <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <table  width="100%" border="0">
+                <tr>
+                    <div align="center"><h1>
+                            <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                        </h1></div>
+                </tr>
+            </table>
+            <table width="100%" class="BarBkgnd">
+                <tr>
+                    <td align="left">
+                        <td>
+                            <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                </i></font></td>
+                    </td>
+                    <td></td><td></td><td></td>
+                    <td align="center" width="10%" >
+                        <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                    </td>
+                    <td align="right" width="25%"><i>
+                            <h:commandLink action="selcond" immediate="true">
+                                <h:outputText value="Ir a Seleccionar Condominio"/>
+                            </h:commandLink>
+                            <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                            <h:commandLink immediate="true">
+                                <h:outputText value="Ayuda"/>
+                            </h:commandLink></i>
+                    </td>
+                </tr>
+            </table>
+
+            <hr size="2" width="12%" align="left"></hr>
+            <table  width="800" border="0" >
+                <tr>
+                    <td>
+                        <table  width="165" border="0" class="BarBkgnd" cellpadding="4"> 
+                            <!--<h4><i>Menu Principal</i></h4> -->
+                            <tr></tr><tr></tr>
+                            <tr>
+
+                                <td>
+                                    <h:commandLink action="datosbasicos">
+                                        <font color="#0066cc" size="2"><h:outputText value="Datos Basicos"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                                <td ></td>
+
+                            </tr>
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="movimientos">
+                                        <font color="#339933" size="2"><b><h:outputText value="   Movimientos del mes"></h:outputText></b></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="informes">
+                                        <font color="#0066cc" size="2" ><h:outputText value="Informes"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="Gestion">
+                                        <font color="#0066cc" size="2" ><h:outputText value="Gestion"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="configuracion">
+                                        <font color="#0066cc" size="2"><h:outputText value="Configuracion"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr><tr></tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="administracion" >
+                                        <font color="#0066cc" size="2"><h:outputText value="  Administracion"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr><tr></tr>
+                        </table>
+                    </td> 
+                    <td></td>
+                    <td valign="top">
+
+                        <table  width="600" border="0">
+                            <tr>
+                                <td with="10">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Transacciones"></h:outputText></font>
+                                </td> 
+                            </tr>
+                            <tr></tr>
+                        </table>
+
+                        <table  width="1200" border="0">
+                            <tr>
+                                <td>
+                                    <h:commandLink action="ordinarios">
+                                        <font face="Arial" size="2"><h:outputText value="Gastos Comunes Ordinarios "></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="extraordinarios">
+                                        <font face="Arial" size="2"><h:outputText value="Gastos Comunes Extraordinarios "></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="nocomunes">
+                                        <font face="Arial" size="2"><h:outputText value="Gastos No Comunes"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="generales">
+                                        <font face="Arial" size="2"><h:outputText value="Fondos Generales"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="cuotaespecial">
+                                        <font face="Arial" size="2"><h:outputText value="Cuotas Especiales"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="movbancos">
+                                        <font face="Arial" size="2"><h:outputText value="Mov. Bancarios"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td>
+                                    <table  width="600" border="0">
+                                        <tr>
+                                            <td with="10">
+                                                <font face="Arial" size="3" color="#009933"><h:outputText value="Cuentas por cobrar"></h:outputText></font>
+                                            </td> 
+                                        </tr>
+                                        <tr></tr>
+                                    </table>
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h:commandLink action="pagoinmueble">
+                                        <font face="Arial" size="2"><h:outputText value="Pagos por Inmueble"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="revertirCxC">
+                                        <font face="Arial" size="2"><h:outputText value="Revertir Pagos CxC"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="notascxc">
+                                        <font face="Arial" size="2"><h:outputText value="Notas de Debito/Credito"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="pagoadelantado">
+                                        <font face="Arial" size="2"><h:outputText value="Pago Adelantado"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="deudapendiente">
+                                        <font face="Arial" size="2"><h:outputText value="Deuda Pendiente"></h:outputText></font>
+                                    </h:commandLink>
+                                </td>
+                            </tr>
+                            <tr></tr>
+                            <tr>
+                                <td>
+                                    <table  width="600" border="0">
+                                        <tr>
+                                            <td with="10">
+                                                <font face="Arial" size="3" color="#009933"><h:outputText value="Cuentas por pagar"></h:outputText></font>
+                                            </td> 
+                                        </tr>
+                                        <tr></tr>
+                                    </table>
+                                </td>  
+                            </tr>
+                            <tr>
+                                <td>                                    
+                                    <h:commandLink action="deudapendprov">
+                                        <font face="Arial" size="2"><h:outputText value="Deuda Pendiente"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="notasdyc">
+                                        <font face="Arial" size="2"><h:outputText value="Notas de Débito/Crédito"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandLink action="cxppagoabono">
+                                        <font face="Arial" size="2"><h:outputText value="Pagos/Abonos"></h:outputText></font>
+                                    </h:commandLink>
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+
+                                </td>
+                            </tr>
+                        </table> 
+                    </td>
+                </tr>
+            </table>                
+
+        </h:form>
+    </h:body>
+</html>

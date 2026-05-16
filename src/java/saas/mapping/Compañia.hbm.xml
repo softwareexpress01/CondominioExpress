@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!--
+    Document   : Compañia.xml
+    Created on : July 24, 2013, 5:55 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+<hibernate-mapping>
+    <class name="saas.modelos.Compañia" table="COMPAÑIAS"
+           dynamic-insert="true"
+           dynamic-update="true">
+        <id name="id" type="integer" column="ID_COMPAÑIA">   
+            <generator class="increment" />
+        </id>
+
+        <property name="nombCompañia">
+            <column name="NOMB_COMPAÑIA" length="20"/>
+        </property>
+        <property name="rifCompañia">
+            <column name="RIF_COMPAÑIA" length="30"/>
+        </property>
+        <property name="numReciboPago">
+            <column name="NUM_RECIBO_PAGO" />
+        </property>
+        <property name="numFactura">
+            <column name="NUM_FACTURA"/>
+        </property>
+         <property name="contadorVisitas">
+            <column name="CONTADOR_VISITAS"/>
+        </property>
+        <property name="ip">
+            <column name="IP" length="15"/>
+        </property>
+        
+        <bag name="suscripciones" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_COMPAÑIA"/>
+            <one-to-many class="saas.modelos.Suscripcion" />
+        </bag>
+        
+    </class>
+</hibernate-mapping>
+

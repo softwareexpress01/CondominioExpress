@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="../css/CalendarControl.js" language="javascript"></script>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function openWin(){
+                    window.open('ElimSolSuscripcionUI.xhtml','window','width=750,height=400');
+                }
+            </script>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("dirSuscripcion");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="400" />
+                            </h1></div>
+                    </tr>          
+                </table>  
+               
+                <br /> 
+
+
+                <div align="center"><h:outputText value="Registrar solicitudes de Suscripción" 
+                                                  style="  font-weight: bold; font-family: arial;font-size: large; color:green; font-style: italic">
+                    </h:outputText></div>
+                <h:messages globalOnly="true" infoClass="RegError"/>  
+
+                <div align="center"><h4>Datos Personales</h4></div>
+                <hr size="2" width="80%"></hr>    
+                <table width="65%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <p:outputLabel value="Nombre" for="nombSuscriptor" /> 
+                                <p:inputText required="false" id="nombSuscriptor" size="24" maxlength ="30"
+                                             value="#{SolSuscripcionUI_Backing.nombSuscriptor}" tabindex="1"/> 
+
+                                <p:outputLabel value="Céd/RIF" for="cedSuscriptor" /> 
+                                <p:inputText required="false" id="cedSuscriptor" size="24" maxlength ="10"
+                                             value="#{SolSuscripcionUI_Backing.cedSuscriptor}" tabindex="3"/> 
+
+                            </h:panelGrid>
+                        </td>  
+
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <p:outputLabel value="Apellido" for="apelSuscriptor" /> 
+                                <p:inputText required="false" id="apelSuscriptor" size="24" maxlength ="30"
+                                             value="#{SolSuscripcionUI_Backing.apelSuscriptor}" tabindex="2"/> 
+
+                                <p:outputLabel value="Correo electrónico" for="emailSuscriptor"/>                
+                                <p:inputText id="emailSuscriptor" size="24" required="false" maxlength ="60"
+                                             value="#{SolSuscripcionUI_Backing.emailSuscriptor}" tabindex="4"/>  
+
+                            </h:panelGrid>
+                        </td>
+
+                    </tr>  
+
+                </table>
+                <table width="79%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="3" border="0">
+
+                                <p:outputLabel value="Teléfono" for="codTelSuscriptor"/> 
+
+                                <p:inputText required="false" id="codTelSuscriptor" size="2" maxlength ="4"
+                                             value="#{SolSuscripcionUI_Backing.codTelSuscriptor}" tabindex="5"/>
+                                <p:inputText required="false" id="numTelSuscriptor" size="14" maxlength ="8"
+                                             value="#{SolSuscripcionUI_Backing.numTelSuscriptor}" tabindex="6"/>
+                            </h:panelGrid>
+                        </td>
+
+                        <td>
+                            <h:panelGrid width="100%" columns="3" border="0">
+                                <p:outputLabel value="Celular " for="codCelSuscriptor"/>  
+                                <p:inputText required="false" id="codCelSuscriptor" size="2" maxlength ="4"
+                                             value="#{SolSuscripcionUI_Backing.codCelSuscriptor}" tabindex="7"/>
+                                <p:inputText required="false" id="numCelSuscriptor" size="14" maxlength ="8"
+                                             value="#{SolSuscripcionUI_Backing.numCelSuscriptor}" tabindex="8"/>
+                            </h:panelGrid>
+                        </td>
+                    </tr>  
+                </table> 
+
+                <div align="center"><h4>Depósito/Transferencia</h4></div>
+                <hr size="2" width="80%"></hr>
+                <table width="50%"  border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <p:outputLabel value="Banco " for="bcoSolSuscripcion" />                             
+                                <p:selectOneMenu id="bcoSolSuscripcion" value="#{SolSuscripcionUI_Backing.bcoSolSuscripcion}" tabindex="9" >
+                                    <f:selectItem  itemLabel="Seleccione" itemValue="Seleccione" />
+                                    <f:selectItem  itemLabel="Provincial" itemValue="Provincial" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Referencia  " for="refSolSuscripcion" />                             
+                                <p:inputText required="false" id="refSolSuscripcion"  maxlength ="10" size="24"
+                                             value="#{SolSuscripcionUI_Backing.refSolSuscripcion}" tabindex="11"/>
+
+                                <p:outputLabel value="Fecha pago" for="fecPagoSolSuscripcion"/>                                                                                               
+                                <p:inputText required="false" id="fecPagoSolSuscripcion" size="24" 
+                                             value="#{SolSuscripcionUI_Backing.fecPagoSolSuscripcion}" tabindex="13"
+                                             onfocus="showCalendarControl(this);"/>
+
+                            </h:panelGrid>
+                        </td>
+
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <p:outputLabel value="Cuenta  " for="ctaSolSuscripcion" />                             
+                                <p:selectOneMenu id="ctaSolSuscripcion" value="#{SolSuscripcionUI_Backing.ctaSolSuscripcion}" tabindex="10"  >
+                                    <f:selectItem  itemLabel="Seleccione" itemValue="Seleccione" />
+                                    <f:selectItem  itemLabel="0108-0059-55-0100338795" itemValue="0108-0059-55-0100338795" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel value="Monto " for="mtoSolSuscripcion"/>                
+                                <p:inputText required="false" id="mtoSolSuscripcion" size="24" maxlength="10"
+                                             value="#{SolSuscripcionUI_Backing.mtoSolSuscripcion}" tabindex="12" />
+
+                                <p:outputLabel value="Plan " for="idPlanSolSuscripcion"/>   
+                                <p:selectOneMenu value="#{SolSuscripcionUI_Backing.idPlanSolSuscripcion}" id="idPlanSolSuscripcion" tabindex="14" >
+                                    <f:selectItems value="#{SolSuscripcionUI_Backing.planes}"/>
+                                </p:selectOneMenu>
+
+                            </h:panelGrid>
+                        </td>
+
+                    </tr>
+                </table> 
+                <br></br>
+                <hr size="2" width="80%"></hr>
+
+                <div align="center"><p>
+                        <p:commandButton value="Registrar" action="#{SolSuscripcionUI_Backing.registrarSolSuscripcion}" tabindex="15" 
+                                         disabled ="#{BeanUsuario.agregar}"  ajax="false"/>  
+                    </p></div>
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui" >
+
+    <f:view> 
+        <h:head>
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <!--       <link href="../css/primeFaces.css" rel="stylesheet" type="text/css"></link> -->
+            <script src="CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form  >
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink immediate="true" onclick="Ayuda('APagoCxCUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Procesar pagos de cuentas por cobrar</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+                <hr size="2" width="85%"></hr>
+                <table width="85%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="6" border="0">
+
+                                <h:outputLabel value="Inmueble " for="idInmueble"/>   
+                                <h:selectOneMenu value="#{PagoCxCUI_Backing.idInmueble}" id="idInmueble" tabindex="3" 
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{PagoCxCUI_Backing.inmueblesPorPropiedad}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Descripción " for="desPagoCxC"/>                
+                                <h:inputText required="false" id="desPagoCxC" size="20" maxlength="60"
+                                             value="#{PagoCxCUI_Backing.desPagoCxC}" tabindex="4" />
+
+                                <h:outputLabel value="Forma de pago " for="formaPagoCxC"/>  
+                                <h:selectOneMenu id="formaPagoCxC" value="#{PagoCxCUI_Backing.formaPagoCxC}" tabindex="5" >
+                                    <f:selectItem  itemLabel="Seleccione" itemValue="Seleccione" />
+                                    <f:selectItem  itemLabel="Cheque" itemValue="Cheque" />
+                                    <f:selectItem  itemLabel="Transferencia" itemValue="Transferencia" />
+                                    <f:selectItem  itemLabel="Deposito" itemValue="Deposito" />
+                                    <f:selectItem  itemLabel="Tajeta de crédito" itemValue="Tarjeta crédito" />
+                                    <f:selectItem  itemLabel="Tarjeta de débito" itemValue="Tarjeta débito" />
+                                    <f:selectItem  itemLabel="Efectivo" itemValue="Efectivo" />
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Monto " for="mtoPagoCxC"/>                
+                                <h:inputText required="false" id="mtoPagoCxC" size="20" maxlength="16"
+                                             value="#{PagoCxCUI_Backing.mtoPagoCxC}" tabindex="6" />
+
+                                <h:outputLabel value="Nro. Doc/Ref (*)" for="numDocPagoCxC"/>                
+                                <h:inputText required="false" id="numDocPagoCxC" size="20" maxlength="10" 
+                                             value="#{PagoCxCUI_Backing.numDocPagoCxC}" tabindex="7"/>
+
+                                <h:outputLabel value="Fecha (dd-mm-aaaa)(*) " for="fecDocPagoCxC"/>                                                                                               
+                                <h:inputText required="false" id="fecDocPagoCxC" size="14" maxlength="10" 
+                                             value="#{PagoCxCUI_Backing.fecDocPagoCxC}" tabindex="8" immediate="true"
+                                             onfocus="showCalendarControl(this);"/>                                                                                           
+                            </h:panelGrid>
+                        </td>  
+                    </tr>  
+                </table>
+                <hr size="2" width="85%"></hr>
+
+                <table width="40%"  border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Bancos" for="bancoPagoCxC" />                             
+                            <h:selectOneMenu value="#{PagoCxCUI_Backing.bancoPagoCxC}" id="bancoPagoCxC" tabindex="9"
+                                             onchange="this.form.submit()" >
+                                <f:selectItems value="#{PagoCxCUI_Backing.bancosPorCondominio}"/>
+                            </h:selectOneMenu>
+                        </td>
+                        <td>
+                            <h:outputLabel value="Cuentas " for="cuentaPagoCxC" />                             
+                            <h:selectOneMenu value="#{PagoCxCUI_Backing.cuentaPagoCxC}" id="cuentaPagoCxC" tabindex="10">
+                                <f:selectItems value="#{PagoCxCUI_Backing.cuentasPorBanco}"/>
+                            </h:selectOneMenu>   
+                        </td>
+                    </tr>
+                </table>
+                <hr size="2" width="85%"></hr>
+                <br></br>
+                <div align="center">
+                    <p>
+                        <h:commandButton value="Procesar pago" action="#{PagoCxCUI_Backing.registrarPagoCxC}" tabindex="11"/>  
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                        <h:commandButton value="Revertir pago" action="revertirCxC" tabindex="12"/> 
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                        <h:commandButton value="Emitir recibo" action="#{PagoCxCUI_Backing.emitirReciboPagoCxC}"  tabindex="13"/> 
+                        <h5><font color="#ff0000" size="2">(*) Los pagos en efectivo no requieren #Ref </font></h5>
+                    </p>
+                </div>
+
+                <hr width="100%"></hr>
+                <h4><i>Cuentas por cobrar registradas.</i><font size="2"><i> Seleccione la(s) cuenta(s) a procesar</i></font></h4>
+
+                <p:dataTable id="TablaPagosCxC" rows="8" rowKey="#{co.idDT}" emptyMessage="No se encontraron registros para el inmueble seleccionado" 
+                             value="#{PagoCxCUI_Backing.cuentasPorCobrarPorInmueble}" paginatorPosition="bottom"
+                             var="co" paginator="true" 
+                             selection="#{PagoCxCUI_Backing.facSeleccionadas}">    
+
+                    <p:column selectionMode="multiple" style="width:18px" />  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecFacCxC}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Descripción"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.desFacCxC}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Monto"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.mtoFacCxC}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Saldo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.saldoFacCxC}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Estado"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.edoFacCxC}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Tipo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.discFacCxC}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

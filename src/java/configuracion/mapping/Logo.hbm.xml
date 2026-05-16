@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<!--
+    Document   : Logo.hbm.xml
+    Created on : September 20, 2012, 8:50 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+
+<hibernate-mapping>
+    <class name="configuracion.modelos.Logo" table="LOGOS"
+            dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_LOGO">
+            <generator class="assigned" />
+        </id>
+        
+        <property name="logo" type="blob" >              
+            <column name="LOGO" length="150000"/>
+        </property>
+        
+    </class>
+</hibernate-mapping>
+

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="movimientos.modelos.TranFondo" table="TRANFONDOS">
+    <id column="ID_TRANFONDO" name="id" type="integer">
+      <generator class="increment"/>
+    </id>
+    <property name="idFondoTranFondo">
+      <column  name="ID_FONDO_TRANFONDO"/>
+    </property>
+    <property name="fecMovTranFondo">
+      <column length="10" name="FEC_MOV_TRANFONDO"/>
+    </property>
+    <property name="fecTranFondo">
+      <column length="10" name="FEC_TRANFONDO"/>
+    </property>
+    <property name="docTranFondo">
+      <column length="20" name="DOC_TRANFONDO"/>
+    </property>
+    <property name="idConceptoTranFondo">
+      <column  name="ID_CONCEPTO_TRANFONDO"/>
+    </property>
+    <property name="idBancoTranFondo">
+      <column  name="ID_Banco_TRANFONDO"/>
+    </property>
+    <property name="idCuentaTranFondo">
+      <column  name="ID_Cuenta_TRANFONDO"/>
+    </property>
+    <property name="formaPagoTranFondo">
+      <column  name="FORMA_PAGO_TRANFONDO"/>
+    </property>
+    <property name="mtoTranFondo">
+      <column name="MTO_TRANFONDO" />
+    </property>
+    <property name="tipoOperTranFondo">
+      <column length="7" name="TIPO_OPER_TRANFONDO"/>
+    </property>
+    <property name="saldoTranFondo" >
+      <column name="SALDO_TRANFONDO" />
+    </property>
+    <property name="descTranFondo">
+      <column length="60" name="DESC_TRANFONDO"/>
+    </property>
+    <property name="estadoTranFondo">
+      <column length="60" name="ESTADO_TRANFONDO"/>
+    </property>
+    <property name="perTranFondo">
+      <column length="10" name="PER_TRANFONDO"/>
+    </property>
+    <property name="idPago">
+      <column  name="ID_PAGO"/>
+    </property>
+    
+    <many-to-one class="datosbasicos.modelos.Fondo" column="ID_FONDO" name="fondo" not-null="true"/>
+    
+  </class>
+</hibernate-mapping>

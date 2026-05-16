@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="acceso.modelos.CodigoAcceso" table="CODIGOS_ACCESO">
+        <id name="id" type="integer" column="ID_CODIGO_ACCESO">   
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio" lazy="false"
+                     column="ID_CONDOMINIO" not-null = "true" />
+        
+        <one-to-one name="inmueble" class = "datosbasicos.modelos.Inmueble" property-ref = "codigoAcceso" />
+        
+    </class>
+</hibernate-mapping>
+

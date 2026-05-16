@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    
+    <class name="datosbasicos.modelos.Usuario" table="USUARIO"
+        dynamic-insert="true"
+        dynamic-update="true">
+        <id name="id" type="integer" column="ID_USUARIO">
+            <generator class="increment" />
+        </id>
+                       
+        <property name="nombUsuario" >
+            <column name="NOMB_USUARIO" length="30"/>
+        </property>  
+        <property name="cedUsuario">
+            <column name="CED_USUARIO" length="10"/>
+        </property>  
+        <property name="emailUsuario" >
+            <column name="EMAIL_USUARIO" length="50"/>
+        </property>  
+        <property name="contUsuario" >
+            <column name="CONT_USUARIO" length="30"/>
+        </property>  
+        <property name="telUsuario" >
+            <column name="TEL_USUARIO" length="13"/>
+        </property>  
+        <property name="apelUsuario" >
+            <column name="APEL_USUARIO" length="30"/>
+        </property>  
+        <property name="sexoUsuario" >
+            <column name="SEXO_USUARIO" length="10"/>
+        </property>  
+        <property name="codUsuario" >
+            <column name="COD_USUARIO" length="25"/>
+        </property>  
+        <property name="celUsuario" >
+            <column name="CEL_USUARIO" length="13"/>
+        </property>  
+        <property name="perUsuario" >
+            <column name="PER_USUARIO" length="8"/>
+        </property>  
+                  
+        <many-to-one name="suscripcion"  class="saas.modelos.Suscripcion"
+           column="ID_SUSCRIPCION" not-null = "true" />
+                   
+        <list name="condominios" table="USUARIO_CONDOMINIOS" cascade="save-update" lazy="false">
+            <key column="ID_USUARIO" />
+            <list-index column="ORDEN" />
+            <many-to-many class="datosbasicos.modelos.Condominio" column="ID_CONDOMINIO" />
+        </list>   
+        
+        <many-to-one name="usuarioAdmin" class="datosbasicos.modelos.Usuario"
+             column="ID_USUARIO_ADMIN"/>
+             
+        <bag name="operadores" cascade="save-update,delete" 
+        inverse="true" >
+            <key column="ID_USUARIO_ADMIN"/>
+            <one-to-many class="datosbasicos.modelos.Usuario" />
+        </bag>  
+    </class>  
+    
+</hibernate-mapping>

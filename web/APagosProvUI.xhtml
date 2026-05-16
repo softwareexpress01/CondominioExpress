@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"> 
+    <f:view> 
+        <h:head>
+            <title>Ayuda de Software Express Condominio</title> 
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <div style="overflow:auto; height:380px;">
+                <h:form id="form"  >
+
+                    <table width="70%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <font face="Arial" size="3" color="#009933"><h:outputText value="Indice"></h:outputText></font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="AConfiguracionInic.xhtml">Primeros pasos:Configuración inicial</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Funcionalidad">Funcionalidad</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td with="10">
+                                <a href="#Descripción de datos de entrada">Descripción de datos de entrada</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+
+                        <tr>
+                            <td with="10">
+                                <a name="Funcionalidad">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Funcionalidad"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Esta página permite generar un <i><b>
+                                            Informe de Pagos a Proveedores</b></i>. Este Informe, refleja cada uno de las operaciones de pagos registradas en el sistema, para el o los Proveedores seleccionados por el Usuario, en un período determinado. 
+                                    La información se presenta ordenada por fecha y muestra datos tales como la Referencia, el concepto, Banco en el que se hizo la operación, el monto y el saldo  correspondiente, al igual que los totales por columnas.
+                                    Para generar el reporte, se debe seleccionar el Proveedor y las fechas (Lapso) requeridos y luego presionar el boton
+                                    <i><b> Generar Pagos a Prov</b></i>. Esta acción, generará la información solicitada en formato pdf, permitiendose la impresión o el almacenaje
+                                    del reporte, según se necesite
+
+                                </font></td>
+                        </tr>    
+                    </table>
+
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="80%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Descripción de datos de entrada">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Descripción de datos de entrada"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">En esta sección, se muestra una descripción de los datos de entrada de esta página, 
+                                    asi como también, los tipos de datos y rangos válidos en los casos en que aplique.
+                                </font></td>
+                        </tr>  
+
+                    </table>
+
+                    <table width="85%" border="1" align="left">
+                        <tr bgcolor="#e6e6fa" >
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Dato entrada"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Descripción"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Tipo y restricciones"></h:outputText></b></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Proveedor "    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el Proveedor al que se le asociará el pago a procesar, 
+                                                                          seleccione uno de la lista desplegable"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Los Proveeedores deberán haber sido cargados en la configuración del sistema.
+                                                                          Ver Datos basicos/Proveedores en el menu"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Fecha desde (dd-mm-aaaa) "    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es la fecha desde la cual se emitira el Informe de Proveedores  
+                                                                          seleccionado. Ejemplo: 01-06-2012."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Puede seleccionarse del calendario desplegado o  ingresarse en forma manual.
+                                                                          Esta fecha no puede ser menor a la fecha en que se creó el 
+                                                                          condominio, ni mayor a la fecha hasta"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Fecha hasta (dd-mm-aaaa)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es la fecha hasta la cual se emitirá el Informe
+                                                                          seleccionado. Ejemplo: 01-09-2012."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Puede seleccionarse del calendario desplegado o  ingresarse en forma manual.
+                                                                          Esta fecha no puede ser mayor al periodo actual, ni menor que la fecha desde"></h:outputText></font>
+                            </td> 
+                        </tr>
+
+                    </table>
+
+                </h:form>
+            </div>
+        </body>
+    </f:view> 
+</html> 

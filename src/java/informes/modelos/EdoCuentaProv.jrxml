@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0e7129dd-ed33-4d6a-9280-7627519a28f2">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="221"/>
+	<property name="ireport.y" value="50"/>
+	<parameter name="nombCondominio" class="java.lang.String"/>
+	<parameter name="nombProveedor" class="java.lang.String"/>
+	<parameter name="cedRifProveedor" class="java.lang.String"/>
+	<parameter name="telProveedor" class="java.lang.String"/>
+	<parameter name="contactoProv" class="java.lang.String"/>
+	<parameter name="desde" class="java.lang.String"/>
+	<parameter name="hasta" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<field name="fecMovCxP" class="java.lang.String"/>
+	<field name="discMovCxP" class="java.lang.String"/>
+	<field name="desMovCxP" class="java.lang.String"/>
+	<field name="mtoMovCxP" class="java.lang.String"/>
+	<field name="abonoMovCxP" class="java.lang.String"/>
+	<field name="saldoMovCxP" class="java.lang.Double"/>
+	<field name="numDocPago" class="java.lang.String"/>
+	<variable name="saldoTotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoMovCxP}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<group name="Proveedor">
+		<groupExpression><![CDATA[$P{nombProveedor}]]></groupExpression>
+		<groupHeader>
+			<band height="3"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="47">
+				<staticText>
+					<reportElement x="439" y="7" width="36" height="20" forecolor="#CC0000" uuid="8a6aedb6-4521-4bbb-91d9-a231ae7fbfff"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Total]]></text>
+				</staticText>
+				<textField pattern=" #,##0.00" isBlankWhenNull="true">
+					<reportElement x="493" y="7" width="58" height="20" forecolor="#CC0000" uuid="83eb6fda-ec30-4bca-af5d-da240c000baa"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{saldoTotal}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="1" width="553" height="1" uuid="1f081930-861d-47be-ac08-b3f6cd60764c"/>
+				</line>
+				<line>
+					<reportElement x="0" y="26" width="551" height="1" uuid="ce40ce37-2bf2-4723-b1e0-2f11820d6d5d"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="110" splitType="Stretch">
+			<staticText>
+				<reportElement x="155" y="39" width="65" height="20" forecolor="#000099" uuid="09814cd5-027b-47e2-8e19-0388afb5992a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condominio : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="220" y="39" width="210" height="20" uuid="bf3dd466-f7f3-477e-a5d3-0176308a248d"/>
+				<textFieldExpression><![CDATA[$P{nombCondominio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="471" y="6" width="91" height="20" uuid="a18bfc49-4b1e-4ef0-9aef-aaf1cacc5c98"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="234" y="59" width="126" height="20" forecolor="#0000CC" uuid="8dbf6703-96b3-4360-a605-6da3beacc63d"/>
+				<textElement>
+					<font size="10" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Estado de Cuenta ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="79" width="37" height="20" forecolor="#0000CC" uuid="2b40190b-b602-479c-94b4-48ca7efa957b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Desde: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="287" y="79" width="35" height="20" forecolor="#0000CC" uuid="5e597f20-5b26-42d8-909a-65a982192d53"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hasta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="225" y="79" width="59" height="20" uuid="3fbf024c-106b-4f5b-bad3-dd3b1b10905f"/>
+				<textFieldExpression><![CDATA[$P{desde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="322" y="79" width="57" height="20" uuid="1d85be73-d5b6-43be-b3df-d30ca0f194a7"/>
+				<textFieldExpression><![CDATA[$P{hasta}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="3" y="3" width="99" height="74" uuid="558d55b8-f8ea-4b6b-8f7b-ad2404c239ef"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="69" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="45" width="38" height="20" uuid="5ddf6b7f-baa8-4937-983e-4f5bc03c8bc6"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="77" y="45" width="60" height="20" uuid="13916f82-fdc2-4b6e-a939-6b0906dba5ba"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Movimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="45" width="60" height="20" uuid="aae5f0a6-91ca-4d13-8416-6cc9cd6a7a76"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Referencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="211" y="45" width="57" height="20" uuid="d86d7e94-1f30-450b-ae9a-19c4665653fb"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Concepto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="45" width="39" height="20" uuid="aac2440d-9521-40ad-9cb0-c630766d8e8e"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cargo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="436" y="45" width="40" height="20" uuid="ec2b0b4c-5c14-4c7c-913f-fc74cbd64e42"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Abono]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="522" y="44" width="33" height="20" uuid="df28ecc7-86a1-41f9-8590-e7cfbce3f39a"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="66" width="553" height="1" uuid="8dafe2fe-c9cd-426f-8bd1-697a5c0ebfcc"/>
+			</line>
+			<line>
+				<reportElement x="1" y="10" width="551" height="1" uuid="a2d616fe-b023-4c5e-a090-50beb492d5ab"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="14" width="53" height="20" forecolor="#0000CC" uuid="6e5b36ce-dad5-4c94-acc4-2c96efe825e4"/>
+				<text><![CDATA[Proveedor : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="14" width="32" height="20" uuid="9b591136-b79d-4635-9f15-ba570b88a96e"/>
+				<text><![CDATA[CI/Rif: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="14" width="21" height="20" uuid="ad47386f-6c2d-4a7c-83f7-836c4401f265"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Telf:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="15" width="46" height="20" uuid="e4e32824-d888-4dce-9aba-d0ba101483dd"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Contacto:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="37" width="551" height="1" uuid="a524adad-1663-4bb8-9a96-58cfa4dcd602"/>
+			</line>
+			<textField>
+				<reportElement x="63" y="14" width="105" height="20" uuid="6fad657b-043a-459e-8428-01b9c2967c1f"/>
+				<textFieldExpression><![CDATA[$P{nombProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="215" y="14" width="67" height="20" uuid="686c2f41-82f6-4a56-a51c-a98154d673c8"/>
+				<textFieldExpression><![CDATA[$P{cedRifProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="315" y="14" width="82" height="20" uuid="b4946413-5321-4d9c-bc4f-93ff75ed1251"/>
+				<textFieldExpression><![CDATA[$P{telProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="459" y="15" width="95" height="20" uuid="140e0d2d-71f1-4083-9855-3ede8caeff6d"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[$P{contactoProv}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="8" y="0" width="53" height="20" uuid="6015d0d6-640c-458e-8abf-4264aec5db2d"/>
+				<textFieldExpression><![CDATA[$F{fecMovCxP}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="78" y="0" width="76" height="20" uuid="d0655bb3-0adb-4c9c-971c-c846712b0f7c"/>
+				<textFieldExpression><![CDATA[$F{discMovCxP}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="218" y="0" width="124" height="20" uuid="820e507f-9456-4f15-a1f4-93efdc3f3d86"/>
+				<textFieldExpression><![CDATA[$F{desMovCxP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="338" y="0" width="57" height="20" uuid="1c8a8371-a6c4-4a8b-b569-e3f7b1054895"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{mtoMovCxP}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="395" y="0" width="76" height="20" uuid="40ce4ddb-a53f-4284-89d2-14ff0fafcd59"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{abonoMovCxP}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="483" y="0" width="68" height="20" uuid="6efa05b9-fa6b-4f6b-86e6-7c160d2c49d1"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{saldoMovCxP}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="163" y="0" width="40" height="20" uuid="9209993e-0217-4902-ab62-fb0ffc9ba993"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{numDocPago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="225" y="9" width="57" height="20" uuid="ae45c3b5-42f5-4779-9eef-158cfeb0966d"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="282" y="9" width="40" height="20" uuid="a4c45926-1afd-42d3-8168-947e6c893c89"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

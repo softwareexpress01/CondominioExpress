@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="configuracion.modelos.Parametro" table="PARAMETROS"
+        dynamic-insert="true"
+        dynamic-update="true">
+             
+        <id name="id" column="ID_PARAMETRO">
+            <generator class="foreign" >
+                <param name="property">condominio</param>
+            </generator> 
+        </id>
+            
+        <property name="proxAvisoCobro">
+            <column name="PROX_AVISO_COBRO" />
+        </property>
+        <property name="proxReciboCobro">
+            <column name="PROX_RECIBO_COBRO" />
+        </property>
+        <property name="proxNotaDebCxC">
+            <column name="PROX_NOTA_DEB_CXC" />
+        </property>
+        <property name="proxNotaCredCxC">
+            <column name="PROX_NOTA_CRED_CXC" />
+        </property>
+        <property name="proxNotaDebCxP">
+            <column name="PROX_NOTA_DEB_CXP" />
+        </property>
+        <property name="proxNotaCredCxP">
+            <column name="PROX_NOTA_CRED_CXP" />
+        </property>
+        <property name="tipoFacturacion">
+            <column name="TIPO_FACTURACION" length="6"/>
+        </property>
+        <property name="mtoFijoFacturacion">
+            <column name="MTO_FIJO_FAC" />
+        </property>
+        <property name="porcMora">
+            <column name="PORC_MORA" default="0"/>
+        </property>
+        <property name="numDiasVenCxC">
+            <column name="NUM_DIAS_VEN_CXC" default="0"/>
+        </property>
+        <property name="obsReciboPago">
+            <column name="OBS_RECIBO_PAGO" length="60"/>
+        </property>
+        <property name="obsAvisoCobro">
+            <column name="OBS_AVISO_COBRO" length="60"/>
+        </property>
+        <property name="obsAvisoCobro2">
+            <column name="OBS_AVISO_COBRO2" length="125"/>
+        </property>
+            
+        <one-to-one name="condominio" constrained = "true" />
+           
+    </class>
+</hibernate-mapping>

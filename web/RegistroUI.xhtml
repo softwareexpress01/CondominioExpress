@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+
+        <body><h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <tr>
+                            <div align="center"><h1>
+                                    <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                                </h1></div>
+                        </tr>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="right">
+                            <h:commandLink action="login" immediate="true">
+                                <h:outputText value="Entrar"/>
+                            </h:commandLink>
+                            <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                            <h:commandLink action="bienvenida" immediate="true">
+                                <h:outputText value="Salir"/>
+                            </h:commandLink>
+                            <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                            <h:commandLink immediate="true"  onclick="Ayuda('ARegistroUI.xhtml')">
+                                <h:outputText value="Ayuda"/>
+                            </h:commandLink>
+                        </td>
+                    </tr>
+                </table>
+                <br></br>
+                <div align="center"><h4>Registro de Usuarios Administradores del sistema</h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <hr size="1" width="49%"></hr>
+                <br></br>
+                <table width="50%" align="center">
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Nro.de Suscripción" for="numSuscripcion" />    
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="numSuscripcion" maxlength ="10"
+                                             value="#{Registro_Backing.numSuscripcion}" tabindex="1"/>
+                            </td>
+                        </td> 
+                        <td>
+                            <td>
+                                <h:outputLabel value="Contraseña de Suscripción" for="contSuscripcion" />   
+                            </td>
+                            <td>
+                                <h:inputSecret required="false" id="contSuscripcion" maxlength ="25"
+                                               value="#{Registro_Backing.contSuscripcion}" tabindex="2"/>
+                            </td>
+                        </td>  
+                    </tr>
+                </table>
+                <br></br>
+                <hr size="1" width="49%"></hr>
+                <table width="50%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Nombres " for="nombUsuario" /> 
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="nombUsuario" maxlength ="30" size="20"
+                                             value="#{Registro_Backing.nombUsuario}" tabindex="3"/>
+                            </td>
+                        </td>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Apellidos" for="apelUsuario" />   
+                            </td>  
+                            <td>
+                                <h:inputText required="false" id="apelUsuario" maxlength ="30" size="20"
+                                             value="#{Registro_Backing.apelUsuario}" tabindex="4"/>
+                            </td> 
+                        </td>     
+                    </tr>
+                    <tr>
+                        <td>
+                            <td> 
+                                <h:outputLabel value="Cédula" for="cedUsuario" />
+                            </td> 
+                            <td>
+                                <h:inputText required="false" id="cedUsuario" maxlength ="10" size="20"
+                                             value="#{Registro_Backing.cedUsuario}" tabindex="5"/> 
+                            </td> 
+                        </td> 
+                        <td>
+                            <td>
+                                <h:outputLabel value="Sexo" for="sexoUsuario" /> 
+                            </td> 
+                            <td>
+                                <h:selectOneRadio required="false" id="sexoUsuario" 
+                                                  value="#{Registro_Backing.sexoUsuario}" tabindex="6">
+                                    <f:selectItem itemLabel="Masculino" itemValue="masculino"/>
+                                    <f:selectItem itemLabel="Femenino" itemValue="femenino"/>
+                                </h:selectOneRadio>
+                            </td>
+                        </td> 
+                    </tr>
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Correo electrónico" for="emailUsuario" />  
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="emailUsuario" maxlength ="50" size="20" 
+                                             value="#{Registro_Backing.emailUsuario}" tabindex="7"/>
+                            </td>
+                        </td>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Código de Usuario" for="codUsuario" />  
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="codUsuario" maxlength ="25" size="20"
+                                             value="#{Registro_Backing.codUsuario}" tabindex="8"/>
+                            </td>  
+                        </td>   
+                    </tr>
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Contraseña" for="contUsuario"/>  
+                            </td> 
+                            <td>
+                                <h:inputSecret id="contUsuario" required="false" maxlength ="25" size="20"
+                                               value="#{Registro_Backing.contUsuario}" tabindex="9"/>  
+                            </td> 
+                        </td> 
+                        <td>
+                            <td>
+                                <h:outputLabel value="Reescriba Contraseña" for="contUsuario2" />  
+                            </td> 
+                            <td>
+                                <h:inputSecret required="false" id="contUsuario2" maxlength ="25" size="20"
+                                               value="#{Registro_Backing.contUsuario2}" tabindex="10"/>
+                            </td> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <h:outputLabel value="Teléfono local" for="codTelUsuario"/>  
+                        </td>
+                        <td>
+                            <h:inputText id="codTelUsuario" required="false" maxlength ="4" size="4"
+                                         value="#{Registro_Backing.codTelUsuario}" tabindex="11" /> 
+                            <f:verbatim>&nbsp;</f:verbatim>
+                            <h:inputText id="numTelUsuario" required="false" maxlength ="8" size="11" 
+                                         value="#{Registro_Backing.numTelUsuario}" tabindex="12" /> 
+                        </td>
+                        <td></td>
+                        <td>
+                            <h:outputLabel value="Celular" for="codCelUsuario"/>  
+                        </td>
+                        <td>
+                            <h:inputText id="codCelUsuario" required="false" maxlength ="4" size="4"
+                                         value="#{Registro_Backing.codCelUsuario}" tabindex="13"/> 
+                            <f:verbatim>&nbsp;</f:verbatim>
+                            <h:inputText id="numCelUsuario" required="false" maxlength ="8" size="11"
+                                         value="#{Registro_Backing.numCelUsuario}" tabindex="14" /> 
+                        </td>
+                    </tr>        
+                </table>
+
+                <f:verbatim>&nbsp;</f:verbatim>
+
+                <hr size="1" width="49%"></hr> 
+                <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                <div align ="center" ><p>
+                        <h:commandButton value="Registrarse"
+                                         action="#{Registro_Backing.registrarUsuario}" tabindex="15"/>
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                        <h:commandButton value="Cancelar" action="bienvenida"
+                                         immediate="true" tabindex="16"/></p></div>
+                <br></br>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html>

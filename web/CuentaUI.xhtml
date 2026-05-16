@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function openWin(){
+                    window.open('ElimCuentaUI.xhtml','window','width=750,height=400');
+                }
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('ACuentaUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Crear y Actualizar Cuentas</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+
+                <table width="65%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Bancos" for="nombBanco" />                             
+                                <h:selectOneMenu value="#{CuentaUI_Backing.nombBanco}" id="nombBanco" tabindex="1" >
+                                    <f:ajax event="valueChange" render="TablaCuentas"  listener="#{CuentaUI_Backing.cuentasPorBanco}"/>
+                                    <f:selectItems value="#{CuentaUI_Backing.bancosPorCondominio}"/>
+                                </h:selectOneMenu>                
+
+                                <h:outputLabel value="Saldo Inicial" for="saldoIniCuenta" />                             
+                                <h:inputText required="false" id="saldoIniCuenta" size ="20"  maxlength ="12"
+                                             value="#{CuentaUI_Backing.saldoIniCuenta}" tabindex="4"/>
+
+                            </h:panelGrid>
+
+                        </td>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Cuenta " for="numCuenta" /> 
+                                <h:inputText required="false" id="numCuenta" size ="21"  maxlength ="23"
+                                             value="#{CuentaUI_Backing.numCuenta}" tabindex="2"/>                             
+                                <h:outputLabel value="Saldo Actual" for="saldoActCuenta" />                             
+                                <h:inputText required="false" id="saldoActCuenta" size ="21" disabled ="true"
+                                             value="#{CuentaUI_Backing.saldoActCuenta}" tabindex="5"/>
+
+                            </h:panelGrid>
+
+                        </td>  
+
+                        <td>
+
+                            <h:panelGrid width="100%" columns="2" border="0">
+                                <h:outputLabel value="Tipo " for="tipoCuenta" /> 
+                                <h:selectOneMenu value="#{CuentaUI_Backing.tipoCuenta}" id="tipoCuenta" tabindex="3" >
+                                    <f:selectItem  itemLabel="Seleccione" itemValue="Seleccione" />
+                                    <f:selectItem  itemLabel="Ahorro" itemValue="Ahorro" />
+                                    <f:selectItem  itemLabel="Corriente" itemValue="Corriente" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+
+                        </td>
+
+                    </tr>
+
+                </table>
+
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{CuentaUI_Backing.registrarCuenta}" tabindex="4"
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{CuentaUI_Backing.modificarCuenta}" tabindex="5"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="6"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Cuentas registradas.</i><font size="2"><i> Seleccione la Cuenta a modificar/eliminar</i></font></h4>
+
+
+                <p:dataTable id="TablaCuentas" rows="5" rowKey="#{co.id}"   
+                             value="#{CuentaUI_Backing.cuentasPorBanco}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage=" " 
+                             selection="#{CuentaUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Número de cuenta"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.numCuenta}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Tipo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.tipoCuenta}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right" styleClass="  ">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Saldo Inicial"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.saldoIniCuentaString}"/>
+                    </p:column>
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Saldo Actual"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.saldoActCuentaString}" style=" "/>
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{CuentaUI_Backing.editarCuentaAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{CuentaUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+
+
+            </h:form>
+        </body>
+
+    </f:view> 
+</html> 

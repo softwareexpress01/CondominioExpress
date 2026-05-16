@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="119afbc1-1c48-467f-9fd3-210ffad0c237">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombCondominio" class="java.lang.String"/>
+	<parameter name="encMes1" class="java.lang.String"/>
+	<parameter name="encMes2" class="java.lang.String"/>
+	<parameter name="encMes3" class="java.lang.String"/>
+	<parameter name="encMes4" class="java.lang.String"/>
+	<parameter name="encMes5" class="java.lang.String"/>
+	<parameter name="encMes6" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<field name="nombPropiedad" class="java.lang.String"/>
+	<field name="codInmueble" class="java.lang.String"/>
+	<field name="nombPropietario" class="java.lang.String"/>
+	<field name="saldoAnterior" class="java.lang.Double"/>
+	<field name="saldoCxCP6" class="java.lang.Double"/>
+	<field name="saldoCxCP5" class="java.lang.Double"/>
+	<field name="saldoCxCP4" class="java.lang.Double"/>
+	<field name="saldoCxCP3" class="java.lang.Double"/>
+	<field name="saldoCxCP2" class="java.lang.Double"/>
+	<field name="saldoCxCP1" class="java.lang.Double"/>
+	<field name="saldoTotal" class="java.lang.Double"/>
+	<variable name="totalInmueble" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalSaldoAnt" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoAnterior}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalSaldoP6" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP6}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalSaldoP5" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP5}]]></variableExpression>
+	</variable>
+	<variable name="totaSaldoP4" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP4}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalSaldoP3" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP3}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalSaldoP2" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP2}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalSaldoP1" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP1}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalSaldo" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoTotal}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalCondominio" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoTotal}]]></variableExpression>
+	</variable>
+	<variable name="totalSaldoAntCond" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoAnterior}]]></variableExpression>
+	</variable>
+	<variable name="totalSaldoP6Cond" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP6}]]></variableExpression>
+	</variable>
+	<variable name="totaSaldoP5Cond" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP5}]]></variableExpression>
+	</variable>
+	<variable name="totalSaldoP4Cond" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP4}]]></variableExpression>
+	</variable>
+	<variable name="totalSaldoP3Cond" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP3}]]></variableExpression>
+	</variable>
+	<variable name="totalSaldoP2Cond" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP2}]]></variableExpression>
+	</variable>
+	<variable name="totalSaldoP1Cond" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoCxCP1}]]></variableExpression>
+	</variable>
+	<group name="Propiedad" isStartNewPage="true">
+		<groupExpression><![CDATA[$F{nombPropiedad}]]></groupExpression>
+		<groupHeader>
+			<band height="21">
+				<staticText>
+					<reportElement uuid="34c44f0f-1742-444f-909a-ff2e0f9f9cf6" x="1" y="0" width="52" height="20" forecolor="#0000CC"/>
+					<textElement/>
+					<text><![CDATA[Propiedad : ]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="da6ac403-1af4-4685-93f4-1b69726a7cf4" x="52" y="0" width="100" height="20"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{nombPropiedad}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="36">
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="d68dbc2d-9fb3-4472-91a5-7df122fdacbe" x="128" y="5" width="84" height="20" isRemoveLineWhenBlank="true" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalSaldoAnt}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="bb00fdd2-ca6e-4c95-9620-d278fe29c995" x="74" y="2" width="53" height="20" forecolor="#CC0000"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Sub total]]></text>
+				</staticText>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="fd3273ab-1e8d-45fc-8567-99583294a158" x="296" y="3" width="84" height="20" isRemoveLineWhenBlank="true" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalSaldoP5}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="a5d75c9b-0686-4611-a7de-41be440f7aa6" x="380" y="3" width="84" height="20" isRemoveLineWhenBlank="true" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totaSaldoP4}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="ac49db2f-6eaa-4aa0-b2da-d01230314c44" x="465" y="5" width="84" height="20" isRemoveLineWhenBlank="true" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalSaldoP3}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="3b55fc62-8046-44ab-b4e5-d91a4d6eaf9c" x="548" y="6" width="84" height="20" isRemoveLineWhenBlank="true" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalSaldoP2}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="64b9d05a-f4b2-4c0d-a2c6-8b30dd14c9f9" x="631" y="6" width="84" height="20" isRemoveLineWhenBlank="true" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalSaldoP1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement uuid="1820a967-cf42-416d-b029-1755fb3131a7" x="0" y="2" width="797" height="1"/>
+				</line>
+				<line>
+					<reportElement uuid="a9520f49-aafb-4aef-b86c-72255f8f9969" x="1" y="29" width="797" height="1"/>
+				</line>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="b1662467-8e4b-4d3f-b377-d65e535601df" x="715" y="6" width="84" height="20" isRemoveLineWhenBlank="true" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalSaldo}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement uuid="5ee78a5a-fc6e-4c93-81b2-9ed6ff59dbec" x="219" y="2" width="84" height="20" isRemoveLineWhenBlank="true" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalSaldoP6}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="118" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="35aa3cfc-f6fa-404e-a0a4-8d56dea5534b" x="279" y="58" width="66" height="20" forecolor="#0000FF"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condominio :]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="56e536e0-ab61-4b35-8c05-13fe9e62e0b5" x="349" y="58" width="251" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{nombCondominio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="085da0f4-a1ad-4941-9799-68f9c06f5c62" x="711" y="4" width="86" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3ec4aa08-98d6-494b-a407-3e8769fdcc69" x="700" y="23" width="53" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="ac649323-725f-4552-b31d-ce72fdc20465" x="753" y="23" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="4ca4f5cd-f0fe-4565-a6cc-f55756f17ea6" x="294" y="92" width="204" height="20" forecolor="#0000FF"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuentas por pagar al condominio]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="e555a053-f0c5-486a-bf87-b3a6f2a591ff" stretchType="RelativeToBandHeight" x="1" y="1" width="135" height="117"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="37" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="d16ab71c-6b76-4983-a82f-793882fbc1d2" x="16" y="10" width="44" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Inmueble]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="11512d05-09bd-457b-9c81-62130a6e1092" x="62" y="10" width="89" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Propietario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e6ab8998-81fc-4955-b571-65b1cca99f68" x="152" y="10" width="64" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Saldo anterior]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d8fade0a-378a-4fb4-ba3f-ad93541419a8" x="227" y="10" width="55" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{encMes6}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="19ef00b3-5d9d-4dfc-86cc-2b5f3a1fe954" x="307" y="11" width="58" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{encMes5}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="13f5dc8a-83b7-4579-ba03-af9f79944945" x="391" y="11" width="60" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{encMes4}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="d60c3baf-a7e2-4a87-80e4-df3e6bf2fca0" x="470" y="9" width="55" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{encMes3}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="7310664b-df96-40f7-892a-828c5e005834" x="550" y="10" width="63" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{encMes2}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="758882ec-5dfa-4da1-983c-1b15445f67ab" x="736" y="11" width="44" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Center">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="76287257-b78c-46e8-bfc8-c3ca2eb10ff0" x="1" y="2" width="796" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="167f2455-9005-45ef-8eef-365601b527fd" x="1" y="34" width="796" height="1"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="18dece5f-ebf2-4ac6-bbd6-9988d836eac1" x="631" y="9" width="58" height="20"/>
+				<textElement>
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{encMes1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="0330741e-6b87-4b4e-9424-d5e747946620" x="458" y="1" width="78" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoCxCP3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="3ea20ecf-2878-4927-a46a-a62a4abec342" x="540" y="1" width="78" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoCxCP2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="4b49b405-2295-49a9-bba5-d80e67896f05" x="620" y="1" width="78" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoCxCP1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement uuid="bbc4d1e4-c748-4b7c-bdcf-521636a0d5e7" x="717" y="0" width="83" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="24e69da3-f0f0-42cc-8687-d6c149f8dc4d" x="49" y="3" width="89" height="20"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nombPropietario}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="518d039d-8998-4d89-a7e7-8f38b578cf62" x="140" y="2" width="78" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoAnterior}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="04dcbc58-b13d-4776-baf9-fefdbbc7271e" x="218" y="2" width="78" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoCxCP6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="ae409b5c-3a06-43c7-8c3e-90c1b3d2b487" x="298" y="3" width="78" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoCxCP5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="d6866276-e600-4735-955c-073ac982a08f" x="380" y="3" width="78" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="7"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{saldoCxCP4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="94c3d33f-65db-4b96-afb3-57083150ada0" x="5" y="3" width="44" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codInmueble}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="5f8efc8d-4204-4306-9270-c9092f6e324c" x="70" y="0" width="54" height="20" forecolor="#CC0000"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Totales]]></text>
+			</staticText>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="27c9f1be-921d-4c9e-90ac-0cb96d7fd19b" x="706" y="0" width="94" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalCondominio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="21c57818-83eb-49a2-9c4a-549a6ffc22cc" x="295" y="0" width="83" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totaSaldoP5Cond}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="414322c0-247e-4cb9-a9c4-31efff997bdc" x="213" y="0" width="83" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalSaldoP6Cond}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="fdcc91dd-4b0e-45e0-99a2-420f1a02552f" x="128" y="0" width="83" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalSaldoAntCond}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="d21882a3-a6bd-471b-a4a3-14477205c5e7" x="377" y="0" width="83" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalSaldoP4Cond}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="7a8c6811-df97-4197-a733-269dd090f6bf" x="458" y="0" width="83" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalSaldoP3Cond}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="e1de8f79-7cb9-4141-a099-0d1195d56c0c" x="542" y="1" width="83" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalSaldoP2Cond}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="232c379b-bdb2-478d-81cf-870dc14aa46d" x="623" y="0" width="83" height="21" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalSaldoP1Cond}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

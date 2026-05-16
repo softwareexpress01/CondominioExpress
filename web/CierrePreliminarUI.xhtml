@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+    Document   : CierrePreliminarUI.xml
+    Created on : July 29, 2012, 1:27 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+        <title>Software Express Condominio</title>
+        <f:facet name="first"> 
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+        </f:facet>
+        <script language="javascript">
+            function Ayuda(tema)
+            {
+                var AWin;
+                AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                AWin.focus();
+            }
+        </script>
+        <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+    </h:head>
+    <h:body>
+        <h:form id="form" >
+            <table width="100%" border="0">
+                <tr>
+                    <div align="center">
+                        <h1>
+                            <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                        </h1>
+                    </div>
+                </tr>          
+            </table>      
+
+            <table width="100%" class="BarBkgnd">
+                <tr>
+                    <td align="left">
+                        <td>
+                            <font color="#0066cc">
+                                <i>Bienvenido(a),
+                                    <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                    <h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                </i>
+                            </font>
+                        </td>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td align="center" width="10%" >
+                        <td>
+                            <font color="#0066cc">
+                                <i>
+                                    <h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,
+                                    <h:outputLabel value="#{BeanUsuario.propiedadActual}"/>
+                                </i>
+                            </font>
+                        </td>
+                    </td>
+                    <td align="right" width="25%">
+                        <i>
+                            <h:commandLink onclick="Ayuda('ACierrePreliminarUI.xhtml')">
+                                <h:outputText value="Ayuda"/>
+                            </h:commandLink>
+                        </i>
+                    </td>
+                </tr>
+            </table>
+
+            <div>
+                <h4>
+                    <i>Procesar cierre preliminar</i>
+                </h4>
+            </div>
+
+            <h:messages globalOnly="true" infoClass="RegError"/>   
+
+            <table align="center">
+                <tr>
+                    <td align="center">
+                        <b>
+                            <i>
+                                <font color="#0066cc">Periodo a cerrar : </font>
+                            </i>
+                        </b>
+                        <i>
+                            <b>
+                                <font color="#ff0033">
+                                    <h:outputLabel value="#{BeanUsuario.periodoActualString}"/>
+                                </font>
+                            </b>
+                        </i>
+                    </td>
+                </tr>
+            </table> 
+            <p></p>
+            <table align="center">
+                <tr>
+                    <td>
+                        Este proceso realiza una 
+                        <font color="#ff0033"> 
+                            <i>
+                                <b>simulación</b>
+                            </i>
+                        </font> de las tareas a ser ejecutadas por el cierre definitivo:
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr></tr>
+                <tr></tr> 
+                <tr></tr>
+                <tr></tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        1. Genera las alícuotas para cada inmueble (CxC).
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        2. Genera las facturas de cuotas especiales.
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        3. Genera notas de débito por intereses de mora.
+                    </td>
+                </tr>
+                <tr></tr>
+                <tr>
+                    <td>
+                        4. Genera pagos automáticos a las CxC de cada inmueble.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        5. Genera informes de cierre de mes.
+                    </td>
+                </tr>
+
+            </table>
+            <p></p>
+            <p></p>
+            <p></p> 
+            <p></p>
+            <p></p>
+            <table align="center">
+                <tr>
+                    <td>
+                        Nota: Este proceso proporciona una vista preliminar de lo que serían los resultados del cierre para su revisión.
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        No actualiza la base de datos del sistema. Se recomienda realizarlo tantas veces como sea necesario antes del cierre definitivo.
+                    </td>
+                </tr>
+            </table>
+            <p></p>
+            <p></p>
+            <p></p> 
+            <p></p>
+            <p></p>
+            <div align="center">
+                <p>
+                    <h:commandButton value="Ejecutar Cierre Preliminar" 
+                                     actionListener="#{CierrePreliminarUI_Backing.procesarCierrePreliminar}"/>  
+                </p>
+            </div>            
+        </h:form>
+    </h:body>
+</html>

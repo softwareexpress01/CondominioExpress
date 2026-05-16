@@ -1,0 +1,259 @@
+
+
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ * Autor: Frank Rojas H. */
+package util;
+
+import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Validator implements Serializable {
+
+    public void validator() {
+    }
+
+    public boolean esAlfa(String campo) {
+
+        String alfa = "ABCDEFGHIJKLMNOPQRSTUVWYZ abcdefghijklmnopqrstuvwyz,";
+        int start = 0;
+        Boolean carValido = true;
+        char car;
+        int longCad = campo.length() - 1;
+
+        do {
+
+            car = campo.charAt(start);
+            int i = alfa.indexOf(car);
+            if (i < 0) {
+                carValido = false;
+            }
+
+        } while ((start++ < longCad) && (carValido));
+
+        if (carValido) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean esCedRif(String cedRif) {
+
+        boolean siEs;
+
+        siEs = esAlfaNum(cedRif);
+        if (!siEs) {
+            return false;
+        }
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("([JjVvEeGg]{1}[0-9]{6,8})");
+        mat = pat.matcher(cedRif);
+
+        if (mat.find()) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean esAlfaNum(String campo) {
+
+        String alfa = "ABCDEFGHIJKLMNOPQRSTUVWYZ abcdefghijklmnopqrstuvwyz1234567890";
+        int start = 0;
+        Boolean carValido = true;
+        char car;
+        int longCad = campo.length() - 1;
+
+        if (longCad <= 0) {
+            return true;
+        }
+        do {
+
+            car = campo.charAt(start);
+            int i = alfa.indexOf(car);
+            if (i < 0) {
+                carValido = false;
+            }
+
+        } while ((start++ < longCad) && (carValido));
+
+        if (carValido) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean esAlfaNumPlus(String campo) {
+
+        String alfa = "ABCDEFGHIJKLMNOPQRSTUVWYZ abcdefghijklmnopqrstuvwyz1234567890,()/-#@.";
+        int start = 0;
+        Boolean carValido = true;
+        char car;
+        int longCad = campo.length() - 1;
+
+        if (longCad <= 0) {
+            return true;
+        }
+
+        do {
+
+            car = campo.charAt(start);
+            int i = alfa.indexOf(car);
+            if (i < 0) {
+                carValido = false;
+            }
+
+        } while ((start++ < longCad) && (carValido));
+
+        if (carValido) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean esEmail(String correo) {
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^([0-9a-zA-Z]([_.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+([0-9a-zA-Z]{2,9}.)+[a-zA-Z]{2,3})$");
+        mat = pat.matcher(correo);
+        if (mat.find()) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean esEntero(String numIn) {
+        try {
+            Integer.parseInt(numIn);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    public boolean esFecha(String fechax) {
+
+        if (fechax.length() == 0) {
+            return false;
+        }
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^([0-9]{2}-[0-9]{2}-[0-9]{2,4})");
+        mat = pat.matcher(fechax);
+        if (!(mat.find())) {
+            return false;
+        }
+
+        String dia = fechax.substring(0, 2);
+        String mes = fechax.substring(3, 5);
+        String ano = fechax.substring(6, 10);
+        int diaI;
+        int mesI;
+        int anoI;
+
+        try {
+            diaI = Integer.parseInt(dia);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+
+        try {
+            mesI = Integer.parseInt(mes);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+
+        try {
+            anoI = Integer.parseInt(ano);
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+        if (anoI < 2000) {
+            return false;
+        }
+        if (mesI < 0 | mesI > 12) {
+            return false;
+        }
+
+        if (diaI <= 0 | diaI > 31) {
+            return false;
+        }
+        if (mesI == 2) {
+            if (diaI > 29) {
+                return false;
+            }
+        }
+        return true;
+
+    }
+
+    public boolean esMinSeisCar(String numIn) {
+        if (numIn.length() >= 6) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean esMonto(String numIn) {
+        Float monto;
+
+        try {
+
+            monto = Float.valueOf(numIn);
+            return true;
+        } catch (NumberFormatException nfe) {
+            return false;
+        }
+    }
+
+    public boolean esNombApell(String nombApell) {
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^([a-zA-Z]+\\s*)");
+        mat = pat.matcher(nombApell);
+        if (mat.find()) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean esNumCta(String numCta) {
+        Pattern pat = null;
+        Matcher mat = null;
+        pat = Pattern.compile("^([0-9]{4}-[0-9]{4}-[0-9]{2}-[0-9]{10})");
+        mat = pat.matcher(numCta);
+        if (mat.find()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean sonDatosEnBlanco(String datos) {
+        String datosEntrada;
+        datosEntrada = datos;
+        boolean siSon = false;
+        int vacio = datosEntrada.length();
+        if (vacio == 0) {
+            siSon = true;
+        }
+        if (siSon) {
+
+            return true;
+        } else {
+            return false;
+        }
+    }
+}

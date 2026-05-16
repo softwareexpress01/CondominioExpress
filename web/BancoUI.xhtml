@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk" 
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function openWin(){
+                    window.open('ElimBancoUI.xhtml','window','width=750,height=400');
+                }
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('ABancoUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Crear y Actualizar Bancos</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+
+                <table width="60%" border="0" align="center">
+
+                    <tr>
+                        <td>
+
+                            <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                            <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                            <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                            <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+
+                            <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                            <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                            <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+                            <p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p><p></p>
+
+                            <h:panelGrid width="100%" columns="7" border="0">
+
+                                <h:outputLabel value="Nombre " for="nombBanco"/>                
+                                <h:inputText required="false" id="nombBanco" size="24" maxlength ="30"
+                                             value="#{BancoUI_Backing.nombBanco}" tabindex="1"/>
+
+                                <h:outputLabel value="Oficina " for="nombOficBanco" /> 
+                                <h:inputText required="false" id="nombOficBanco" size ="20"  maxlength ="30"
+                                             value="#{BancoUI_Backing.nombOficBanco}" tabindex="2"/>
+
+                                <h:outputLabel value="Teléfono " for="codTelBanco" /> 
+                                <h:inputText required="false" id="codTelBanco" size ="1"  maxlength ="4"
+                                             value="#{BancoUI_Backing.codTelBanco}" tabindex="3"/>
+
+                                <h:inputText required="false" id="telBanco" size ="8"  maxlength ="10"
+                                             value="#{BancoUI_Backing.telBanco}" tabindex="4"/>
+
+
+                            </h:panelGrid>
+                        </td>  
+
+                    </tr>  
+
+                </table>
+
+                <div align="center"><p>
+
+                        <h:commandButton value="Agregar" action="#{BancoUI_Backing.registrarBanco}" tabindex="5"
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{BancoUI_Backing.modificarBanco}" tabindex="6"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="7"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+
+                    </p></div>
+                <br></br><br></br>
+                <hr width="100%"></hr>
+                <h4><i>Bancos registrados.</i><font size="2"><i> Seleccione el Banco a modificar/eliminar</i></font></h4>
+
+
+                <p:dataTable id="TablaBancos" rows="5" rowKey="#{co.id}"   
+                             value="#{BancoUI_Backing.bancosPorCondominio}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage="No hay Bancos definidos en el condominio seleccionado" 
+                             selection="#{BancoUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nombre"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombBanco}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Oficina"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombOficBanco}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Teléfono"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.telConcatBanco}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{BancoUI_Backing.editarBancoAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{BancoUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

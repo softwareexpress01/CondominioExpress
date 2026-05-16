@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9505955e-0c2d-43ae-ae3e-8fd7f2605803">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombCondominio" class="java.lang.String"/>
+	<parameter name="numCuenta" class="java.lang.String"/>
+	<parameter name="tipoCuenta" class="java.lang.String"/>
+	<parameter name="nombBanco" class="java.lang.String"/>
+	<parameter name="saldoCuenta" class="java.lang.Double"/>
+	<parameter name="desde" class="java.lang.String"/>
+	<parameter name="hasta" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<field name="fecMovBan" class="java.lang.String"/>
+	<field name="tipoMovBan" class="java.lang.String"/>
+	<field name="refMovBan" class="java.lang.String"/>
+	<field name="conceptoMovBan" class="java.lang.String"/>
+	<field name="mtoMovBan" class="java.lang.Double"/>
+	<field name="abonoMovBan" class="java.lang.Double"/>
+	<variable name="totalAbono" class="java.lang.Double" resetType="Group" resetGroup="Cuenta" calculation="Sum">
+		<variableExpression><![CDATA[$F{abonoMovBan}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalCargo" class="java.lang.Double" resetType="Group" resetGroup="Cuenta" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoMovBan}]]></variableExpression>
+	</variable>
+	<group name="Cuenta">
+		<groupExpression><![CDATA[$P{numCuenta}]]></groupExpression>
+		<groupHeader>
+			<band height="5"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="66">
+				<staticText>
+					<reportElement x="299" y="7" width="59" height="20" forecolor="#CC0000" uuid="3a52e41a-c13a-490e-8c08-d01c4350c50a"/>
+					<textElement>
+						<font size="12" isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Totales:]]></text>
+				</staticText>
+				<textField evaluationTime="Group" evaluationGroup="Cuenta" pattern=" #,##0.00" isBlankWhenNull="true">
+					<reportElement x="456" y="6" width="98" height="20" forecolor="#CC0000" uuid="bd637ee1-7487-4f59-a14e-2a6c4e7ef05f"/>
+					<textElement textAlignment="Right">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalAbono}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="1" width="553" height="1" uuid="3723690f-c67d-4f9d-a3e4-550a258f9227"/>
+				</line>
+				<line>
+					<reportElement x="0" y="26" width="551" height="1" uuid="37914b49-d591-496c-a788-b7f69d3547f2"/>
+				</line>
+				<textField evaluationTime="Group" evaluationGroup="Cuenta" pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="368" y="7" width="88" height="20" forecolor="#CC0000" uuid="7ab75c1e-7f5b-48df-be61-ab6eb5983e19"/>
+					<textElement textAlignment="Right">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalCargo}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="123" splitType="Stretch">
+			<staticText>
+				<reportElement x="136" y="36" width="74" height="20" forecolor="#0000CC" uuid="73f4853b-9770-4be2-a760-2052ace9fa64"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condominio : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="211" y="36" width="208" height="20" uuid="8dd9127b-c207-4f15-b7ac-afaee53006f5"/>
+				<textFieldExpression><![CDATA[$P{nombCondominio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="471" y="6" width="91" height="20" uuid="1fb8253c-098a-441b-a876-caa0d15a5b08"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="210" y="59" width="128" height="20" forecolor="#0000CC" uuid="cc84c414-f7c6-4072-a69f-faeadfa7004a"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Movimientos Bancarios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="184" y="79" width="37" height="20" forecolor="#0000CC" uuid="b8829b03-1626-4296-9ffe-3c20dc94d438"/>
+				<text><![CDATA[Desde: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="79" width="35" height="20" forecolor="#0000CC" uuid="1274056a-f3db-48fd-b366-082f7df203f4"/>
+				<text><![CDATA[Hasta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="221" y="79" width="59" height="20" uuid="65c7dae0-e386-4535-9ff1-3f50c0be4864"/>
+				<textFieldExpression><![CDATA[$P{desde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="318" y="79" width="57" height="20" uuid="1f72bd76-fa6d-4c64-9ca0-2d75ad3f86ad"/>
+				<textFieldExpression><![CDATA[$P{hasta}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="6" y="0" width="99" height="74" uuid="57859342-326f-41db-91dc-239e2b12dd5e"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="71" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="44" width="38" height="20" uuid="1d0fd771-ad5f-4e90-a9a0-93686e3045a5"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="64" y="44" width="60" height="20" uuid="4aebd8a0-fca0-4b51-9299-056625551be8"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Movimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="194" y="42" width="60" height="20" uuid="ebf4d8d8-68f8-4610-8b1e-2fdd769f5c6b"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Referencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="255" y="44" width="49" height="20" uuid="743ab0ab-405c-4ad1-aa3b-b87b3312b02f"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Concepto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="410" y="44" width="42" height="20" uuid="4770b5c8-5c15-4c77-945d-a2864dacca40"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cargo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="510" y="44" width="34" height="20" uuid="78cc832c-6768-4828-8e1a-c32c153700ec"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Abono]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="66" width="553" height="1" uuid="f2ee6189-187a-46b9-beee-031048fc0203"/>
+			</line>
+			<line>
+				<reportElement x="1" y="10" width="551" height="1" uuid="9f3803f1-e983-4cdd-ae5d-f2ca2bb2d693"/>
+			</line>
+			<staticText>
+				<reportElement x="11" y="16" width="47" height="20" forecolor="#0000CC" uuid="4565b445-0a94-479a-bdf0-6ac26acd8a27"/>
+				<text><![CDATA[Cuenta : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="14" width="32" height="20" uuid="de086b6c-2aa7-418a-9fc4-32caf8c4e64d"/>
+				<text><![CDATA[Tipo: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="14" width="39" height="20" uuid="eb305b36-a80f-4f09-b1a6-a8c8bf005438"/>
+				<text><![CDATA[Banco:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="426" y="15" width="30" height="20" uuid="61ebbd11-4479-4a76-b824-3350882341ca"/>
+				<text><![CDATA[Saldo:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="37" width="551" height="1" uuid="cc272705-262b-4e56-9b36-40fbf67efd67"/>
+			</line>
+			<textField>
+				<reportElement x="64" y="15" width="133" height="20" uuid="bbb67ab9-fb4d-43a6-b9f1-42d385c0d31b"/>
+				<textFieldExpression><![CDATA[$P{numCuenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="15" width="67" height="20" uuid="f5585835-d402-4ef1-a22b-c45f25dda98c"/>
+				<textFieldExpression><![CDATA[$P{tipoCuenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="352" y="14" width="65" height="20" uuid="57a5c6f6-3a5b-42bd-863e-3332995dfafc"/>
+				<textFieldExpression><![CDATA[$P{nombBanco}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="477" y="15" width="77" height="20" uuid="456c7602-9da7-4cc6-be77-3d0549d8c8d3"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{saldoCuenta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="8" y="0" width="53" height="20" uuid="8f98d785-d3e4-45d2-b578-7d7a18f29538"/>
+				<textFieldExpression><![CDATA[$F{fecMovBan}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="78" y="0" width="116" height="20" uuid="24236970-df54-4aa4-822c-ce2932fec100"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoMovBan}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="257" y="0" width="124" height="20" uuid="d5a0a2b9-dbd3-4118-a471-f883c72f4f52"/>
+				<textFieldExpression><![CDATA[$F{conceptoMovBan}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="191" y="0" width="56" height="20" uuid="14fa2009-7a89-4303-84eb-650759caaa3f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{refMovBan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="398" y="0" width="57" height="20" uuid="d5474a74-7c09-40a8-b97a-acdd8daa090f"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{mtoMovBan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="484" y="0" width="61" height="20" uuid="f0742d77-84f8-4c3c-a464-310457a86ec8"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{abonoMovBan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement x="214" y="6" width="57" height="20" uuid="bd6c2284-b06d-4b44-8c25-1aa6d93712b4"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="275" y="6" width="40" height="20" uuid="1e0792a0-4b60-41ac-947a-36af8cfed5d7"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

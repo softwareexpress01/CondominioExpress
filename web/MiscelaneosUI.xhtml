@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">  
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:p="http://primefaces.org/ui">  
+
+    <h:head>
+        <title>Software Express Condominio</title>
+        <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+        <script language="javascript">
+            function Ayuda(tema)
+            {
+                var AWin;
+                AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                AWin.focus();
+            }
+        </script>
+
+        <f:facet name="first"> 
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        </f:facet>
+        <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+    </h:head>
+    <h:body>  
+
+        <h:form enctype="multipart/form-data" id="upload" >
+
+            <table width="100%" border="0" >
+                <tr>
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>
+                </tr>          
+            </table>      
+
+            <table width="100%" class="BarBkgnd">
+                <tr>
+                    <td align="left" width="1%">
+                        <td>
+                            <font color="#424242"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/></i></font>
+                        </td>
+                    </td>
+                    <td align="left" width="0%" >
+                        <td>
+                            <font color="#424242"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font>
+                        </td>
+                    </td>
+                    <td align="left" width="12%">
+                        <td>
+
+                        </td>
+                    </td>
+                </tr>
+            </table>
+            <br></br><br></br><br></br>
+
+            <h:messages globalOnly="true" infoClass="RegError"/>   
+
+            <div align="center"><font size="5" color="#424242">Informes de Indicadores de Gestión y Básicos</font></div>
+            <br></br>
+            <br></br>
+            
+            <div align="center">
+                <h:panelGrid columns="4" cellpadding="10" width="90%" >
+
+                    <h:panelGrid columns="1" cellpadding="10">
+
+                        <p:commandLink id="balance" actionListener="#{BalGenUI_Backing.generarReporteBalGen}" ajax="false" disabled ="#{BeanUsuario.informes}"> 
+                            <font size="3" color="#424242"><h:outputText value="Balance general" /></font>
+                        </p:commandLink>
+
+                        <p:commandLink id="distGasto" action="#{MenuPrincipalUI_Backing.distribucionDelGasto}" ajax="false" disabled ="#{BeanUsuario.informes}"> 
+                            <font size="3" color="#424242"><h:outputText value="Distribución del gasto" /></font>
+                        </p:commandLink>
+
+                        <p:commandLink id="Cobranza" actionListener="#{IndGestionCobranzaUI_Backing.generarReporteGestionCobranza}" ajax="false" disabled ="#{BeanUsuario.informes}"> 
+                            <font size="3" color="#424242"><h:outputText value="Indicador de cobranza" /></font>
+                        </p:commandLink>
+
+                        <p:commandLink id="pagos" actionListener="#{IndGestionCobranzaUI_Backing.generarReporteGestionCobranza}" ajax="false" disabled ="#{BeanUsuario.informes}"> 
+                            <font size="3" color="#424242"><h:outputText value="Indicador de pagos" /></font>
+                        </p:commandLink>
+
+                        <p:commandLink id="cxp" actionListener="#{InformesCxPUI_Backing.generarReporteCxPProveedor}" ajax="false" disabled ="#{BeanUsuario.informes}"> 
+                            <font size="3" color="#424242"><h:outputText value="Cuentas por pagar Proveedor" /></font>
+                        </p:commandLink>
+
+                        <p:commandLink id="cartelera" actionListener="#{InformesUI_Backing.generarReporteCartelera}" ajax="false" disabled ="#{BeanUsuario.informes}"> 
+                            <font size="3" color="#424242"><h:outputText value="Cartelera" /></font>
+                        </p:commandLink>                  
+                    </h:panelGrid>
+
+                    <p:graphicImage value="/images/reporte3.png" width="180" height="200"/>
+
+                    <h:panelGrid columns="1" cellpadding="10">
+                        <p:commandLink id="inmuebles" actionListener="#{InformesUI_Backing.generarReporteInmuebles}" ajax="false" disabled ="#{BeanUsuario.informes}"> 
+                            <font size="3" color="#424242"><h:outputText value="Inmuebles" /></font>
+                        </p:commandLink>
+
+                        <p:commandLink id="proveedores" actionListener="#{InformesCxPUI_Backing.generarReporteProveedores}" ajax="false" disabled ="#{BeanUsuario.informes}"> 
+                            <font size="3" color="#424242"><h:outputText value="Proveedores" /></font>
+                        </p:commandLink>
+
+                        <p:commandLink id="condominios" actionListener="#{InformesUI_Backing.generarReporteCondominios}" ajax="false" disabled ="#{BeanUsuario.informes}"> 
+                            <font size="3" color="#424242"> <h:outputText value="Condominios" /></font>
+                        </p:commandLink>
+
+                        <p:commandLink id="cuentas" actionListener="#{InformesCxPUI_Backing.generarReporteCuentas}" ajax="false" disabled ="#{BeanUsuario.informes}"> 
+                            <font size="3" color="#424242"><h:outputText value="Cuentas bancarias" /></font>
+                        </p:commandLink>
+
+                    </h:panelGrid>
+
+                </h:panelGrid>
+                <br></br>
+                <br></br>
+                <hr size="1" width="10%" align="center" color="#424242"></hr>
+            </div>
+        </h:form> 
+    </h:body>
+</html>

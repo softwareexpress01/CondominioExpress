@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="datosbasicos.modelos.Proveedor" table="PROVEEDORES"
+        dynamic-insert="true"
+        dynamic-update="true">
+        <id name="id" type="integer" column="ID_PROVEEDOR">
+            <generator class="increment" />
+        </id>
+
+        <property name="nombProveedor">
+            <column name="NOMB_PROVEEDOR" length="30"/>
+        </property>
+        <property name="CedRifProveedor">
+            <column name="CED_RIF_PROVEEDOR" length="10"/>
+        </property> 
+        <property name="dirProveedor">
+            <column name="DIR_PROVEEDOR" length="60"/>
+        </property>
+        <property name="emailProveedor" >
+            <column name="EMAIL_PROVEEDOR" length="30"/>
+        </property>
+        <property name="contactoProveedor" >
+            <column name="CONTACTO_PROVEEDOR" length="30"/>
+        </property>
+        <property name="tel1Proveedor" >
+            <column name="TEL_1_PROVEEDOR" length="13"/>
+        </property>
+        <property name="tel2Proveedor" >
+            <column name="TEL_2_PROVEEDOR" length="13"/>
+        </property>
+        <property name="telCelProveedor" >
+            <column name="TEL_CEL_PROVEEDOR" length="13"/>
+        </property>
+        <property name="edoProveedor" >
+            <column name="EDO_PROVEEDOR" length="3"/>
+        </property>
+        
+         
+        <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+           column="ID_CONDOMINIO" not-null = "true" />
+           
+        <bag cascade="save-update,delete" fetch="subselect" inverse="true" name="deudasPendientesCxP" >
+            <key column="ID_PROVEEDOR"/>
+            <one-to-many class="movimientos.modelos.DeudaPendCxP"/>
+        </bag>
+        
+        <bag cascade="save-update,delete" fetch="subselect" inverse="true" name="notasCredDebCxP" >
+            <key column="ID_PROVEEDOR"/>
+            <one-to-many class="movimientos.modelos.NotaCredDebCxP"/>
+        </bag>
+        
+        <bag name="pagosCxP" cascade="save-update,delete" 
+           fetch="subselect" inverse = "true">
+            <key column="ID_PROVEEDOR"/>
+            <one-to-many class="movimientos.modelos.PagoCxP" />
+        </bag> 
+        
+        
+    </class>
+</hibernate-mapping>
+

@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui" >
+
+    <f:view> 
+        <h:head>
+
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <!--       <link href="../css/primeFaces.css" rel="stylesheet" type="text/css"></link> -->
+            <script src="../css/CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="Software Express"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+
+                        <td align="right" width="25%">
+
+                            <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                            <h:commandLink action="#{ConfSolUI_Backing.salir}" immediate="true">
+                                <h:outputText value="Salir"/>
+                            </h:commandLink>
+                            <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+
+                        </td>
+                    </tr>
+                </table>
+                <br></br>
+                <h:messages globalOnly="true" infoClass="RegError"/> 
+                <div align="center"><h4>Confirmar Solicitudes de Suscripción </h4></div>
+
+                <hr size="1" width="45%"></hr>
+
+                <div align="center">
+                    <p>
+                        <h:commandButton value="Confirmar" action="#{ConfSolUI_Backing.registrarConfirmacion}" tabindex="8"/>  
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                        <h:commandButton value="Revertir Confirmación" action="revertirconfirmacion"/>
+
+                    </p>
+                </div>
+
+                <hr size="1" width="45%"></hr>
+
+                <div align="center">
+                    <p>
+                        <i><h:outputText value="Nro. de visitas a Software Express:"/></i>
+                        <font color="#0066cc"> <b><h:outputText value="#{BeanUsuario.contadorVisitas}"/></b></font>
+                    </p>
+                </div>     
+                <br></br>
+
+                <hr width="100%"></hr>
+                <h4><i>Solicitudes de Suscripción registradas.</i><font size="2"><i> Seleccione la(s) solicitud(es) a procesar</i></font></h4>
+
+
+                <p:dataTable id="TablaSolicitudes" rows="12" rowKey="#{co.id}"  emptyMessage=" " 
+                             value="#{ConfSolUI_Backing.solicitudesPorConfirmar}" paginatorPosition="bottom"
+                             var="co" paginator="true" 
+                             selection="#{ConfSolUI_Backing.solSeleccionadas}">    
+
+                    <p:column selectionMode="multiple" style="width:18px" />  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fechaMovSolString}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nombre"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombSuscriptor}"/>
+                    </p:column>
+
+                    <p:column >
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Apellido"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.apelSuscriptor}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Cédula/RIF"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.numCedSuscriptor}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Email"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.emailSuscriptor}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Teléfono Fijo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.telSuscriptor}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Celular"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.celSuscriptor}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Estado"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.edoSolSuscripcion}"/>
+                    </p:column>
+                </p:dataTable>
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

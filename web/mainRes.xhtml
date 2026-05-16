@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <f:view>
+        <h:head>
+            <title>Software Express Condominio</title>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+        </h:head>
+
+        <h:body>
+
+            <p:layout fullPage="true" >
+                
+                <p:layoutUnit id="top" position="north" size="90">
+
+                    <table  width="100%" border="0">
+                        <tr>
+                            <div align="center"><h1>
+                                    <h:graphicImage url="/logo3.jpg" height="60" width="400" />
+                                </h1></div>
+                        </tr>
+                    </table>
+                </p:layoutUnit>
+                
+                <p:layoutUnit id="left" position="west" size="300" resizable="true" closable="true" collapsible="true" header="Options" minSize="150" style =" font-size: small ">
+                    <p:accordionPanel style =" font-size: small ">
+                        <p:tab title="Menu 1">
+                            <br />
+                            <p:calendar mode="inline" navigator="none"/>
+                            <br />
+                        </p:tab>
+                        <p:tab title="Menu 2">
+                            <h:outputText value="Menu 2 Content" />
+                        </p:tab>
+                        <p:tab title="Menu 3">
+                            <h:outputText value="Menu 3 Content" />
+                        </p:tab>
+                    </p:accordionPanel>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="right" position="east" size="250" header="Gallery" resizable="true" closable="true" collapsible="true"
+                              style="text-align:center; font-size: small ">
+                    <p:commandButton id="basic" value="Show Dialog" onclick="dlg1.show();" type="button" style="margin-top:10px"/>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="center" position="center">
+
+                        <h:form>
+
+                            <p:tabView id="tabView" style =" font-size: small " >  
+
+                                <p:tab id="tab1" title="La empresa"  >  
+                                    <h:panelGrid columns="2" cellpadding="10">  
+                                        <p:graphicImage id="tab1Img" value="/images/vtlogo.jpg" />  
+                                        <h:outputText id="tab1Text"  
+                                                      value="The story begins as Don Vito Corleone, the head of a New York Mafia family, oversees his daughter's wedding.  
+                                                      His beloved son Michael has just come home from the war, but does not intend to become part of his father's business. T  
+                                                      hrough Michael's life the nature of the family business becomes clear. The business of the family is just like the head of the family, kind and benevolent to those who give respect,  
+                                                      but given to ruthless violence whenever anything stands against the good of the family." />          </h:panelGrid>  
+                                </p:tab>  
+
+                                <p:tab id="tab2" title="Software como servicio">  
+                                    <h:panelGrid columns="1" cellpadding="10">  
+                                        <p:graphicImage id="tab2Img"  value="/images/Cloud.png" />  
+                                        <h:outputText id="tab2Text" value="Es un nuevo modelo de prestación de servicios de negocio y tecnología, 
+                                                      que permite incluso al usuario acceder a un catálogo de servicios estandarizados y responder con ellos 
+                                                      a las necesidades de su negocio, de forma flexible y adaptativa, en caso de demandas no previsibles o 
+                                                      de picos de trabajo, pagando únicamente por el consumo efectuado, o incluso gratuitamente en caso de 
+                                                      proveedores que se financian mediante publicidad o de organizaciones sin ánimo de lucro."/>
+
+                                        <h:outputText id="tab21Text" value="              
+                                                      El cambio que ofrece la computación desde la nube es que permite aumentar el número de servicios basados en la red.
+                                                      Esto genera beneficios tanto para los proveedores, que pueden ofrecer, de forma más rápida y eficiente, un mayor 
+                                                      número de servicios, como para los usuarios que tienen la posibilidad de acceder a ellos, disfrutando de la 
+                                                      transparencia e inmediatez del sistema y de un modelo de pago por consumo. Así mismo, el consumidor ahorra los
+                                                      costes salariales o los costes en inversión económica (locales, material especializado, etc)."/>
+                                        <h:outputText id="tab22Text" value="        
+                                                      Computación en nube consigue aportar estas ventajas, apoyándose sobre una infraestructura tecnológica dinámica 
+                                                      que se caracteriza, entre otros factores, por un alto grado de automatización, una rápida movilización de los 
+                                                      recursos, una elevada capacidad de adaptación para atender a una demanda variable, así como virtualización avanzada y un precio flexible en función del consumo realizado, evitando además el uso fraudulento del software y la piratería.
+                                                      La computación en nube es un concepto que incorpora el software como servicio, como en la Web 2.0 y otros conceptos 
+                                                      recientes, también conocidos como tendencias tecnológicas, que tienen en común el que confían en Internet para 
+                                                      satisfacer las necesidades de cómputo de los usuarios."/>  
+                                    </h:panelGrid>  
+                                </p:tab>  
+
+                               
+                                <p:tab id="tab5" title="Servicios"  >  
+                                    <h:panelGrid columns="2" cellpadding="10" >  
+                                        <p:graphicImage id="tab5Img" value="/images/vtlogo.jpg" /> 
+                                        <table  width="100%" border="0">
+                                            <tr>
+                                                <h:outputText id="tab51Text" value="Atención al cliente" 
+                                                              style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                            </tr>   
+                                            <tr> 
+                                                <h:outputText id="tab5Text" value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.  
+                                                              Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate."/>  
+                                            </tr> 
+                                        </table>  
+                                    </h:panelGrid>  
+                                    <h:panelGrid columns="2" cellpadding="10" >  
+                                        <p:graphicImage id="tab512Img" value="/images/vtlogo.jpg" /> 
+                                        <table  width="100%" border="0">
+                                            <tr>
+                                                <h:outputText id="tab512Text" value="Suscripción" 
+                                                              style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                            </tr>   
+                                            <tr> 
+                                                <h:outputText id="tab513Text" value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.  
+                                                              Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate."/>  
+                                            </tr> 
+                                        </table>  
+                                    </h:panelGrid> 
+                                </p:tab>  
+                                 <p:tab id="tab3" title="Suscripciones y pagos" titleStyle="  ">  
+                                    <h:panelGrid columns="2" cellpadding="10">  
+                                        <p:graphicImage id="tab3Img" value="/images/vtlogo.jpg" />  
+                                        <h:outputText id="tab3Text" value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.  
+                                                      Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate."/>  
+                                    </h:panelGrid>  
+                                </p:tab>  
+                                <p:tab id="tab6" title="Condominio 4.0">  
+                                    <h:panelGrid columns="2" cellpadding="10">  
+                                        <p:graphicImage id="tab6Img" value="/images/vtlogo.jpg" />  
+                                        <h:outputText id="tab6Text" value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.  
+                                                      Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate."/>  
+                                    </h:panelGrid>  
+                                    <h:panelGrid columns="2" cellpadding="10">  
+                                        <p:graphicImage id="tab61Img" value="/images/vtlogo.jpg" />  
+                                        <h:outputText id="tab61Text" value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.  
+                                                      Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate."/>  
+                                    </h:panelGrid> 
+                                </p:tab>  
+                                <p:tab id="tab4" title="Contactenos">  
+                                    <h:panelGrid columns="2" cellpadding="10">  
+                                        <p:graphicImage id="tab4Img" value="/images/vtlogo.jpg" />  
+                                        <h:outputText id="tab4Text" value="After a break of more than 15 years, director Francis Ford Coppola and writer Mario Puzo returned to the well for this third and final story of the fictional Corleone crime family.  
+                                                      Two decades have passed, and crime kingpin Michael Corleone, now divorced from his wife Kay has nearly succeeded in keeping his promise that his family would one day be completely legitimate."/>  
+                                    </h:panelGrid>  
+                                </p:tab>  
+                            </p:tabView>  
+
+                            <h:commandLink action="bienvenida">
+                                <h:outputText value="click para ingresar al sistema.."></h:outputText>
+                            </h:commandLink>
+
+                        </h:form>
+
+                </p:layoutUnit>
+            </p:layout>
+
+            <p:dialog header="Basic Dialog" widgetVar="dlg1" modal="true">
+                <h:outputText value="Resistance to PrimeFaces is futile!" />
+            </p:dialog>
+
+        </h:body>
+    </f:view>
+</html>
+

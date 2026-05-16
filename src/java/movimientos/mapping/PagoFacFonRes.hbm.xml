@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : PagoFacFonRes.xml
+    Created on : January 14, 2013, 2:25 PM
+    Author     : Frank R.H.
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.PagoFacFonRes" table="PAGO_FAC_FONRES"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_PAGO_FAC_FONRES">
+            <generator class="increment" />
+        </id>
+               
+        <property name="mtoPagadoFonRes">
+            <column name="MTO_PAGO_FONRES" />
+        </property>
+        <property name="idFacFonRes">
+            <column name="ID_FAC_FONRES" />
+        </property>
+        <property name="discFacFonRes">
+            <column name="DISC_FAC_FONRES" length="3"/>
+        </property>
+                
+        <many-to-one name="pagoFonRes"  class="movimientos.modelos.PagoFonRes"
+                         column="ID_PAGO_FONRES" not-null = "true" />
+                        
+    </class>
+</hibernate-mapping>

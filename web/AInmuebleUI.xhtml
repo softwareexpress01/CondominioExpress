@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"> 
+    <f:view> 
+        <h:head>
+            <title>Ayuda de Software Express Condominio</title> 
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <div style="overflow:auto; height:380px;">
+                <h:form id="form"  >
+
+                    <table width="70%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <font face="Arial" size="3" color="#009933"><h:outputText value="Indice"></h:outputText></font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="AConfiguracionInic.xhtml">Primeros pasos:Configuración inicial</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Funcionalidad">Funcionalidad</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Diseño de pagina">Diseño de página</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Descripcion de datos de entrada">Descripción de datos de entrada</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+
+                        <tr>
+                            <td with="10">
+                                <a name="Funcionalidad">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Funcionalidad"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Esta página permite, como parte del proceso de configuración del sistema, registrar y actualizar información de <i><b> Inmuebles </b></i>. En el contexto de este sistema, un <i>inmueble</i> es una parte componente de una propiedad
+                                    . Pueden ser de diferentes tipos: apartamentos, locales, terrenos, etc. El registro y actualización de los datos de un inmueble, se realiza a través de las siguientes acciones: 
+                                    <i><b> Agregar</b></i>, para el ingreso de la información del inmueble, tales como código del inmueble, dirección, teléfonos,propietario, etc. <i><b>Modificar</b></i>, la cual permite la actualización de los datos ya registrados del inmueble, y 
+                                    <i><b>Eliminar</b></i>, que procede con la eliminación de toda la información registrada para el inmueble seleccionado.
+                                    Como puede notarse en la sección del diseño de página y funcionamiento, los botones de acción se activan dependiendo del requerimiento. El bot+on Agregar, esta activo la primera vez que se entra a la página y los botones de Modificar y Eliminar, solo
+                                    se activan cuando se ha seleccionado un registro de un inmueble del panel inferior.
+                                </font></td>
+                        </tr>    
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Diseño de página">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Diseño de página y funcionamiento"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Se ha mantenido un diseño de formato estándar para cada una de las páginas del sistema. A continuación, se muestra un ejemplo de uno 
+                                    de los tipos de pantalla que aparecen con mayor frecuencia en la aplicación, junto con una breve descripción de sus elementos mas importantes.
+                                </font></td>
+                        </tr>    
+                    </table>
+
+                    <table width="100%" border="0" align="left">
+                        <tr>
+                            <img src="../images/modeloPagina1.png" alt="modeloPagina1" height="90%" width="90%" ></img>
+                        </tr>   
+                    </table>
+                    <table width="85%" border="0" align="left">
+
+                        <tr  height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/uno.png" alt="uno" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Usuario actualmente activo</font>
+                            </td>
+                        </tr>
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/dos.png" alt="dos" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Condominio actual</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/tres.png" alt="tres" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Propiedad actual</font>
+                            </td>
+                        </tr>   
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/cuatro.png" alt="cuatro" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2" >
+                                <font face="Arial" size="1" align ="left" >Lleva a la página que permite seleccionar otro condominio y/o propiedad</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/cinco.png" alt="cinco" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Lleva a la página anterior</font>
+                            </td>
+                        </tr> 
+                        <tr  height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/seis.png" alt="seis" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Abre la página de ayuda</font>
+                            </td>
+                        </tr>
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/siete.png" alt="siete" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Panel 1: permite ingresar los datos a registrar</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/ocho.png" alt="ocho" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Botones de acción, permiten agregar, modificar y eliminar la información contenida en el panel 1</font>
+                            </td>
+                        </tr>   
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/nueve.png" alt="nueve" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2" >
+                                <font face="Arial" size="1" align ="left" >Panel 2: Muestra la información registrada mediante el panel 1</font>
+                            </td>
+                        </tr> 
+                        <tr height="40%" >
+                            <td with="1"  align="center">
+                                <img src="../images/diez.png" alt="diez" height="60%" width="60%" ></img> 
+                            </td>
+                            <td valign="middle" with="2">
+                                <font face="Arial" size="1" align ="left" >Permite seleccionar de este mismo panel información a modificar o eliminar. Al hacer click sobre el, 
+                                    se transmite el registro seleccionado al panel 1 y  se habilitan los botones de modificar y eliminar</font>
+                            </td>
+                        </tr> 
+                    </table>
+                    
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="80%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Descripción de datos de entrada">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Descripción de datos de entrada"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">En esta sección, se muestra una descripción de los datos de entrada de esta página, 
+                                    así como también, los tipos de datos y rangos válidos en los casos en que aplique.
+                                </font></td>
+                        </tr>  
+
+                    </table>
+
+                    <table width="85%" border="1" align="left">
+                        <tr bgcolor="#e6e6fa" >
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Dato entrada"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Descripción"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Tipo y restricciones"></h:outputText></b></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Código del inmueble"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el código que identifica a cada inmueble. Se sugiere usar el nombre real del mismo. 
+                                                                          Ejemplos: 2A, 36, E54"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta conbinaciones de letras, números y algunos caracteres especiales"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Propietario"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el nombre del propietario del inmueble."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta caracteres alfabéticos y espacios en blanco"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="CI/RIF"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es la cédula de identidad o el rif de propietario (empresas).
+                                                                          Ejemplos: V5986742 o v5986742, v5.986.742, J2654656-o, etc"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Los números de cédula deben comenzar con V o v, los rif con j, J o g, G. "></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Dirección"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es la dirección del inmueble, puede resumirse con solo los datos que agreguen valor.
+                                                                          Por ejemplo: Nro 3G piso 3"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta caracteres alfanuméricos y algunos caracteres especiales"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Teléfono"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el teléfono del inmueble"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solo caracteres numéricos, el cédigo de cuatro digitos, mas el numero de teléfono en sin mismo"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Correo electrónico"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el correo electrónico del propietario/inquilino del inmueble"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta el formato de email, por ejemplo: nombreinquilino@cantv.net"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Tipo inmueble"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el tipo de inmueble, puede seleccionarse cualquiera de las opciones mostradas"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Ninguna"></h:outputText></font>
+                            </td> 
+                        </tr>
+                         <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Area(mts 2)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el área del inmueble en metros cuadrados. Ejemplos: 20, 96.5"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta números enteros y decimales. Usar punto decimal"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Alícuota(%)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el alícuota asignada a cada inmueble. Ejemplos: 0.58, 10.0, 0.5"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta números enteros y decimales. Usar punto decimal"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Nota particula recibo"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es un mensaje que aparecera en el recibo del inmueble. Ejemplo: Gracias por su pago!"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta caracteres alfanuméricos y algunos caracteres especiales"></h:outputText></font>
+                            </td> 
+                        </tr>
+                    </table>
+
+                </h:form>
+            </div>
+        </body>
+    </f:view> 
+</html> 

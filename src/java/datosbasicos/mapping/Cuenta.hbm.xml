@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="datosbasicos.modelos.Cuenta" table="CUENTAS"
+        dynamic-insert="true"
+        dynamic-update="true">
+        <id name="id" type="integer" column="ID_CUENTA">
+            <generator class="increment" />
+        </id>
+
+        <property name="nombBanco">
+            <column name="NOMB_BANCO" length="30"/>
+        </property>
+        <property name="numCuenta">
+            <column name="NUM_CUENTA" length="23"/>
+        </property>
+        <property name="tipoCuenta">
+            <column name="TIPO_CUENTA" length="9"/>
+        </property> 
+        <property name="saldoIniCuenta">
+            <column name="SALDO_INI_CUENTA" />
+        </property> 
+        <property name="saldoActCuenta">
+            <column name="SALDO_ACT_CUENTA" />
+        </property> 
+        <property name="edoCuenta">
+            <column name="EDO_CUENTA" length="3"/>
+        </property> 
+         
+        <many-to-one name="banco"  class="datosbasicos.modelos.Banco"
+           column="ID_BANCO" not-null = "true" />
+
+        <bag name="chequeras" cascade="save-update,delete" 
+           fetch="subselect"  inverse = "true"
+            order-by="NUM_CHEQUERA desc" >
+            <key column="ID_CUENTA"/>
+            
+            <one-to-many class="datosbasicos.modelos.Chequera" />
+        </bag>
+        
+        <bag cascade="save-update,delete" fetch="subselect" inverse="true" name="movBancarios" order-by="FEC_MOVBANCARIO desc">
+            <key column="ID_CUENTA"/>
+            <one-to-many class="movimientos.modelos.MovBancario"/>
+        </bag>
+        
+        <bag cascade="save-update,delete" fetch="subselect" inverse="true" name="fondos" >
+            <key column="ID_CUENTA"/>
+            <one-to-many class="datosbasicos.modelos.Fondo"/>
+        </bag>
+        
+    </class>
+</hibernate-mapping>
+

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function openWin(){
+                    window.open('ElimChequeraUI.xhtml','window','width=750,height=400');
+                }
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('AChequeraUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Crear y Actualizar Chequeras</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <table width="70%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="6" border="0">
+
+                                <h:outputLabel value="Bancos" for="idBanco" />                             
+                                <h:selectOneMenu value="#{ChequeraUI_Backing.idBanco}" id="idBanco" tabindex="1"
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{ChequeraUI_Backing.bancosPorCondominio}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Cuentas " for="idCuenta" />                             
+                                <h:selectOneMenu value="#{ChequeraUI_Backing.idCuenta}" id="idCuenta" tabindex="2"
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{ChequeraUI_Backing.cuentasPorBanco}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Estado" for="edoChequera" /> 
+                                <h:selectOneMenu value="#{ChequeraUI_Backing.edoChequera}" id="edoChequera" tabindex="4" >
+                                    <f:selectItem  itemLabel="Activa" itemValue="Activa" />
+                                    <f:selectItem  itemLabel="Inactiva" itemValue="Inactiva" />
+                                    <f:selectItem  itemLabel="Terminada" itemValue="Terminada" />
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Número de Chequera " for="numChequera" /> 
+                                <h:inputText required="false" id="numChequera" size ="9"  maxlength="3"
+                                             value="#{ChequeraUI_Backing.numChequera}" tabindex="3"/>
+
+                                <h:outputLabel value="Nro. de cheques" for="cantCheques" /> 
+                                <h:inputText required="false" id="cantCheques" size ="9"  maxlength ="3"
+                                             value="#{ChequeraUI_Backing.cantCheques}" tabindex="5"/>
+
+                                <h:outputLabel value="Primer Cheque " for="primerCheque" /> 
+                                <h:inputText required="false" id="primerCheque" size ="9"  maxlength ="3"
+                                             value="#{ChequeraUI_Backing.primerCheque}" tabindex="6"/>
+
+                                <h:outputLabel value="Último Cheque " for="ultimoCheque" /> 
+                                <h:inputText required="false" id="ultimoCheque" size ="9"  maxlength ="3"
+                                             value="#{ChequeraUI_Backing.ultimoCheque}" tabindex="7"/>
+
+                            </h:panelGrid>
+                        </td>  
+
+                    </tr>  
+
+                </table>
+
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{ChequeraUI_Backing.registrarChequera}" tabindex="8" 
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{ChequeraUI_Backing.modificarChequera}" tabindex="9"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="10"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Chequeras registradas.</i><font size="2"><i> Seleccione la Chequera a modificar/eliminar</i></font></h4>
+
+
+                <p:dataTable id="TablaChequeras" rows="5" rowKey="#{co.id}"   
+                             value="#{ChequeraUI_Backing.chequerasPorCuenta}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage=" " 
+                             selection="#{ChequeraUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Número de Chequera"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.numChequera}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Estado"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.edoChequera}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Cantida de Cheques"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.cantCheques}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Primer Cheque"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.primerCheque}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Último Cheque"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.ultimoCheque}"/>
+                    </p:column>
+
+
+                    <p:column>
+                        <h:commandLink action="#{ChequeraUI_Backing.editarChequeraAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{ChequeraUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+
+    </f:view> 
+</html> 

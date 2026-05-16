@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="tipoFac" class="java.lang.String">
+		<defaultValueExpression><![CDATA[$P{tipoFac}]]></defaultValueExpression>
+	</parameter>
+	<field name="nombPropiedad" class="java.lang.String"/>
+	<field name="codInmueble" class="java.lang.String"/>
+	<field name="desAlicuota" class="java.lang.String"/>
+	<field name="mtoAlicuota" class="java.lang.Double"/>
+	<field name="saldoAlicuota" class="java.lang.Double"/>
+	<field name="edoAlicuota" class="java.lang.String"/>
+	<variable name="totalMontoAlicuota" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoAlicuota}]]></variableExpression>
+		<initialValueExpression><![CDATA[new java.lang.Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalSaldoAlicuota" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoAlicuota}]]></variableExpression>
+		<initialValueExpression><![CDATA[new java.lang.Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="subTotalMontoAlicuota" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoAlicuota}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<variable name="subTotalSaldoAlicuota" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoAlicuota}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<group name="Propiedad">
+		<groupExpression><![CDATA[$F{nombPropiedad}]]></groupExpression>
+		<groupHeader>
+			<band height="22">
+				<textField>
+					<reportElement x="80" y="0" width="57" height="20"/>
+					<textElement>
+						<font size="10" isBold="true" isItalic="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nombPropiedad}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="12" y="0" width="59" height="20" forecolor="#0000FF"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Propiedad:]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="41">
+				<staticText>
+					<reportElement x="281" y="12" width="44" height="20" forecolor="#CC0000"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[sub total :]]></text>
+				</staticText>
+				<line>
+					<reportElement x="12" y="4" width="530" height="1"/>
+				</line>
+				<line>
+					<reportElement x="11" y="38" width="531" height="1"/>
+				</line>
+				<textField pattern=" #,##0.00" isBlankWhenNull="true">
+					<reportElement x="326" y="13" width="81" height="20" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{subTotalMontoAlicuota}]]></textFieldExpression>
+				</textField>
+				<textField pattern=" #,##0.00" isBlankWhenNull="true">
+					<reportElement x="407" y="13" width="81" height="20" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{subTotalSaldoAlicuota}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="5" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="85" splitType="Stretch">
+			<staticText>
+				<reportElement x="222" y="4" width="136" height="20" forecolor="#0000FF"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Alicuotas Generadas  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="202" y="29" width="175" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[(Calculadas segun :                   )]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="312" y="29" width="51" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tipoFac}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="137" y="59" width="55" height="20"/>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Inmueble]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="242" y="59" width="56" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="351" y="59" width="45" height="20"/>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="428" y="59" width="47" height="20"/>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Saldo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="485" y="59" width="43" height="20"/>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Estado]]></text>
+			</staticText>
+			<line>
+				<reportElement x="12" y="54" width="530" height="1"/>
+			</line>
+			<line>
+				<reportElement x="13" y="79" width="529" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="3" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="188" y="2" width="142" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{desAlicuota}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="334" y="2" width="76" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{mtoAlicuota}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="416" y="2" width="73" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{saldoAlicuota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="498" y="2" width="43" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{edoAlicuota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="133" y="2" width="55" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{codInmueble}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="34" splitType="Stretch">
+			<staticText>
+				<reportElement x="286" y="7" width="40" height="20" forecolor="#CC0000"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField evaluationTime="Group" evaluationGroup="Propiedad" pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="326" y="7" width="81" height="20" printWhenGroupChanges="Propiedad" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalMontoAlicuota}]]></textFieldExpression>
+			</textField>
+			<textField pattern=" #,##0.00" isBlankWhenNull="true">
+				<reportElement x="407" y="7" width="81" height="20" printWhenGroupChanges="Propiedad" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalSaldoAlicuota}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="12" y="31" width="530" height="1"/>
+			</line>
+			<line>
+				<reportElement x="11" y="2" width="530" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

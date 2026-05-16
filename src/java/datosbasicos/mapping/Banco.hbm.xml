@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="datosbasicos.modelos.Banco" table="BANCOS"
+        dynamic-insert="true"
+        dynamic-update="true">
+        <id name="id" type="integer" column="ID_BANCO">   
+            <generator class="increment" />
+        </id>
+
+        <property name="nombBanco">
+            <column name="NOMB_BANCO" length="30"/>
+        </property>
+        <property name="nombOficBanco">
+            <column name="NOMB_OFIC_Banco" length="30"/>
+        </property>
+        
+        <property name="telBanco">
+            <column name="TEL_BANCO" length="13"/>
+        </property>
+        <property name="edoBanco">
+            <column name="EDO_BANCO" length="3"/>
+        </property>
+         
+        <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+           column="ID_CONDOMINIO" not-null = "true" />
+           
+        <bag name="cuentas" cascade="save-update,delete" 
+            fetch="subselect"  inverse = "true"
+            order-by="NUM_CUENTA desc" >
+            <key column="ID_BANCO"/>
+            
+            <one-to-many class="datosbasicos.modelos.Cuenta" />
+        </bag>
+        
+    </class>
+</hibernate-mapping>
+

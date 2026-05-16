@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Categoria.hbm.xml
+    Created on : February 5, 2012, 7:59 AM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="datosbasicos.modelos.Inmueble" table="INMUEBLES"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_INMUEBLE">
+            <generator class="increment" />
+        </id>
+        
+        <property name="codInmueble">
+            <column name="COD_INMUEBLE" length="30"/>
+        </property>
+        <property name="nombPropInmueble">
+            <column name="NOMB_PROP_INMUEBLE" length="30"/>
+        </property>
+        <property name="cedRifPropInmueble">
+            <column name="CED_RIF_PROP_INMUEBLE" length="10"/>
+        </property>
+        <property name="dirInmueble">
+            <column name="DIR_INMUEBLE" length="60"/>
+        </property>
+        <property name="telInmueble">
+            <column name="TEL_INMUEBLE" length="13"/>
+        </property>
+        <property name="emailPropInmueble">
+            <column name="EMAIL_PROP_INMUEBLE" length="30"/>
+        </property>
+        <property name="tipoInmueble">
+            <column name="TIPO_INMUEBLE" length="20"/>
+        </property>
+        <property name="areaInmueble">
+            <column name="AREA_INMUEBLE"/>
+        </property>
+        <property name="alicInmueble">
+            <column name="ALIC_INMUEBLE"/>
+        </property>
+        <property name="notaRecInmueble">
+            <column name="NOTA_RECIBO_INMUEBLE" length="60"/>
+        </property>
+        <property name="idProp">
+            <column name="ID_PROP" length="10"/>
+        </property>
+        
+        <many-to-one name="propiedad"  class="datosbasicos.modelos.Propiedad"
+           column="ID_PROPIEDAD" not-null = "true" />    
+           
+        <bag name="notasCredDebCxC" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_INMUEBLE"/>
+            <one-to-many class="movimientos.modelos.NotaCredDebCxC" />
+        </bag>  
+        
+        <bag name="deudasPendientesCxC" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_INMUEBLE"/>
+            <one-to-many class="movimientos.modelos.DeudaPendCxC" />
+        </bag>  
+        
+        <bag name="facturasGNC" cascade="save-update,delete" 
+           fetch="subselect" inverse = "true">
+            <key column="ID_INMUEBLE"/>
+            <one-to-many class="movimientos.modelos.FacGastoNoComun" />
+        </bag>  
+        
+        <bag name="facturasCuotaEsp" cascade="save-update,delete" 
+           fetch="subselect" inverse = "true">
+            <key column="ID_INMUEBLE"/>
+            <one-to-many class="movimientos.modelos.FacCuotaEsp" />
+        </bag>  
+        
+        <bag name="pagoCxC" cascade="save-update,delete" 
+           fetch="subselect" inverse = "true">
+            <key column="ID_INMUEBLE"/>
+            <one-to-many class="movimientos.modelos.PagoCxC" />
+        </bag> 
+        
+        <bag name="alicuotas" cascade="save-update,delete" 
+           fetch="subselect" inverse = "true">
+            <key column="ID_INMUEBLE"/>
+            <one-to-many class="movimientos.modelos.Alicuota" />
+        </bag>  
+        
+        <bag name="pagosAdelantados" cascade="save-update,delete" 
+           fetch="subselect" inverse = "true">
+            <key column="ID_INMUEBLE"/>
+            <one-to-many class="movimientos.modelos.PagoAdelantado" />
+        </bag>  
+        
+        <many-to-one name="codigoAcceso" class = "acceso.modelos.CodigoAcceso" 
+                     column= "ID_CODIGO_ACCESO" cascade="save-update,delete" unique= "true"/> 
+        
+                                
+    </class>
+</hibernate-mapping>

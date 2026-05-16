@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title> 
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>   
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+
+        <h:body>
+            <script>
+                
+window.status = "Some text in the status bar!!";
+</script>
+            <h:form id="principal"> 
+                <p:growl id="messages" /> 
+                <p:layout id="principal" style="min-width:500px;min-height:1000px">
+                    <style type="text/css">
+                        .ui-panelmenu {background-color: white!important; font-size: small!important;}
+                        .ui-panelmenu-header {background: #DDD!important; font-size: small!important; }
+                        .ui-menuitem {background-color: white!important;font-size: small!important;}
+                    </style>
+                    <p:layoutUnit position="west" resizable="true" size="" minSize="30" maxSize="300" >
+
+                        <p:panelMenu style=".ui-panelmenu" widgetVar="Opciones" rendered="true"   >  
+                            <p:submenu label="Datos Básicos" >
+                                <p:submenu label="Internos">
+                                    <p:menuitem value="Condominios" action="#{MenuPrincipalUI_Backing.datosCondominio}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.datosBasicos}"/> 
+                                    <p:menuitem value="Propiedades" action="#{MenuPrincipalUI_Backing.datosPropiedades}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.datosBasicos}"/> 
+                                    <p:menuitem value="Inmuebles" action="#{MenuPrincipalUI_Backing.datosInmuebles}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.inmuebles}"/>
+                                    <p:menuitem value="Categorias" action="#{MenuPrincipalUI_Backing.datosCategorias}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.datosBasicos}"/>
+                                    <p:menuitem value="Conceptos" action="#{MenuPrincipalUI_Backing.datosConceptos}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.datosBasicos}"/>
+                                </p:submenu>
+                                <p:submenu label="Externos">
+                                    <p:menuitem value="Proveedores" action="#{MenuPrincipalUI_Backing.datosProveedores}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.datosBasicos}"/>
+                                    <p:menuitem value="Bancos" action="#{MenuPrincipalUI_Backing.datosBancos}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.datosBasicos}"/>
+                                    <p:menuitem value="Cuentas" action="#{MenuPrincipalUI_Backing.datosCuentas}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.datosBasicos}"/>
+                                    <p:menuitem value="Fondos" action="#{MenuPrincipalUI_Backing.datosFondos}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.datosBasicos}"/>
+                                    <p:menuitem value="Chequeras" action="#{MenuPrincipalUI_Backing.datosChequeras}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.datosBasicos}"/>
+                                </p:submenu>
+                            </p:submenu>
+                            <p:submenu label="Movimientos del mes">
+                                <p:submenu label="Gastos Comunes">
+                                    <p:menuitem value="Ordinarios" action="#{MenuPrincipalUI_Backing.gastosComunesOrd}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.movMes}"/>
+                                    <p:menuitem value="Extraordinarios" action="#{MenuPrincipalUI_Backing.gastosComunesExt}" icon="ui-icon-extlink" ajax="false" disabled="#{BeanUsuario.movMes}" />
+                                </p:submenu>
+                                <p:submenu label="Varios">
+                                    <p:menuitem value="Gastos no comunes" action="#{MenuPrincipalUI_Backing.gastosNoComunes}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/>  
+                                    <p:menuitem value="Fondos generales" action="#{MenuPrincipalUI_Backing.fondosGenerales}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/> 
+                                    <p:menuitem value="Cuotas especiales" action="#{MenuPrincipalUI_Backing.cuotasEspeciales}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/>  
+                                    <p:menuitem value="Mov. bancarios" action="#{MenuPrincipalUI_Backing.movBancarios}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/> 
+                                    <p:menuitem value="Ajustes" action="#{MenuPrincipalUI_Backing.ajustesCond}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/> 
+                                </p:submenu>
+                                <p:submenu label="Cuentas por Cobrar">
+                                    <p:menuitem value="Pagos por inmuebles" action="#{MenuPrincipalUI_Backing.pagosPorInmueble}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/>
+                                    <p:menuitem value="Revertir pagos CxC" action="#{MenuPrincipalUI_Backing.revertirPagosCxC}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/>
+                                    <p:menuitem value="Notas crédito/débito" action="#{MenuPrincipalUI_Backing.notaCredDebCxC}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}" />
+                                    <p:menuitem value="Pago adelantado" action="#{MenuPrincipalUI_Backing.pagoAdelantado}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/>
+                                    <p:menuitem value="Deuda pendiente" action="#{MenuPrincipalUI_Backing.deudaPendienteCxC}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/>
+                                </p:submenu>
+                                <p:submenu label="Cuentas x pagar"  > 
+                                    <p:menuitem value="Deuda Pendiente" action="#{MenuPrincipalUI_Backing.deudaPendienteCxP}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/>  
+                                    <p:menuitem value="Notas de Crédito" action="#{MenuPrincipalUI_Backing.notaCredDebCxP}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/>  
+                                    <p:menuitem value="Pagos/Abonos" action="#{MenuPrincipalUI_Backing.pagosAbonosCxP}" icon="ui-icon-extlink"  ajax="false" disabled ="#{BeanUsuario.movMes}"/>  
+                                    <p:menuitem value="Revertir Pagos CxP" action="#{MenuPrincipalUI_Backing.revertirPagoCxP}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/> 
+                                    <p:menuitem value="Pagos Fondos" action="#{MenuPrincipalUI_Backing.pagosFonRes}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/>
+                                    <p:menuitem value="Revertir Pagos Fondos" action="#{MenuPrincipalUI_Backing.revertirPagosFonRes}" icon="ui-icon-extlink" ajax="false" disabled ="#{BeanUsuario.movMes}"/>
+                                </p:submenu>
+                            </p:submenu>
+                            <p:submenu label="Informes">
+                                <p:submenu label="Proveedores" id="proveedor">
+                                    <p:menuitem value="Estado de cuenta" action="#{MenuPrincipalUI_Backing.generarEdoCuentaProveedor}" ajax="false" disabled ="#{BeanUsuario.informes}" icon="ui-icon-extlink"/>  
+                                    <p:menuitem value="Pagos proveedor" action="#{MenuPrincipalUI_Backing.generarReportePagosProveedor}" ajax="false" disabled ="#{BeanUsuario.informes}" icon="ui-icon-extlink"/>
+                                </p:submenu>
+                                <p:submenu label="Generales">
+                                    <p:menuitem value="Ind. Gestión y Básicos" action="#{MenuPrincipalUI_Backing.miscelaneos}" ajax="false" icon="ui-icon-extlink" update="panel1"/>
+                                </p:submenu>
+                                <p:submenu label="Inmuebles">
+                                    <p:menuitem value="Estados de cuenta" action="#{MenuPrincipalUI_Backing.edoCtaInmueble}" ajax="false" disabled ="#{BeanUsuario.informes}" icon="ui-icon-extlink"/>
+                                    <p:menuitem value="Avisos de cobro" action="#{MenuPrincipalUI_Backing.generarAvisosDeCobro}" ajax="false" disabled ="#{BeanUsuario.informes}" icon="ui-icon-extlink"/>
+                                    <p:menuitem value="Pagos recibidos" action="#{MenuPrincipalUI_Backing.generarReportePagosInm}" ajax="false" disabled ="#{BeanUsuario.informes}" icon="ui-icon-extlink" />
+                                    <p:menuitem value="Correspondencia" action="#{MenuPrincipalUI_Backing.generarCorrespondencia}" ajax="false" disabled ="#{BeanUsuario.informes}" icon="ui-icon-extlink" id="correspondencia"/>
+                                </p:submenu>
+                                <p:submenu label="Recibos">
+                                    <p:menuitem value="Pagos de cxc" action="#{MenuPrincipalUI_Backing.recibosCxC}" ajax="false" disabled ="#{BeanUsuario.informes}" icon="ui-icon-extlink"/>
+                                    <p:menuitem value="Pagos adelantados" action="#{MenuPrincipalUI_Backing.recibosPagoAdel}" ajax="false" disabled ="#{BeanUsuario.informes}" icon="ui-icon-extlink"/>
+                                </p:submenu>
+                                <p:submenu label="Cuentas bancarias" icon="ui-icon-document"  > 
+                                    <p:menuitem value="Movimientos" action="#{MenuPrincipalUI_Backing.movimientosCta}" ajax="false" disabled ="#{BeanUsuario.informes}" icon="ui-icon-extlink"/>  
+                                </p:submenu>
+                                <p:submenu label="Transacciones" icon="ui-icon-document"  > 
+                                    <p:menuitem value="Movimientos/mes" action="#{MenuPrincipalUI_Backing.generarReporteMovDelMes}" ajax="false" disabled ="#{BeanUsuario.informes}" icon="ui-icon-extlink"/> 
+                                </p:submenu> 
+                            </p:submenu>
+                            <p:submenu label="Configuración" icon="ui-icon-extlink"> 
+                                <p:submenu label="Basica (cont...)" icon="ui-icon-document"  > 
+                                    <p:menuitem value="Logo" action="#{MenuPrincipalUI_Backing.configurarLogo}" ajax="false" disabled="#{BeanUsuario.configuracion}" icon="ui-icon-extlink"/>  
+                                    <p:menuitem value="Parámetros" action="#{ConfiguracionUI_Backing.buscarParametro}" ajax="false" disabled="#{BeanUsuario.configuracion}" icon="ui-icon-extlink"/> 
+                                    <p:menuitem value="Perfiles usuario" action="#{MenuPrincipalUI_Backing.perfilesUsuario}" ajax="false" disabled="#{BeanUsuario.configuracion}" icon="ui-icon-extlink"/>  
+                                    <p:menuitem value="Registrar Tasas" action="#{MenuPrincipalUI_Backing.registrarTasas}" ajax="false" disabled="#{BeanUsuario.configuracion}" icon="ui-icon-extlink"/>  
+                                </p:submenu> 
+                            </p:submenu>  
+                            <p:submenu label="Administración" icon="ui-icon-extlink">  
+                                <p:submenu label="Cierres Mensuales" icon="ui-icon-document"  >
+                                    <p:menuitem value="Preliminar" action="#{MenuPrincipalUI_Backing.cierrePreliminar}" ajax="false" disabled ="#{BeanUsuario.admin}" icon="ui-icon-extlink"/>  
+                                    <p:menuitem value="Definitivo" action="#{MenuPrincipalUI_Backing.cierreMensual}" ajax="false" disabled ="#{BeanUsuario.admin}" icon="ui-icon-extlink"/>  
+                                </p:submenu>
+                            </p:submenu>
+                            <p:submenu label="Seleccionar condominio" icon="ui-icon-extlink">
+                                <p:menuitem value="Selec. Condominio"  action="#{MenuPrincipalUI_Backing.irASeleccionarCondominio}" ajax="false"  icon="ui-icon-extlink"/>
+                            </p:submenu>
+                            <p:submenu label="Salir" icon="ui-icon-extlink">
+                                <p:menuitem value="Software Express"  url="http://www.softwareexpress.com.ve"  icon="ui-icon-extlink"/> 
+                                <p:menuitem value="Blog"  action="#{MenuPrincipalUI_Backing.mostrarBlog}" ajax="false"  icon="ui-icon-extlink"/>
+                            </p:submenu>
+                            <p:submenu label="Operaciones" icon="ui-icon-extlink" rendered="#{BeanUsuario.operaciones}"> 
+                                <p:submenu label="Suscripciones" icon="ui-icon-pencil"> 
+                                    <p:menuitem value="Confirmar solicitudes " action="#{MenuPrincipalUI_Backing.confirmarSolicitudesSus}" ajax="false"   rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink" />  
+                                    <p:menuitem value="Revertir solicitudes" action="#{MenuPrincipalUI_Backing.revertirConfirmacionesSolSus}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink" />  
+                                    <p:menuitem value="Planes" action="#{MenuPrincipalUI_Backing.registrarPlanes}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/>  
+                                    <p:menuitem value="Actualizar Suscripciones" action="#{MenuPrincipalUI_Backing.buscarSuscripcion}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/> 
+                                </p:submenu>
+                                <p:submenu label="Pagos Mensuales" icon="ui-icon-pencil">
+                                    <p:menuitem value="Confirmar pagos mensuales" action="#{MenuPrincipalUI_Backing.pagosMensuales}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/> 
+                                    <p:menuitem value="Revertir pagos mensuales" action="#{MenuPrincipalUI_Backing.revertirPagosMensuales}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/>
+                                </p:submenu>
+                                <p:submenu label="Informes" icon="ui-icon-document">
+                                    <p:menuitem value="Suscripciones pendientes" actionListener="#{SolSusPendUI_Backing.generarReporteSolSusPend}" ajax="false" rendered ="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/>  
+                                    <p:menuitem value="Pagos pendientes" actionListener="#{OperacionesUI_Backing.generarReportePagosPendientes}" ajax="false" rendered ="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/>  
+                                    <p:menuitem value="Consulta suscripciones" action="#{MenuPrincipalUI_Backing.datosConsultarSuscripcion}" ajax="false" rendered ="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/> 
+                                    <p:menuitem value="Cobros" action="#{CobSuscripcionUI_Backing.generarReporteCobSuscripcion}" ajax="false" update="messages" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/> 
+                                </p:submenu> 
+                                <p:submenu label="Varios" icon="ui-icon-document">
+                                    <p:menuitem value="Términos y condiciones" action="#{MenuPrincipalUI_Backing.terminosYCondiciones}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/>
+                                    <p:menuitem value="Consulta Express" action="#{MenuPrincipalUI_Backing.consultaExpress}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/>
+                                    <p:menuitem value="Generar códigos" action="#{ConExpGenCodAccesoUI_Backing.generarCodigosAcceso}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/>
+                                    <p:menuitem value="Actualizar tabla ncd" action="#{ActualizarTablaUI_Backing.actualizarPeriodoNotaCredDeb}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/> 
+                                    <p:menuitem value="Carga de inmuebles" action="#{ActualizarTablaUI_Backing.cargaDeInmuebles}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/> 
+                                    <p:menuitem value="Carga deuda pendiente" action="#{ActualizarTablaUI_Backing.cargaDeudadPend}" ajax="false" rendered="#{BeanUsuario.operaciones}" icon="ui-icon-extlink"/> 
+                                </p:submenu>
+                            </p:submenu>  
+                        </p:panelMenu>
+                    </p:layoutUnit>
+                    <p:tooltip for="proveedor">  
+                        <p:graphicImage value="/images/mensajePdf.png" height="100" width="200" />  
+                    </p:tooltip>
+                    <p:tooltip for="correspondencia">  
+                        <p:graphicImage value="/images/nuevo.png" height="40" width="150" />  
+                    </p:tooltip>
+                    <p:layoutUnit id="panel"  position="center" resizable="true" size="100" minSize="40" maxSize="200" >
+                        <h:form id="panel1" rendered="#{BeanUsuario.mostrar1}">
+                            <iframe id="pagina" class="ui-panelmenu" style="width:100%;height:1000px" src="#{BeanUsuario.reporte}" ></iframe>
+                        </h:form>
+                        <h:form id="panel2" rendered="#{BeanUsuario.mostrar2}">
+                            <iframe id="pagina" class="ui-panelmenu" style="width:100%;height:1000px" src="#{BeanUsuario.invitacion}" ></iframe>                           
+                        </h:form>
+                    </p:layoutUnit>
+                </p:layout>
+            </h:form> 
+        </h:body>
+
+    </f:view>
+</html>
+

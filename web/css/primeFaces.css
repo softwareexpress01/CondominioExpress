@@ -1,0 +1,40 @@
+/* 
+    Document   : primeFaces
+    Created on : Jun 12, 2012, 5:08:07 PM
+    Author     : jesus
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+.ui-datatable-data {   
+    font-size: 50% !important; 
+
+} 
+
+.ui-datatable-empty-message  {  
+    content: none 
+}
+
+.ui-datatable-even {
+    background-color:  #EEEEEE; 
+    font-size: 5px!important;   
+}
+.ui-datatable-odd {
+    background-color:  #CCCCCC; 
+    font-size: 5px!important; 
+}
+.ui-button { border-bottom-style: double ;
+     background-color:darkgrey;  background-color:  aqua;
+               
+}
+form.tamaño {
+   font-size: 50% !important;     
+}
+.ui-menu .ui-tieredmenu{
+   
+ }   

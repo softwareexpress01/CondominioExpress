@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : DeudaPendCxC.hbm.xml
+    Created on : March 11, 2012, 11:38 AM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.DeudaPendCxC" table="DEUDA_PEND_CXC"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_DEUDA_PEND_CXC">
+            <generator class="increment" />
+        </id>
+        <property name="fecDeudaPendCxC">
+            <column name="FEC_DEUDA_PEND_CXC" length="10"/>
+        </property>
+        <property name="mtoDeudaPendCxC">
+            <column name="MTO_DEUDA_PEND_CXC" />
+        </property>
+        <property name="saldoDeudaPendCxC">
+            <column name="SALDO_DEUDA_PEND_CXC" />
+        </property>
+        <property name="edoDeudaPendCxC">
+            <column name="EDO_DEUDA_PEND_CXC" length="4"/>
+        </property>
+        <property name="idConcepto">
+            <column name="ID_CONCEPTO" />
+        </property>
+        <property name="fecMovDP">
+            <column name="FEC_MOV_DP"/>
+        </property>
+        
+        <property name="tipoDeudaPendCxC">
+            <column name="TIPO_DEUDA_PEND_CXC"  length="5" default="'ORD'"/>
+        </property>
+        
+        <many-to-one name="inmueble"  class="datosbasicos.modelos.Inmueble"
+                         column="ID_INMUEBLE" not-null = "true" />
+                 
+    </class>
+</hibernate-mapping>

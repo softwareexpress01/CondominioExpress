@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : GastoComunExt.xml
+    Created on : March 4, 2012, 3:15 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.GastoComunExt" table="GASTO_COMUN_EXT"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_GASTO_COMUN_EXT">
+            <generator class="increment" />
+        </id>
+        
+        <property name="fecGastoComunExt">
+            <column name="FEC_GASTO_COMUN_EXT" length="10"/>
+            </property>
+            <property name="numDocGastoComunExt">
+                <column name="NUM_DOC_GASTO_COMUN_EXT" length="20"/>
+            </property>
+            <property name="mtoGastoComunExt">
+                <column name="MTO_GASTO_COMUN_EXT" />
+            </property>
+            <property name="saldoGastoComunExt">
+                <column name="SALDO_GASTO_COMUN_EXT" />
+            </property>
+            <property name="obsGastoComunExt">
+                <column name="OBS_GASTO_COMUN_EXT" length="60"/>
+            </property>
+            <property name="edoGastoComunExt">
+                <column name="EDO_GASTO_COMUN_EXT" length="4"/>
+            </property>
+            <property name="fecMovGCExt">
+                <column name="FEC_MOV_GCEXT" />
+            </property>
+            <property name="idConcepto">
+                <column name="ID_CONCEPTO" />
+            </property>
+            <property name="idProveedor">
+                <column name="ID_PROVEEDOR" />
+            </property>
+            <property name="idFondo">
+                <column name="ID_FONDO" />
+            </property>
+            <property name="perGastoComunExt" >
+            <column name="PER_GASTO_COMUN_EXT" length="10"/>
+        </property>
+            
+            <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+                         column="ID_CONDOMINIO" not-null = "true" />
+                 
+        </class>
+    </hibernate-mapping>

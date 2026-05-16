@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="movimientos.modelos.CuotaEsp" table="CUOTASESP">
+    <id column="ID_CUOTAESP" name="id" type="integer">
+      <generator class="increment"/>
+    </id>
+    <property name="fecCuotaEsp" >
+      <column name="FEC_CUOTAESP" length="10"/>
+    </property>
+    <property name="mtoTotCuotaEsp">
+      <column name="MTO_TOT_CUOTAESP"/>
+    </property>
+    <property name="calcCuotaEsp">
+      <column name="CALC_CUOTAESP"/>
+    </property>
+    <property name="idFondoCuotaEsp">
+      <column name="ID_FONDO_CUOTAESP"/>
+    </property>
+    <property name="idConceptoCuotaEsp">
+      <column name="ID_CONCEPTO_CUOTAESP"/>
+    </property>
+    <property name="nroMesesCuotaEsp" >
+      <column name="NRO_MESES_CUOTAESP" length="2"/>
+    </property>
+    <property name="fecApartirCuotaEsp">
+      <column name="FEC_APARTIR_CUOTAESP" length="10"/>
+    </property>
+    <property name="saldoCuotaEsp" length="12" >
+      <column name="SALDO_CUOTAESP"/>
+    </property>
+    <property name="estadoCuotaEsp">
+      <column name="ESTADO_CUOTAESP"/>
+    </property>
+    <property name="obsCuotaEsp">
+      <column name="OBS_CUOTAESP" length="60"/>
+    </property>
+    
+    <many-to-one class="datosbasicos.modelos.Condominio" column="ID_CONDOMINIO" name="condominio" not-null="true"/>
+  </class>
+</hibernate-mapping>

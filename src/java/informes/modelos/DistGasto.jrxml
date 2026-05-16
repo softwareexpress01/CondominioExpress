@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nombCondominio" class="java.lang.String"/>
+	<parameter name="fecDesde" class="java.lang.String"/>
+	<parameter name="fecHasta" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<field name="desCategoria" class="java.lang.String"/>
+	<field name="mtoCategoria" class="java.lang.Double"/>
+	<variable name="totalCategoria" class="java.lang.Double" resetType="Group" resetGroup="Categoria" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoCategoria}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="subTotalCategoria" class="java.lang.Double" resetType="Group" resetGroup="Categoria" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoCategoria}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="totalGasto" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoCategoria}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<group name="Categoria">
+		<groupExpression><![CDATA[$F{desCategoria}]]></groupExpression>
+		<groupHeader>
+			<band height="25">
+				<textField>
+					<reportElement x="184" y="2" width="100" height="20" forecolor="#0000CC"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{desCategoria}]]></textFieldExpression>
+				</textField>
+				<textField evaluationTime="Group" evaluationGroup="Categoria" pattern="#,##0.00">
+					<reportElement x="279" y="3" width="101" height="20"/>
+					<textElement textAlignment="Right"/>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{subTotalCategoria}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="185" y="22" width="201" height="1"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="2"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="177" splitType="Stretch">
+			<staticText>
+				<reportElement x="166" y="36" width="63" height="20" forecolor="#0000CC"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Condominio:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="229" y="36" width="220" height="20"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{nombCondominio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="220" y="58" width="134" height="20" forecolor="#CC0000"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Distribución  del gasto]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="469" y="7" width="86" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="182" y="79" width="38" height="20" forecolor="#0000CC"/>
+				<textElement/>
+				<text><![CDATA[Desde : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="220" y="79" width="64" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fecDesde}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="284" y="79" width="31" height="20" forecolor="#0000CC"/>
+				<textElement/>
+				<text><![CDATA[Hasta : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="315" y="79" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fecHasta}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="104" width="554" height="1"/>
+			</line>
+			<line>
+				<reportElement x="185" y="151" width="201" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="192" y="153" width="95" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Categoria]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="315" y="153" width="65" height="20"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<line>
+				<reportElement x="185" y="175" width="201" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="242" y="131" width="100" height="20" forecolor="#0000CC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Resumen ]]></text>
+			</staticText>
+			<image>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="3" width="124" height="96"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="307" splitType="Stretch">
+			<pieChart>
+				<chart evaluationTime="Report">
+					<reportElement x="41" y="56" width="466" height="251"/>
+					<chartTitle/>
+					<chartSubtitle/>
+					<chartLegend/>
+				</chart>
+				<pieDataset>
+					<keyExpression><![CDATA[$F{desCategoria}]]></keyExpression>
+					<valueExpression><![CDATA[$V{totalCategoria}]]></valueExpression>
+				</pieDataset>
+				<piePlot isCircular="false" labelFormat="{0}({1})({2})">
+					<plot/>
+					<itemLabel color="#000000" backgroundColor="#FFFFFF"/>
+				</piePlot>
+			</pieChart>
+			<staticText>
+				<reportElement x="224" y="0" width="63" height="20" forecolor="#CC0000"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total gasto :]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="287" y="0" width="93" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalGasto}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="185" y="20" width="201" height="1" forecolor="#CC0000"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

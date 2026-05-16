@@ -1,0 +1,141 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="datosbasicos.modelos.Condominio" table="CONDOMINIOS"
+        dynamic-insert="true"
+        dynamic-update="true">
+        <id name="id" type="integer" column="ID_CONDOMINIO">
+            <generator class="increment" />
+        </id>
+
+        <property name="nombCondominio">
+            <column name="NOMB_CONDOMINIO" length="30"/>
+        </property>
+        <property name="dirCondominio">
+            <column name="DIR_CONDOMINIO" length="60"/>
+        </property> 
+        <property name="nombAdminCondominio">
+            <column name="NOMB_ADMIN_CONDOMINIO" length="30"/>
+        </property>
+        <property name="emailCondominio" >
+            <column name="EMAIL_CONDOMINIO" length="60"/>
+        </property>
+        <property name="cedRifCondominio" >
+            <column name="CED_RIF_CONDOMINIO" length="10"/>
+        </property>
+        <property name="telOficCondominio" >
+            <column name="TEL_OFIC_CONDOMINIO" length="13"/>
+        </property>
+        <property name="telAdminCondominio" >
+            <column name="TEL_ADMIN_CONDOMINIO" length="13"/>
+        </property>
+        <property name="periodoActual" >
+            <column name="PERIODO_ACTUAL" length="10"/>
+        </property>
+        <property  name="fecCreacion" >
+            <column name="FEC_CREACION" length="10"/>
+        </property>
+        <property name="nombLogo" >
+            <column name="NOMB_LOGO" length="25"/>
+        </property>
+        <property name="edoCondominio" >
+            <column name="EDO_CONDOMINIO" length="3" default="'ACT'"/>
+        </property>
+                 
+        <list name="usuarios" table="USUARIO_CONDOMINIOS"  inverse="true" cascade="save-update" >
+            <key column="ID_CONDOMINIO" />
+            <list-index column="ORDEN" />
+            <many-to-many class="datosbasicos.modelos.Usuario" column="ID_USUARIO" />
+        </list>   
+        
+        <bag name="propiedades" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="datosbasicos.modelos.Propiedad" />
+        </bag>
+        
+        <bag name="categorias" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="datosbasicos.modelos.Categoria" />
+        </bag>
+        
+        <bag name="conceptos" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="datosbasicos.modelos.Concepto" />
+        </bag>
+        
+        <bag name="proveedores" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="datosbasicos.modelos.Proveedor" />
+        </bag>
+        
+        <one-to-one name="parametro" cascade="save-update,delete"/> 
+        
+        <bag name="gastosComunesOrd" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="movimientos.modelos.GastoComunOrd" />
+        </bag>
+        
+        <bag name="gastosComunesExt" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="movimientos.modelos.GastoComunExt" />
+        </bag>
+        
+        <bag name="fondos" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="datosbasicos.modelos.Fondo" />
+        </bag>
+              
+        <bag name="gastosNoComunes" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="movimientos.modelos.GastoNoComun" />
+        </bag> 
+        
+        <bag name="gastosPropiedad" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="movimientos.modelos.GastoPropiedad" />
+        </bag>  
+        
+        <bag name="cuotasEsp" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="movimientos.modelos.CuotaEsp" />
+        </bag>  
+        <bag name="bancos" cascade="save-update,delete" 
+            fetch="subselect" inverse="true" >
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="datosbasicos.modelos.Banco"/>
+        </bag>
+        <bag name="ajustes" cascade="save-update,delete" 
+            fetch="subselect" inverse="true" >
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="movimientos.modelos.AjustesCond"/>
+        </bag>
+
+        <bag name="pagosfonres" cascade="save-update,delete" 
+            fetch="subselect" inverse="true" >
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="movimientos.modelos.PagoFonRes"/>
+        </bag>
+        <bag name="codigoAcceso" cascade="save-update,delete" 
+            fetch="subselect" inverse="true" >
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="acceso.modelos.CodigoAcceso"/>
+        </bag>
+        <bag name="tasas" inverse="true" cascade="save-update,delete" fetch="subselect">
+            <key column="ID_CONDOMINIO"/>
+            <one-to-many class="configuracion.modelos.Tasa"/>
+        </bag>
+    </class>
+</hibernate-mapping>

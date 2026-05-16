@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="cd4e5a5a-7627-4431-a13b-d92dc8047d11">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="178"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="condominio" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombreBanco" class="java.lang.String"/>
+	<field name="numCuenta" class="java.lang.String"/>
+	<field name="tipoCuenta" class="java.lang.String"/>
+	<field name="saldoIniCuenta" class="java.lang.Double"/>
+	<field name="saldoActCuenta" class="java.lang.Double"/>
+	<variable name="totalSaldoIni" class="java.lang.Double" resetType="Group" resetGroup="banco" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoIniCuenta}]]></variableExpression>
+	</variable>
+	<variable name="totalSaldoAct" class="java.lang.Double" resetType="Group" resetGroup="banco" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoActCuenta}]]></variableExpression>
+	</variable>
+	<variable name="totalIniBanco" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoIniCuenta}]]></variableExpression>
+	</variable>
+	<variable name="totalActBanco" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoActCuenta}]]></variableExpression>
+	</variable>
+	<group name="banco">
+		<groupExpression><![CDATA[$F{nombreBanco}]]></groupExpression>
+		<groupHeader>
+			<band height="40">
+				<staticText>
+					<reportElement x="8" y="20" width="37" height="20" uuid="c36c7d32-a5fd-4f71-87fc-589b8cba47ee"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Banco]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="45" y="20" width="83" height="19" forecolor="#0000CC" uuid="87c4fd64-66fe-4aab-85ed-c921a9e5abf0"/>
+					<textFieldExpression><![CDATA[$F{nombreBanco}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="130" y="19" width="126" height="20" uuid="8f9c8e1b-d94a-490a-898d-6b21257cdb31"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Número de cuenta]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="274" y="19" width="81" height="20" uuid="f06ef3d4-e684-4704-8577-41682ef7469d"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tipo ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="355" y="19" width="100" height="20" uuid="4a7464f3-d58d-473d-9858-930cd7ebd5ff"/>
+					<textElement textAlignment="Center">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Saldo Inicial]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="465" y="20" width="77" height="20" uuid="83255af8-8336-4488-9b22-f3840437382f"/>
+					<textElement textAlignment="Center">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Saldo Actual	]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="39" width="555" height="1" uuid="777c93cc-023d-4e1c-bd00-a1942e58a0f4"/>
+				</line>
+				<line>
+					<reportElement x="0" y="15" width="555" height="1" uuid="e22c0242-be37-4e43-a30e-2bf940db79b4"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="23">
+				<staticText>
+					<reportElement x="275" y="3" width="100" height="20" forecolor="#CC0000" uuid="63cea18d-39ce-4c28-a102-7cd51f555e44"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Totales ]]></text>
+				</staticText>
+				<textField pattern="#,##0.00">
+					<reportElement x="364" y="3" width="72" height="20" forecolor="#CC0000" uuid="e50fea82-08fa-45c5-9f83-9ac132df17d1"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalSaldoIni}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="456" y="3" width="76" height="20" forecolor="#CC0000" uuid="815831d1-38c2-4071-a4b5-00fbf78655f6"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalSaldoAct}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="107" splitType="Stretch">
+			<staticText>
+				<reportElement x="217" y="74" width="91" height="20" forecolor="#0000FF" uuid="a7d8ec77-978b-4c4d-a220-7a10e23b95c3"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuentas Bancarias]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="197" y="54" width="204" height="20" forecolor="#000000" uuid="536bc650-b902-42bd-8925-72cfc9f9a71f"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{condominio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="127" y="54" width="70" height="20" forecolor="#0000CC" uuid="d26ddf08-5a9c-477b-90f2-7fae3951c33e"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condominio:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="497" y="0" width="58" height="20" uuid="ce39dfb5-6d51-415d-9486-fea3e077c4b6"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement mode="Opaque" x="6" y="0" width="99" height="74" uuid="7dde4235-2e4d-4ed2-bd1e-82810fe67d25"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="468" y="19" width="63" height="20" uuid="35cf22a9-8f35-49ca-8da9-2db6f0975261"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="532" y="19" width="40" height="20" uuid="89599169-eeaa-4197-a2b0-d058f557800b"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="275" y="7" width="81" height="20" uuid="f8fb0d94-0604-43be-b193-07957de99fe4"/>
+				<textFieldExpression><![CDATA[$F{tipoCuenta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="456" y="7" width="76" height="20" uuid="848af561-122e-4aa4-ba90-fd74757d9189"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{saldoActCuenta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="130" y="7" width="145" height="20" uuid="78200864-ddab-4e2e-9f4b-bccbb4ecffae"/>
+				<textFieldExpression><![CDATA[$F{numCuenta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="364" y="7" width="72" height="20" uuid="c66b8995-7978-40e8-b6eb-483acd4cf6f7"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{saldoIniCuenta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="256" y="10" width="100" height="20" forecolor="#CC0000" uuid="20cc7618-3ac2-4d1c-a9a7-1dbe7e66f93b"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Total Bancos]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="363" y="10" width="73" height="20" forecolor="#CC0000" uuid="6f7ce56e-9c57-4822-b00c-1658cb00b01a"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalIniBanco}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="456" y="10" width="76" height="20" forecolor="#CC0000" uuid="5d857dc8-84b7-41ed-a9e1-3e279aa949fa"/>
+				<textElement textAlignment="Right">
+					<font isBold="true" isUnderline="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalActBanco}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="30" width="555" height="1" uuid="6e37319d-48cb-489f-914e-a74174d68495"/>
+			</line>
+			<line>
+				<reportElement x="0" y="2" width="555" height="1" uuid="169a8047-abe3-4429-bfe6-bf6344d0949b"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

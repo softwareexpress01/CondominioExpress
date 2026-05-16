@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="57d12342-deb5-42c0-9cbe-3bca7ce0f036">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="175"/>
+	<property name="ireport.y" value="128"/>
+	<parameter name="nombCondominio" class="java.lang.String"/>
+	<parameter name="codInm" class="java.lang.String"/>
+	<parameter name="nombProp" class="java.lang.String"/>
+	<parameter name="cedProp" class="java.lang.String"/>
+	<parameter name="fecEmiPago" class="java.lang.String"/>
+	<parameter name="desPago" class="java.lang.String"/>
+	<parameter name="numDocPago" class="java.lang.String"/>
+	<parameter name="mtoPago" class="java.lang.Double"/>
+	<parameter name="formaPago" class="java.lang.String"/>
+	<parameter name="fecDocPago" class="java.lang.String"/>
+	<parameter name="bancoPago" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="obsReciboCobro" class="java.lang.String"/>
+	<parameter name="numReciboCobro" class="java.lang.Integer"/>
+	<field name="codInmueble" class="java.lang.String"/>
+	<field name="fecEmisionCxC" class="java.lang.String"/>
+	<field name="tipoCxC" class="java.lang.String"/>
+	<field name="desCxC" class="java.lang.String"/>
+	<field name="mtoCxC" class="java.lang.Double"/>
+	<field name="saldoCxC" class="java.lang.Double"/>
+	<field name="mtoPagadoCxC" class="java.lang.Double"/>
+	<variable name="totalPagado" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoPagadoCxC}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0)]]></initialValueExpression>
+	</variable>
+	<group name="Inmueble">
+		<groupExpression><![CDATA[$F{codInmueble}]]></groupExpression>
+		<groupHeader>
+			<band height="3"/>
+		</groupHeader>
+		<groupFooter>
+			<band height="218">
+				<staticText>
+					<reportElement x="6" y="79" width="82" height="20" uuid="475a8d57-23f0-48df-a55f-ced0ef4fa3fa"/>
+					<textElement>
+						<font isBold="false"/>
+					</textElement>
+					<text><![CDATA[Observaciones: ]]></text>
+				</staticText>
+				<line>
+					<reportElement x="91" y="92" width="462" height="1" uuid="a967a236-00bc-4023-ae9e-a534bc84d99a"/>
+				</line>
+				<line>
+					<reportElement x="91" y="117" width="462" height="1" uuid="886554de-9437-44db-96cf-f1f1e8067418"/>
+				</line>
+				<staticText>
+					<reportElement x="9" y="154" width="79" height="20" uuid="65741b68-fb70-4d85-a50e-6b1fe3061c14"/>
+					<text><![CDATA[Recibí conforme:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="374" y="186" width="100" height="20" uuid="3dcd1c16-c02e-4480-9a5f-8d87ea011826"/>
+					<textElement textAlignment="Center"/>
+					<text><![CDATA[Firma]]></text>
+				</staticText>
+				<line>
+					<reportElement x="94" y="171" width="158" height="1" uuid="7ae9910a-ed99-4288-ad7a-1df500b7fffb"/>
+				</line>
+				<line>
+					<reportElement x="352" y="172" width="145" height="1" uuid="9f4a9382-18e9-4ec5-ae53-fc4ae3dcb31a"/>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="244" splitType="Stretch">
+			<staticText>
+				<reportElement x="147" y="42" width="67" height="20" forecolor="#0000CC" uuid="4262c156-e6c3-4425-a033-d2e032906315"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condominio : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="213" y="43" width="208" height="20" uuid="eba75ca2-1199-4d90-a247-71e52138fce7"/>
+				<textFieldExpression><![CDATA[$P{nombCondominio}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="288" y="84" width="86" height="20" uuid="902c9ea5-3c3d-4681-a1fe-c0b34c20641b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="458" y="28" width="56" height="20" uuid="79cb0aed-3b2c-45ad-90f1-02de463cb16b"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="514" y="28" width="40" height="20" uuid="932d9ed9-51c9-4b96-8205-aa31b9b51718"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="238" y="63" width="100" height="20" forecolor="#0000FF" uuid="034ef3c6-0c3c-4f93-b91c-171d1a928eac"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibo de Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="208" y="84" width="80" height="20" uuid="dfd271f0-d7cb-470c-8f2b-561cf924df1f"/>
+				<text><![CDATA[Fecha emisión :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="109" width="552" height="1" uuid="a2fc4307-3226-4787-a725-f4400e6091d9"/>
+			</line>
+			<staticText>
+				<reportElement x="38" y="115" width="50" height="20" uuid="794488dc-41fa-405a-a602-9aa33bbdfd45"/>
+				<text><![CDATA[Inmueble : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="88" y="115" width="82" height="20" uuid="bfe578c4-e2e9-403a-81e6-2ea3ad64939b"/>
+				<textFieldExpression><![CDATA[$P{codInm}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="196" y="115" width="56" height="20" uuid="3ad6ff62-0d41-43bd-b3e7-be9eb15fea31"/>
+				<text><![CDATA[Propietario :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="252" y="115" width="100" height="20" uuid="7657cfdb-d399-4235-b0c6-de6fef66aa34"/>
+				<textFieldExpression><![CDATA[$P{nombProp}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="388" y="115" width="42" height="20" uuid="f0041f53-a535-43cd-b73a-f81205ef7416"/>
+				<text><![CDATA[Ced/Rif: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="428" y="115" width="100" height="20" uuid="23a87bcd-33b6-4f89-b24b-9641066fa3b2"/>
+				<textFieldExpression><![CDATA[$P{cedProp}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="141" width="553" height="1" uuid="0bd837e2-26ef-48ee-a78f-e19566a88a49"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="233" y="145" width="105" height="20" forecolor="#0000CC" uuid="84fdb86c-4643-4c54-a2b3-ab3096d382fc"/>
+				<textElement>
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Información del pago ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="23" y="165" width="32" height="20" uuid="e6843a65-f95f-4d17-9b5a-d5ab803d7256"/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="166" width="101" height="20" uuid="8c76361a-b27c-407d-a3ef-5f8046aa6183"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Descripción ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="166" width="66" height="20" uuid="f24a3b0f-28b8-474c-b7d5-255d36446653"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Nro. Doc.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="496" y="166" width="44" height="20" uuid="7ebddec5-c1e5-42b5-b998-845d6e138c1c"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="278" y="165" width="60" height="20" uuid="c97cf5c1-4adb-48de-a2d6-603696575be9"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Forma pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="165" width="62" height="20" uuid="3cb9eead-7f0f-456e-b34e-f64f375b75eb"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Fecha doc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="422" y="165" width="65" height="20" uuid="75cbef57-9d74-4c6d-a173-3dc0dae4d823"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Banco]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="7" y="195" width="56" height="20" uuid="3eeb9f17-6d63-4d60-9b2b-bd4eb5c5494a"/>
+				<textFieldExpression><![CDATA[$P{fecEmiPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="63" y="195" width="144" height="20" uuid="0456d973-5594-4a23-9f53-fd5d41c8f1e6"/>
+				<textFieldExpression><![CDATA[$P{desPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="211" y="196" width="48" height="20" uuid="dc2037ae-864b-4b98-bee1-eb18502146e9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{numDocPago}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="494" y="196" width="44" height="20" uuid="e84112d6-76ff-48af-83d2-6e0a8ec72268"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$P{mtoPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="278" y="196" width="70" height="20" uuid="c35130c5-61fa-4aa9-b860-5466cbc96bea"/>
+				<textFieldExpression><![CDATA[$P{formaPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="196" width="68" height="20" uuid="e7783054-ff8f-4b6b-9499-4179065ce037"/>
+				<textFieldExpression><![CDATA[$P{fecDocPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="431" y="195" width="56" height="20" uuid="f227b42c-0d64-4dc1-82f3-e551c665b21b"/>
+				<textFieldExpression><![CDATA[$P{bancoPago}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="217" width="554" height="1" uuid="5d47ee5b-1766-4e4f-861c-f0758cd8d936"/>
+			</line>
+			<line>
+				<reportElement x="0" y="188" width="554" height="1" uuid="9e8bfb6b-9315-4786-bb93-4880d71551d9"/>
+			</line>
+			<image>
+				<reportElement stretchType="RelativeToBandHeight" x="1" y="4" width="133" height="100" uuid="60495994-046a-4bb4-af87-dd4d2bfa8eeb"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="425" y="84" width="25" height="20" uuid="7a73a85d-6181-4337-8063-837c92fc7646"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="452" y="84" width="78" height="20" uuid="829f78e1-263c-47fb-bfa1-02472d5e7062"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{numReciboCobro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="413" y="223" width="51" height="20" forecolor="#CC0000" uuid="6d5f1d66-c60b-412b-97aa-bacf73145255"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total : ]]></text>
+			</staticText>
+			<textField pattern=" #,##0.00">
+				<reportElement x="464" y="222" width="71" height="20" forecolor="#CC0000" uuid="9c8fc017-3281-459e-9001-8285c61047a0"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mtoPago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="33" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="3" width="552" height="1" uuid="6d7cea70-be8f-4c38-86c8-e20e5d851fdf"/>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="22" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<line>
+				<reportElement x="2" y="4" width="551" height="1" uuid="ba63b123-29f7-402f-92ea-ae82fb309e7d"/>
+			</line>
+			<textField isBlankWhenNull="true">
+				<reportElement x="134" y="9" width="305" height="20" forecolor="#CC0000" uuid="65e9784a-c311-462f-99c6-db497ae40d47"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{obsReciboCobro}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

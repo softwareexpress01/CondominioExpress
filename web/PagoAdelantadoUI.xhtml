@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="../css/CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("descPagoAdelantado");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('APagoAdelantadoUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Registrar Pago Adelantado</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <hr size="2" width="85%"></hr>
+                <table width="85%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+                                <h:outputLabel value="Inmueble " for="idInPagoAdelantado" />
+                                <h:selectOneMenu value="#{PagoAdelantadoUI_Backing.idInPagoAdelantado}" id="idInPagoAdelantado" tabindex="1" 
+                                                 valueChangeListener="#{PagoAdelantadoUI_Backing.inicializarPanel}"
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{PagoAdelantadoUI_Backing.inmueblesPorPropiedad}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Descripción " for="descPagoAdelantado" />                             
+                                <t:inputTextarea required="false" id="descPagoAdelantado" cols="20" rows="1" size="24"
+                                                 binding="#{PagoAdelantadoUI_Backing.descPagoAdelantado}" tabindex="4"
+                                                 onkeypress="return limita(100);" forceId="true"/>
+
+                                <h:outputLabel value="Banco " for="idBcoMovBancario"/>                
+                                <h:selectOneMenu binding="#{PagoAdelantadoUI_Backing.idBcoPagoAdelantado}" id="idBcoMovBancario" tabindex="7"
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{PagoAdelantadoUI_Backing.bancosPorCondominio}"/>
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                        </td>    
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+                                <h:outputLabel value="Propietario " for="nombPropPagoAdelantado"/>                
+                                <h:inputText required="false" id="nombPropPagoAdelantado" disabled="true" size="24"
+                                             binding="#{PagoAdelantadoUI_Backing.nombPropPagoAdelantado}" tabindex="2"/>
+
+                                <h:outputLabel value="Fecha (dd-mm-aaaa)" for="fecPagoAdelantado" /> 
+                                <h:inputText required="false" id="fecPagoAdelantado" size="24"  maxlength ="10"
+                                             binding="#{PagoAdelantadoUI_Backing.fecPagoAdelantado}" tabindex="5"
+                                             onfocus="showCalendarControl(this);"/> 
+
+                                <h:outputLabel value="Cuenta " for="idCuentaPagoAdelantado"/>                
+                                <h:selectOneMenu binding="#{PagoAdelantadoUI_Backing.idCuentaPagoAdelantado}" id="idCuentaPagoAdelantado" tabindex="8">
+                                    <f:selectItems value="#{PagoAdelantadoUI_Backing.cuentasPorBanco}" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                        </td>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+                                <h:outputLabel value="Monto " for="mtoPagoAdelantado"/>                
+                                <h:inputText id="mtoPagoAdelantado" size="24" required="false" maxlength ="12"
+                                             binding="#{PagoAdelantadoUI_Backing.mtoPagoAdelantado}" tabindex="3"/>
+
+                                <h:outputLabel value="Nro. Doc/Ref " for="refPagoAdelantado"/>                
+                                <h:inputText required="false" id="refPagoAdelantado" size="24" maxlength ="20"
+                                             binding="#{PagoAdelantadoUI_Backing.refPagoAdelantado}" tabindex="6"/>
+
+                                <h:outputLabel value="Forma de Pago " for="formaPagoAdelantado" /> 
+                                <h:selectOneMenu binding="#{PagoAdelantadoUI_Backing.formaPagoAdelantado}" id="formaPagoAdelantado" tabindex="9" >
+                                    <f:selectItem  itemLabel="Seleccione" itemValue="Seleccione" />
+                                    <f:selectItem  itemLabel="Cheque" itemValue="Cheque" />
+                                    <f:selectItem  itemLabel="Dep/Transferencia" itemValue="Dep/Transferencia" />
+                                    <f:selectItem  itemLabel="Efectivo" itemValue="Efectivo" />
+                                    <f:selectItem  itemLabel="Tajeta de crédito" itemValue="Tarjeta crédito" />
+                                    <f:selectItem  itemLabel="Tarjeta de débito" itemValue="Tarjeta débito" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                        </td>
+                    </tr>  
+                </table>
+                <hr size="2" width="85%"></hr>
+                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{PagoAdelantadoUI_Backing.registrarPagoAdelantado}" tabindex="10" 
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{PagoAdelantadoUI_Backing.modificarPagoAdelantado}" tabindex="11"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="12"
+                                         disabled ="#{BeanUsuario.eliminar}"/> 
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Emitir recibo" action="recibopago" tabindex="13"/> 
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Pagos Adelantados registrados.</i><font size="2"><i> Seleccione el Pago a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaPagosAdelantados" rows="5" rowKey="#{co.id}"   
+                             value="#{PagoAdelantadoUI_Backing.pagosAdelantadosPorInmueble}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage=" " 
+                             selection="#{PagoAdelantadoUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha Mov."/>
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.fecMovPagoAdelantado}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Descripción"/>
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.descPagoAdelantado}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Fecha Doc."/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.fecPagoAdelantado}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Monto"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.mtoPagoAdelantado}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Forma/Pago"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.formaPagoAdelantado}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                             
+                                <h:outputText value="Referencia"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.refPagoAdelantado}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Banco "/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.nombBcoPagoAdelantado}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Cuenta "/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.descCuentaPagoAdelantado}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Saldo "/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.saldoPagoAdelantado}" style="font-size: small" />
+                    </p:column>
+
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Estado "/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.estadoPagoAdelantado}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{PagoAdelantadoUI_Backing.editarPagoAdelantadoAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{PagoAdelantadoUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title> 
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("dirCondominio");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;  
+                    }
+                }
+            </script> 
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>  
+
+        <body>
+            <h:form id="form">
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font>
+                            </td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('ACondominioUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Crear y Actualizar Condominios</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <table width="80%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Nombre del condominio " for="nombCondominio"/>   
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="nombCondominio" size="24" maxlength ="30"
+                                             value="#{CondominioUI_Backing.nombCondominio}" tabindex="3" />
+                            </td>
+                        </td>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Cédula/Rif" for="cedRifCondominio" />    
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="cedRifCondominio" maxlength ="10" size ="24"
+                                             value="#{CondominioUI_Backing.cedRifCondominio}" tabindex="4"/>
+                            </td>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Dirección" for="dirCondominio" /> 
+                            </td>
+                            <td>
+                                <t:inputTextarea required="false" id="dirCondominio" cols="25" rows="1" 
+                                                 value="#{CondominioUI_Backing.dirCondominio}" tabindex="5" 
+                                                 onkeypress="return limita(60);" forceId="true"/> 
+                            </td>
+                        </td>
+                        <td>
+                            <td>
+                                <h:outputLabel value="Administrador" for="nombAdmin" />  
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="nombAdmin" size="24" maxlength ="30"
+                                             value="#{CondominioUI_Backing.nombAdminCondominio}" tabindex="6" />
+                            </td>  
+                        </td>
+                    </tr>     
+                    <tr> 
+                        <td>
+                            <td>
+                                <h:outputLabel value="Correo electrónico" for="emailCondominio"/> 
+                            </td>
+                            <td>
+                                <h:inputText id="emailCondominio" size="24" required="false" maxlength ="60"
+                                             value="#{CondominioUI_Backing.emailCondominio}" tabindex="7"/>  
+                            </td>
+                        </td>
+                        <td> 
+                            <td>
+                                <h:outputLabel value="Teléfono oficina" for="codTelOficCondominio" /> 
+
+                            </td>
+                            <td>
+                                <h:inputText required="false" id="codTelOficCondominio" maxlength ="4" size ="4"
+                                             value="#{CondominioUI_Backing.codTelOficCondominio}" tabindex="8"/>
+                                <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                                <h:inputText required="false" id="NumeTelOficCondominio" maxlength ="8" size ="14"
+                                             value="#{CondominioUI_Backing.numTelOficCondominio}" tabindex="9"/>
+                            </td> 
+                        </td> 
+                    </tr> 
+                    <tr> 
+                        <td></td>
+                        <td>
+                            <h:outputLabel value="Teléfono admin" for="codTelAdminCondominio" /> 
+                        </td>  
+                        <td>
+                            <h:inputText required="false" id="codTelAdminCondominio" maxlength ="4" size ="4"
+                                         value="#{CondominioUI_Backing.codTelAdminCondominio}" tabindex="10"/>
+                             <f:verbatim>&nbsp;&nbsp;</f:verbatim>
+                            <h:inputText required="false" id="numTelAdminCondominio" maxlength ="8" size ="14"
+                                         value="#{CondominioUI_Backing.numTelAdminCondominio}" tabindex="11"/>
+                        </td>  
+                    </tr>  
+                </table>
+
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{CondominioUI_Backing.registrarCondominio}" 
+                                         disabled ="#{BeanUsuario.agregar}" tabindex="12" />  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{CondominioUI_Backing.modificarCondominio}"
+                                         disabled ="#{BeanUsuario.modificar}" tabindex="13"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar"
+                                         disabled ="#{BeanUsuario.eliminar}" tabindex="14"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Condominios registrados.</i><font size="2"><i> Seleccione el Condominio a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaCondominios" rows="5" rowKey="#{co.id}"     
+                             value="#{CondominioUI_Backing.condominiosPorUsuario}" paginatorPosition="bottom"
+                             var="co" paginator="true"    
+                             selection="#{CondominioUI_Backing.filaSeleccionada}" >      
+
+                    <p:column style="width:15%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nombre"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombCondominio}"  style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="width:15%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Direccion"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.dirCondominio}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="width:10%">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Administrador"/>
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.nombAdminCondominio}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Correo"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.emailCondominio}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                             
+                                <h:outputText value="Cedula/Rif"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.cedRifCondominio}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column width="100">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Tel Oficina"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.telOficCondominio}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column width="100">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                  
+                                <h:outputText value="Tel Admin"/>                               
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.telAdminCondominio}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                  
+                                <h:outputText value="Periodo Act."/>                               
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.periodoActual}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{CondominioUI_Backing.editarCondominioAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{CondominioUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk" 
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function openWin() {
+                    window.open('ElimBancoUI.xhtml', 'window', 'width=750,height=400');
+                }
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin", "left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('ATasasUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+                <br></br>
+                <div><h4><i>Crear y Actualizar Tasas de cambio</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+
+                <table width="40%" border="0" align="center">
+
+                    <tr>
+                        <td>
+                            <br></br><br></br>
+
+                            <h:panelGrid width="86%" columns="7" border="0">
+
+                                <h:outputLabel value="Período (mm-aaaa)" for="periodo"/>                
+                                <h:inputText required="false" id="periodo" size="7" maxlength ="7"
+                                             value="#{TasaUI_Backing.periodo}" tabindex="1"/>
+
+                                <h:outputLabel value="Tasa " for="tasa" /> 
+                                <h:inputText required="false" id="tasa" size ="8"  maxlength ="8"
+                                             value="#{TasaUI_Backing.tasa}" tabindex="2"/>
+
+
+                            </h:panelGrid>
+                        </td>  
+
+                    </tr>  
+
+                </table>
+<br></br>
+                <div align="center"><p>
+
+                        <h:commandButton value="Agregar" action="#{TasaUI_Backing.registrarTasa}" tabindex="3"
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{TasaUI_Backing.modificarTasa}" tabindex="4"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="5"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+
+                    </p></div>
+                <br></br><br></br>
+                <hr width="100%"></hr>
+                <h4><i>Tasas registradas.</i><font size="2"><i> Seleccione la Tasa a modificar/eliminar</i></font></h4>
+
+
+                <p:dataTable id="TablaTasas" rows="5" rowKey="#{co.id}"   
+                             value="#{TasaUI_Backing.tasasPorCondominio}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage="No hay Tasas definidas en el condominio seleccionado" 
+                             selection="#{TasaUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Período"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.periodo}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Tasa"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.tasa}"/>
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{TasaUI_Backing.editarTasaAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{TasaUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

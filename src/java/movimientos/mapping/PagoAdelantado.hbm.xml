@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class dynamic-insert="true" dynamic-update="true" name="movimientos.modelos.PagoAdelantado" table="PAGOSADELANTADOS">
+        <id column="ID_PAGOADELANTADO" name="id" type="integer">
+            <generator class="increment"/>
+        </id>
+        <property name="idInPagoAdelantado">
+            <column name="ID_IN_PAGOADELANTADO" />
+        </property>
+        <property name="descPagoAdelantado">
+            <column name="DESC_PAGOADELANTADO" length="60"/>
+        </property>
+        <property name="fecPagoAdelantado">
+            <column name="FEC_PAGOADELANTADO" length="10"/>
+        </property>
+        <property name="mtoPagoAdelantado">
+            <column name="MTO_PAGOADELANTADO"/>
+        </property>
+        <property name="formaPagoAdelantado">
+            <column name="FORMA_PAGOADELANTADO" length="20"/>
+        </property>
+        <property name="refPagoAdelantado">
+            <column name="REF_PAGOADELANTADO" length="20"/>
+        </property>
+        <property name="idBcoPagoAdelantado">
+            <column name="ID_BCO_PAGOADELANTADO"/>
+        </property>
+        <property name="idCuentaPagoAdelantado">
+            <column name="ID_CUENTA_PAGOADELANTADO"/>
+        </property>
+        <property name="saldoPagoAdelantado">
+            <column name="SALDO_PAGOADELANTADO" />
+        </property>
+        <property name="estadoPagoAdelantado">
+            <column name="ESTADO_PAGOADELANTADO" length="4"/>
+        </property>
+        
+        <property name="fecMovPagoAdelantado">
+            <column name="FEC_MOV_PAGOADELANTADO" />
+        </property>
+    
+        <many-to-one class="datosbasicos.modelos.Inmueble" column="ID_INMUEBLE" name="inmueble" not-null="true"/>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <f:view>
+        <h:head>
+            <title>Software Express Software Como Servicio Gestion de Condominios</title>
+            <f:facet name="first"> 
+                <meta NAME="description" CONTENT="Software Express, C.A., pone a la disposición de personas naturales y jurídicas 
+                      el sistema Software Express Condominio 4.0, como un Servicio en la web, 
+                      que funciona bajo la modalidad de suscripciones con pagos mensuales, y...  "
+
+                      ></meta>
+                <meta NAME="keywords" CONTENT="Software como servicio 
+                      Gestion de condominios
+                      Software As A Service
+                      Sistema de informacion 
+                      Indicadores de Gestion
+                      Gestion en la web
+                      Administracion de condominios
+                      suscripcion al servicio
+                      java JEE "></meta>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+            <table width="100%" border="0">
+                <tr>
+                    <div align="center"><h1>
+                            <h:graphicImage url="/logo6.jpg" height="65" width="380" />
+                        </h1></div>
+                </tr>          
+            </table> 
+        </h:head>
+
+        <body>
+            <noscript>
+                <p>!Bienvenido a la página de Software Express!</p>
+                <p>Nuestra página, así como también nuestras aplicaciones, 
+                    requieren el uso de javaScript. Antes de continuar, por favor, habilite la opción de java Script en su browser.</p>
+                <p>  Para información de como hacer esto, le recomendamos la siguiente página: http://www.enable-javascript.com/es/ </p>
+            </noscript>
+
+            <p:layout fullPage="true" >
+
+                <p:layoutUnit id="center" position="center" style="text-align:left; font-size: small; font-style: italic ">
+
+                    <table width="100%" border="0">
+                        <tr>
+                            <div align="center"><h1>
+                                    <h:graphicImage url="/condominioexpress.png" height="65" width="400" />
+                                </h1></div>
+                        </tr>          
+                    </table>  
+                    <hr size="1" width="100%"></hr>
+                    <br />
+
+                    <table  width="100%" border="0">
+                        <tr>
+                            <td width ="35%">
+                                <h:panelGrid columns="1" cellpadding="10">  
+                                    <p:graphicImage id="tab4Img" value="/images/contactenos5.jpg" height="250" width="350"/>  
+                                    <h:outputText id="tab4Text" value="Si desea conocer más detalles acerca de los servicios que ofrece Software Express, 
+                                                  le invitamos a que se comunique con nosotros, enviándonos un correo con sus preguntas o comentarios. 
+                                                  También, puede comunicarse por WhatsApp al +58 0416-6582976"/>  
+                                </h:panelGrid>  
+                            </td>
+                            <td width="5%"></td>
+                            <td>
+                                <h:form>
+                                    <h:outputText value="Contacto" 
+                                                  style="  font-weight: bold; font-family: arial;font-size: large; color:green; font-style: italic">
+                                    </h:outputText>
+                                    <br /> <br />
+                                    <h:outputText value="Por favor, llene el siguiente formulario y envíenos su pregunta o comentario. " 
+                                                  style="font-family: arial;font-size: small; color:black; font-style: italic">
+                                    </h:outputText>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    <h:panelGrid columns="2" cellpadding="2" >  
+
+                                        <h:outputText value="Nombre" 
+                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                        </h:outputText>
+                                        <p:inputText id="tabaText" size="15" value="#{ContactenosUI_Backing.nombContacto}" tabindex="4"/> 
+
+                                        <h:outputText value="Apellido" 
+                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                        </h:outputText>
+                                        <p:inputText id="tabbText" size="15" value="#{ContactenosUI_Backing.apelContacto}" tabindex="5" /> 
+
+                                        <h:outputText value="Email" 
+                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                        </h:outputText>
+                                        <p:inputText id="tabdText" size="15" value="#{ContactenosUI_Backing.emailContacto}" tabindex="6"/> 
+
+                                        <h:outputText value="Teléfono" 
+                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                        </h:outputText>
+                                        <p:inputText id="tabeText" size="15" value="#{ContactenosUI_Backing.telContacto}" tabindex="7"/> 
+
+                                        <h:outputText value="Pregunta/Comentario" 
+                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                        </h:outputText>
+                                        <p:inputTextarea id="tabfText" value="#{ContactenosUI_Backing.mensajeContacto}" cols="40" rows="3" tabindex="8"/> 
+
+                                    </h:panelGrid> 
+                                    <br/>
+                                    <table  width="62%" border="0">
+                                        <tr>
+                                            <td>
+                                                <p:messages id="global1" globalOnly="true" for ="men" redisplay="false"/> 
+                                            </td>
+                                        </tr>
+                                    </table>         
+                                    <br />
+                                    <div align="center">
+                                        <p:commandButton id="tab021Text" value="Enviar correo" actionListener="#{ContactenosUI_Backing.enviarEmailContacto}" tabindex="9" 
+                                                         style="font-family: arial;font-size: small; color:black; font-style: italic" ajax="false"/>
+                                    </div>
+                                    <br/> <br/>
+                                    <hr width="100%"></hr>
+                                </h:form>
+                            </td> 
+                        </tr>            
+                    </table>
+                </p:layoutUnit>
+            </p:layout>
+        </body>
+    </f:view>
+</html>
+

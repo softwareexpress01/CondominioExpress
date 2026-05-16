@@ -1,0 +1,1026 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <f:view>
+        <h:head>
+            <title>Software Express Software Como Servicio Gestion de Condominios</title>
+            <f:facet name="first"> 
+                <meta NAME="description" CONTENT="Software Express, C.A., pone a la disposición de personas naturales y jurídicas 
+                      el sistema Software Express Condominio 4.0, como un Servicio en la web, 
+                      que funciona bajo la modalidad de suscripciones con pagos mensuales, y...  "
+
+                      ></meta>
+                <meta NAME="keywords" CONTENT="Software como servicio 
+                      Gestion de condominios
+                      Software As A Service
+                      Sistema de informacion 
+                      Indicadores de Gestion
+                      Gestion en la web
+                      Administracion de condominios
+                      suscripcion al servicio
+                      java JEE "></meta>
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+
+        <body>
+            <noscript>
+                <p>!Bienvenido a la página de Software Express!</p>
+                <p>Nuestra página, así como también nuestras aplicaciones, 
+                    requieren el uso de javaScript. Antes de continuar, por favor, habilite la opción de java Script en su browser.</p>
+                <p>  Para información de como hacer esto, le recomendamos la siguiente página: http://www.enable-javascript.com/es/ </p>
+            </noscript>
+
+            <p:layout fullPage="true" >
+
+                <p:layoutUnit id="top" position="north" size="115" style="text-align:left; font-size: small; font-style: italic">
+
+                    <table  width="100%" height="1%" border="0">
+                        <tr height="0">
+                            <div align="center"><h1>
+                                    <h:graphicImage url="/images/logo6.jpg" height="55" width="700" />
+                                </h1></div>
+                        </tr>                                          
+                    </table>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="right" position="east" size="250" header="Gestión de Condominios" resizable="false" closable="f" collapsible="true"
+                              style="text-align:left; font-size: small; font-style: italic ">
+                    <h:form>
+                        <p:accordionPanel style =" font-size: small ">
+                            <p:tab title="Ingresar al sistema">
+
+                                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                                <h:outputText value="Para los usuarios del sistema de Gestión de Condominios version 4.0" 
+                                              style="font-family: arial;font-size: small; color:green; font-style: italic">
+                                </h:outputText>
+                                <br/><br/>
+                                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                                <h:commandLink action="bienvenida" >
+                                    <p:graphicImage id="tab103Img" value="/images/login.png" height="70" width="70" /> 
+                                </h:commandLink>
+                            </p:tab>
+
+                            <p:tab title="Solicitud de suscripciones">
+                                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                                <h:outputText value="Para aquellos que aun no se han suscrito al servicio que ofrecemos para agilizar 
+                                              la gestión de su condominio desde la web." 
+                                              style="font-family: arial;font-size: small; color:green; font-style: italic">
+                                </h:outputText>
+                                <br /><br/>
+                                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                                <h:outputText value="¡Suscribase ya!" 
+                                              style="font-family: arial;font-size: medium; color:blue; font-style: italic">      
+                                </h:outputText> 
+                                <br /><br/>
+                                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                                <h:commandLink action="suscripcion">
+                                    <p:graphicImage id="tab104Img" value="/images/suscribirse.jpg" height="70" width="70"/> 
+                                </h:commandLink>
+                            </p:tab>
+
+                            <p:tab title="Pagos de mensualidades">
+                                <h:form>
+
+                                    <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                                    <h:outputText value="Para realizar los pagos mensuales de su suscripcion y continuar disfrutando 
+                                                  los beneficios que ofrecemos" 
+                                                  style="font-family: arial;font-size: small; color:green; font-style: italic">
+                                    </h:outputText>
+                                    <br />
+
+                                    <p:messages globalOnly="true" id="mensajeGlobal"  redisplay="false"/>   
+                                    <br />
+                                    <h:panelGrid columns="2" cellpadding="2" style="background-color: #DDD">  
+
+                                        <h:outputText value="Nro. suscripción" 
+                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                        </h:outputText>
+
+                                        <p:inputText id="tab00Text" size="15" value="#{MainUI_Backing.numSuscripcion}" tabindex="1"/> 
+                                        <h:outputText value="Contraseña" 
+                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                        </h:outputText>
+
+                                        <p:password id="tab01Text" size="15" value="#{MainUI_Backing.contraseñaSuscripcion}" tabindex="2" />          
+                                    </h:panelGrid> 
+                                    <br /><br />
+                                    <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                                    <h:commandButton id="tab02Text" value="Registrar pagos" action="#{MainUI_Backing.registrarPagoMensual}" tabindex="3"
+                                                     style="font-family: arial;font-size: small; color:black; font-style: italic"/>
+                                </h:form>
+                            </p:tab>
+                        </p:accordionPanel>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="center" position="center" style="text-align:left; font-size: small; font-style: italic ">
+
+                    <h:form>
+                        <p:tabView id="tabView" style =" font-size: small " effect="clip" effectDuration="slow">  
+                            <p:tab id="tab6" title="Condominio 4.0">  
+                                <p:tabView> 
+                                    <p:tab id="tab61" title="Descripción">
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab801Img" value="/images/velero3.png" height="300" width="250" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab929Text" value="Software Express Condominio 4.0" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab930Text" value="Es un sistema de información cuyo funcionamiento está totalmente orientado a la web y que, Software Express, C.A., 
+                                                                  se complace en ofrecer al mercado nacional venezolano, con la seguridad de colocar en sus manos, la herramienta de trabajo para la 
+                                                                  administración de condominios más completa, sencilla y eficiente de la actualidad."/>  
+                                                </tr>
+                                                <tr></tr>
+                                                <tr>
+                                                    <h:outputText id="tab931Text" value="Una vez que el usuario se suscribe, obtiene un código de usuario y una contraseña, mediante los cuales, 
+                                                                  podrá conectarse al sistema y sacar provecho de  sus grandes  ventajas. El suscriptor paga por el acceso al sistema, sin tener que
+                                                                  adquirir una licencia de uso. Las suscripciones se renuevan mediante una inversion mínima mensual. Es decir, se obtiene un gran beneficio,
+                                                                  a un bajo costo con todas las ventajas de estar en internet."/>  
+                                                </tr>
+                                                <tr>  
+                                                    <td align="center">
+                                                        <h:outputText id="tab9316Text" value="Para detalles técnicos de configuración de su equipo, por favor, diríjase a la sección siguiente:"/> 
+                                                    </td>
+                                                </tr>
+                                                <tr> 
+                                                    <td align="center">
+                                                        <a href="#Configuración recomendada"><font color="red" size="2">Configuración recomendada</font></a>
+                                                    </td>
+                                                </tr>
+                                                <tr></tr>
+                                                <tr>  
+                                                    <td align="center">
+                                                        <h:outputText id="tab931699Text" value="Para observar una presentación del sistema y una demostración, por favor, diríjase al siguiente enlace:"/> 
+                                                    </td>
+                                                </tr>
+                                                <tr> 
+                                                    <td align="center">
+                                                        <a href="http://www.youtube.com/watch?v=T8pMzIQai-A"><img src="images/youtube.jpg" border="0" height="50" width="100"/></a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>  
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab882Img" value="/images/BolaSE.png" height="25" width="25"/>  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab932Text" value="Características" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab933Text" value="Software Express Condominio 4.0,  está instalado en la web y disponible al instante. No requiere instalación en su 
+                                                                  equipo ni de configuraciones especiales de hardware para su funcionamiento, únicamente es necesario el browser de su preferencia y una 
+                                                                  conexión a internet. Tampoco es imprescindible disponer de una impresora ya que todos los informes que produce el sistema, se generan 
+                                                                  en formato PDF por lo que pueden ser visualizados en pantalla, guardados en disco o enviados por email. El mantenimiento y actualización 
+                                                                  del software corre a cuenta de Software Express, C.A., no implicando esto ningún costo adicional para los suscriptores del Servicio."/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab934Text" value="El sistema ha sido diseñado en forma modular para facilitar su uso y mantenimientos posteriores, estando conformado 
+                                                                  de la siguiente manera:"/>  
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>    
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab883Img" value="/images/BolaSE.png" height="25" width="25"/>  
+                                            <table  width="100%" border="0">   
+                                                <tr>
+                                                    <h:outputText id="tab935Text" value="Login" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab936Text" value="Controla el acceso de los Usuarios al sistema. Requiere el código de usuario y contraseña para permitir el acceso 
+                                                                  al menú principal. Valida que la suscripción asociada al usuario se encuentre activa.	"/>  
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab884Img" value="/images/BolaSE.png" height="25" width="25"/>  
+                                            <table  width="100%" border="0">   
+                                                <tr>
+                                                    <h:outputText id="tab947Text" value="Seleccionar condominio y propiedad" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+
+                                                <tr>
+                                                    <h:outputText id="tab948Text" value="Condominio 4.0, permite al usuario crear y administrar múltiples condominios. Por esta razón, al entrar al sistema, 
+                                                                  se debe seleccionar uno de  ellos  y la propiedad  del mismo con que se desea trabajar. "/>  
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab885Img" value="/images/BolaSE.png" height="25" width="25"/>  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab949Text" value="Datos Básicos" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab950Text" value="Permite agregar, modificar o eliminar todos los elementos base de trabajo con el sistema, como son: datos 
+                                                                  del Condominio, Propiedades, Inmuebles, Categorías de gastos, conceptos, datos de Proveedores, Bancos, Cuentas bancarias, Chequeras y Fondos.	"/>  
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>  
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab886Img" value="/images/BolaSE.png " height="25" width="25" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab951Text" value="Movimientos del mes" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab952Text" value="Integrado por aquellos módulos usados para registrar las múltiples operaciones que contempla el sistema, 
+                                                                  las cuales están agrupadas en:	 "/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab953Text" value="Transacciones: Gastos comunes ordinarios, gastos comunes extraordinarios, Gastos no comunes,
+                                                                  Fondos generales, Cuotas especiales y Movimientos bancarios.	"/>  
+                                                </tr>
+
+                                                <tr>
+                                                    <h:outputText id="tab954Text" value="Cuentas por cobrar: Pagos por Inmuebles, Revertir pagos , Notas de crédito/débito, 
+                                                                  Pagos adelantados, Deuda pendiente.	"/>  
+                                                </tr>
+
+                                                <tr>
+                                                    <h:outputText id="tab955Text" value="Cuentas por pagar: Deuda pendiente, Notas de crédito/débito, Pagos a Proveedores, 
+                                                                  Revertir pagos cxp, Pagos al Fondo de reserva, revertir pagos al fondo de reserva.	"/>  
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>  
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab887Img" value="/images/BolaSE.png" height="25" width="25"/>  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab956Text" value="Informes" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab957Text" value="Gestión: Distribución del gasto, Balance general, Transacciones, Cobranza, Pagos del mes."/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab958Text" value="Proveedores: Listado de Proveedores, Cuentas por pagar, Estados de cuenta, Pagos a proveedores."/>  
+                                                </tr>
+
+                                                <tr>
+                                                    <h:outputText id="tab959Text" value="Cuentas bancarias: Listado de cuentas, Movimientos bancarios."/>  
+                                                </tr>
+
+                                                <tr>
+                                                    <h:outputText id="tab960Text" value="Generales General de inmuebles, Condominios, Cartelera, Estado de cuentas, Avisos de cobros, Recibos."/>  
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>  
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab888Img" value="/images/BolaSE.png" height="25" width="25"/>  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab961Text" value="Configuración" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab962Text" value="Contempla funciones para que el usuario pueda incluir el logo de cada uno de los condominios que administra, 
+                                                                  al igual que parámetros de funcionamiento,  tales como: tipo de facturación (Por gastos del mes o monto fijo), números correlativos 
+                                                                  para los avisos de cobro, recibos, notas de débito y crédito, y observaciones tanto para los avisos de cobro como para los recibos
+                                                                  de pago.	"/>  
+                                                </tr>
+
+                                            </table>
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab889Img" value="/images/BolaSE.png" height="25" width="25"/>  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab963Text" value="Administración" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab964Text" value="Conformado por módulos que permiten, una vez cargados en el sistema todos los movimientos del mes,  procesarlos 
+                                                                  en forma automática y proceder con el cierre del período. Para ello se utilizan las opciones de cierre: Preliminar y mensual."/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab965Text" value="El proceso de Cierre mensual es el encargado de llevar a cabo las funciones antes mencionadas, contemplándose,
+                                                                  para ello, el tratamiento de los siguientes elementos, dependiendo del tipo de facturación que se haya elegido:"/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab966Text" value="	Totalizar  los Gastos comunes ordinarios del período"/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab967Text" value="	Procesar los ajustes "/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab968Text" value="	Cálculo del fondo de reserva  e incluisión en el proceso del fondo de prestaciones sociales si lo hubiere"/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab969Text" value="	Generar alícuotas y distribuirlas en cada inmueble como cuentas por cobrar"/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab970Text" value="	Aplicar cuotas especiales"/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab972Text" value="	Aplicar pagos adelantados y otros pagos"/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab973Text" value="	Cierre del período"/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab974Text" value="	Emisión de los reportes del cierre"/>  
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab975Text" value="Adicionalmente se dispone del Pre cierre, un proceso especial de apoyo para el Usuario que permite la simulación del 
+                                                                  proceso de cierre antes descrito, pero sin afectar la base de datos. "/>  
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab8899Img" value="/images/BolaSE.png" height="25" width="25"/>  
+                                            <table width="100%" border="0" align="left">
+
+                                                <tr>
+                                                    <td with="10">
+                                                        <a name="Configuración recomendada">
+                                                            <font face="Arial" size="3" color="#009933">
+                                                                <h:outputText value="Configuración recomendada" style="font-family: arial;font-size: large; color:green; font-style: italic"></h:outputText></font>
+                                                        </a>
+                                                    </td>
+                                                    <tr>
+                                                        <h:outputText id="tab907001Text" value="A continuación, los requerimientos mínimos necesarios para el buen funcionamiento del sistema:"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <h:outputText id="tab907002Text" value="Navegador recomendado: Internet Explorer 10, Google Chrome"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <h:outputText id="tab907003Text" value="La opción de javaScript del navegador, activa (indispensable!)"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <h:outputText id="tab907004Text" value="Adobe Reader, instalado  (indispensable!). Todos los reportes del sistema se generan en formato pdf"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <h:outputText id="tab907005Text" value="Monitor vga, con resolución al 100% máximo (para mejor visualización)"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <h:outputText id="tab907006Text" value="Memoria RAM: 1Gb o superior (Recomendada, mínimo 512)"/>
+                                                    </tr>
+                                                    <tr>
+                                                        <h:outputText id="tab907007Text" value="Procesador: 1GHz o superior (Recomendado)"/>
+                                                    </tr>
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                    </p:tab>
+                                    <p:tab id="tab31" title="Alcances del Servicio" titleStyle="  ">  
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab31100Img" value="/images/alcance.png" height="200" width="320"/>  
+
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab9290Text" value="Alcance del servicio" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab90700Text" value="A continuación, algunas consideraciones, que el usuario de nuestras aplicaciones debe tener
+                                                                  en cuenta, para que su experiencia, con nuestros productos y servicios esté de acuerdo con sus expectativas."/> 
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab90701Text" value="Como se podrá apreciar en los siguientes párrafos, el suscriptor se limitará a cumplir su rol 
+                                                                  como usuario de las aplicaciones, sin tener que preocuparse de los detalles ténicos." /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab311Img" value="/images/uno.png"/>  
+                                            <table  width="100%" border="0">
+                                                <tr>
+
+                                                    <h:outputText id="tab907Text" value="El suscriptor accede al sistema vía internet, a través de la página web de Software Express, C.A., 
+                                                                  utilizando el número de suscripción y contraseña que se le asignó al momento de confirmarse su suscripción al Servicio,
+                                                                  y que le fueron suministrados por correo electrónico. " /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab312Img" value="/images/dos.png"/>  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab908Text" value="De acuerdo al plan de suscripción de servicios seleccionado por el cliente, este podrá crear 
+                                                                  los Condominios que requiera, teniendo como número máximo el que esté especificado dentro de las características del
+                                                                  plan de suscripción ya mencionado."/> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab313Img" value="/images/tres.png"/>  
+                                            <table  width="100%" border="0">
+                                                <tr>
+
+                                                    <h:outputText id="tab909Text" value="Igualmente, para cada condominio creado por el suscriptor, este puede definir tantos usuarios como 
+                                                                  necesite para acceder al mismo."/> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab314Img" value="/images/cuatro.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+
+                                                    <h:outputText id="tab910Text" value="Los usuarios podrán tener acceso al sistema las 24 horas de día los 365 días del año, salvo en los 
+                                                                  momentos que así lo indique Software Express, C.A., por razones de mantenimiento a los sistemas  o bases de datos; lo cual 
+                                                                  se informaría con suficiente antelación para que los usuarios  tomen sus previsiones. "/> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab315Img" value="/images/cinco.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+
+                                                    <h:outputText id="tab911Text" value= "Una vez que el usuario entra al sistema, estará en condiciones de llevar a cabo sus funciones en 
+                                                                  la administración de condominios, tales como la configuración inicial, carga de datos en el sistema, movimientos, 
+                                                                  transacciones, proceso de cierre, emisión de avisos de cobros y el resto de los informes de apoyo a la gestión, que están 
+                                                                  descritos en mayor detalle en la sección de Presentación de Software Express Condominio 4.0, de esta página, en la cual se
+                                                                  incluye también una demostración del mismo "/> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab316Img" value="/images/seis.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+
+                                                    <h:outputText id="tab912Text" value="La forma de pago del servicio es mensual, bajo la modalidad de pre pago." 
+                                                                  /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>  
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab317Img" value="/images/siete.png" />  
+                                            <table  width="100%" border="0">
+
+                                                <tr>
+
+                                                    <h:outputText id="tab913Text" value="En caso de que el suscriptor se atrase en los pagos correspondientes, podría ocurrir 
+                                                                  una suspensión del Servicio. Sin embargo, esto no implica la pérdida de datos y operaciones que los suscriptores 
+                                                                  hayan cargado en el sistema. La reactivación de las suscripciones se hacen una vez que Software Express, C.A.,
+                                                                  confirme el pago de la mensualidad faltante y, a partir de ese momento, el suscriptor podrá continuar sus 
+                                                                  operaciones con el sistema normalmente, por treinta días más." 
+                                                                  /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab318Img" value="/images/ocho.png" />  
+                                            <table  width="100%" border="0">
+
+                                                <tr>
+
+                                                    <h:outputText id="tab914Text" value="La responsabilidad de los datos cargados, transacciones, movimientos y cierres de períodos son 
+                                                                  de la exclusiva responsabilidad del suscriptor." 
+                                                                  /> 
+                                                </tr>    
+                                            </table>
+                                        </h:panelGrid> 
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab319Img" value="/images/nueve.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+
+                                                    <h:outputText id="tab915Text" value="Es responsabilidad de Software Express, C.A., velar por la disponibilidad del sistema en la nube y
+                                                                  llevar a cabo los respaldos de las bases de datos del sistema, con el objetivo de garantizar la continuidad de las operativa del 
+                                                                  sistema." 
+                                                                  /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+
+
+                                    </p:tab>
+
+                                    <p:tab id="tab3" title="Suscripciones y pagos" titleStyle="  ">  
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab320Img" value="/images/expreso.png" height="180" width="350"/>  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab916Text" value="Procedimiento de Suscripción" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+
+                                                <tr>
+                                                    <h:outputText id="tab905Text" value="El uso de Software Express Condominio 4.0,  que provee Software Express C.A. a través de internet,  
+                                                                  se rige bajo el esquema de suscripción de Servicios. 
+                                                                  Manejamos  la figura de Suscriptor, entendiéndose por esta cualquier persona natural o jurídica que desee disfrutar de
+                                                                  los beneficios y ventajas que ofrece nuestro sistema, para la gestión administrativa de sus condominios, en forma 
+                                                                  automatizada, eficiente y al instante. 
+                                                                  "/>
+                                                </tr>
+
+
+                                            </table>
+
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab321Img" value="/images/uno.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab917Text" value="Es imprescindible que el futuro Suscriptor de nuestros Servicios, lea atentamente las secciones de Descripción y Alcance del Servicio, en esta misma página, de manera tal que esté totalmente enterado de las mismas, y pueda, de esta forma, estar 
+                                                                  seguro de que estas cubren sus expectativas." /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>     
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab322Img" value="/images/dos.png" />  
+                                            <table  width="100%" border="0" columns="3">
+                                                <tr><h:outputText id="tab918Text" value="Se debe seleccionar uno de los siguientes planes por cada suscripción. 
+                                                                  Puede hacer tantas suscripciones como requiera, según la cantidad de condominios a administrar." /> </tr>
+                                            </table>  
+                                        </h:panelGrid>
+                                        <table  width="100%" border="0" align="center">
+                                            <tr>
+                                                <td width="30%">
+                                                </td>
+                                                <td>
+                                                    <h:panelGrid columns="2" cellpadding="2" style= "  background-color: #DDD; width: 230px; 
+                                                                 border: blue">  
+
+                                                        <h:outputText value="Plan " 
+                                                                      style="font-family: arial;font-size: small; color: forestgreen; font-style: italic; margin-left: 2em">      
+                                                        </h:outputText>
+
+                                                        <h:outputText value="Alcance " 
+                                                                      style="font-family: arial;font-size: small; color: forestgreen; font-style: italic; margin-left: 2em  ">      
+                                                        </h:outputText>
+                                                        <h:outputText value="Bronce" 
+                                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic; margin-left: 2em">      
+                                                        </h:outputText>
+
+                                                        <h:outputText value="Hasta 1 condominio " 
+                                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                                        </h:outputText>  
+                                                        <h:outputText value="Plata" 
+                                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic; margin-left: 2em">      
+                                                        </h:outputText>
+
+                                                        <h:outputText value="Hasta 3 condominios " 
+                                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                                        </h:outputText> 
+                                                        <h:outputText value="Oro" 
+                                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic;margin-left: 2em ">      
+                                                        </h:outputText>
+
+                                                        <h:outputText value="Hasta 6 condominios " 
+                                                                      style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                                        </h:outputText> 
+                                                    </h:panelGrid> 
+                                                </td>  
+                                            </tr>
+                                        </table>
+                                        <br/>
+                                        <table  width="100%" border="0" align="right">
+                                            <tr >
+                                                <td width="7%"></td>
+                                                <td>
+                                                    <h:outputText id="tab91912Text" value="Para una cotización, diríjase a la sección 
+                                                                  Contáctenos en esta misma página. Se le enviará un correo con detalles de los 
+                                                                  precios de cada plan y alguna información adicional."
+                                                                  style="font-family: arial;font-size: small; color:red; font-style: italic" />
+                                                </td>
+                                            </tr>
+                                        </table>
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab323Img" value="/images/tres.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab919Text" value="Efectuar depósito o transferencia bancaria a nombre de Software Express, C.A., por el monto que corresponda al plan seleccionado, en la cuenta corriente del Banco Provincial nro. 0108-0059-55-0100338795 " /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>  
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab324Img" value="/images/cuatro.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab920Text" value="Desde esta misma página ir a la opción de Registrar Solicitud de Suscripción y llenar los datos requeridos, incluyendo los datos del depósito/transferencia efectuada, el plan seleccionado y los datos personales o razón social del solicitante." /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab325Img" value="/images/cinco.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab921Text" value="Software Express, C.A., al comprobar los datos de la solicitud, enviará un correo electrónico a la dirección especificada por el nuevo Suscriptor, incluyendo en el mismo el número de suscripción y la contraseña, datos con las cuales el usuario podrá acceder al sistema y registrar el código de usuario y su contraseña personal. El correo también incluirá el recibo por el pago registrado." /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>
+
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab326Img" value="/images/pago.jpg" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab922Text" value="Pagos mensuales" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab327Img" value="/images/uno.png" />  
+                                            <table  width="100%" border="0">
+
+                                                <tr>
+                                                    <h:outputText id="tab923Text" value="Tener a mano el número y la contraseña de suscripción cuyo pago mensual se desea realizar." /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>  
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab328Img" value="/images/dos.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab924Text" value="Efectuar depósito o transferencia bancaria a nombre de Software Express, C.A., por el monto que corresponda al plan seleccionado, en la cuenta corriente del Banco Provincial nro. 0108-0059-55-0100338795 " /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab329Img" value="/images/tres.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab925Text" value="Ingresar en la opción de s, de esta página, y rellenar los datos que se indican en el formulario correspondiente." /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab330Img" value="/images/cuatro.png" />  
+                                            <table  width="100%" border="0">
+                                                <tr>
+                                                    <h:outputText id="tab926Text" value="Esperar la confirmación del pago. Software Express, C.A. le enviará un correo de confirmación con el recibo correspondiente." /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab331Img" value="/images/cinco.png" />  
+                                            <table  width="100%" border="0">   
+                                                <tr>
+                                                    <h:outputText id="tab927Text" value="En el caso de suspensión del servicio, este le será reactivado con la confirmación del pago automáticamente." /> 
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid>     
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab332Img" value="/images/seis.png" />  
+                                            <table  width="100%" border="0">   
+                                                <tr>
+                                                    <h:outputText id="tab928Text" value="Es importante recordar que la suscripción al Servicio funciona bajo la modalidad de pre pago y que, al suscribirse, se le asigna una fecha de corte/facturación y esto implica que, con cada pago, el suscriptor 
+                                                                  tendrá el sistema disponible hasta la fecha de corte, que normalmente son treinta días. En consecuencia, se recomienda que los pagos de las mensualidades sean realizados cercanos a la fecha de corte mencionada, o este día, como máximo, para 
+                                                                  que pueda disfrutar del beneficio del uso del sistema por treinta días más, ya que llegada la fecha del día de corte, se suspenderá el servicio si no se encuentran pagos registrados. Esto quiere decir, que si un suscriptor paga su mensualidad 
+                                                                  15 días después de la fecha de corte y su servicio se encontraba suspendido, el servicio le será reactivado al confirmarse el pago, pero disfrutará del servicio hasta su próximo día de corte que será, en este ejemplo, quince días continuos después." /> 
+                                                </tr>
+                                            </table>   
+                                        </h:panelGrid>  
+                                    </p:tab>
+                                    <p:tab id="tab323" title="¡Tour gratis!" titleStyle="font-family:arial;font-size:small;font-color:red;font-style:italic " >  
+                                        <h:panelGrid columns="2" cellpadding="10">  
+                                            <p:graphicImage id="tab3231Img" value="/images/ciclista.png" height="230" width="480"/>  
+                                            <table  width="100%" border="0">
+                                                <h:outputText id="tab91633Text" value="¡Recorrido por el sistema, sin suscripción, sin compromiso, totalmente gratis!" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                <tr>
+                                                    <h:outputText id="tab9051Text" value="Le invitamos a realizar un recorrido y uso del sistema condominio 4.0,  totalmente gratuito, 
+                                                                  sin registro, sin suscripción y sin compromiso, donde podrá crear todos lo componentes de uno o varios condominios, 
+                                                                  cargar y visualizar sus datos, efectuar transacciones y emitir reportes.
+                                                                  Nuestro objetivo es  que use el sistema por un tiempo determinado, a fin de que pueda apreciar el gran alcance 
+                                                                  de sus  funcionalidades y la sencillez de su operación. Adelante!
+
+                                                                  "/>
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                        <h:panelGrid columns="2" cellpadding="10">
+                                            <p:graphicImage id="tab41Img" value="/images/ok.jpg" height="200" width="200"/>
+                                            <table  width="100%" border="0">
+                                                <tr align="center">
+                                                    <h:outputText id="tab916331Text" value="¡Disfrute el recorrido! ¡Comience ya!" style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                                </tr>
+                                                <tr>
+                                                    <h:outputText id="tab412Text" value="¡Es muy facil!. Solo se le pedirá la creación de un código de usuario y contraseña de su preferencia, los cuales
+                                                                  utilizará cada vez que desee realizar el recorido. No se requieren datos personales ni empresariales. Ahora...¡siga adelante!"/>
+                                                </tr>
+                                                <tr>
+                                                    <a href="http://localhost:8080/CondominioExpress/faces/BienvenidaUI.xhtml"><img src="images/flecha.jpg" border="0" height="50" width="100"/></a>
+                                                </tr>
+                                            </table>
+                                        </h:panelGrid> 
+                                    </p:tab>
+                                </p:tabView> 
+                            </p:tab>  
+
+                            <p:tab id="tab1" title="La empresa"  >  
+                                <h:panelGrid columns="2" cellpadding="10">  
+                                    <p:graphicImage id="tab1Img" value="/images/empresa.png" height="250" width="300"/>  
+                                    <table  width="100%" border="0">
+                                        <tr>
+                                            <h:outputText id="tab899Text" value="Software Express C.A." style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                        </tr>
+                                        <tr></tr>
+                                        <tr>
+                                            <h:outputText id="tab900Text" value="Nuestra Empresa, Software Express, nace como una respuesta a los  requerimientos de sistemas de información 
+                                                          del  mercado corporativo y de la pequeña y mediana empresa, que  tienen que enfrentar,  constantemente,   los elevados  costos 
+                                                          del software y el de las plataformas de hardware, imprescindibles para su funcionamiento.  "/>
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab902Text" value="              
+                                                          Conscientes de las tendencias tecnológicas de la actualidad y lo mencionado en el párrafo anterior, hemos concebido ,  
+                                                          desde nuestros inicios, planes concretos dirigidos a alcanzar una alta especialización, en las herramientas y
+                                                          metodologías más novedosas, para la construcción de soluciones automatizadas, basadas en Internet y en el modelo SaaS
+                                                          (Software como servicio*)." /> 
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab90299Text" value="Todo lo anterior,con el objetivo de ofrecer a nuestros Clientes, sistemas de alta calidad, 
+                                                          al igual que Servicios profesionales de consultoría y adiestramiento, como especialistas en Análisis y Diseño de Sistemas 
+                                                          Orientado a Objetos, tecnologías relacionadas con la plataforma de desarrollo de aplicaciones Java Standard Edition (JSE), 
+                                                          y la plataforma Java Enterprise Edition (JEE), entre otras ."/> 
+                                        </tr>
+                                    </table> 
+
+                                    <br></br>
+                                    <table  width="55%" border="0" align="center">
+                                        <tr>
+                                            <td>
+                                                <a href="https://www.facebook.com/www.condominio4.0.com.ve"><img src="images/facebook.jpg" border="0" height="35" width="100"/></a>
+                                            </td>
+                                            <td>
+                                                <a href="http://www.youtube.com/watch?v=T8pMzIQai-A"><img src="images/youtube.jpg" border="0" height="50" width="100"/></a>
+                                            </td>
+                                        </tr>
+                                    </table>   
+                                </h:panelGrid> 
+                                <h:outputText value="* Ver sección, Software como servicio" 
+                                              style="  font-weight: bold; font-family: arial;font-size: small; color:black; font-style: italic">
+                                </h:outputText>
+                            </p:tab> 
+                            <p:tab id="tab5" title="Servicios"  >  
+                                <h:panelGrid columns="2" cellpadding="10" >  
+                                    <p:graphicImage id="tab5Img" value="/images/arroba.jpg" height="150" width="150"/> 
+                                    <table  width="100%" border="0">
+                                        <tr>
+                                            <h:outputText id="tab51Text" value="Software Express Condominio 4.0" 
+                                                          style="font-family: arial;font-size: large; color:green; font-style: normal"/>
+                                        </tr>   
+                                        <tr> 
+                                            <h:outputText id="tab5Text" value="Condominio 4.0, es un sistema integrado para la gestión automatizada de condominios desde la web, que nuestra empresa ofrece al mercado bajo la modalidad de Software Como Servicio
+                                                          (Software as a Service - Saas -, por sus siglas en inglés),lo cual quiere decir, que es un servicio que consiste en dar acceso al sistema y cuya contratación, se lleva a cabo por suscripciones. Esta solución está totalmente
+                                                          desarrollada para internet, con las más novedosas tecnologías,  y puede ser utilizada por condominios que funcionen por autogestión, así como también, por compañias que
+                                                          deseen prestar sus servicios de administración en forma corporativa (Administradoras). Software Express, C.A; también ofrece servicios de gestión de condominios, el cual es realizado
+                                                          por nuestro personal. Para obtener mayor información del sistema, haga clic en la pestaña Condominio 4.0 de esta misma página."
+                                                          style="font-family: arial;font-size: small; color:black; font-style: italic"/> 
+                                        </tr> 
+                                    </table>  
+                                </h:panelGrid>  
+                                <h:panelGrid columns="2" cellpadding="10" >  
+                                    <p:graphicImage id="tab512Img" value="/images/consultoria.jpg" height="150" width="150"/> 
+                                    <table  width="100%" border="0">
+                                        <tr>
+                                            <h:outputText id="tab5125Text" value="Consultorias" 
+                                                          style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                        </tr>   
+                                        <tr> 
+                                            <h:outputText id="tab512Text" value="Ampliando nuestro dominio de las nuevas tecnologías.
+                                                          En Software Express,C.A, hemos concebido desde nuestros inicios, planes concretos dirigidos a alcanzar una alta especialización en las
+                                                          herramientas y metodologías mas novedosas  para la construcción de soluciones automatizadas, basadas en Internet, con el firme 
+                                                          objetivo de poder ofrecer a nuestros Clientes, servicios profesionales de consultoría, acorde a sus necesidades.
+
+                                                          En este sentido, mantenemos un adiestramiento contínuo de alto nivel en nuestro personal, específicamente, en herramientas, tales 
+                                                          como, Análisis y Diseno de Sistemas Orientado a Objetos, tecnologías relacionadas con la plataforma de desarrollo de aplicaciones 
+                                                          Java Standard Edition (JSE), y la plataforma Java Enterprise Edition (JEE), para el Desarrollo de Aplicaciones Empresariales  
+                                                          basadas en la web.
+
+                                                          "/>  
+                                        </tr> 
+                                    </table>  
+                                </h:panelGrid> 
+
+                                <h:panelGrid columns="2" cellpadding="10" >  
+                                    <p:graphicImage id="tab513Img" value="/images/adiestramiento.jpg" height="150" width="150"/> 
+                                    <table  width="100%" border="0">
+                                        <tr>
+                                            <h:outputText id="tab5132Text" value="Adiestramiento...Próximamente!" 
+                                                          style="font-family: arial;font-size: large; color:green; font-style: italic"/>
+                                        </tr>   
+                                        <tr> 
+                                            <h:outputText id="tab5133Text" value=" Software Express,C.A, se encuentra, actualmente, en un proceso de ejecución de actividades
+                                                          relacionadas con el área de adiestramiento de personal, especificamente, en herramientas para el desarrollo de sistemas de información 
+                                                          empresariales. Estos ultimos son sistemas construidos con tecnologías avanzadas para ser utilizados desde la web.
+
+                                                          Dado que Software Express, C.A; ha desarrollado, para la construcción de sus aplicaciones comerciales , altos niveles 
+                                                          de competencia en las herramientas necesarias, esto la hace especialmente adecuada para impartir cursos en las distintas
+                                                          áreas de especialización.
+
+                                                          Proximamente, y una vez culminada la etapa mencionda, Se ofrecerán los detalles de los cursos, sus contenidos y la 
+                                                          planificación correspondiente. La áreas de especialización, son las siguientes:  Analisis y Diseno de Sistemas 
+                                                          Orientados a Objeto, tecnologías relacionadas con la plataforma de desarrollo de aplicaciones 
+                                                          Java Standard Edition (JSE), y la plataforma Java Enterprise Edition (JEE). 
+
+                                                          "/>                                         
+                                        </tr> 
+                                    </table>  
+                                </h:panelGrid> 
+                            </p:tab>  
+                            <p:tab id="tab2" title="Software como servicio">
+                                <h:panelGrid columns="2" cellpadding="10" >  
+                                    <p:graphicImage id="tab23Img"  value="/images/checklist.png" height="250" width="300"/>  
+                                    <table  width="100%" border="0">
+                                        <tr>
+                                            <h:outputText id="tab2292Text" value="Beneficios" 
+                                                          style="font-family: arial;font-size: large; color:green; font-style: italic"/> 
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab2Text" value="Software como servicio (Software as a Service - Saas - por sus siglas en inglés),
+                                                          es un modelo de prestación de servicios de negocio y tecnología, que proporciona los siguientes 
+                                                          beneficios a los usuarios de las aplicaciones: "
+                                                          style="font-family: arial;font-size: small; color:black; font-style: italic" />
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab210Text" value="              
+                                                          1. Reducir costos." 
+                                                          style="font-family: arial;font-size: medium;   color:black; font-style:italic" />
+
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab21Text" value="              
+                                                          No se requiere conocimientos de informática ni la participación de técnicos especializados, 
+                                                          ya que las tareas de instalación, configuración, setup, procedimientos de respaldo y recuperación, actualizaciones,
+                                                          etc, no son necesarias. La gestión de la infraestructura tecnológica, es realizada por el proveedor del servicio, Software Express, C.A." 
+                                                          style="font-family: arial;font-size: small; color:black; font-style: italic" />
+                                        </tr>
+
+                                        <tr>
+                                            <tr>
+                                                <h:outputText id="tab211Text" value="              
+                                                              2. Pagar por uso sin invertir en TI o infraestructura" 
+                                                              style="font-family: arial;font-size: medium;   color:black; font-style:italic" />
+
+                                            </tr>
+                                            <h:outputText id="tab221Text" value="        
+                                                          No se requiere ninguna inversión en sistemas ni equipos de computación. Solo es necesario
+                                                          un computador con acceso a internet y suscribirse al  servicio. 
+                                                          " 
+                                                          style="font-family: arial;font-size:small; color:black; font-style: italic"/>
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab212Text" value="              
+                                                          3. Obtener valor con rapidez " 
+                                                          style="font-family: arial;font-size: medium;   color:black; font-style:italic" />
+
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab222Text" value="        
+                                                          El valor esta representado por una funcionalidad específica que da soporte a un proceso de negocios determinado. Esto se logra
+                                                          a través de sistemas de información en la red, y la funcionalidad mencionada (valor) se obtiene en cuestion de segundos,  
+                                                          no meses o años de inversión, en desarrollo de tecnología para apoyar los procesos del negocio."
+                                                          style="font-family: arial;font-size:small; color:black; font-style: italic"/> 
+
+                                        </tr>
+                                    </table>                                    
+                                </h:panelGrid>  
+                                <hr width="500"></hr>
+                                <h:panelGrid columns="2" cellpadding="10" >  
+                                    <p:graphicImage id="tab2Img"  value="/images/saas13.png" height="200" width="315"/> 
+                                    <table  width="100%" border="0">
+                                        <tr>
+                                            <h:outputText id="tab223Text" value="Software como servicio " 
+                                                          style="font-family: arial;font-size: large; color:green; font-style: italic"/> 
+                                        </tr>
+                                        <tr>
+
+                                            <h:outputText id="tab224Text" value="En vez de conectarse a un servidor de su oficina para trabajar con una
+                                                          aplicación, el usuario puede, mediante un codigo de usuario y contraseña, trabajar con la aplicación
+                                                          usando su navegador de internet. Este servicio es proporcionado por un
+                                                          proveedor (Software Express, C.A ) que es quien alquila el acceso a dicha aplicación. El procesamiento de 
+                                                          los datos se realiza en la nube: cloud computing. Las ultimas tendencias tecnológicas indican que 
+                                                          el procesamiento natural de los datos en el futuro (hoy) será en internet.
+                                                          " style="font-family: arial;font-size: small; color:black; font-style: italic"/> 
+                                        </tr>
+                                    </table>    
+
+                                </h:panelGrid> 
+
+                                <hr width="500"></hr>
+                                <h:panelGrid columns="2" cellpadding="10" >  
+                                    <p:graphicImage id="tab11Img" value="/images/saas9.jpg" height="200" width="300"/> 
+                                    <table  width="100%" border="0">
+                                        <tr>
+                                            <h:outputText id="tab225Text" value="Características"
+                                                          style="font-family: arial;font-size: large; color:green; font-style: italic"/> 
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab226Text" value="a) Modelo de distribución de software, en donde los usuarios se suscriben a un servicio que 
+                                                          proporciona acceso contínuo, a una o mas las aplicaciones, que usan, en vez de comprarlas, a diferencia del estilo de compra/venta de la licencia de uso tradicional."
+                                                          style="font-family: arial;font-size: small; color:black; font-style: italic"/> 
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab227Text" value="b) El hospedaje, soporte y mantenimiento de las aplicaciones corren por cuenta del
+                                                          proveedor del Servicio (Software Express C.A.),  quien es el propietario de las mismas. El usuario solo 
+                                                          atiende su rol como tal, sin preocuparse de los aspectos técnicos del sistema. No requiere conocimientos 
+                                                          asociados a áreas de tecnologias de sistemas de información ni relacionadas con las mismas." 
+                                                          style="font-family: arial;font-size: small; color:black; font-style: italic"/> 
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab228Text" value="c) Múltiples clientes (Suscriptores) acceden a las aplicaciones en forma remota por internet. 
+                                                          Se elimina la necesidad de implantación de costosas infraestructuras de redes y de desarrollo de sistemas de información. 
+                                                          Se aprovechan todos los beneficios de internet." 
+                                                          style="font-family: arial;font-size: small; color:black; font-style: italic"/> 
+                                        </tr>
+                                        <tr>
+                                            <h:outputText id="tab229Text" value="d) El pago del servicio, se lleva acabo bajo el esquema de suscripción con pagos mensuales que 
+                                                          mantienen  la continuidad del mismo, con una relación costo/beneficio muy rentable y orientada al cliente.
+                                                          Esto ofrece mayor valor con un menor esfuerzo por parte del cliente (Ecuación de valor por esfuerzo extraordinariamente favorable)." 
+                                                          style="font-family: arial;font-size: small; color:black; font-style: italic"/> 
+                                        </tr>
+
+                                    </table>                                    
+                                </h:panelGrid> 
+
+                            </p:tab>  
+
+                            <p:tab id="tab4" title="Contáctenos">  
+
+                                <table  width="100%" border="0">
+                                    <tr>
+                                        <td width ="35%">
+                                            <h:panelGrid columns="1" cellpadding="10">  
+                                                <p:graphicImage id="tab4Img" value="/images/contactenos5.jpg" height="250" width="350"/>  
+                                                <h:outputText id="tab4Text" value="Si desea conocer más detalles acerca de los servicios que ofrece Software Express, 
+                                                              le invitamos a que se comunique con nosotros, enviándonos un correo con sus preguntas o comentarios. 
+                                                              También, puede comunicarse por los teléfonos: 0212-7352765, 0212-7352766, 0414-6000018, 0416-7192765"/>  
+                                                <h:outputText id="tab41Text" value="Nuestra dirección:  1ra calle de Bello Monte con avenida Casanova. Edificio Monte Bello. Oficina 10B PH. Caracas, Venezuela."/>  
+                                            </h:panelGrid>  
+                                        </td>
+                                        <td width="5%"></td>
+                                        <td>
+                                            <h:form>
+                                                <h:outputText value="Contacto" 
+                                                              style="  font-weight: bold; font-family: arial;font-size: large; color:green; font-style: italic">
+                                                </h:outputText>
+                                                <br /> <br />
+                                                <h:outputText value="Por favor, llene el siguiente formulario y envíenos su pregunta o comentario. " 
+                                                              style="font-family: arial;font-size: small; color:black; font-style: italic">
+                                                </h:outputText>
+                                                <br />
+                                                <br />
+                                                <br />
+                                                <h:panelGrid columns="2" cellpadding="2" >  
+
+                                                    <h:outputText value="Nombre" 
+                                                                  style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                                    </h:outputText>
+                                                    <p:inputText id="tabaText" size="15" value="#{MainUI_Backing.nombContacto}" tabindex="4"/> 
+
+                                                    <h:outputText value="Apellido" 
+                                                                  style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                                    </h:outputText>
+                                                    <p:inputText id="tabbText" size="15" value="#{MainUI_Backing.apelContacto}" tabindex="5" /> 
+
+                                                    <h:outputText value="Email" 
+                                                                  style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                                    </h:outputText>
+                                                    <p:inputText id="tabdText" size="15" value="#{MainUI_Backing.emailContacto}" tabindex="6"/> 
+
+                                                    <h:outputText value="Teléfono" 
+                                                                  style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                                    </h:outputText>
+                                                    <p:inputText id="tabeText" size="15" value="#{MainUI_Backing.telContacto}" tabindex="7"/> 
+
+                                                    <h:outputText value="Pregunta/Comentario" 
+                                                                  style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                                                    </h:outputText>
+                                                    <p:inputTextarea id="tabfText" value="#{MainUI_Backing.mensajeContacto}" cols="40" rows="3" tabindex="8"/> 
+
+                                                </h:panelGrid> 
+                                                <br/>
+                                                <table  width="62%" border="0">
+                                                    <tr>
+                                                        <td>
+                                                            <p:messages id="global1" globalOnly="true" for ="men" redisplay="false"/> 
+                                                        </td>
+                                                    </tr>
+                                                </table>         
+                                                <br />
+                                                <div align="center">
+                                                    <h:commandButton id="tab021Text" value="Enviar correo" actionListener="#{MainUI_Backing.enviarEmailContacto}" tabindex="9" 
+                                                                     style="font-family: arial;font-size: small; color:black; font-style: italic"/>
+                                                </div>
+                                                <br /><br/>
+                                            </h:form>
+                                        </td> 
+                                    </tr>            
+
+                                </table>
+                            </p:tab>
+                        </p:tabView>  
+
+                    </h:form>
+
+                </p:layoutUnit>
+            </p:layout>
+        </body>
+    </f:view>
+</html>
+

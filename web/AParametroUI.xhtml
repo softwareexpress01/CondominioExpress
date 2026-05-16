@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"> 
+    <f:view> 
+        <h:head>
+            <title>Ayuda de Software Express Condominio</title> 
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <div style="overflow:auto; height:380px;">
+                <h:form id="form"  >
+
+                    <table width="70%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <font face="Arial" size="3" color="#009933"><h:outputText value="Indice"></h:outputText></font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="AConfiguracionInic.xhtml">Primeros pasos:Configuración inicial</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td with="10">
+                                <a href="#Funcionalidad">Funcionalidad</a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td with="10">
+                                <a href="#Descripción de datos de entrada">Descripción de datos de entrada</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="100%" border="0" align="left">
+
+                        <tr>
+                            <td with="10">
+                                <a name="Funcionalidad">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Funcionalidad"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">Esta página permite, como parte del proceso de configuración del sistema, ingresar los <i><b>
+                                            Parámetros del sistema</b></i>. Un <i>parámetro</i>, es un dato de configuración que es <b>imprescindible </b>para el correcto funcionamiento del sistema. Son de gran importancia
+                                    ya que éstos se utilizan en distintas partes de la aplicación. Ejemplos de parámetros son: los parámetros de próximos avisos de cobro, que, como su nombre lo indica, 
+                                    son utilizados para asignarselos a cada aviso de cobro, los parámetros de notas de débito / crédito, que se utilizan en forma similar, las observaciones que se desea aparezcan en los recibos de pago, etc.
+                                    Un parámetro de especial importancia es el <b>tipo de facturacion</b>, que, como se observa en la página, puede ser <i>por gastos del mes</i> o <i>monto fijo</i>.
+                                    Cuando la administración es por gastos del mes, significa que la contribución o alícuota de cada inmueble, a los gastos del condominio, se calcula en base al total de gastos
+                                    originados en un período. En el caso de administración por monto fijo, cuyo monto debe especificarse en esta página, la contribucion es fija y viene determinada por el monto especificado. 
+
+                                    Para configurar los parámetros del sistema o para actualizarlos,  se deben ingresar cada uno de ellos y hacer click sobre el botón
+                                    <i><b> Aceptar</b></i>. Esta acción, registrará o actualizará los parámetros en el sistema. Para modificar algún parámetro, ingrese nuevamente a la página, realice los cambios deseados y 
+                                    proceda de nuevo con la acción de actualizar. La eliminación de los parámetros no esta permitida.
+                                    
+                                </font></td>
+                        </tr>    
+                    </table>
+<table>
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="red" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                        <tr>
+                            <td><font face="Arial" size="2" color="red"><b>Nota importante :</b><i> Durante el proceso de registro y creación de condominios,
+                                        se ejecuta un proceso automático de carga inicial de parámetros con la finalidad  de agilizar la configuración de los mismos.
+                                        Para mayor información, remítase a la sección "Primeros pasos: configuración inicial / Configuraciones automáticas" en 
+                                        esta misma página.</i>
+                                </font></td>
+                        </tr>  
+                        <tr>
+                            <td><font face="Arial" size="2">
+                                    <hr size="1" color="red" with="75%"></hr>
+                                </font>
+                            </td>
+                        </tr> 
+                    </table>
+                    <table width="70%" border="0" align="left">
+                        <tr></tr> <tr></tr><tr></tr> <tr></tr>
+                    </table>
+                    <table width="80%" border="0" align="left">
+                        <tr>
+                            <td with="10">
+                                <a name="Descripción de datos de entrada">
+                                    <font face="Arial" size="3" color="#009933"><h:outputText value="Descripción de datos de entrada"></h:outputText></font>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><font face="Arial" size="2">En esta sección, se muestra una descripción de los datos de entrada de esta página, 
+                                    así como también, los tipos de datos y rangos válidos en los casos en que aplique.
+                                </font></td>
+                        </tr>  
+
+                    </table>
+
+                    <table width="85%" border="1" align="left">
+                        <tr bgcolor="#e6e6fa" >
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Dato entrada"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Descripción"></h:outputText></b></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1" align ="center"><b><h:outputText value="Tipo y restricciones"></h:outputText></b></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Próximo aviso de cobro "    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el número a partir del cual se desea identificar los avisos de cobro.
+                                                                          Ejemplo: 100."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solo números enteros hasta diez dígitos"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Próxima nota de débito (cxc)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value=" Es el número a partir del cual se desea identificar las notas de débito de cuenta por cobrar
+                                                                          . Ejemplo: 25."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solo números enteros hasta diez dígitos"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Próximo recibo de cobro "    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el número a partir del cual se desea identificar los recibos de cobro.
+                                                                          Ejemplo: 200."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solo números enteros hasta diez dígitos"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Próxima nota de crédito (cxc)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el número a partir del cual se desea identificar las notas de crédito de cuentas por cobrar
+                                                                          . Ejemplo: 256."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solo números enteros hasta diez dígitos"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Próxima nota de débito (cxp)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el número a partir del cual se desea identificar las notas de débito de cuenta por pagar
+                                                                          . Ejemplo: 154."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solo números enteros hasta diez dígitos"></h:outputText></font>
+                            </td> 
+                        </tr>
+                        
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Próxima nota de crédito (cxp)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el número a partir del cual se desea identificar las notas de crédito de cuentas por pagar
+                                                                          . Ejemplo: 154."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solo números enteros hasta diez dígitos"></h:outputText></font>
+                            </td> 
+                        </tr>
+                                                
+                       <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Observaciones avisos de cobro"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Alguna observacion que se desee aparezca en los aviso de cobro
+                                                                          . Ejemplo: Feliz navidad!."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta caracteres alfanuméricos y caracteres especiales"></h:outputText></font>
+                            </td> 
+                        </tr> 
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Observaciones recibos de pago"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Alguna observacion que se desee aparezca en los recibos de pago
+                                                                          . Ejemplo: Gracias por la puntualidad en su pago!."></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta caracteres alfanuméricos y caracteres especiales"></h:outputText></font>
+                            </td> 
+                        </tr> 
+                        <tr bgcolor="#cccccc">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Tipo de facturacion"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Permite seleccionar si el tipo de administración del condominio es 
+                                                                          por gasto de mes o monto fijo. En este ultimo caso deberá especificarse el monto.
+                                                                          "></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="El monto deberá ser un número entero o decimal. Para los números decimales,
+                                                                          use el punto decimal. Ejemplo: 550.75"></h:outputText></font>
+                            </td> 
+                        </tr> 
+                        <tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Porcentaje de mora (CxC)"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el porcentaje de mora a aplicar a las cuentas por cobrar vencidas
+                                                                          . Ejemplos: 0.0; 1, 3, 2.5, 0.8"></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta números enteros y decimales mayores o iguales que cero"></h:outputText></font>
+                            </td> 
+                        </tr> 
+<tr bgcolor="#e6e6fa">
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Nro de días de vencimiento"    ></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Es el número de días, desde la fecha de generación de la deuda, en que la misma, se
+                                                                          considerará vencida. "></h:outputText></font>
+                            </td>
+                            <td with="10">
+                                <font face="Arial" size="1"><h:outputText value="Acepta solo números enteros, mayores que cero"></h:outputText></font>
+                            </td> 
+                        </tr> 
+                    </table>
+
+                </h:form>
+            </div>
+        </body>
+    </f:view> 
+</html> 

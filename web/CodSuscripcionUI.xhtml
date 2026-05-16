@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <title>Software Express Condominio</title>
+        <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+        <f:facet name="first"> 
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        </f:facet>
+        <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+    </h:head>
+    <h:body>
+        <h:form>
+            <table width="100%" border="0">
+                <tr>
+                    <div align="center"><h1>
+                            <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                        </h1></div>
+                </tr>          
+            </table>      
+
+            <table width="100%" class="BarBkgnd">
+                <tr>
+                    <td align="left">
+                        <td>
+                            <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="Software Express"/>
+                                </i></font></td>
+                    </td>
+                    <td></td><td></td><td></td>
+
+                    <td align="right" width="25%"><i>
+
+                            <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                            <h:commandLink action="#{CodSuscripcionUI_Backing.salir}" immediate="true">
+                                <h:outputText value="Salir"/>
+                            </h:commandLink>
+                            <f:verbatim>&nbsp;&nbsp;|&nbsp;&nbsp;</f:verbatim>
+                        </i>
+                    </td>
+                </tr>
+            </table>
+            <br />
+
+            <div><h4><i>Actualizar suscripciones </i></h4></div>
+
+            <h:messages globalOnly="true" infoClass="RegError"/> 
+
+            <div align="center">
+                <h:outputText value="Por favor, ingrese el número de suscripción a modificar" 
+                              style="  font-weight: bold; font-family: arial;font-size: medium; color:green; font-style: italic">
+                </h:outputText></div>
+            <br />
+            <hr size="1" width="35%"></hr>
+            <br />
+            <div align="center">
+                <h:panelGrid columns="2" cellpadding="2" style="background-color: #DDD">  
+
+                    <h:outputText value="Nro. suscripción" 
+                                  style="font-family: arial;font-size: small; color:blue; font-style: italic">      
+                    </h:outputText>
+
+                    <p:inputText id="tab00Text" size="15" value="#{CodSuscripcionUI_Backing.numSuscripcion}" tabindex="1"/> 
+
+                </h:panelGrid> 
+                <br /><br />
+                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                <p:commandButton id="tab02Text" value="Continuar" action="#{CodSuscripcionUI_Backing.buscarSuscripcion}" tabindex="3"
+                                 style="font-family: arial;font-size: small; color:black; font-style: italic" ajax="false"/>
+            </div>
+            <br />
+            <hr size="1" width="35%"></hr>
+        </h:form>
+    </h:body>
+</html>
+

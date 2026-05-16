@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="saas.modelos.Plan" table="PLANES"
+           dynamic-insert="true"
+           dynamic-update="true">
+        <id name="id" type="integer" column="ID_PLAN">   
+            <generator class="increment" />
+        </id>
+
+        <property name="nombPlan">
+            <column name="NOMB_PLAN" length="30"/>
+        </property>
+        <property name="descPlan">
+            <column name="DESC_PLAN" length="60"/>
+        </property>
+        <property name="mtoPlan">
+            <column name="MTO_PLAN" length="12"/>
+        </property>
+        <property name="obsPlan">
+            <column name="OBS_PLAN" length="60"/>
+        </property>
+        <property name="fecCreacionPlan">
+            <column name="FEC_CREACION_PLAN" />
+        </property>
+        <property name="fecModificacionPlan">
+            <column name="FEC_MODIFICACION_PLAN"/>
+        </property>
+        <property name="nroMaxCondPlan">
+            <column name="NRO_MAX_COND_PLAN" length="3"/>
+        </property>
+        <property name="mtoSusPlan">
+            <column name="MTO_SUS_PLAN" />
+        </property>
+        <property name="edoPlan">
+            <column name="EDO_PLAN" length="3"/>
+        </property>
+         
+        <bag name="suscripciones" cascade="save-update,delete" 
+            fetch="subselect" inverse = "true">
+            <key column="ID_PLAN"/>
+            <one-to-many class="saas.modelos.Suscripcion" />
+        </bag>
+        
+    </class>
+</hibernate-mapping>

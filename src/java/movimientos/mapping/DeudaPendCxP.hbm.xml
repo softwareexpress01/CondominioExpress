@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class dynamic-insert="true" dynamic-update="true" name="movimientos.modelos.DeudaPendCxP" table="DEUDAS_PEND_CXP">
+    <id column="ID_DEUDAS_PEND_CXP" name="id" type="integer">
+      <generator class="increment"/>
+    </id>
+    <property name="fecMovDeudaPendCxP" >
+      <column name="FEC_MOV_DEUDAPENDCXP" length="10"/>
+    </property>
+    <property name="idProvDeudaPendCxP">
+      <column name="ID_PROV_DEUDAPENDCXP"/>
+    </property>
+    <property name="refDeudaPendCxP" >
+      <column name="REF_DEUDAPENDCXP" length="20"/>
+    </property>
+    <property name="descDeudaPendCxP" >
+      <column name="DESC_DEUDAPENDCXP" length="60"/>
+    </property>
+    <property name="fecDeudaPendCxP" >
+      <column name="FEC_DEUDAPENDCXP" length="10"/>
+    </property>
+    <property name="mtoDeudaPendCxP" >
+      <column name="MTO_DEUDAPENDCXP" />
+    </property>
+    <property name="saldoDeudaPendCxP" >
+      <column name="SALDO_DEUDAPENDCXP" />
+    </property>
+    <property name="estatusDeudaPendCxP" >
+      <column name="ESTATUS_DEUDAPENDCXP" length="4"/>
+    </property>
+    
+    <many-to-one class="datosbasicos.modelos.Proveedor" column="ID_PROVEEDOR" name="proveedor" not-null="true"/>
+  </class>
+</hibernate-mapping>

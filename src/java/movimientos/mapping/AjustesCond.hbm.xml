@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : AjustesCond.hbm.xml
+    Created on : Agosto,20 2012, 10:58 AM
+    Author     :FRANK
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.AjustesCond" table="AJUSTES_COND"
+    
+           dynamic-insert="true"
+           dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_AJUSTES_COND">
+            <generator class="increment" />
+        </id>
+       
+        <property name="fecMovAjustesCond">
+            <column name="FEC_MOV_AJUSTES_COND" length="10"/>
+        </property>
+        
+        <property name="tipoAjustesCond">
+            <column name="TIPO_AJUSTES_COND" length="7"/>
+        </property>
+       
+        <property name="idConcepto">
+            <column name="ID_CONCEPTO" />
+        </property>
+        
+        <property name="descAjustesCond">
+            <column name="descAjustesCond" />
+        </property>
+
+        <property name="mtoAjustesCond">
+            <column name="MTO_AJUSTES_COND" />
+        </property>
+       
+        <property name="perAjustesCond">
+            <column name="PER_AJUSTES_COND" length="10"/>
+        </property>
+        
+        <property name="edoAjustesCond">
+            <column name="EDO_AJUSTES_COND" length="4"/>
+        </property>
+
+        <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+                     column="ID_CONDOMINIO" not-null = "true" />
+                 
+    </class>
+</hibernate-mapping>

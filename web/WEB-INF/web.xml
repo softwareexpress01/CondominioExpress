@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Production</param-value>
+    </context-param>
+     <!-- Para evitar   javax.faces.application.ViewExpiredException: viewId View /... could not be restored.-->
+    <context-param>
+        <param-name>com.sun.faces.enableRestoreView11Compatibility</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    
+    <session-config>
+        <session-timeout>30</session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/main.xhtml</welcome-file>
+    </welcome-file-list>
+    <filter>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+    <context-param>
+        <param-name>primefaces.UPLOADER</param-name>
+        <param-value>commons</param-value>
+    </context-param>
+    
+    <filter>
+        <filter-name>MyFacesExtensionsFilter</filter-name>
+        <filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+        <init-param>
+            <param-name>uploadMaxFileSize</param-name>
+            <param-value>20m</param-value>
+        </init-param>
+    </filter>
+    <!-- extension mapping for adding <script/>, <link/>, and other resource tags to JSF-pages  -->
+    <filter-mapping>
+        <filter-name>MyFacesExtensionsFilter</filter-name>
+        <!-- servlet-name must match the name of your javax.faces.webapp.FacesServlet entry -->
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+    <!-- extension mapping for serving page-independent resources (javascript, stylesheets, images, etc.)  -->
+    <filter-mapping>
+        <filter-name>MyFacesExtensionsFilter</filter-name>
+        <url-pattern>/faces/myFacesExtensionResource/*</url-pattern>
+    </filter-mapping>
+    <!--	Alternate mapping using a url-pattern instead of a servlet-name (you still need the /faces/myFacesExtensionResource/* mapping as well):-->
+    <!-- extension mapping for adding <script/>, <link/>, and other resource tags to JSF-pages  -->
+    <filter-mapping>
+        <filter-name>MyFacesExtensionsFilter</filter-name>
+        <url-pattern>*.jsf</url-pattern>
+    </filter-mapping>
+    <filter>
+        <description>Require that the user login before accessing any page other than the entry page </description>
+        <filter-name>ForcedLoginFilter</filter-name>
+        <filter-class>util.ForcedLoginFilter</filter-class>
+        <init-param>
+            <param-name>util.LoginURI</param-name>
+            <param-value>.../faces/LoginUI.xhtml</param-value>
+        </init-param>
+        <init-param>
+            <description>ViewIds for which this filter must not forward back to login page </description>
+            <param-name>util.NoForwardViewIds</param-name>
+            <param-value>EmailAvisoDeCobroUI.xhtml /CondominioExpress/ main.xhtml RegistroUI.xhtml LoginUI.xhtml BienvenidaUI.xhtml RegPagosMenUI.xhtml ARegPagosMenUI.xhtml SolSuscripcionUI.xhtml ASolSuscripcionUI.xhtml ReciboPagoMenUI.xhtml AReciboPagoMenUI.xhtml PagoMensualidadUI.xhtml</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>ForcedLoginFilter</filter-name>
+        <url-pattern>*.xhtml</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
+</web-app>

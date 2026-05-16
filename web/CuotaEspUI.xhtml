@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+
+        <h:head>
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="../css/CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("obsCuotaEsp");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }   
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('ACuotaEspUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Registrar Cuotas Especiales</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <hr width="90%"></hr>
+                <table width="90%" order="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Concepto " for="idConceptoCuotaEsp"/>                
+                                <h:selectOneMenu value="#{CuotaEspUI_Backing.idConceptoCuotaEsp}" id="idConceptoCuotaEsp" tabindex="1"  >
+                                    <f:selectItems value="#{CuotaEspUI_Backing.conceptosPorCondominio}" />
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Calcular por " for="calcCuotaEsp" />
+                                <h:selectOneMenu value="#{CuotaEspUI_Backing.calcCuotaEsp}" id="calcCuotaEsp" tabindex="4" >
+                                    <f:selectItem  itemLabel="Seleccione" itemValue="Seleccione" />
+                                    <f:selectItem  itemLabel="Alicuota" itemValue="Alicuota" />
+                                    <f:selectItem  itemLabel="Tot. Inmuebles" itemValue="TotInmuebles" />
+                                </h:selectOneMenu>
+                            </h:panelGrid>
+                        </td>  
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Fondo " for="idFondoCuotaEsp"/>                
+                                <h:selectOneMenu value="#{CuotaEspUI_Backing.idFondoCuotaEsp}" id="idFondoCuotaEsp" tabindex="2" >
+                                    <f:selectItems value="#{CuotaEspUI_Backing.fondosPorCondominio}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Nro. Meses que aplica " for="nroMesesCuotaEsp"/>                
+                                <t:inputText required="false" id="nroMesesCuotaEsp"  maxlength ="2" size="10"
+                                             value="#{CuotaEspUI_Backing.nroMesesCuotaEsp}" tabindex="5"/> 
+
+                            </h:panelGrid>
+                        </td>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Monto Total " for="mtoTotCuotaEsp" /> 
+                                <t:inputText required="false" id="mtoTotCuotaEsp"  maxlength ="12"
+                                             value="#{CuotaEspUI_Backing.mtoTotCuotaEsp}" tabindex="3"/> 
+
+                                <h:outputLabel value="A partir de (dd-mm-aaaa) " for="fecApartirCuotaEsp" /> 
+                                <h:inputText required="false" id="fecApartirCuotaEsp"  maxlength ="12"
+                                             value="#{CuotaEspUI_Backing.fecApartirCuotaEsp}" tabindex="6"
+                                             onfocus="showCalendarControl(this);"/> 
+                            </h:panelGrid>
+                        </td>
+                    </tr>  
+                </table>
+
+                <hr width="90%"></hr>
+                <div align="center"><p>
+                        <h:outputLabel value="Observaciones " for="obsCuotaEsp"/>                
+                        <t:inputTextarea required="false" id="obsCuotaEsp" cols="40" rows="1" 
+                                         value="#{CuotaEspUI_Backing.obsCuotaEsp}" tabindex="7"
+                                         onkeypress="return limita(40);" forceId="true"/>
+                    </p></div>
+                <hr width="90%"></hr>
+                <f:verbatim>&nbsp;&nbsp;&nbsp;</f:verbatim>
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{CuotaEspUI_Backing.registrarCuotaEsp}" tabindex="8" 
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{CuotaEspUI_Backing.modificarCuotaEsp}" tabindex="9"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="10"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Movimientos registrados.</i><font size="2"><i> Seleccione el Movimiento a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaCuotasEsp" rows="5" rowKey="#{co.id}"   
+                             value="#{CuotaEspUI_Backing.cuotasEspPorCondominio}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage=" " 
+                             selection="#{CuotaEspUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecCuotaEsp}" style="font-size: smaller" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Monto"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.mtoTotCuotaEsp}" style="font-size: smaller" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Cálculo por"/>
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.calcCuotaEsp}" style="font-size: smaller" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Fondo"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.nombFondoCuotaEsp}" style="font-size: smaller" />
+                    </p:column>
+
+                    <p:column style="width:15%">
+                        <f:facet name="header">
+                            <h:panelGroup>                                             
+                                <h:outputText value="Concepto"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.descConceptoCuotaEsp}" style="font-size: smaller" />
+                    </p:column>
+
+                    <p:column style="text-align:center">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Nro. Meses"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.nroMesesCuotaEsp}" style="font-size: smaller" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="A partir de"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.fecApartirCuotaEsp}" style="font-size: smaller" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Saldo"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.saldoCuotaEsp}" style="font-size: smaller" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Estado"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.estadoCuotaEsp}" style="font-size: smaller" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Observaciones"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.obsCuotaEsp}" style="font-size: smaller" />
+                    </p:column>
+
+
+                    <p:column>
+                        <h:commandLink action="#{CuotaEspUI_Backing.editarCuotaEspAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{CuotaEspUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

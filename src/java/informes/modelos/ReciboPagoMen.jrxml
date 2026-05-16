@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="fechaEmision" class="java.lang.String"/>
+	<parameter name="numReciboCobro" class="java.lang.String"/>
+	<parameter name="numSuscripcion" class="java.lang.String"/>
+	<parameter name="nombSuscriptor" class="java.lang.String"/>
+	<parameter name="apelSuscriptor" class="java.lang.String"/>
+	<parameter name="numCedSuscriptor" class="java.lang.String"/>
+	<parameter name="fecPago" class="java.lang.String"/>
+	<parameter name="desPago" class="java.lang.String"/>
+	<parameter name="numDocPago" class="java.lang.String"/>
+	<parameter name="bancoPago" class="java.lang.String"/>
+	<parameter name="cuentaPago" class="java.lang.String"/>
+	<parameter name="mtoPago" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="sello" class="java.io.InputStream"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="286" splitType="Stretch">
+			<image>
+				<reportElement stretchType="RelativeToBandHeight" x="3" y="6" width="110" height="110"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="230" y="59" width="100" height="20" forecolor="#0000FF"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Recibo de Pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="195" y="82" width="88" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha de emisión: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="283" y="82" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fechaEmision}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="456" y="82" width="34" height="20"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nro: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="489" y="82" width="56" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{numReciboCobro}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="113" width="552" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="150" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="8" y="122" width="58" height="20"/>
+				<textElement/>
+				<text><![CDATA[Suscripción:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="66" y="122" width="63" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{numSuscripcion}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="122" width="52" height="20"/>
+				<textElement/>
+				<text><![CDATA[Suscriptor: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="280" y="122" width="94" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{nombSuscriptor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="192" y="122" width="88" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{apelSuscriptor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="405" y="122" width="41" height="20"/>
+				<textElement/>
+				<text><![CDATA[Ced/Rif: ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="445" y="122" width="76" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{numCedSuscriptor}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="223" y="156" width="100" height="20" forecolor="#0000FF"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Datos de pago]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="22" y="181" width="35" height="20"/>
+				<textElement/>
+				<text><![CDATA[Fecha]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="96" y="181" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Concepto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="226" y="181" width="57" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Referencia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="181" width="44" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Banco]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="180" width="100" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Cuenta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="489" y="181" width="64" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="202" width="554" height="1"/>
+			</line>
+			<line>
+				<reportElement x="0" y="245" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="374" y="256" width="107" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total .............]]></text>
+			</staticText>
+			<textField pattern="##0,00">
+				<reportElement x="481" y="256" width="64" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{mtoPago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="158" splitType="Stretch">
+			<textField>
+				<reportElement x="8" y="-74" width="58" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{fecPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="75" y="-74" width="148" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{desPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="221" y="-74" width="70" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{numDocPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="-74" width="59" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{bancoPago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="349" y="-74" width="140" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{cuentaPago}]]></textFieldExpression>
+			</textField>
+			<textField pattern="##0,00">
+				<reportElement x="489" y="-74" width="56" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{mtoPago}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="14" y="99" width="78" height="20"/>
+				<textElement/>
+				<text><![CDATA[Recibí conforme: ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="102" y="99" width="48" height="20"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Software]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="146" y="99" width="42" height="20" forecolor="#CC0000"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Express,]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="187" y="99" width="31" height="20"/>
+				<textElement>
+					<font isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[C.A]]></text>
+			</staticText>
+			<line>
+				<reportElement x="101" y="117" width="107" height="1"/>
+			</line>
+			<image>
+				<reportElement x="299" y="32" width="191" height="101"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{sello}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="37"/>
+	<field name="nombPropiedad" class="java.lang.String"/>
+	<field name="codInmueble" class="java.lang.String"/>
+	<field name="desPagoCxC" class="java.lang.String"/>
+	<field name="mtoPagoCxC" class="java.lang.Double"/>
+	<field name="formaPagoCxC" class="java.lang.String"/>
+	<variable name="totalPagoCxC" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoPagoCxC}]]></variableExpression>
+		<initialValueExpression><![CDATA[new java.lang.Double(0)]]></initialValueExpression>
+	</variable>
+	<variable name="subTotalPagoCxC" class="java.lang.Double" resetType="Group" resetGroup="Propiedad" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoPagoCxC}]]></variableExpression>
+		<initialValueExpression><![CDATA[new Double(0.0)]]></initialValueExpression>
+	</variable>
+	<group name="Propiedad">
+		<groupExpression><![CDATA[$F{nombPropiedad}]]></groupExpression>
+		<groupHeader>
+			<band height="26">
+				<staticText>
+					<reportElement x="12" y="3" width="54" height="20" forecolor="#0000FF"/>
+					<textElement/>
+					<text><![CDATA[Propiedad :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="66" y="3" width="100" height="20"/>
+					<textElement>
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nombPropiedad}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="39">
+				<staticText>
+					<reportElement x="285" y="9" width="100" height="20" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[sub total]]></text>
+				</staticText>
+				<line>
+					<reportElement x="5" y="2" width="540" height="1"/>
+				</line>
+				<line>
+					<reportElement x="6" y="35" width="539" height="1"/>
+				</line>
+				<textField pattern="#,##0.00" isBlankWhenNull="true">
+					<reportElement x="395" y="9" width="74" height="20" forecolor="#CC0000"/>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{subTotalPagoCxC}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="4" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="194" y="0" width="189" height="20" forecolor="#0000FF"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true" isItalic="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Pagos Automáticos Realizados]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="20" width="543" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="168" y="25" width="55" height="20"/>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Inmueble]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="25" width="45" height="20"/>
+				<textElement textAlignment="Center">
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Monto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="268" y="25" width="56" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Descripcion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="479" y="25" width="60" height="20"/>
+				<textElement>
+					<font isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Forma Pago]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="53" width="543" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="2" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="22" splitType="Stretch">
+			<textField>
+				<reportElement x="178" y="0" width="34" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{codInmueble}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="223" y="0" width="186" height="20"/>
+				<textElement textAlignment="Left">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{desPagoCxC}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="410" y="0" width="60" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{mtoPagoCxC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="479" y="0" width="60" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{formaPagoCxC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="29" splitType="Stretch">
+			<line>
+				<reportElement x="6" y="2" width="539" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="72" y="6" width="397" height="20" forecolor="#000000"/>
+				<textElement/>
+				<text><![CDATA[Nota: Los pagos se realizaron usando un Pago adelantado (PAD) o una Nota de credito (NCR)]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="343" y="6" width="42" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="385" y="6" width="84" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{totalPagoCxC}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="5" y="30" width="539" height="1"/>
+			</line>
+			<line>
+				<reportElement x="6" y="1" width="539" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

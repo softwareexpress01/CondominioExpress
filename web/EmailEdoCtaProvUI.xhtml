@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="../ccs/CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link >
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("obsGastoNoComun");
+                    if (elemento.value.length >= maximoCaracteres) {
+                        return false;
+                    } else {
+                        return true;
+                    }
+                }
+            </script>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin", "left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink immediate="true"  onclick="Ayuda('AEmailEdoCtaProvUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Enviar reportes por email</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/> 
+                <h:message for="opcion" errorClass="ValidateError"/>
+                <hr width="50%"></hr>
+                <br></br>
+                <table width="30%"  border="0" align="center">
+
+                    <tr>
+                        <td>
+                            <h:panelGrid width="60%" columns="2" border="0">
+                                <h:outputLabel value="Para:" for="para"/>                
+                                <h:inputText required="false" id="para" size="30" maxlength="60" 
+                                             value="#{BeanUsuario.emailProveedor}" tabindex="7" /> 
+
+                                <h:outputLabel value="Asunto:" for="asunto"/>                
+                                <h:inputText required="false" id="asunto" size="80" maxlength="80" 
+                                             value="#{EmailEdoCtaProvUI_Backing.asunto}" tabindex="8" /> 
+
+
+                            </h:panelGrid>
+                        </td>
+                    </tr>
+                                   </table>
+                <table width="30%"  border="0" align="center">
+                    <tr align ="center">
+                        <td>
+                            <h:panelGrid width="60%" columns="1" border="0">
+                                <h:outputLabel value="Mensaje:" for="mensaje" />                
+                                <t:inputTextarea required="false" id="mensaje" cols="80" rows="6" 
+                                                 value="#{EmailEdoCtaProvUI_Backing.mensaje}" tabindex="10" 
+                                                 onkeypress="return limita(480);" forceId="true"/> 
+                            </h:panelGrid>
+                        </td>
+                    </tr>    
+                </table>
+
+                <div align="center"><p>
+                        <h:commandButton value="Enviar estado de cuenta" actionListener="#{EmailEdoCtaProvUI_Backing.generarEdoCuentaProveedor}" />  
+                    </p>
+                </div>
+
+                <hr width="50%"></hr>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

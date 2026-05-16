@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="358"/>
+	<parameter name="condominio" class="java.lang.String"/>
+	<parameter name="periodo" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="gastos" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="subrep" class="java.io.InputStream"/>
+	<parameter name="alicuotas" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="subrep1" class="java.io.InputStream"/>
+	<parameter name="tipoFac" class="java.lang.String"/>
+	<parameter name="subrep2" class="java.io.InputStream"/>
+	<parameter name="facCuotaEsp" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="subrep3" class="java.io.InputStream"/>
+	<parameter name="pagosCxC" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="parameter1" class="java.lang.String"/>
+	<parameter name="subrep4" class="java.io.InputStream"/>
+	<parameter name="notasDebCxC" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="192" y="19" width="64" height="20" forecolor="#0000CC"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condominio: 
+                ]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="466" y="4" width="88" height="20" forecolor="#0000FF"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="250" y="56" width="54" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Periodo : 
+                ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="245" y="36" width="122" height="20" forecolor="#CC0000"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cierre Mensual 
+                ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="255" y="19" width="167" height="20"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{condominio}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="56" width="63" height="20"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{periodo}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement stretchType="RelativeToBandHeight" x="1" y="0" width="112" height="66"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="44" splitType="Stretch">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="200" height="39"/>
+				<dataSourceExpression><![CDATA[$P{gastos}]]></dataSourceExpression>
+				<subreportExpression class="java.io.InputStream"><![CDATA[$P{subrep}]]></subreportExpression>
+			</subreport>
+			<break>
+				<reportElement x="0" y="36" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="50">
+			<subreport>
+				<reportElement stretchType="RelativeToBandHeight" x="1" y="0" width="200" height="45"/>
+				<subreportParameter name="subrep">
+					<subreportParameterExpression><![CDATA[$P{subrep}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="gastos">
+					<subreportParameterExpression><![CDATA[$P{gastos}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="logo">
+					<subreportParameterExpression><![CDATA[$P{logo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="condominio">
+					<subreportParameterExpression><![CDATA[$P{condominio}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="tipoFac">
+					<subreportParameterExpression><![CDATA[$P{tipoFac}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="alicuotas">
+					<subreportParameterExpression><![CDATA[$P{alicuotas}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="periodo">
+					<subreportParameterExpression><![CDATA[$P{periodo}]]></subreportParameterExpression>
+				</subreportParameter>
+				<subreportParameter name="subrep1">
+					<subreportParameterExpression><![CDATA[$P{subrep1}]]></subreportParameterExpression>
+				</subreportParameter>
+				<dataSourceExpression><![CDATA[$P{alicuotas}]]></dataSourceExpression>
+				<subreportExpression class="java.io.InputStream"><![CDATA[$P{subrep1}]]></subreportExpression>
+			</subreport>
+			<break>
+				<reportElement x="0" y="43" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="55">
+			<subreport>
+				<reportElement x="1" y="0" width="200" height="50"/>
+				<dataSourceExpression><![CDATA[$P{facCuotaEsp}]]></dataSourceExpression>
+				<subreportExpression class="java.io.InputStream"><![CDATA[$P{subrep2}]]></subreportExpression>
+			</subreport>
+			<break>
+				<reportElement x="0" y="46" width="100" height="1"/>
+			</break>
+		</band>
+		<band height="59">
+			<subreport>
+				<reportElement x="0" y="0" width="200" height="51"/>
+				<dataSourceExpression><![CDATA[$P{pagosCxC}]]></dataSourceExpression>
+				<subreportExpression class="java.io.InputStream"><![CDATA[$P{subrep3}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="57">
+			<subreport>
+				<reportElement x="0" y="1" width="200" height="51"/>
+				<dataSourceExpression><![CDATA[$P{notasDebCxC}]]></dataSourceExpression>
+				<subreportExpression class="java.io.InputStream"><![CDATA[$P{subrep4}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="50">
+			<textField>
+				<reportElement x="201" y="16" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="281" y="16" width="67" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA["  "  +  $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

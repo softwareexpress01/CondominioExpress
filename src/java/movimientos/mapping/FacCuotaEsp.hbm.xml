@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : FacCuotaEsp.hbm.xml
+    Created on : June 3, 2012, 7:09 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.FacCuotaEsp" table="FAC_CUOTA_ESP"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_FAC_CUOTA_ESP">
+            <generator class="increment" />
+        </id>
+        
+        <property name="fecEmiFacCuotaEsp">
+            <column name="FEC_EMI_FAC_CUOTA_ESP"/>
+        </property>
+         <property name="desFacCuotaEsp">
+            <column name="DES_FAC_CUOTA_ESP" length="60"/>
+        </property>
+        <property name="mtoFacCuotaEsp">
+            <column name="MTO_FAC_CUOTA_ESP" />
+        </property>
+        <property name="saldoFacCuotaEsp">
+            <column name="SALDO_FAC_CUOTA_ESP" />
+        </property>
+        <property name="edoFacCuotaEsp">
+            <column name="EDO_FAC_CUOTA_ESP" length="4"/>
+        </property>
+        <property name="periodoActual" >
+            <column name="PERIODO_ACTUAL" length="10"/>
+        </property>
+                
+        <many-to-one name="cuotaEsp"  class="movimientos.modelos.CuotaEsp"
+                         column="ID_CUOTA_ESP" not-null = "true" lazy="false"/>
+                         
+        <many-to-one name="inmueble"  class="datosbasicos.modelos.Inmueble"
+                         column="ID_INMUEBLE" not-null = "true" />
+                 
+    </class>
+</hibernate-mapping>

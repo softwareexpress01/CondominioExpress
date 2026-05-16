@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui" >
+
+    <f:view> 
+        <h:head>
+
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <!--       <link href="../css/primeFaces.css" rel="stylesheet" type="text/css"></link> -->
+            <script src="../css/CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+
+            </f:facet>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('APagoCxPUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Procesar pagos de Cuentas por Pagar</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+                <hr size="2" width="90%"></hr>
+                <table width="90%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="6" border="0">
+
+                                <h:outputLabel value="Proveedor " for="idProveedor"/>   
+                                <h:selectOneMenu value="#{PagoCxPUI_Backing.idProveedor}" id="idProveedor" tabindex="1" 
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{PagoCxPUI_Backing.proveedoresPorCondominio}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Descripción " for="desPagoCxP"/>                
+                                <h:inputText required="false" id="desPagoCxP" size="24" maxlength="60"
+                                             value="#{PagoCxPUI_Backing.desPagoCxP}" tabindex="2" />
+
+                                <h:outputLabel value="Nro. Doc/Ref " for="numDocPagoCxP"/>                
+                                <h:inputText required="false" id="numDocPagoCxP" size="24" maxlength="20"
+                                             value="#{PagoCxPUI_Backing.numDocPagoCxP}" tabindex="3" />
+
+                                <h:outputLabel value="Monto " for="mtoPagoCxP"/>                
+                                <h:inputText required="false" id="mtoPagoCxP" size="15" maxlength="16"
+                                             value="#{PagoCxPUI_Backing.mtoPagoCxP}" tabindex="4" />
+
+                                <h:outputLabel value="Forma de pago " for="formaPagoCxP"/>  
+                                <h:selectOneMenu id="formaPagoCxP" value="#{PagoCxPUI_Backing.formaPagoCxP}" tabindex="5" >
+                                    <f:selectItem  itemLabel="Cheque" itemValue="Cheque" />
+                                    <f:selectItem  itemLabel="Transferencia" itemValue="Transferencia" />
+                                    <f:selectItem  itemLabel="Deposito" itemValue="Deposito" />
+                                    <f:selectItem  itemLabel="Efectivo" itemValue="Efectivo" />
+                                    <f:selectItem  itemLabel="Tajeta de crédito" itemValue="Tarjeta crédito" />
+                                    <f:selectItem  itemLabel="Tarjeta de débito" itemValue="Tarjeta débito" />
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Fecha Operac. (dd-mm-aaaa) " for="fecDocPagoCxP"/>                                                                                               
+                                <h:inputText required="false" id="fecDocPagoCxP" size="24" 
+                                             value="#{PagoCxPUI_Backing.fecDocPagoCxP}" tabindex="6"
+                                             onfocus="showCalendarControl(this);"/>
+
+
+
+                            </h:panelGrid>
+                        </td>  
+                    </tr>  
+                </table>
+                <br></br>
+                <hr size="2" width="90%"></hr>
+                <table width="40%"  border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Bancos" for="idBcoPagoCxP" />                             
+                            <h:selectOneMenu value="#{PagoCxPUI_Backing.idBcoPagoCxP}" id="idBancoCxP" tabindex="7"
+                                             onchange="this.form.submit()">
+                                <f:selectItems value="#{PagoCxPUI_Backing.bancosPorCondominio}"/>
+                            </h:selectOneMenu>
+                        </td>
+                        <td>
+
+                            <h:outputLabel value="Cuentas " for="idCuentapagoCxP" />                             
+                            <h:selectOneMenu value="#{PagoCxPUI_Backing.idCuentaPagoCxP}" id="idCuentaPagoCxP" tabindex="8">
+                                <f:selectItems value="#{PagoCxPUI_Backing.cuentasPorBanco}"/>
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                </table> 
+                <hr size="2" width="90%"></hr>
+                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                <div align="center">
+                    <p>
+                        <h:commandButton value="Procesar pagos" action="#{PagoCxPUI_Backing.registrarPagoCxP}" tabindex="9"/>  
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                        <h:commandButton value="Revertir pagos" action="revertirCxP"/> 
+
+                    </p>
+                </div>
+                <hr width="100%"></hr>
+                <h4><i>Cuentas por Pagar registradas.</i><font size="2"><i> Seleccione la(s) cuenta(s) a procesar</i></font></h4>
+
+                <p:dataTable id="TablaPagosCxP" rows="8" rowKey="#{co.idDT}"  emptyMessage=" " 
+                             value="#{PagoCxPUI_Backing.cuentasPorPagarPorProveedor}" paginatorPosition="bottom"
+                             var="co" paginator="true" 
+                             selection="#{PagoCxPUI_Backing.facSeleccionadas}">    
+
+                    <p:column selectionMode="multiple" style="width:18px" />  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecFacCxP}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Descripción"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.desFacCxP}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Monto"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.mtoFacCxP}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Saldo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.saldoFacCxP}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Estado"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.edoFacCxP}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Tipo"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.discFacCxP}"/>
+                    </p:column>
+
+                </p:dataTable>
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

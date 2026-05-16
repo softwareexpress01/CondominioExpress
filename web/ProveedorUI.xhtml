@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function openWin(){
+                    window.open('ElimProveedorUI.xhtml','window','width=750,height=400');
+                }
+            </script>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("dirProveedor");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('AProveedorUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Crear y Actualizar Proveedores</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <table width="80%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Nombre" for="nombProveedor" /> 
+                                <h:inputText required="false" id="nombProveedor" size="24" maxlength ="30"
+                                             value="#{ProveedorUI_Backing.nombProveedor}" tabindex="2"/> 
+                                <h:outputLabel value="Correo electrónico" for="emailProveedor"/>                
+                                <h:inputText id="emailProveedor" size="24" required="false" maxlength ="30"
+                                             value="#{ProveedorUI_Backing.emailProveedor}" tabindex="5"/>  
+                            </h:panelGrid>
+                        </td>  
+
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+                                <h:outputLabel value="Céd/RIF" for="cedRifProveedor" /> 
+                                <h:inputText required="false" id="cedRifProveedor" size="24" maxlength ="10"
+                                             value="#{ProveedorUI_Backing.cedRifProveedor}" tabindex="3"/> 
+                                <h:outputLabel value="Contacto" for="contactoProveedor"/>                
+                                <h:inputText id="contactoProveedor" size="24" required="false" maxlength ="30"
+                                             value="#{ProveedorUI_Backing.contactoProveedor}" tabindex="6"/>  
+                            </h:panelGrid>
+                        </td>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Dirección" for="dirProveedor" /> 
+                                <t:inputTextarea required="false" id="dirProveedor" cols="20" rows="1" 
+                                                 value="#{ProveedorUI_Backing.dirProveedor}" tabindex="4"
+                                                 onkeypress="return limita(60);" forceId="true"/> 
+                            </h:panelGrid>
+                        </td>
+
+
+                    </tr>  
+
+                </table>
+
+                <div align="center">
+                    <table width="80%" border="0" align="center">
+                        <tr>
+                            <td>
+                                <h:panelGrid width="100%" columns="7" border="0">
+                                    <h:outputLabel value="Teléfono 1 " for="telefono1"/> 
+                                    <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                                    <h:inputText required="false" id="codTel1Proveedor" size="2" maxlength ="4"
+                                                 value="#{ProveedorUI_Backing.codTel1Proveedor}" tabindex="7"/>
+                                    <h:inputText required="false" id="tel1Proveedor" size="13" maxlength ="8"
+                                                 value="#{ProveedorUI_Backing.tel1Proveedor}" tabindex="8"/>
+                                </h:panelGrid>
+                            </td>
+
+                            <td>
+                                <h:panelGrid width="100%" columns="3" border="0">
+                                    <h:outputLabel value="Teléfono 2   " for="telefono2"/>  
+                                    <h:inputText required="false" id="codTel2Proveedor" size="2" maxlength ="4"
+                                                 value="#{ProveedorUI_Backing.codTel2Proveedor}" tabindex="9"/>
+                                    <h:inputText required="false" id="tel2Proveedor" size="13" maxlength ="8"
+                                                 value="#{ProveedorUI_Backing.tel2Proveedor}" tabindex="10"/>
+                                </h:panelGrid>
+                            </td>
+
+                            <td>
+                                <h:panelGrid width="100%" columns="3" border="0">
+                                    <h:outputLabel value="Celular   " for="celular"/> 
+
+                                    <h:inputText required="false" id="codOperCelProveedor" size="2" maxlength ="4"
+                                                 value="#{ProveedorUI_Backing.codOperCelProveedor}" tabindex="11"/>
+                                    <h:inputText required="false" id="telCelProveedor" size="14" maxlength ="8"
+                                                 value="#{ProveedorUI_Backing.telCelProveedor}" tabindex="12"/>
+                                </h:panelGrid>
+                            </td>
+
+                        </tr>
+                    </table> 
+                </div>
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{ProveedorUI_Backing.registrarProveedor}" tabindex="13" 
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{ProveedorUI_Backing.modificarProveedor}" tabindex="14"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="15"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Proveedores registrados.</i><font size="2"><i> Seleccione el Proveedor a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaProveedores" rows="5" rowKey="#{co.id}"   
+                             value="#{ProveedorUI_Backing.proveedoresPorCondominio}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage="No hay Proveedores definidos para el Condominio seleccionado" 
+                             selection="#{ProveedorUI_Backing.filaSeleccionada}" selectionMode="single" >  
+
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Nombre"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombProveedor}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Céd/RIF"/>
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.cedRifProveedor}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style =" width: 15%">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Dirección"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.dirProveedor}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                             
+                                <h:outputText value="email"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.emailProveedor}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Contacto"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.contactoProveedor}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Telf 1"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.tel1ConcatProveedor}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Telf 2"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.tel2ConcatProveedor}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                  
+                                <h:outputText value="Celular"/>                               
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.telCelConcatProveedor}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{ProveedorUI_Backing.editarProveedorAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{ProveedorUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

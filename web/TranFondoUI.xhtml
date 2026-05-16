@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="../css/CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("obsTranFondo");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+            </f:facet>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+
+        <body>
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('ATranFondoUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Registrar Ingresos/Abonos a Fondos Generales</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+                <table width="90%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+
+                                <h:outputLabel value="Fondo " for="idFondoTranFondo"/>                
+                                <h:selectOneMenu value="#{TranFondoUI_Backing.idFondoTranFondo}" id="idFondoTranFondo" tabindex="1"
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{TranFondoUI_Backing.fondosPorCondominio}"/>
+
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Concepto " for="idConceptoTranFondo"/>                
+                                <h:selectOneMenu value="#{TranFondoUI_Backing.idConceptoTranFondo}" id="idConceptoTranFondo" tabindex="4" >
+                                    <f:selectItems value="#{TranFondoUI_Backing.conceptosPorCondominio}"/>
+                                </h:selectOneMenu>
+
+                            </h:panelGrid>
+                        </td>  
+
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Documento" for="docTranFondo" /> 
+                                <h:inputText required="false" id="docTranFondo"  maxlength ="19" size="19"
+                                             value="#{TranFondoUI_Backing.docTranFondo}" tabindex="2"/> 
+
+                                <h:outputLabel value="Descripción " for="descTranFondo" />                             
+                                <t:inputTextarea required="false" id="descTranFondo" cols="20" rows="1" size="24"
+                                                 value="#{TranFondoUI_Backing.descTranFondo}" tabindex="5"
+                                                 onkeypress="return limita(100);" forceId="true"/>
+                            </h:panelGrid>
+                        </td>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Fecha del doc. (dd-mm-aaaa) " for="fecTranFondo"/>                                                                                               
+                                <h:inputText required="false" id="fecTranFondo" size="24" 
+                                             value="#{TranFondoUI_Backing.fecTranFondo}" tabindex="3"
+                                             onfocus="showCalendarControl(this);"/>
+
+                                <h:outputLabel value="Periodo (mm-aaaa)" for="perTranFondo" /> 
+                                <h:inputText required="false" id="perTranFondo"  maxlength ="10" size="24"
+                                             value="#{TranFondoUI_Backing.perTranFondo}" tabindex="6"/> 
+
+                            </h:panelGrid>
+                        </td>
+
+
+                    </tr>  
+                    <hr size="2" width="90%"></hr>
+
+                    <table width="80%"  border="0" align="center">
+                        <tr>
+                            <td>
+                                <h:outputLabel value="Banco " for="idBancoTranFondo"/>                
+                                <h:selectOneMenu value="#{TranFondoUI_Backing.idBancoTranFondo}" id="idBancoTranFondo" tabindex="7" 
+                                                 onchange="this.form.submit()" >
+                                    <f:selectItems value="#{TranFondoUI_Backing.bancosPorCondominio}"/>
+                                </h:selectOneMenu>
+                            </td>
+                            <td>
+
+                                <h:outputLabel value="Cuentas " for="idCuentaTranFondo" />                             
+                                <h:selectOneMenu value="#{TranFondoUI_Backing.idCuentaTranFondo}" id="idCuentaTranFondo" tabindex="8">
+                                    <f:selectItems value="#{TranFondoUI_Backing.cuentasPorBanco}"/>
+                                </h:selectOneMenu>
+                            </td>
+                            <td>
+                                <h:outputLabel value="Forma de pago " for="formaPagoTranFondo"/>  
+                                <h:selectOneMenu id="formaPagoTranFondo" value="#{TranFondoUI_Backing.formaPagoTranFondo}" tabindex="8" >
+                                    <f:selectItem  itemLabel="Pago de Cheque" itemValue="Cheque" />
+                                    <f:selectItem  itemLabel="Dep/Transferencia" itemValue="Transferencia" />
+                                    <f:selectItem  itemLabel="Efectivo" itemValue="Efectivo" />
+                                </h:selectOneMenu>
+                            </td>
+                            <td>
+                                <h:outputLabel value="Monto " for="mtoTranFondo"/>                
+                                <h:inputText id="mtoTranFondo" size="24" required="false" maxlength ="12"
+                                             value="#{TranFondoUI_Backing.mtoTranFondo}" tabindex="9"/>
+                            </td>
+                        </tr>
+                        <hr size="2" width="90%"></hr>
+                        <div align="center"><h4><i>Cuenta origen de los Fondos</i></h4></div><p></p>
+                        <hr size="2" width="80%"></hr>
+                    </table> 
+
+
+                </table>
+                <hr size="2" width="80%"></hr>
+                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                <div align="center"><p>
+                        <h:commandButton value="Procesar Operación" action="#{TranFondoUI_Backing.registrarTranFondo}" tabindex="10" 
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Revertir" action="eliminar" tabindex="11"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Movimientos registrados.</i><font size="2"><i> Seleccione el Movimiento a procesar/revertir</i></font></h4>
+
+
+                <p:dataTable id="TablaTranFondos" rows="5" rowKey="#{co.id}"   
+                             value="#{TranFondoUI_Backing.tranFondoPorFondo}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage="  " 
+                             selection="#{TranFondoUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha Doc."/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecTranFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Documento"/>
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.docTranFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Concepto"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.descConceptoTranFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                             
+                                <h:outputText value="Banco"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.nombBancoTranFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                             
+                                <h:outputText value="Cuenta"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.cuentaTranFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Monto"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.mtoTranFondoString}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Forma/Pago"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.formaPagoTranFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Tipo/Oper"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.tipoOperTranFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Descripción"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.descTranFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Periodo"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.perTranFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{TranFondoUI_Backing.editarTranFondoAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{TranFondoUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

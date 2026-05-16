@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui" >
+    <h:head>
+        <title>Software Express Condominio</title>
+        <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+        <f:facet name="first"> 
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+        </f:facet>
+    </h:head>
+    <h:body>
+        <h:form>
+            <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="400" />
+                            </h1></div>
+                    </tr>          
+                </table>   
+            
+            <br />
+            <div align="center">
+                <h:outputText value="Consulta Express" style="  font-weight:500; font-family: arial;font-size: x-large; color: green; font-style: italic"></h:outputText>
+            </div>
+
+            <br />
+            <h:messages globalOnly="true" infoClass="RegError"/>  
+            <div align="center">
+                <p:graphicImage id="tab103Img" value="/images/accesoConsulta.jpg" height="50" width="50" />
+            </div>
+            <br />
+            <hr size="1" width="40%"></hr>
+            <br/>
+
+            <div align="center">
+
+                <h:panelGrid columns="2" cellpadding="2" style="background-color: #DDD">  
+
+                    <h:outputText value="Codigo de acceso:" 
+                                  style="font-family: arial;font-size: medium; color:blue; font-style: italic">      
+                    </h:outputText>
+
+                    <p:inputText id="tab00Text" size="10" value="#{ConExpAccesoUI_Backing.codAcceso}" tabindex="1"/> 
+
+                </h:panelGrid> 
+                <br/>
+                <hr size="1" width="40%"></hr>
+                <br />
+                <p:commandButton id="tab02Text" value="Entrar" action="#{ConExpAccesoUI_Backing.entrar}" tabindex="2"
+                                 style="font-family: arial;font-size: small; color:black; font-style: italic" ajax="false"/>
+            </div>
+            <br />
+
+        </h:form>
+    </h:body>
+</html>
+

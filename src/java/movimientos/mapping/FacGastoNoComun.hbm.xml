@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : FacGastoNoComun.hbm.xml
+    Created on : March 19, 2012, 4:07 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.FacGastoNoComun" table="FAC_GASTO_NO_COMUN"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_FAC_GASTO_NO_COMUN">
+            <generator class="increment" />
+        </id>
+        
+        <property name="fecFacGNC">
+            <column name="FEC_FAC_GNC"/>
+        </property>
+        <property name="mtoFacGastoNoComun">
+            <column name="MTO_FAC_GASTO_NO_COMUN" />
+        </property>
+        <property name="saldoFacGastoNoComun">
+            <column name="SALDO_FAC_GASTO_NO_COMUN"/>
+        </property>
+        <property name="edoFacGastoNoComun">
+            <column name="EDO_FAC_GASTO_NO_COMUN" length="4"/>
+        </property>
+                
+        <many-to-one name="gastoNoComun"  class="movimientos.modelos.GastoNoComun"
+                         column="ID_GASTO_NO_COMUN" not-null = "true" lazy="false"/>
+                         
+        <many-to-one name="inmueble"  class="datosbasicos.modelos.Inmueble"
+                         column="ID_INMUEBLE" not-null = "true" />
+                 
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Concepto.hbm.xml
+    Created on : February 7, 2012, 10:29 AM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="datosbasicos.modelos.Concepto" table="CONCEPTOS"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_CONCEPTO">
+            <generator class="increment" />
+        </id>
+        
+        <property name="nombConcepto">
+            <column name="NOMB_CONCEPTO" length="30"/>
+        </property>
+        <property name="descConcepto">
+            <column name="DESC_CONCEPTO" length="60"/>
+        </property>
+        <property name="edoConcepto">
+            <column name="EDO_CONCEPTO" length="3"/>
+        </property>
+        <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+           column="ID_CONDOMINIO" not-null = "true" />
+           
+        <many-to-one name="categoria"  class="datosbasicos.modelos.Categoria"
+           column="ID_CATEGORIA" not-null = "true" /> 
+           
+    </class>
+</hibernate-mapping>

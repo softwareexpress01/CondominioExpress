@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="../css/CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("descMovBancario");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>                                
+                                <h:commandLink onclick="Ayuda('AMovBancarioUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+                <div><h4><i>Registrar Movimientos Bancarios</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+                <br></br>
+                <hr size="2" width="70%"></hr>
+                <table width="70%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Banco " for="idBcoMovBancario"/>                
+                                <h:selectOneMenu value="#{MovBancarioUI_Backing.idBcoMovBancario}" id="idBcoMovBancario" tabindex="1"
+                                                 onchange="this.form.submit()"
+                                                 disabled ="#{BeanUsuario.deshabilitar}">
+                                    <f:selectItems value="#{MovBancarioUI_Backing.bancosPorCondominio}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Tipo Oper. " for="tipoOperMovBancario" /> 
+                                <h:selectOneMenu value="#{MovBancarioUI_Backing.tipoOperMovBancario}" id="tipoOperMovBancario" tabindex="4" >
+                                    <f:selectItem  itemLabel="Seleccione" itemValue="Seleccione" />
+                                    <f:selectItem  itemLabel="Pago de Cheque" itemValue="Pago de Cheque" />
+                                    <f:selectItem  itemLabel="Dep/Transferencia" itemValue="Dep/Transferencia" />
+                                    <f:selectItem  itemLabel="Ret/Transferencia" itemValue="Ret/Transferencia" />
+                                    <f:selectItem  itemLabel="Nota de Débito" itemValue="Nota de Débito" />
+                                    <f:selectItem  itemLabel="Nota de Crédito" itemValue="Nota de Crédito" />
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Monto " for="mtoMovBancario"/>                
+                                <h:inputText id="mtoMovBancario" size="19" required="false" maxlength ="12"
+                                             value="#{MovBancarioUI_Backing.mtoMovBancario}" tabindex="7"/>
+
+
+                            </h:panelGrid>
+                        </td>    
+
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Cuenta " for="idCtaMovBancario" />    
+                                <h:selectOneMenu value="#{MovBancarioUI_Backing.idCtaMovBancario}" id="idCtaMovBancario" tabindex="2"
+                                                 onchange="this.form.submit()"
+                                                 disabled ="#{BeanUsuario.deshabilitar}">
+                                    <f:selectItems value="#{MovBancarioUI_Backing.cuentasPorBanco}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Fecha Mov. " for="fecMovBancario" /> 
+                                <h:inputText required="false" id="fecMovBancario" size="19" maxlength ="10" 
+                                             value="#{MovBancarioUI_Backing.fecMovBancario}" tabindex="5"
+                                             onfocus="showCalendarControl(this);"/> 
+
+                                <h:outputLabel value="Descripción " for="descMovBancario" />                          
+                                <t:inputTextarea required="false" id="descMovBancario" cols="16" rows="1" 
+                                                 value="#{MovBancarioUI_Backing.descMovBancario}" tabindex="8"
+                                                 onkeypress="return limita(100);" forceId="true"/>
+
+                            </h:panelGrid>
+                        </td>
+                        <td>
+
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Saldo " for="saldoMovBancario"/>                
+                                <h:inputText id="saldoMovBancario" size="19" required="false" disabled="true"
+                                             value="#{MovBancarioUI_Backing.saldoCta}" tabindex="3"/> 
+
+                                <h:outputLabel value="Referencia " for="refMovBancario"/>                
+                                <h:inputText required="false" id="refMovBancario" size="19" maxlength ="20"
+                                             value="#{MovBancarioUI_Backing.refMovBancario}" tabindex="6"/>
+
+
+                            </h:panelGrid>
+                        </td>
+                    </tr>  
+                </table>
+                <hr size="2" width="70%"></hr>
+                <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{MovBancarioUI_Backing.registrarMovBancario}" tabindex="9" 
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{MovBancarioUI_Backing.modificarMovBancario}" tabindex="10"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="11"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Movimientos Bancarios registrados.</i><font size="2"><i> Seleccione el Movimiento a modificar/eliminar</i></font></h4>
+
+                <p:dataTable id="TablaMovBancarios" rows="5" rowKey="#{co.id}"   
+                             value="#{MovBancarioUI_Backing.movBancariosPorCuenta}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage="  " 
+                             selection="#{MovBancarioUI_Backing.filaSeleccionada}" selectionMode="single">  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Banco"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.nombBcoMovBancario}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Cuenta"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.descCtaMovBancario}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="tipo Operación"/>
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.tipoOperMovBancario}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Fecha"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.fecMovBancario}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                             
+                                <h:outputText value="Referencia"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.refMovBancario}"/>
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Monto"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.mtoMovBancarioString}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Descripción"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.descMovBancario}"/>
+                    </p:column>
+
+
+                    <p:column>
+                        <h:commandLink action="#{MovBancarioUI_Backing.editarMovBancarioAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{MovBancarioUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

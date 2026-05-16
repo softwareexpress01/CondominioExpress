@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+
+    <f:view> 
+        <h:head>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("obsAvisoCobro");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+            <script type="text/javascript">
+                function limitaObs2(maximoCaracteres) {
+                    var elemento = document.getElementById("obsAvisoCobro2");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+            <script type="text/javascript">
+                function limitaObs(maximoCaracteres) {
+                    var elemento = document.getElementById("obsReciboPago");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+
+        <body><h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <tr>
+                            <div align="center"><h1>
+                                    <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                                </h1></div>
+                        </tr>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink immediate="true" onclick="Ayuda('AParametroUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+                <h:messages globalOnly="true" infoClass="RegError"/> 
+                <div align="center"><h4>Parametros del sistema</h4></div>
+
+                <hr size="1" width="70%" align="center"></hr>
+                <table width="70%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid  columns="2" border="0" >
+
+                                <h:outputLabel value="Proximo aviso de cobro " for="proxAvisoCobro" />                
+                                <h:inputText id="proxAvisoCobro"  value="#{ParametroActMod.proxAvisoCobro}" tabindex="3" maxlength="10"/>
+
+                                <h:outputLabel value="Proximo recibo de cobro" for="proxReciboCobro" />                
+                                <h:inputText id="proxReciboCobro" value="#{ParametroActMod.proxReciboCobro}" tabindex="5" maxlength="10" />
+
+                                <h:outputLabel value="Proxima nota de credito (CxP)" for="proxNotaCredCxP" />              
+                                <h:inputText id="proxNotaCredCxP" value="#{ParametroActMod.proxNotaCredCxP}" tabindex="7" maxlength="10"/>
+
+                                <h:outputLabel value="Nro. días vencimiento CxC" for="nroDiasVenCxC" />              
+                                <h:inputText id="nroDiasVenCxC" value="#{ParametroActMod.numDiasVenCxC}" tabindex="9" maxlength="10" />
+
+                            </h:panelGrid>
+                        </td>  
+
+                        <td>
+                            <h:panelGrid columns="2" border="0">
+
+                                <h:outputLabel value="Proxima nota de debito (CxC)" for="proxNotaDebCxC" />              
+                                <h:inputText id="proxNotaDebCxC"  value="#{ParametroActMod.proxNotaDebCxC}" tabindex="4" maxlength="10"/>
+
+                                <h:outputLabel value="Proxima nota de credito (CxC)" for="proxNotaCredCxC" /> 
+                                <h:inputText id="proxNotaCredCxC" value="#{ParametroActMod.proxNotaCredCxC}" tabindex="6" maxlength="10"/>
+
+                                <h:outputLabel value="Porcentaje de mora/año  (CxC)" for="porcMora" /> 
+                                <h:inputText id="porcMora" value="#{ParametroActMod.porcMora}" tabindex="7" maxlength="8" />
+
+                                <p:tooltip for="porcMora" value="Cero, si no se aplica mora a las cxc" showEffect="highlight" hideEffect="fade" />
+
+                            </h:panelGrid>
+                        </td>     
+                    </tr>  
+                </table>
+
+                <hr size="2" width="70%"></hr>
+                <table width="70%"  border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Observaciones aviso cobro 1 " for="obsAvisoCobro"/>                
+                            <t:inputTextarea required="false" id="obsAvisoCobro" cols="40" rows="1" 
+                                             value="#{ParametroActMod.obsAvisoCobro}" tabindex="10" 
+                                             onkeypress="return limita(155);" forceId="true"/>
+                            <p:tooltip for="obsAvisoCobro" value="Opcional" showEffect="highlight" hideEffect="fade" />  
+                        </td>
+
+                        <td>
+                            <h:outputLabel value="Observaciones aviso cobro 2 " for="obsAvisoCobro2"/>                
+                            <t:inputTextarea required="false" id="obsAvisoCobro2" cols="40" rows="1" 
+                                             value="#{ParametroActMod.obsAvisoCobro2}" tabindex="11" 
+                                             onkeypress="return limitaObs2(155);" forceId="true"/>
+                            <p:tooltip for="obsAvisoCobro2" value="Opcional" showEffect="highlight" hideEffect="fade" />  
+                        </td>
+                    </tr>
+                    <tr></tr><tr></tr>
+                    <tr>
+                        <td>
+                            <h:outputLabel value="Observaciones recibo pago  " for="obsReciboPago"/>                
+                            <t:inputTextarea required="false" id="obsReciboPago" cols="40" rows="1" 
+                                             value="#{ParametroActMod.obsReciboPago}" tabindex="12" 
+                                             onkeypress="return limitaObs(60);" forceId="true"/>
+                            <p:tooltip for="obsReciboPago" value="Opcional" showEffect="highlight" hideEffect="fade" />  
+                        </td>
+                    </tr>
+                </table>
+                <hr size="2" width="70%"></hr>
+
+                <table width="53%" border="0" align="center">
+                    <tr>
+                        <td><h:outputLabel value="Tipo de facturacion" for="tipoFacturacion" /></td>
+                        <td>
+                            <h:selectOneRadio id="tipoFacturacion" value="#{ParametroActMod.tipoFacturacion}" 
+                                              onchange="this.form.submit();" immediate="true" tabindex="13" 
+                                              valueChangeListener="#{ParametroUI_Backing.mostrarMontoFijo}">
+                                <f:selectItem itemLabel="Por gastos de mes" itemValue="gastos"/>
+                                <f:selectItem itemLabel="Por monto fijo" itemValue="monto"/>
+                            </h:selectOneRadio>
+                            <td>
+                                <h:outputLabel value="Monto  " for="mtoFijoFacturacion" rendered ="#{BeanUsuario.mostrarMonto}"/>
+                                <h:inputText id="mtoFijoFacturacion" rendered ="#{BeanUsuario.mostrarMonto}"  
+                                             value="#{ParametroActMod.mtoFijoFacturacion}" tabindex="14" maxlength="10"/>
+                            </td> 
+                        </td>
+                    </tr>
+                </table>
+
+                <hr size="1" width="70%" align="center"></hr>
+
+                <div align ="center" ><p>
+                        <h:commandButton value="Actualizar"
+                                         action="#{ParametroUI_Backing.registrarParametro}" tabindex="15"/>
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+                    </p></div>
+
+            </h:form>
+        </body>
+    </f:view> 
+</html>

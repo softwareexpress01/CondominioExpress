@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3b1af73c-89b3-40ea-93e7-b4bc04c1b95f">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="92"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="condominio" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombProveedor" class="java.lang.String"/>
+	<field name="fecFac" class="java.lang.String"/>
+	<field name="numDoc" class="java.lang.String"/>
+	<field name="mtoFac" class="java.lang.Double"/>
+	<field name="saldoFac" class="java.lang.Double"/>
+	<field name="concepto" class="java.lang.String"/>
+	<field name="disc" class="java.lang.String"/>
+	<variable name="totMonto" class="java.lang.Double" resetType="Group" resetGroup="Proveedor" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoFac}]]></variableExpression>
+	</variable>
+	<variable name="totSaldo" class="java.lang.Double" resetType="Group" resetGroup="Proveedor" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoFac}]]></variableExpression>
+	</variable>
+	<variable name="totGenMonto" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoFac}]]></variableExpression>
+	</variable>
+	<variable name="totGenSaldo" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoFac}]]></variableExpression>
+	</variable>
+	<group name="Proveedor">
+		<groupExpression><![CDATA[$F{nombProveedor}]]></groupExpression>
+		<groupHeader>
+			<band height="37">
+				<staticText>
+					<reportElement x="8" y="7" width="72" height="20" forecolor="#0000CC" uuid="7027c5ec-6d96-434d-9ea1-8c11ffb689dd"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Proveedor:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="657" y="7" width="41" height="20" uuid="72d1aed5-da75-4d1e-a65f-6fd353bf71a5"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Monto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="719" y="7" width="77" height="20" uuid="1d34db2d-6236-444f-9ae9-9aa1cc5abef1"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Saldo Actual	]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="30" width="796" height="1" uuid="630b31fc-e644-4a5a-bd50-12bf47293394"/>
+				</line>
+				<staticText>
+					<reportElement x="197" y="7" width="49" height="20" uuid="9fd742f7-9ee1-48bd-a4dc-b2e73f949c80"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="269" y="7" width="66" height="20" uuid="451eb3c0-2fe0-431c-ade6-701290be7282"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Número]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="433" y="7" width="126" height="20" uuid="97d8e22c-def0-417a-ab2e-fed1410839ce"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Concepto]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="80" y="7" width="100" height="20" uuid="78205960-4cd1-4270-a125-a490f57b323f"/>
+					<textFieldExpression><![CDATA[$F{nombProveedor}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="348" y="7" width="66" height="20" uuid="a0aadf4f-2150-4896-8e18-6e3839368726"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Tipo.Mov]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="2" width="796" height="1" uuid="cba24ba9-a9b4-4c13-aa99-e2b4cfedf5a3"/>
+				</line>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="23">
+				<staticText>
+					<reportElement x="532" y="3" width="50" height="20" forecolor="#CC0000" uuid="5627c78c-811a-481b-860e-a3b2127d768c"/>
+					<textElement>
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<text><![CDATA[Sub Total ]]></text>
+				</staticText>
+				<textField pattern="#,##0.00">
+					<reportElement x="604" y="3" width="96" height="20" forecolor="#CC0000" uuid="e86fe888-9995-48ac-8916-15fce364d05e"/>
+					<textElement textAlignment="Right">
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totMonto}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.00">
+					<reportElement x="714" y="3" width="77" height="20" forecolor="#CC0000" uuid="3f426e38-24e9-46d4-9c12-338b1fb1892c"/>
+					<textElement textAlignment="Right">
+						<font isBold="true" isUnderline="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totSaldo}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="116" splitType="Stretch">
+			<staticText>
+				<reportElement x="339" y="92" width="133" height="20" forecolor="#0000FF" uuid="e9dcd271-5b1d-4ad1-b498-33a56d948dda"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cuentas Por Pagar]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="349" y="64" width="204" height="20" forecolor="#000000" uuid="0e2a9abf-f9f5-4f4c-814e-f6e189ea2481"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{condominio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="268" y="64" width="81" height="20" forecolor="#0000CC" uuid="c7ec1580-4fae-4dfd-af04-daefa81f3d52"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condominio:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="725" y="11" width="100" height="20" uuid="29649525-d7dd-4445-88a7-0e61f8ed4b20"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image onErrorType="Blank">
+				<reportElement x="6" y="5" width="99" height="74" uuid="3a8813bd-6e10-4f77-9d8f-9e94b403fa14"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="688" y="31" width="80" height="20" uuid="e6635a1b-9b1c-44d3-863a-b774a8a7a956"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="768" y="31" width="40" height="20" uuid="2775e05e-69d1-4a37-a4be-7aa642c700c9"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="10" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="28" splitType="Stretch">
+			<textField>
+				<reportElement x="198" y="0" width="100" height="20" uuid="cea64549-c782-49c5-ac88-c6da99ac5f64"/>
+				<textFieldExpression><![CDATA[$F{fecFac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="267" y="0" width="63" height="20" uuid="bbffe56e-fb7a-40bf-bf66-88cd2e5d97a5"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{numDoc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="434" y="0" width="152" height="20" uuid="8e90e37c-8735-4df6-8a68-8933b180e146"/>
+				<textFieldExpression><![CDATA[$F{concepto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="602" y="0" width="100" height="20" uuid="1f533d5f-73a1-4ba2-8a28-c17b1851de76"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{mtoFac}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="715" y="0" width="77" height="20" uuid="0817a033-c585-46a8-acc8-4d80c68dc867"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{saldoFac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="351" y="0" width="43" height="20" uuid="04e75c87-66b3-4a35-a521-85ca919ddff1"/>
+				<textFieldExpression><![CDATA[$F{disc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<staticText>
+				<reportElement x="490" y="11" width="96" height="20" forecolor="#CC0000" uuid="01cfd2bd-05f3-453c-9f5f-d73c49b6aefc"/>
+				<textElement>
+					<font size="12" isBold="true" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Total Proveedores]]></text>
+			</staticText>
+			<textField evaluationTime="Report" pattern="#,##0.00">
+				<reportElement x="598" y="11" width="100" height="20" forecolor="#CC0000" uuid="31651262-8500-4877-b80c-f37f496f2064"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totGenMonto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="712" y="11" width="77" height="20" forecolor="#CC0000" uuid="238fddea-d9ac-44fa-8e6a-a05283494cdd"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totGenSaldo}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="2" width="796" height="1" uuid="ab89ff11-b301-4a5a-9410-fa7b5532cc5f"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

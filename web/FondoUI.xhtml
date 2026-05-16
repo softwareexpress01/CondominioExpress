@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:t="http://myfaces.apache.org/tomahawk"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view> 
+        <h:head>
+
+            <link href="../css/CalendarControl.css" rel="stylesheet" type="text/css"></link>
+            <script src="../css/CalendarControl.js" language="javascript"></script>
+            <title>Software Express Condominio</title>
+            <link href="../css/condominio.css" rel="stylesheet" media="screen"></link>
+            <script type="text/javascript">
+                function limita(maximoCaracteres) {
+                    var elemento = document.getElementById("obsFondo");
+                    if(elemento.value.length >= maximoCaracteres ) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            </script>
+
+            <script language="javascript">
+                function Ayuda(tema)
+                {
+                    var AWin;
+                    AWin = window.open(tema, "helpwin","left=750,height=450,width=600, resizable=yes");
+                    AWin.focus();
+                }
+            </script>
+            <f:facet name="first"> 
+                <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+                <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+            </f:facet>
+            <link rel="shortcut icon" href="../Bolatransparente.png" height="64" width="64" />
+        </h:head>
+        <body>
+
+            <h:form>
+                <table width="100%" border="0">
+                    <tr>
+                        <div align="center"><h1>
+                                <h:graphicImage url="/condominioexpress.png" height="65" width="380" />
+                            </h1></div>
+                    </tr>          
+                </table>      
+
+                <table width="100%" class="BarBkgnd">
+                    <tr>
+                        <td align="left">
+                            <td>
+                                <font color="#0066cc"><i>Bienvenido(a),<f:verbatim>&nbsp;&nbsp;</f:verbatim><h:outputLabel value="#{BeanUsuario.nombUsuario}"/>
+                                    </i></font></td>
+                        </td>
+                        <td></td><td></td><td></td>
+                        <td align="center" width="10%" >
+                            <td><font color="#0066cc"><i><h:outputLabel  value="#{BeanUsuario.condominioActual}"/>,<h:outputLabel value="#{BeanUsuario.propiedadActual}"/></i></font></td>
+                        </td>
+                        <td align="right" width="25%"><i>
+                                <h:commandLink onclick="Ayuda('AFondoUI.xhtml')">
+                                    <h:outputText value="Ayuda"/>
+                                </h:commandLink></i>
+                        </td>
+                    </tr>
+                </table>
+
+                <div><h4><i>Crear y Actualizar Fondos</i></h4></div>
+
+                <h:messages globalOnly="true" infoClass="RegError"/>    
+
+
+                <table width="90%" border="0" align="center">
+                    <tr>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Banco " for="idBcoFondo"/>                
+                                <h:selectOneMenu value="#{FondoUI_Backing.idBcoFondo}" id="idBcoFondo" tabindex="1"
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{FondoUI_Backing.bancosPorCondominio}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Descripción " for="descFondo" /> 
+                                <h:inputText required="false" id="descFondo"  size="30" maxlength ="60"
+                                             value="#{FondoUI_Backing.descFondo}" tabindex="4"/> 
+
+                                <h:outputLabel value="Monto Inicial " for="mtoIniFondo"/>                
+                                <h:inputText id="mtoIniFondo" size="12" required="false" maxlength ="12"
+                                             value="#{FondoUI_Backing.mtoIniFondo}" tabindex="7"/>
+
+
+
+                            </h:panelGrid>
+                        </td>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Cuenta " for="idCtaFondo" />    
+                                <h:selectOneMenu value="#{FondoUI_Backing.idCtaFondo}" id="idCtaFondo" tabindex="2" 
+                                                 onchange="this.form.submit()">
+                                    <f:selectItems value="#{FondoUI_Backing.cuentasPorBanco}"/>
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Tipo " for="tipoFondo" /> 
+                                <h:selectOneMenu value="#{FondoUI_Backing.tipoFondo}" id="tipoFondo" tabindex="5" >
+                                    <f:selectItem  itemLabel="Seleccione" itemValue="Seleccione" />
+                                    <f:selectItem  itemLabel="Reserva" itemValue="Reserva" />
+                                    <f:selectItem  itemLabel="Prestaciones Sociales" itemValue="Prestaciones" />
+                                    <f:selectItem  itemLabel="Especial" itemValue="Especial" />
+                                </h:selectOneMenu>
+
+                                <h:outputLabel value="Saldo " for="saldoFondo"/> 
+                                <h:inputText id="saldoFondo" size="12" required="false" disabled="true"
+                                             value="#{FondoUI_Backing.saldoFondo}" tabindex="8"/>                
+
+                            </h:panelGrid>
+                        </td>
+                        <td>
+                            <h:panelGrid width="100%" columns="2" border="0">
+
+                                <h:outputLabel value="Fecha Creación (dd-mm-aaaa)" for="fecFondo" /> 
+                                <h:inputText required="false" id="fecFondo" size="24"  
+                                             value="#{FondoUI_Backing.fecFondo}" tabindex="3" maxlength ="10"
+                                             onfocus="showCalendarControl(this);"/> 
+
+                                <h:outputLabel value="Porcentaje (Fdo. de Reserva)" for="porcentFondo"/>                
+                                <h:inputText id="porcentFondo" size="4" required="false" maxlength ="6"
+                                             value="#{FondoUI_Backing.porcentFondo}" tabindex="6"/>
+
+                                <h:outputLabel value="Observaciones " for="obsFondo" />                             
+                                <t:inputTextarea required="false" id="obsFondo" cols="20" rows="1" 
+                                                 value="#{FondoUI_Backing.obsFondo}" tabindex="9"
+                                                 onkeypress="return limita(100);" forceId="true"/>
+                                <p:tooltip for="obsFondo" value="Opcional" showEffect="highlight" hideEffect="fade" />  
+
+                            </h:panelGrid>
+                        </td>
+                    </tr>  
+
+                </table>
+
+                <div align="center"><p>
+                        <h:commandButton value="Agregar" action="#{FondoUI_Backing.registrarFondo}" tabindex="10" 
+                                         disabled ="#{BeanUsuario.agregar}"/>  
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Modificar" action="#{FondoUI_Backing.modificarFondo}" tabindex="11"
+                                         disabled ="#{BeanUsuario.modificar}"/>   
+
+                        <f:verbatim>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</f:verbatim>
+
+                        <h:commandButton value="Eliminar" action="eliminar" tabindex="12"
+                                         disabled ="#{BeanUsuario.eliminar}"/>   
+                    </p></div>
+
+                <hr width="100%"></hr>
+                <h4><i>Fondos registrados.</i><font size="2"><i> Seleccione el Fondo a modificar/eliminar</i></font></h4>
+
+
+                <p:dataTable id="TablaFondos" rows="5" rowKey="#{co.id}"   
+                             value="#{FondoUI_Backing.fondosPorCondominio}" paginatorPosition="bottom"
+                             var="co" paginator="true"   emptyMessage=" " 
+                             selection="#{FondoUI_Backing.filaSeleccionada}" selectionMode="single" >  
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Fecha"/>
+                            </h:panelGroup>
+                        </f:facet>                    
+                        <h:outputText value="#{co.fecFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>
+                                <h:outputText value="Descripción"/>
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.descFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Tipo"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.tipoFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                             
+                                <h:outputText value="Porcentaje"/>                                                                
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.porcentFondoString}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Banco"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.nombBcoFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Cuenta"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.ctaBcoFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Monto Inicial "/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.mtoIniFondoString}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column style="text-align:right">
+                        <f:facet name="header">
+                            <h:panelGroup>                                                
+                                <h:outputText value="Saldo"/>                              
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.saldoFondoString}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:panelGroup>                                                  
+                                <h:outputText value="Observaciones"/>                               
+                            </h:panelGroup>
+                        </f:facet>
+                        <h:outputText value="#{co.obsFondo}" style="font-size: small" />
+                    </p:column>
+
+                    <p:column>
+                        <h:commandLink action="#{FondoUI_Backing.editarFondoAction}">
+                            <h:outputText value="Seleccionar" />
+                            <f:setPropertyActionListener value="#{co}" target="#{FondoUI_Backing.filaSeleccionada}" ></f:setPropertyActionListener>
+                        </h:commandLink>
+                    </p:column>
+
+
+                </p:dataTable>
+
+
+            </h:form>
+        </body>
+    </f:view> 
+</html> 

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f8e84bf1-4914-4576-98a9-34476337acd1">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="62"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="condominio" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombProveedor" class="java.lang.String"/>
+	<field name="dirProveedor" class="java.lang.String"/>
+	<field name="tel1Proveedor" class="java.lang.String"/>
+	<field name="emailProveedor" class="java.lang.String"/>
+	<field name="contactoProveedor" class="java.lang.String"/>
+	<field name="cedRifProveedor" class="java.lang.String"/>
+	<field name="telCelProveedor" class="java.lang.String"/>
+	<variable name="totProveedores" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="135" splitType="Stretch">
+			<staticText>
+				<reportElement x="351" y="88" width="100" height="20" forecolor="#0000FF" uuid="dadea736-d660-47f5-a872-85053f36e181"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Proveedores]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="340" y="54" width="210" height="20" forecolor="#000000" uuid="bad7c452-3ee7-43bf-8602-fbe400c89814"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{condominio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="265" y="54" width="75" height="20" forecolor="#0000CC" uuid="d2c74fc4-d9f8-4d3f-8f15-fdf06302b16e"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condominio:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="714" y="9" width="100" height="20" uuid="d1ef51aa-8ea0-4f81-9f78-56add20d88cf"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="678" y="34" width="80" height="20" uuid="bbd0508a-d770-47e6-aa6a-d7fb69b9f4c9"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="758" y="34" width="40" height="20" uuid="171a30b6-1adb-47f9-a9a6-45795282a38d"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<image isUsingCache="true">
+				<reportElement x="1" y="4" width="99" height="74" uuid="d49465cc-7866-44f2-9783-e3eae607b3d8"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="49" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="40" width="802" height="1" uuid="b38457b6-386b-417b-b337-22e1ccfbaec8"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="18" width="100" height="20" uuid="1a8a5a57-29bd-4d93-a99a-2cec7d0929e5"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="147" y="18" width="100" height="20" uuid="dcfe94eb-ee2a-47c0-a4a8-87536b562c2d"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Dirección ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="379" y="18" width="60" height="20" uuid="af0552bb-95cb-4f23-97cc-ad355e1c8441"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telf.Local]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="540" y="19" width="138" height="20" uuid="a848ab3b-17d0-4f77-ba4b-cd7c94c3892d"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[E-Mail	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="689" y="19" width="100" height="20" uuid="6ae872f3-75c4-4de1-959b-61a9bae65dfe"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contacto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="289" y="19" width="71" height="20" uuid="0eed07e3-08f9-4f56-afc1-d5ecfbca7a74"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cédula / RIF]]></text>
+			</staticText>
+			<line>
+				<reportElement x="555" y="40" width="247" height="1" uuid="6373fd57-d07f-4c06-b4a7-c69961595eb5"/>
+			</line>
+			<staticText>
+				<reportElement x="453" y="18" width="77" height="17" uuid="4590238d-ed09-43ad-b03b-c1dcc61cb142"/>
+				<textElement textAlignment="Center">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tel.Móvil]]></text>
+			</staticText>
+			<line>
+				<reportElement x="2" y="10" width="800" height="1" uuid="ed76cd68-71c8-480e-88ca-935e67028249"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="ae9d9405-2833-4484-9d6b-ed194171013e"/>
+				<textFieldExpression><![CDATA[$F{nombProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="0" width="174" height="20" uuid="464f7c06-c40d-4eb8-a403-ba7afa5267f8"/>
+				<textFieldExpression><![CDATA[$F{dirProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="532" y="0" width="155" height="20" uuid="6781980f-f870-4df6-9ab8-8bda0f0c91c0"/>
+				<textFieldExpression><![CDATA[$F{emailProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="687" y="0" width="115" height="20" uuid="fa06ba2e-7c64-41da-94f5-ae55b4f85059"/>
+				<textFieldExpression><![CDATA[$F{contactoProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="374" y="0" width="74" height="20" uuid="e377c711-0277-4a7a-981e-405a38da0374"/>
+				<textFieldExpression><![CDATA[$F{tel1Proveedor}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#-##########">
+				<reportElement x="287" y="0" width="82" height="20" uuid="b61ac294-a745-4011-9084-d7823a0a3fae"/>
+				<textFieldExpression><![CDATA[$F{cedRifProveedor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="77" height="20" uuid="112215ee-6281-4408-9793-1112cc6bb8d6"/>
+				<textFieldExpression><![CDATA[$F{telCelProveedor}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="43" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="42" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="47" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="11" width="109" height="20" forecolor="#CC0000" uuid="c8148530-e888-4f6e-b2e3-7cf335c47dc0"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Total Proveedores:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="111" y="13" width="109" height="20" forecolor="#CC0000" uuid="b8b0ee91-0e75-411b-acac-91978f6fc453"/>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="4" width="798" height="1" uuid="7b62db51-3790-431d-bc3a-5968b996df4b"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

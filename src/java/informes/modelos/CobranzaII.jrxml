@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="259"/>
+	<property name="ireport.y" value="55"/>
+	<parameter name="condominio" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="desde" class="java.lang.String"/>
+	<parameter name="hasta" class="java.lang.String"/>
+	<parameter name="total" class="java.lang.Double"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nombPropInmueble" class="java.lang.String"/>
+	<field name="fecFac" class="java.lang.String"/>
+	<field name="mtoFac" class="java.lang.Double"/>
+	<field name="saldoFac" class="java.lang.Double"/>
+	<field name="concepto" class="java.lang.String"/>
+	<field name="numDoc" class="java.lang.String"/>
+	<field name="numFac" class="java.lang.String"/>
+	<field name="nombBanco" class="java.lang.String"/>
+	<field name="fecMovPago" class="java.lang.String"/>
+	<field name="mtoPago" class="java.lang.Double"/>
+	<field name="codInmueble" class="java.lang.String"/>
+	<variable name="totMtoFac" class="java.lang.Double" resetType="Group" resetGroup="Proveedor" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoFac}]]></variableExpression>
+	</variable>
+	<variable name="totSaldo" class="java.lang.Double" resetType="Group" resetGroup="Proveedor" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoFac}]]></variableExpression>
+	</variable>
+	<variable name="totGenMonto" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoFac}]]></variableExpression>
+	</variable>
+	<variable name="totGenSaldo" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{saldoFac}]]></variableExpression>
+	</variable>
+	<variable name="totMtoPago" class="java.lang.Double" resetType="Group" resetGroup="Proveedor" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoPago}]]></variableExpression>
+	</variable>
+	<variable name="totGenPago" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{mtoPago}]]></variableExpression>
+	</variable>
+	<group name="Proveedor">
+		<groupExpression><![CDATA[$F{nombPropInmueble}]]></groupExpression>
+		<groupHeader>
+			<band height="60">
+				<staticText>
+					<reportElement x="8" y="0" width="54" height="23" forecolor="#0000CC"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Inmueble:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="682" y="29" width="67" height="18"/>
+					<textElement textAlignment="Center">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Monto.Pago]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="23" width="802" height="1"/>
+				</line>
+				<staticText>
+					<reportElement x="59" y="26" width="57" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Fecha.Doc]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="170" y="28" width="54" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Concepto]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="342" y="28" width="47" height="20"/>
+					<textElement>
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nro.Ref]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="433" y="28" width="54" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Banco]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="593" y="28" width="63" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="10" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Monto.Fac]]></text>
+				</staticText>
+				<line>
+					<reportElement x="0" y="52" width="802" height="1"/>
+				</line>
+				<textField>
+					<reportElement x="216" y="0" width="280" height="23"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{nombPropInmueble}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="147" y="0" width="62" height="20" forecolor="#0000CC"/>
+					<box>
+						<pen lineColor="#3333FF"/>
+						<topPen lineColor="#3333FF"/>
+						<leftPen lineColor="#3333FF"/>
+						<bottomPen lineColor="#3333FF"/>
+						<rightPen lineColor="#3333FF"/>
+					</box>
+					<textElement textAlignment="Right">
+						<font isBold="true"/>
+					</textElement>
+					<text><![CDATA[Propietario:]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="62" y="0" width="85" height="20"/>
+					<textElement/>
+					<textFieldExpression class="java.lang.String"><![CDATA[$F{codInmueble}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="34"/>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="152">
+			<staticText>
+				<reportElement x="340" y="92" width="143" height="20" forecolor="#0000FF"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cobros por Inmueble]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="397" y="68" width="183" height="20" forecolor="#000000"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{condominio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="315" y="67" width="74" height="20" forecolor="#0000CC"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Condominio:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="723" y="10" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="10" y="10" width="99" height="74"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="686" y="30" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="766" y="30" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="294" y="119" width="41" height="20" forecolor="#0000FF"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Desde:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="412" y="118" width="36" height="20" forecolor="#0000FF"/>
+				<textElement textAlignment="Right"/>
+				<text><![CDATA[Hasta:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="338" y="118" width="70" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{desde}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="451" y="120" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{hasta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="8" splitType="Stretch"/>
+	</pageHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement x="62" y="3" width="54" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{fecFac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="3" width="127" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{concepto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="323" y="3" width="59" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{numDoc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="445" y="3" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nombBanco}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement x="568" y="3" width="85" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{mtoFac}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement x="674" y="3" width="71" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{mtoPago}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="4" width="802" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="557" y="22" width="86" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total cobranza]]></text>
+			</staticText>
+			<textField pattern="#,##0.00">
+				<reportElement x="653" y="22" width="92" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$P{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
+

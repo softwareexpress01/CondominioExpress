@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : GastoPropiedad.xml
+    Created on : March 13, 2012, 5:28 PM
+    Author     : jesus
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="movimientos.modelos.GastoPropiedad" table="GASTO_PROPIEDAD"
+    
+        dynamic-insert="true"
+        dynamic-update="true">
+            
+        <id name="id" type="integer" column="ID_GASTO_PROPIEDAD">
+            <generator class="increment" />
+        </id>
+        
+        <property name="fecGastoPropiedad">
+            <column name="FEC_GASTO_PROPIEDAD" length="10"/>
+            </property>
+            <property name="numDocGastoPropiedad">
+                <column name="NUM_DOC_GASTO_PROPIEDAD" length="20"/>
+            </property>
+            <property name="mtoGastoPropiedad">
+                <column name="MTO_GASTO_PROPIEDAD" />
+            </property>
+            <property name="saldoGastoPropiedad">
+                <column name="saldo_GASTO_PROPIEDAD" />
+            </property>
+            <property name="obsGastoPropiedad">
+                <column name="OBS_GASTO_PROPIEDAD" length="150"/>
+            </property>
+            <property name="edoGastoPropiedad">
+                <column name="EDO_GASTO_PROPIEDAD" length="4"/>
+            </property>
+            <property name="fecMovGP">
+                <column name="FEC_MOV_GP"/>
+            </property>
+            <property name="idConcepto">
+                <column name="ID_CONCEPTO" />
+            </property>
+            <property name="idProveedor">
+                <column name="ID_PROVEEDOR" />
+            </property>
+            <many-to-one name="condominio"  class="datosbasicos.modelos.Condominio"
+                         column="ID_CONDOMINIO" not-null = "true" />
+                 
+        </class>
+    </hibernate-mapping>
